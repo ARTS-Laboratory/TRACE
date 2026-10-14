@@ -241,3 +241,39 @@ The path should point to the GlorpCat virtual environment rather than the system
 GlorpCat is under active development. The architecture is intentionally modular so that the inference backend, models, RAG pipeline, MCP servers, tools, CLI, and browser UI can evolve independently.
 
 When adding new functionality, prefer keeping capabilities behind well-defined interfaces rather than directly coupling them to the agent. This is especially important for MCP tools and RAG, since both are expected to expand significantly as the project develops.
+
+## Start Strata Q4
+
+```bash
+cd ~/src/Strata
+
+export SDK="$HOME/rocm/strata-7.14.1"
+export ROCM_PATH="$SDK"
+export HIP_PATH="$SDK"
+export HIP_PLATFORM=amd
+export PATH="$SDK/bin:$SDK/lib/llvm/bin:$PATH"
+export LD_LIBRARY_PATH="$SDK/lib:$SDK/lib/rocm_sysdeps/lib:$SDK/lib/llvm/lib${LD_LIBRARY_PATH:+:$LD_LIBRARY_PATH}"
+
+./.venv/bin/python serve/server.py \
+  --engine strata \
+  --config "$PWD/strata-unsloth-ud-iq4_xs.json" \
+  --port 8080 \
+  --open
+```
+
+Strata opens at `http://127.0.0.1:8080`.
+
+## Stop Strata Q4 and Release RAM
+
+Run this from another terminal:
+
+```bash
+pkill -TERM -f 'serve/server.py.*strata-unsloth-ud-iq4_xs.json'
+
+sleep 3
+
+free -h
+```
+
+> Do not run a large Ollama model while Strata Q4 is loaded.
+
