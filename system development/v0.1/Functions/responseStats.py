@@ -27,8 +27,16 @@ class ResponseStats:
         generation_duration,
         load_duration,
         total_duration,
+        prompt_processed_tokens=None,
+        cached_tokens=0,
     ):
         self.prompt_tokens = prompt_tokens
+        self.prompt_processed_tokens = (
+            prompt_tokens
+            if prompt_processed_tokens is None
+            else prompt_processed_tokens
+        )
+        self.cached_tokens = cached_tokens
         self.generated_tokens = generated_tokens
 
         # Convert Ollama durations from nanoseconds to seconds
@@ -37,7 +45,7 @@ class ResponseStats:
 
         # Avoid division by zero if Ollama reports a duration of 0
         self.prompt_speed = (
-            prompt_tokens / prompt_seconds
+            self.prompt_processed_tokens / prompt_seconds
             if prompt_seconds > 0
             else 0.0
         )

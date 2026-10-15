@@ -1,72 +1,67 @@
-from Functions.Model.config import MODEL_NAME, STREAM, THINKING, CONTEXT_WINDOW
-from Functions.utilities import t
-import ollama
+from Functions.Model.providers.registry import create_chat_provider
+
 
 async def streamResponse(
-    messages: dict,
+    messages: list[dict],
     toolManager,
     stats,
     on_event=None,
-    conversation_id=None
-) -> dict[str, str]:
-
+    conversation_id=None,
+) -> dict[str, object]:
     async def emit(event_type, data):
         if on_event:
-            await on_event({
-                "type": event_type,
-                "conversation_id": conversation_id,
-                "data": data
-            })
-
-    responseContent = ""
-    thinkingContent = ""
-    toolCalls = []
-
-    client = ollama.AsyncClient()
-
-    response = await client.chat(
-        model=MODEL_NAME,
-        messages=messages,
-        stream=True,
-        think=True,
-        tools=toolManager.schema(),
-    )
-
-    last_chunk = None
-
-    async for chunk in response:
-        last_chunk = chunk
-
-        if chunk.message.thinking:
-            thinkingContent += chunk.message.thinking
-
-            await emit(
-                "thinking_delta",
-                chunk.message.thinking
+            await on_event(
+                {
+                    "type": event_type,
+                    "conversation_id": conversation_id,
+                    "data": data,
+                }
             )
 
-        if chunk.message.content:
-            responseContent += chunk.message.content
+    response_content = ""
+    thinking_content = ""
+    tool_calls = []
+    metrics = None
 
-            await emit(
-                "content_delta",
-                chunk.message.content
-            )
+    provider = create_chat_provider()
 
-        if chunk.message.tool_calls:
-            toolCalls.extend(chunk.message.tool_calls)
+    async for chunk in provider.stream_chat(
+        messages,
+        toolManager.schema(),
+    ):
+        if chunk.thinking_delta:
+            thinking_content += chunk.thinking_delta
+            await emit("thinking_delta", chunk.thinking_delta)
+
+        if chunk.content_delta:
+            response_content += chunk.content_delta
+            await emit("content_delta", chunk.content_delta)
+
+        if chunk.tool_calls:
+            tool_calls.extend(chunk.tool_calls)
+
+        if chunk.metrics:
+            metrics = chunk.metrics
+
+    if metrics is None:
+        raise RuntimeError("The model backend ended without timing metadata.")
 
     stats.set_llm(
-        prompt_tokens=last_chunk.prompt_eval_count,
-        generated_tokens=last_chunk.eval_count,
-        prompt_duration=last_chunk.prompt_eval_duration,
-        generation_duration=last_chunk.eval_duration,
-        load_duration=last_chunk.load_duration,
-        total_duration=last_chunk.total_duration
+        prompt_tokens=metrics["prompt_tokens"],
+        generated_tokens=metrics["generated_tokens"],
+        prompt_duration=metrics["prompt_duration"],
+        generation_duration=metrics["generation_duration"],
+        load_duration=metrics["load_duration"],
+        total_duration=metrics["total_duration"],
+        prompt_processed_tokens=metrics.get(
+            "prompt_processed_tokens",
+            metrics["prompt_tokens"],
+        ),
+        cached_tokens=metrics.get("cached_tokens", 0),
     )
 
     return {
-        "thinking": thinkingContent,
-        "content": responseContent,
-        "tool_calls": toolCalls
+        "thinking": thinking_content,
+        "content": response_content,
+        "tool_calls": tool_calls,
     }

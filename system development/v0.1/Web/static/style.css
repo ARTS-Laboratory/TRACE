@@ -21,15 +21,39 @@ body {
     display: flex;
     flex-direction: column;
 
-    width: 100%;
-    max-width: 800px;
+    width: calc(100% - 260px);
 
-    margin-left: calc(260px + max(0px, (100vw - 260px - 800px) / 2));
-    margin-right: auto;
+    margin-left: 260px;
+    margin-right: 0;
+    position:relative;
+}
+
+#chat::after {
+    content: "";
+
+    position: fixed;
+    left: 260px;
+    right: 0;
+    bottom: 0;
+
+    height: 180px;
+
+    background: linear-gradient(
+        to bottom,
+        transparent,
+        #212121
+    );
+
+    pointer-events: none;
+    z-index: 5;
 }
 
 #messages {
     flex: 1;
+
+    width: 100%;
+    max-width: 800px;
+    margin: 0 auto;
 
     padding: 40px 20px 140px 20px;
 }
@@ -84,7 +108,7 @@ body {
 #new-chat-button {
     width: 100%;
 
-    padding: 10px 12px;
+    padding: 10px 15px;
 
     border: 1px solid #383838;
     border-radius: 10px;
@@ -96,6 +120,10 @@ body {
     font: inherit;
 
     cursor: pointer;
+
+    display: flex;
+    align-items: center;
+    gap: 10px;
 }
 
 #new-chat-button:hover {
@@ -562,12 +590,28 @@ body {
         top 0.5s ease,
         bottom 0.5s ease,
         transform 0.5s ease;
+
+    z-index: 10;
 }
 
 #chat.new-chat #input-container {
     top: 50%;
     bottom: auto;
     transform: translate(-50%, -50%);
+}
+
+#chat-title {
+    position: fixed;
+
+    top: 20px;
+    left: 290px;
+
+    color: #aaa;
+
+    font-size: 0.9rem;
+    font-weight: 500;
+
+    z-index: 10;
 }
 
 #message-input {
@@ -626,6 +670,682 @@ body {
     border-radius: 16px;
 
     cursor: pointer;
+}
+
+#sidebar-tools {
+    margin-top: 12px;
+}
+
+#sidebar-tools button {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+
+    padding: 10px 12px;
+
+    border: none;
+    border-radius: 8px;
+
+    background: transparent;
+    color: #bbb;
+
+    font: inherit;
+    text-align: left;
+
+    cursor: pointer;
+}
+
+#sidebar-tools button:hover {
+    background: #252525;
+    color: #fff;
+}
+
+#sidebar-tools button.active {
+    background: #303030;
+    color: #fff;
+}
+
+#conversation-section {
+    flex: 1;
+    min-height: 0;
+
+    display: flex;
+    flex-direction: column;
+
+    margin-top: 12px;
+}
+
+#conversation-section-title {
+    padding: 12px 12px 7px;
+
+    color: #777;
+
+    font-size: 0.75rem;
+    font-weight: 600;
+    user-select: none;
+}
+
+#rag-view {
+    width: 100%;
+    min-height: 100%;
+    padding: 50px 40px 120px;
+}
+
+.rag-header {
+    margin-bottom: 36px;
+}
+
+.rag-header h1 {
+    margin: 0 0 8px;
+    font-size: 2rem;
+}
+
+.rag-header p {
+    margin: 0;
+    color: #999;
+}
+
+.rag-section {
+    width: 100%;
+    max-width: 760px;
+    margin-bottom: 28px;
+}
+
+.rag-section label {
+    display: block;
+    margin-bottom: 10px;
+    color: #bbb;
+    font-size: 0.9rem;
+    font-weight: 500;
+}
+
+#rag-collection {
+    width: 100%;
+    padding: 12px 14px;
+
+    border: 1px solid #383838;
+    border-radius: 10px;
+
+    background: #242424;
+    color: #eee;
+
+    font: inherit;
+}
+
+#rag-drop-zone {
+    min-height: 180px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    gap: 8px;
+
+    border: 1px dashed #555;
+    border-radius: 14px;
+
+    background: #242424;
+
+    cursor: pointer;
+}
+
+#rag-drop-zone:hover {
+    background: #292929;
+}
+
+#rag-drop-zone svg {
+    width: 32px;
+    height: 32px;
+    margin-bottom: 6px;
+}
+
+#rag-drop-zone.dragging {
+    background: #2d2d2d;
+    border-color: #777;
+}
+
+.rag-drop-title {
+    font-size: 1rem;
+    font-weight: 500;
+}
+
+.rag-drop-description {
+    color: #888;
+    font-size: 0.85rem;
+}
+
+.rag-actions {
+    width: 100%;
+    max-width: 760px;
+
+    display: flex;
+    justify-content: flex-end;
+}
+
+#rag-ingest-button {
+    padding: 10px 16px;
+
+    border: none;
+    border-radius: 10px;
+
+    background: #eee;
+    color: #222;
+
+    font: inherit;
+    cursor: pointer;
+}
+
+#rag-ingest-button:hover {
+    background: #fff;
+}
+
+.rag-header {
+    width: 100%;
+    max-width: 1400px;
+    margin: 0 auto 36px;
+}
+
+.rag-header h1 {
+    margin: 0 0 8px;
+    font-size: 2rem;
+}
+
+.rag-header p {
+    margin: 0;
+    color: #999;
+}
+
+
+.rag-section {
+    width: 100%;
+    max-width: 760px;
+    margin: 0 auto 36px;
+}
+
+
+.rag-section-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    gap: 20px;
+
+    margin-bottom: 14px;
+}
+
+.rag-section-header h2 {
+    margin: 0 0 4px;
+
+    font-size: 1.1rem;
+    font-weight: 600;
+}
+
+.rag-section-header p {
+    margin: 0;
+
+    color: #888;
+    font-size: 0.85rem;
+}
+
+
+#rag-new-collection-button {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+
+    padding: 8px 12px;
+
+    border: 1px solid #383838;
+    border-radius: 9px;
+
+    background: #242424;
+    color: #ccc;
+
+    font: inherit;
+    cursor: pointer;
+}
+
+#rag-new-collection-button:hover {
+    background: #2d2d2d;
+    color: #fff;
+}
+
+
+#rag-collection {
+    width: 100%;
+
+    padding: 12px 14px;
+
+    border: 1px solid #383838;
+    border-radius: 10px;
+
+    background: #242424;
+    color: #eee;
+
+    font: inherit;
+}
+
+
+#rag-drop-zone {
+    min-height: 180px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    gap: 8px;
+
+    border: 1px dashed #555;
+    border-radius: 14px;
+
+    background: #242424;
+
+    cursor: pointer;
+
+    transition:
+        background 0.15s ease,
+        border-color 0.15s ease;
+}
+
+#rag-drop-zone:hover {
+    background: #292929;
+    border-color: #666;
+}
+
+#rag-drop-zone svg {
+    width: 34px;
+    height: 34px;
+    margin-bottom: 5px;
+}
+
+
+.rag-drop-title {
+    font-size: 1rem;
+    font-weight: 500;
+}
+
+.rag-drop-description {
+    color: #888;
+    font-size: 0.85rem;
+}
+
+
+.rag-subsection {
+    margin-top: 26px;
+}
+
+.rag-subsection h3 {
+    margin: 0 0 10px;
+
+    color: #bbb;
+
+    font-size: 0.9rem;
+    font-weight: 600;
+}
+
+
+#rag-selected-files {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    min-height: 100px;
+}
+
+
+.rag-file-card {
+    min-height: 58px;
+
+    display: flex;
+    align-items: center;
+
+    gap: 12px;
+
+    padding: 10px 12px;
+
+    border: 1px solid #383838;
+    border-radius: 10px;
+
+    background: #242424;
+}
+
+.rag-file-card > svg {
+    width: 24px;
+    height: 24px;
+
+    flex-shrink: 0;
+
+    color: #aaa;
+}
+
+
+.rag-file-info {
+    min-width: 0;
+    flex: 1;
+}
+
+.rag-file-name {
+    overflow: hidden;
+
+    color: #eee;
+
+    text-overflow: ellipsis;
+    white-space: nowrap;
+
+    font-size: 0.9rem;
+}
+
+.rag-file-meta {
+    margin-top: 3px;
+
+    color: #777;
+
+    font-size: 0.75rem;
+}
+
+
+.rag-file-remove {
+    width: 28px;
+    height: 28px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    flex-shrink: 0;
+
+    padding: 0;
+
+    border: none;
+    border-radius: 6px;
+
+    background: transparent;
+    color: #888;
+
+    font-size: 1.1rem;
+
+    cursor: pointer;
+}
+
+.rag-file-remove:hover {
+    background: #333;
+    color: #eee;
+}
+
+
+#rag-progress-list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+
+.rag-progress-card {
+    padding: 12px;
+
+    border: 1px solid #383838;
+    border-radius: 10px;
+
+    background: #242424;
+}
+
+
+.rag-progress-header {
+    display: flex;
+    justify-content: space-between;
+
+    gap: 12px;
+
+    color: #ddd;
+
+    font-size: 0.85rem;
+}
+
+.rag-progress-status {
+    margin-top: 4px;
+
+    color: #888;
+
+    font-size: 0.75rem;
+}
+
+
+.rag-progress-bar {
+    width: 100%;
+    height: 7px;
+
+    margin-top: 10px;
+
+    overflow: hidden;
+
+    border-radius: 999px;
+
+    background: #181818;
+}
+
+.rag-progress-fill {
+    height: 100%;
+
+    border-radius: inherit;
+
+    background: #8a8a8a;
+
+    transition: width 0.25s ease;
+}
+
+
+.rag-actions {
+    display: flex;
+    justify-content: flex-end;
+
+    margin-top: 14px;
+}
+
+
+#rag-ingest-button,
+#rag-query-button {
+    padding: 10px 16px;
+
+    border: none;
+    border-radius: 10px;
+
+    background: #eee;
+    color: #222;
+
+    font: inherit;
+
+    cursor: pointer;
+}
+
+#rag-ingest-button:hover,
+#rag-query-button:hover {
+    background: #fff;
+}
+
+
+#rag-query-input {
+    width: 100%;
+
+    resize: vertical;
+
+    padding: 12px 14px;
+
+    border: 1px solid #383838;
+    border-radius: 12px;
+
+    outline: none;
+
+    background: #242424;
+    color: #eee;
+
+    font: inherit;
+    line-height: 1.5;
+}
+
+#rag-query-input::placeholder {
+    color: #777;
+}
+
+#rag-query-input:focus {
+    border-color: #555;
+}
+
+
+#rag-results {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+
+.rag-result {
+    border: 1px solid #383838;
+    border-radius: 10px;
+
+    background: #242424;
+}
+
+
+.rag-result summary {
+    padding: 12px 14px;
+
+    cursor: pointer;
+    list-style: none;
+}
+
+.rag-result summary::-webkit-details-marker {
+    display: none;
+}
+
+
+.rag-result-summary {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    gap: 12px;
+
+    color: #ddd;
+
+    font-size: 0.85rem;
+}
+
+
+.rag-result-content {
+    padding: 0 14px 14px;
+
+    color: #aaa;
+
+    line-height: 1.5;
+}
+
+.rag-result-content p {
+    margin: 12px 0 0;
+}
+
+
+.rag-result-source {
+    color: #ddd;
+
+    font-size: 0.85rem;
+    font-weight: 500;
+}
+
+.rag-result-meta {
+    margin-top: 3px;
+
+    color: #777;
+
+    font-size: 0.75rem;
+}
+
+.rag-collection-row {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.rag-collection-row #rag-collection {
+    flex: 1;
+}
+
+.rag-content-box {
+    width: 100%;
+    min-height: 120px;
+
+    padding: 12px;
+
+    border: 1px solid #383838;
+    border-radius: 12px;
+
+    background: #242424;
+
+    box-sizing: border-box;
+
+    cursor: default;
+    user-select: none;
+    caret-color: transparent;
+}
+
+#rag-delete-collection-button {
+    width: 42px;
+    height: 42px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    flex-shrink: 0;
+
+    padding: 0;
+
+    border: 1px solid #383838;
+    border-radius: 10px;
+
+    background: #242424;
+    color: #999;
+
+    cursor: pointer;
+}
+
+#rag-delete-collection-button:hover {
+    background: #302424;
+    color: #ddd;
+}
+
+#rag-delete-collection-button svg {
+    width: 18px;
+    height: 18px;
+}
+
+#rag-content {
+    width: 100%;
+    max-width: 1400px;
+    margin: 0 auto;
+
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    gap: 40px;
+
+    align-items: start;
+}
+
+.rag-column {
+    min-width: 0;
+}
+
+.rag-column .rag-section {
+    width: 100%;
+    max-width: none;
+    margin: 0 0 24px;
+}
+
+@media (max-width: 900px) {
+    #rag-content {
+        grid-template-columns: 1fr;
+    }
 }
 
 .tools {
@@ -706,8 +1426,7 @@ body {
 
 .stats-section {
     display: grid;
-    grid-template-columns: auto auto;
-
+    grid-template-columns: auto 1fr;
     gap: 5px 20px;
 }
 
@@ -717,6 +1436,10 @@ body {
     color: #bbb;
 
     margin-bottom: 4px;
+}
+
+.context-value {
+    white-space: nowrap;
 }
 
 /* Markdown */

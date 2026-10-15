@@ -23,22 +23,202 @@
     <div id="app">
 
         <aside id="sidebar">
+
             <div id="sidebar-header">
-                <div id="sidebar-title">GlorpCat</div>
+
+                <div id="sidebar-title">
+                    GlorpCat
+                </div>
 
                 <button id="new-chat-button">
-                    + New chat
+                    <i data-lucide="square-pen"></i>
+                    <span>New chat</span>
                 </button>
+
             </div>
 
-            <div id="conversation-list"></div>
+            <div id="sidebar-tools">
+
+                <button id="rag-section-button">
+                    <i data-lucide="database"></i>
+                    <span>RAG</span>
+                </button>
+
+            </div>
+
+            <div id="conversation-section">
+
+                <div id="conversation-section-title">
+                    Chats
+                </div>
+
+                <div id="conversation-list"></div>
+
+            </div>
+
         </aside>
 
 
         <main id="chat">
+            <div id="chat-title"></div>
             <div id="messages"></div>
-            
-            <div id="input-container">
+
+                <div id="rag-view">
+
+                    <div class="rag-header">
+                        <h1>RAG</h1>
+                        <p>Manage your document knowledge base.</p>
+                    </div>
+
+                    <div id="rag-content">
+
+                        <div class="rag-column">
+
+                    <section class="rag-section">
+                            <div class="rag-section-header">
+                                <div>
+                                    <h2>Knowledge Base</h2>
+                                    <p>Select the collection to work with.</p>
+                                </div>
+
+                                <button id="rag-new-collection-button" type="button">
+                                    <i data-lucide="plus"></i>
+                                    <span>New</span>
+                                </button>
+                            </div>
+
+                            <div class="rag-collection-row">
+
+                                <select id="rag-collection">
+                                    <option>test2</option>
+                                </select>
+
+                                <button
+                                    id="rag-delete-collection-button"
+                                    type="button"
+                                    title="Delete collection"
+                                >
+                                    <i data-lucide="trash-2"></i>
+                                </button>
+
+                            </div>
+                        </section>
+
+
+                        <section class="rag-section">
+
+                            <div class="rag-section-header">
+                                <div>
+                                    <h2>Ingest Documents</h2>
+                                    <p>Add documents to the selected collection.</p>
+                                </div>
+                            </div>
+
+                            <div id="rag-drop-zone">
+
+                                <i data-lucide="file-up"></i>
+
+                                <div class="rag-drop-title">
+                                    Add documents
+                                </div>
+
+                                <div class="rag-drop-description">
+                                    Drag files here or click to browse
+                                </div>
+
+                            </div>
+
+                            <input
+                                id="rag-file-input"
+                                type="file"
+                                multiple
+                                hidden
+                            >
+
+                            <div class="rag-subsection">
+
+                                <h3>Selected Documents</h3>
+
+                                <div class="rag-content-box">
+
+                                    <div id="rag-selected-files"></div>
+
+                                </div>
+
+                            </div>
+
+                            <div
+                                id="rag-progress-section"
+                                class="rag-subsection"
+                                style="display: none;"
+                            >
+
+                                <h3>Ingestion Progress</h3>
+
+                                <div id="rag-progress-list"></div>
+
+                            </div>
+
+                            <div class="rag-actions">
+                                <button
+                                    id="rag-ingest-button"
+                                    type="button"
+                                >
+                                    Ingest documents
+                                </button>
+                            </div>
+
+                        </section>
+                    </div>
+
+
+                    <div class="rag-column">
+                        <section class="rag-section">
+
+                            <div class="rag-section-header">
+                                <div>
+                                    <h2>Query Collection</h2>
+                                    <p>Search the selected knowledge base.</p>
+                                </div>
+                            </div>
+
+                            <textarea
+                                id="rag-query-input"
+                                placeholder="Ask something about this collection..."
+                                rows="4"
+                            ></textarea>
+
+                            <div class="rag-actions">
+                                <button
+                                    id="rag-query-button"
+                                    type="button"
+                                >
+                                    Query
+                                </button>
+                            </div>
+
+                            <div class="rag-subsection">
+
+                                <h3>Results</h3>
+
+                                <div class="rag-content-box">
+
+                                    <div id="rag-results"></div>
+
+                                </div>
+
+                            </div>
+
+                        </section>
+                    </div>
+                </div>
+
+
+        </main>
+
+    </div>
+
+<div id="input-container">
 
                 <div
                     id="attachment-preview"
@@ -75,15 +255,10 @@
                 </div>
 
             </div>
-        </main>
-
-    </div>
-
-    </main>
 
     <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/dompurify/dist/purify.min.js"></script>
-    
+
     <link
     rel="stylesheet"
     href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/styles/github-dark.min.css"
@@ -115,7 +290,7 @@
 
     <script
         src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js">
-    </script>    
+    </script>
 
 </body>
 

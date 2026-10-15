@@ -17,6 +17,7 @@ pytictoc
 ollama
 chromadb
 sentence-transformers
+httpx
 
 # MCP SDK
 mcp[cli]>=1.26,<2

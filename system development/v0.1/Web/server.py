@@ -4,17 +4,17 @@ from fastapi.staticfiles import StaticFiles
 from fastapi.responses import FileResponse
 from fastapi import (
     FastAPI,
-    WebSocket, 
-    WebSocketDisconnect, 
-    UploadFile, 
+    WebSocket,
+    WebSocketDisconnect,
+    UploadFile,
     File,
     Form
     )
-from ollama import chat
+from Functions.Model.config import DATA_PATH, MODEL_PROVIDER
+from Functions.Model.llama_cpp_server import LlamaCppServerManager
 
 from Functions.Agent.factory import create_runtime
 from Functions.Storage.database import Database
-from Functions.Model.config import DATA_PATH
 
 from Functions.Conversation.manager import ConversationManager
 from pydantic import BaseModel
@@ -25,19 +25,23 @@ import asyncio
 runtime = None
 database = None
 conversation_manager = None
+llama_cpp_server = None
 pending_attachments = {}
 chat_tasks = {}
 
 class UpdateName(BaseModel):
-    title : str 
+    title : str
 
 @asynccontextmanager
 async def lifespan(app: FastAPI):
     global runtime
     global database
     global conversation_manager
+    global llama_cpp_server
 
     runtime = await create_runtime()
+
+    llama_cpp_server = LlamaCppServerManager()
 
     database = Database()
 
@@ -46,9 +50,12 @@ async def lifespan(app: FastAPI):
         database=database
     )
 
-    yield
+    try:
+        yield
 
-    await runtime.shutdown()
+    finally:
+        await llama_cpp_server.stop()
+        await runtime.shutdown()
 
 
 app = FastAPI(lifespan=lifespan)
@@ -110,7 +117,7 @@ async def upload_attachments(
         if message_id != message["id"]:
             continue
 
-        match = message 
+        match = message
         break
 
     if match is None:
@@ -123,7 +130,7 @@ async def upload_attachments(
             "error": "Message not from user"
         }
 
-    conversation_media = DATA_PATH / "media" / str(conversation_id) 
+    conversation_media = DATA_PATH / "media" / str(conversation_id)
 
     conversation_media.mkdir(
             parents=True,
@@ -226,13 +233,13 @@ async def delete_conversation(conversation_id: int):
 async def handle_chat(websocket: WebSocket, data):
     conversation_id = data["conversation_id"]
 
-    try:    
+    try:
         message = data["message"]
         has_attachment = data.get("has_attachment", False)
         agent = conversation_manager.get_agent(
             conversation_id
         )
-        
+
         if agent is None:
             try:
                 await websocket.send_json({
@@ -243,7 +250,7 @@ async def handle_chat(websocket: WebSocket, data):
                 pass
 
             return
-        
+
         message_id = database.add_message(
             conversation_id=conversation_id,
             role="user",
@@ -296,12 +303,16 @@ async def handle_chat(websocket: WebSocket, data):
             message_id=message_id
         )
 
+        if MODEL_PROVIDER == "llama_cpp":
+            await llama_cpp_server.ensure_running()
+            await runtime.model_manager.load_active()
+
         print("CHAT START", conversation_id)
         assistant = await agent.chat(
             message,
             attachments = attachments,
             on_event=send_event,
-            
+
         )
         print("CHAT END", conversation_id)
 
@@ -373,4 +384,4 @@ async def websocket_chat(websocket: WebSocket):
 
         for task in active_tasks:
             task.cancel()
-        
+

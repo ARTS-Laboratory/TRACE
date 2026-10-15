@@ -105,26 +105,40 @@ class ToolManager:
         stats,
         tool_calls,
         on_event=None,
-        conversation_id=None
+        conversation_id=None,
     ):
         messages = []
 
         for call in tool_calls:
-            name = call.function.name
-            args = call.function.arguments
+            if isinstance(call, dict):
+                function = call["function"]
+                call_id = call["id"]
+                name = function["name"]
+                args = function["arguments"]
+            else:
+                function = call.function
+                call_id = call.id
+                name = function.name
+                args = function.arguments
+
+            if isinstance(args, str):
+                args = json.loads(args)
 
             result = await self.execute(
                 stats,
                 name,
                 on_event=on_event,
                 conversation_id=conversation_id,
-                **args
+                **args,
             )
 
-            messages.append({
-                "role": "tool",
-                "name": name,
-                "content": json.dumps(result)
-            })
+            messages.append(
+                {
+                    "role": "tool",
+                    "name": name,
+                    "tool_call_id": call_id,
+                    "content": json.dumps(result),
+                }
+            )
 
         return messages

@@ -1,6 +1,9 @@
 const messages = document.getElementById("messages");
 const input = document.getElementById("message-input");
 const sendButton = document.getElementById("send-button");
+const inputContainer =
+    document.getElementById("input-container");
+
 const conversationList =
     document.getElementById("conversation-list");
 
@@ -12,11 +15,31 @@ const attachButton =
 
 const attachmentPreview =
     document.getElementById(
-        "attachment-preview"
-    );
+        "attachment-preview");
+
+const chatTitle =
+    document.getElementById("chat-title");
+
+const ragSectionButton =
+    document.getElementById("rag-section-button");
+
+const ragView =
+    document.getElementById("rag-view");
+
+const ragDropZone =
+    document.getElementById("rag-drop-zone");
+
+const ragFileInput =
+    document.getElementById("rag-file-input");
+
+const ragSelectedFiles =
+    document.getElementById("rag-selected-files");
 
 const fileInput =
     document.getElementById("file-input");
+
+const ragProgressSection =
+    document.getElementById("rag-progress-section");
 
 const ws = new WebSocket(
     `ws://${window.location.host}/ws/chat`
@@ -109,7 +132,7 @@ ws.onmessage = async (event) => {
     else if (message.type === "user_message_saved") {
         if (currentAttachment) {
             try {
-                const attachment = 
+                const attachment =
                     await uploadAttachment(
                         currentAttachment,
                         message.data.conversation_id,
@@ -243,6 +266,11 @@ function updateConversationTitle(
             titleElement.textContent = title;
         }
     }
+
+    if (conversationId === currentConversationId) {
+        chatTitle.textContent = title;
+    }
+
 }
 
 async function deleteConversation(conversationId) {
@@ -475,7 +503,7 @@ function renderStats(state, stats) {
         <div class="stats-section">
             <strong>Model</strong>
             <span>Context</span>
-            <span>
+            <span class="context-value">
                 ${stats.model.context_used.toLocaleString()}
                 /
                 ${stats.model.context_length.toLocaleString()}
@@ -592,7 +620,7 @@ async function sendMessage() {
     state.generating = true;
     state.cancelled = false;
 
-    
+
 
     ws.send(JSON.stringify({
         conversation_id: currentConversationId,
@@ -1209,6 +1237,7 @@ async function loadConversation(conversationId) {
 
     const conversation = await response.json();
 
+    chatTitle.textContent = conversation.title;
     const view = getConversationView(conversation.id);
 
     if (view.childElementCount === 0) {
@@ -1231,6 +1260,7 @@ async function loadConversation(conversationId) {
     }
 
     currentConversationId = conversation.id;
+    showChatSection();
     chat.classList.remove("new-chat");
     showConversationView(conversation.id);
 
@@ -1746,6 +1776,97 @@ async function initializeApp() {
 
 initializeApp();
 
+function showRagSection() {
+    messages.style.display = "none";
+    inputContainer.style.display = "none";
+    ragView.style.display = "block";
+
+    ragSectionButton.classList.add("active");
+
+    chatTitle.textContent = "";
+}
+function showChatSection() {
+    messages.style.display = "block";
+    ragView.style.display = "none";
+
+    inputContainer.style.display = "flex";
+
+    console.log(
+        "inputContainer:",
+        inputContainer,
+        "display:",
+        inputContainer.style.display
+    );
+
+    ragSectionButton.classList.remove("active");
+
+    if (currentConversationId !== null) {
+        showConversationView(currentConversationId);
+    }
+}
+
+function addRagFiles(files) {
+
+    for (const file of files) {
+
+        const card = document.createElement("div");
+
+        card.classList.add("rag-file-card");
+
+        const icon = document.createElement("i");
+
+        icon.setAttribute(
+            "data-lucide",
+            "file-text"
+        );
+
+        const info = document.createElement("div");
+
+        info.classList.add("rag-file-info");
+
+        const name = document.createElement("div");
+
+        name.classList.add("rag-file-name");
+
+        name.textContent = file.name;
+
+        const meta = document.createElement("div");
+
+        meta.classList.add("rag-file-meta");
+
+        meta.textContent = file.type || "Unknown type";
+
+        info.appendChild(name);
+        info.appendChild(meta);
+
+        const removeButton =
+            document.createElement("button");
+
+        removeButton.classList.add(
+            "rag-file-remove"
+        );
+
+        removeButton.type = "button";
+        removeButton.title = "Remove";
+        removeButton.textContent = "×";
+
+        removeButton.addEventListener(
+            "click",
+            () => {
+                card.remove();
+            }
+        );
+
+        card.appendChild(icon);
+        card.appendChild(info);
+        card.appendChild(removeButton);
+
+        ragSelectedFiles.appendChild(card);
+    }
+
+    lucide.createIcons();
+}
+
 function addStoredAssistantMessage(message, conversationId = currentConversationId) {
     const container = document.createElement("div");
 
@@ -1853,6 +1974,11 @@ newChatButton.addEventListener(
     startNewChat
 );
 
+ragSectionButton.addEventListener(
+    "click",
+    showRagSection
+);
+
 attachButton.addEventListener(
     "click",
     () => {
@@ -1883,5 +2009,66 @@ document.addEventListener(
             .forEach((menu) => {
                 menu.remove();
             });
+    }
+);
+
+ragDropZone.addEventListener(
+    "click",
+    () => {
+        ragFileInput.click();
+    }
+);
+
+ragFileInput.addEventListener(
+    "change",
+    () => {
+
+        if (ragFileInput.files.length === 0) {
+            return;
+        }
+
+        addRagFiles(
+            ragFileInput.files
+        );
+
+        ragFileInput.value = "";
+    }
+);
+
+ragDropZone.addEventListener(
+    "dragover",
+    (event) => {
+
+        event.preventDefault();
+
+        ragDropZone.classList.add(
+            "dragging"
+        );
+    }
+);
+
+ragDropZone.addEventListener(
+    "dragleave",
+    () => {
+
+        ragDropZone.classList.remove(
+            "dragging"
+        );
+    }
+);
+
+ragDropZone.addEventListener(
+    "drop",
+    (event) => {
+
+        event.preventDefault();
+
+        ragDropZone.classList.remove(
+            "dragging"
+        );
+
+        addRagFiles(
+            event.dataTransfer.files
+        );
     }
 );
