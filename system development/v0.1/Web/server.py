@@ -32,6 +32,10 @@ chat_tasks = {}
 class UpdateName(BaseModel):
     title : str
 
+class CollectionCreate(BaseModel):
+    collection_name : str
+    collection_description : str
+
 @asynccontextmanager
 async def lifespan(app: FastAPI):
     global runtime
@@ -229,6 +233,49 @@ async def delete_conversation(conversation_id: int):
         "deleted": True,
         "id": conversation_id
     }
+
+@app.get("/api/chromadb/collections")
+async def get_chromadb_collections():
+    collections = runtime.chroma_db.get_collections()
+    return {"collections": collections}
+
+@app.delete("/api/chromadb/collections/{collection_name}")
+async def delete_chromadb_collection(collection_name: str):
+
+    deleted_collection = runtime.chroma_db.delete_collection(
+        collection_name
+    )
+
+    if not deleted_collection:
+        return {
+            "error": "Collection not deleted"
+        }
+
+    return {
+        "deleted": True,
+        "collection": collection_name
+    }
+
+@app.post("/api/chromadb/collections")
+async def create_collection(data: CollectionCreate):
+
+    created_collection = runtime.chroma_db.create_collection(
+        data.collection_name,
+        data.collection_description
+    )
+
+    if not created_collection:
+        return {
+            "error": "Collection creation failed."
+        }
+
+    return {
+        "created": True,
+        "collection": data.collection_name,
+        "description": data.collection_description
+    }
+
+
 
 async def handle_chat(websocket: WebSocket, data):
     conversation_id = data["conversation_id"]

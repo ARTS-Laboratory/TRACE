@@ -1,10 +1,11 @@
-from Functions.Model.config import CHATBOT_NAME, SYSTEM_PROMPT
+from Functions.Model.config import SYSTEM_PROMPT
 from Functions.Agent.agent import Agent
 from Functions.Agent.conversations import Conversation
 from Functions.Agent.toolManager import ToolManager
 from Functions.MCP.manager import MCPManager
 from Functions.Model.manager import ModelManager
 from Functions.Media.inspector import MediaInspector
+from Functions.ChromaDB.ChromaDB import ChromaDB
 
 class Runtime:
     def __init__(
@@ -12,12 +13,14 @@ class Runtime:
         tool_manager,
         mcp_manager,
         model_manager,
-        media_inspector
+        media_inspector,
+        chroma_db
     ):
         self.tool_manager = tool_manager
         self.mcp_manager = mcp_manager
         self.model_manager = model_manager
         self.media_inspector = media_inspector
+        self.chroma_db = chroma_db
 
     async def shutdown(self):
         await self.mcp_manager.shutdown()
@@ -28,6 +31,7 @@ async def create_runtime():
     mcp_manager = MCPManager()
     model_manager = ModelManager()
     media_inspector = MediaInspector()
+    chroma_db = ChromaDB()
 
     await model_manager.load()
 
@@ -53,7 +57,8 @@ async def create_runtime():
         tool_manager=tool_manager,
         mcp_manager=mcp_manager,
         model_manager=model_manager,
-        media_inspector=media_inspector
+        media_inspector=media_inspector,
+        chroma_db=chroma_db
     )
 
 

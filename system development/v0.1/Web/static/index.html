@@ -89,9 +89,7 @@
 
                             <div class="rag-collection-row">
 
-                                <select id="rag-collection">
-                                    <option>test2</option>
-                                </select>
+                                <select id="rag-collection"></select>
 
                                 <button
                                     id="rag-delete-collection-button"
@@ -211,6 +209,103 @@
 
                         </section>
                     </div>
+
+                    <div id="rag-collection-modal" class="modal">
+
+                        <div class="modal-content">
+
+                            <h2>New Collection</h2>
+
+                            <label for="rag-collection-name">
+                                Collection name
+                            </label>
+
+                            <input
+                                id="rag-collection-name"
+                                type="text"
+                                autocomplete="off"
+                            >
+
+                            <div id="rag-collection-requirements">
+
+                                <div
+                                    class="rag-name-requirement"
+                                    data-requirement="length"
+                                >
+                                    <i data-lucide="circle-x"></i>
+                                    <span>3–512 characters</span>
+                                </div>
+
+                                <div
+                                    class="rag-name-requirement"
+                                    data-requirement="edges"
+                                >
+                                    <i data-lucide="circle-x"></i>
+                                    <span>
+                                        Starts and ends with a lowercase letter or digit
+                                    </span>
+                                </div>
+
+                                <div
+                                    class="rag-name-requirement"
+                                    data-requirement="characters"
+                                >
+                                    <i data-lucide="circle-x"></i>
+                                    <span>
+                                        Only lowercase letters, numbers, dots,
+                                        dashes, and underscores
+                                    </span>
+                                </div>
+
+                                <div
+                                    class="rag-name-requirement"
+                                    data-requirement="dots"
+                                >
+                                    <i data-lucide="circle-x"></i>
+                                    <span>No consecutive dots</span>
+                                </div>
+
+                                <div
+                                    class="rag-name-requirement"
+                                    data-requirement="ip"
+                                >
+                                    <i data-lucide="circle-x"></i>
+                                    <span>Not a valid IP address</span>
+                                </div>
+
+                            </div>
+
+                            <label for="rag-collection-description">
+                                Description
+                                <span>(optional)</span>
+                            </label>
+
+                            <textarea
+                                id="rag-collection-description"
+                                rows="3"
+                            ></textarea>
+
+                            <div class="modal-actions">
+
+                                <button
+                                    id="rag-cancel-collection-button"
+                                    type="button"
+                                >
+                                    Cancel
+                                </button>
+
+                                <button
+                                    id="rag-create-collection-button"
+                                    type="button"
+                                >
+                                    Create
+                                </button>
+
+                            </div>
+
+                        </div>
+
+                    </div>
                 </div>
 
 
@@ -270,15 +365,17 @@
 
     <script src="https://unpkg.com/lucide@latest"></script>
 
-    <script src="/static/app.js"></script>
+    <script type="module" src="/static/js/app.js"></script>
 
     <script>
     window.MathJax = {
         tex: {
             inlineMath: [
+                ["$", "$"],
                 ["\\(", "\\)"]
             ],
             displayMath: [
+                ["$$", "$$"],
                 ["\\[", "\\]"]
             ]
         },
