@@ -3,15 +3,17 @@ from pathlib import Path
 
 ModelDirectory = Path(__file__).parent
 FunctionsDirectory = ModelDirectory.parent
-
+SystemDevelopmentDirectory = FunctionsDirectory.parent
+GlorpCatDirectory = SystemDevelopmentDirectory.parent
+GitHubDirectory = GlorpCatDirectory.parent
 
 CHATBOT_NAME = "GlorpCat"
 MODEL_NAME = "nemotron-3.5-lightning-fixed:30b"
 MODEL_PROVIDER = "llama_cpp"  # Change to "ollama" to use the old backend.
 
 #llama.cpp server settings
-LLAMA_CPP_BASE_URL = "http://127.0.0.1:8081/v1"
-LLAMA_CPP_AUTO_START = True
+LLAMA_CPP_BASE_URL = os.getenv("GLORPCAT_LLAMA_CPP_URL") or "http://127.0.0.1:8081/v1"
+LLAMA_CPP_AUTO_START = os.getenv("GLORPCAT_LLAMA_CPP_AUTO_START", "true").lower() == "true"
 LLAMA_CPP_TOOLBOX = "llama-rocm-10.0"
 LLAMA_CPP_STARTUP_TIMEOUT_S = 120.0
 LLAMA_CPP_MODEL_PATH = (
@@ -27,8 +29,8 @@ LLAMA_CPP_TEMPLATE_PATH = (
 VISION_NAME = "gemma4:e2b"
 
 # ChromaDB settings
-CHROMADB_PATH = "/home/thienan/Documents/GitHub/PaperParsing/Docling Parsing/v0.2/ChromaDB"
-DATA_PATH = Path("/home/thienan/Documents/GitHub/Glorp-Cat/system development/Data")
+CHROMADB_PATH = Path(os.getenv("GLORPCAT_CHROMADB_DIR") or GitHubDirectory / "PaperParsing/Docling Parsing/v0.2/ChromaDB")
+DATA_PATH = Path(os.getenv("GLORPCAT_DATA_DIR") or SystemDevelopmentDirectory / "Data")
 RERANKER_MODEL = "BAAI/bge-reranker-base"
 
 STREAM = True

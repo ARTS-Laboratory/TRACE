@@ -50,3 +50,8 @@ Thumbs.db
 *.swp
 *~
 system development/current-environment.txt
+
+# =========================
+# Local environment configuration
+# =========================
+.env

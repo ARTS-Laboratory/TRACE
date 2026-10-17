@@ -1,0 +1,102 @@
+services:
+  glorpcat:
+    build:
+      context: .
+      dockerfile: docker/app/Dockerfile
+
+    image: glorpcat-app:dev
+
+    devices:
+      - /dev/kfd:/dev/kfd
+      - /dev/dri:/dev/dri
+
+    group_add:
+      - video
+
+    ipc: host
+
+    ports:
+      - "8000:8000"
+
+    environment:
+      GLORPCAT_DATA_DIR: /app/Data
+      GLORPCAT_CHROMADB_DIR: /app/ChromaDB
+      GLORPCAT_LLAMA_CPP_URL: http://inference:8081/v1
+      GLORPCAT_LLAMA_CPP_AUTO_START: "false"
+
+    volumes:
+      - "./system development/Data:/app/Data"
+      - "../PaperParsing/Docling Parsing/v0.2/ChromaDB:/app/ChromaDB"
+      - "glorpcat-hf-cache:/root/.cache/huggingface"
+
+    command:
+      - python3
+      - -m
+      - uvicorn
+      - Web.server:app
+      - --host
+      - 0.0.0.0
+      - --port
+      - "8000"
+
+    depends_on:
+      inference:
+        condition: service_healthy
+
+  inference:
+    image: kyuz0/amd-strix-halo-toolboxes:rocm-10.0
+
+    devices:
+      - /dev/kfd:/dev/kfd
+      - /dev/dri:/dev/dri
+
+    group_add:
+      - video
+
+    ipc: host
+
+    volumes:
+    - "${GLORPCAT_MODEL_DIR}:/models:ro"
+    - "${GLORPCAT_TEMPLATE_DIR}:/templates:ro"
+
+    command:
+      - llama-server
+      - -m
+      - /models/${GLORPCAT_MODEL_FILE}
+      - --host
+      - 0.0.0.0
+      - --port
+      - "8081"
+      - -c
+      - "32768"
+      - --device
+      - ROCm0
+      - -ngl
+      - "999"
+      - --flash-attn
+      - "on"
+      - --load-mode
+      - "none"
+      - --chat-template-file
+      - /templates/${GLORPCAT_TEMPLATE_FILE}
+      - --alias
+      - ${GLORPCAT_MODEL_ALIAS}
+      - --reasoning
+      - "on"
+      - --reasoning-format
+      - deepseek
+      - --reasoning-preserve
+
+    healthcheck:
+      test:
+        - CMD
+        - curl
+        - -f
+        - http://127.0.0.1:8081/health
+      interval: 5s
+      timeout: 3s
+      retries: 60
+
+volumes:
+  glorpcat-hf-cache:
+    name: glorpcat-hf-cache
