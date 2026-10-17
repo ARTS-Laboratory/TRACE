@@ -1,4 +1,229 @@
-async function sendMessage() {
+import { state } from "./state.js";
+
+import {
+    getCurrentAttachment,
+    uploadAttachment,
+    clearAttachment,
+    addMessageAttachment,
+    openImageViewer
+} from "./attachments.js";
+
+import {
+    renderMarkdown,
+    renderMath,
+    renderStats,
+    protectMath,
+    enhanceCodeBlocks
+} from "./rendering.js";
+
+import {
+    loadConversations,
+    updateConversationTitle
+} from "./conversations.js";
+
+const messages =
+    document.getElementById("messages");
+
+const input =
+    document.getElementById("message-input");
+
+const sendButton =
+    document.getElementById("send-button");
+
+const chat =
+    document.getElementById("chat");
+
+const ws = new WebSocket(
+    `ws://${window.location.host}/ws/chat`
+);
+
+ws.onopen = () => {
+    console.log("Connected to GlorpCat");
+};
+
+ws.onmessage = async (event) => {
+    const message = JSON.parse(event.data);
+    const responseState = getResponseState(message.conversation_id);
+
+    if (message.type === "thinking_delta") {
+
+        if (responseState.cancelled) {
+            return;
+        }
+
+        addThinkingDelta(responseState, message.data);
+    }
+
+    else if (message.type === "content_delta") {
+        if (responseState.cancelled) {
+            return;
+        }
+
+        responseState.markdown += message.data;
+
+        if (!responseState.renderPending) {
+            responseState.renderPending = true;
+
+            requestAnimationFrame(() => {
+                renderMarkdown(responseState);
+                responseState.renderPending = false;
+            });
+        }
+    }
+
+    else if (message.type === "user_message_saved") {
+        const attachment =
+            getCurrentAttachment();
+
+        if (attachment) {
+            try {
+                const uploadedAttachment =
+                    await uploadAttachment(
+                        attachment,
+                        message.data.conversation_id,
+                        message.data.message_id
+                    );
+
+                addMessageAttachment(
+                    state.currentUserMessage,
+                    {
+                        id: uploadedAttachment.id,
+                        original_name: attachment.name,
+                        content_type: attachment.type
+                    }
+                );
+
+                clearAttachment();
+            }
+            catch (error) {
+                console.error(
+                    "Attachment upload failed:",
+                    error
+                );
+            }
+        }
+    }
+
+    else if (message.type === "done") {
+        responseState.assistant.thinkingDetails.open = false;
+        responseState.assistant.thinkingSummary.textContent = "Thought";
+
+        await renderMath(responseState.assistant);
+        responseState.assistant = null;
+        responseState.thoughtStream = null;
+        responseState.thinkingBlock = null;
+        responseState.stats = null;
+        responseState.activeTools = {};
+        responseState.generating = false;
+
+        if (state.currentConversationId === message.conversation_id) {
+            sendButton.disabled = false;
+            sendButton.textContent = "Send";
+        }
+    }
+
+    else if (message.type === "tool_started") {
+        addTool(responseState, message.data);
+    }
+
+    else if (message.type === "tool_finished") {
+        finishTool(responseState ,message.data);
+    }
+
+    else if (message.type === "response_stats") {
+        renderStats(responseState,message.data);
+    }
+
+    else if (message.type === "conversation_title") {
+        updateConversationTitle(
+            message.data.conversation_id,
+            message.data.title
+        );
+    }
+
+    else if (message.type === "cancelled") {
+        if (responseState.assistant) {
+            responseState.assistant.thinkingDetails.open = false;
+            responseState.assistant.thinkingSummary.textContent = "Stopped";
+        }
+
+        responseState.generating = false;
+
+        if (state.currentConversationId === message.conversation_id) {
+            sendButton.disabled = false;
+            sendButton.textContent = "Send";
+        }
+    }
+
+    if (
+        message.conversation_id === state.currentConversationId
+    ) {
+        scrollToBottom();
+    }
+};
+
+export function getResponseState(conversationId) {
+    if (!state.responseStates.has(conversationId)) {
+        state.responseStates.set(
+            conversationId,
+            {
+                assistant: null,
+                thoughtStream: null,
+                thinkingBlock: null,
+                stats: null,
+                markdown: "",
+                activeTools: {},
+                renderPending: false,
+                generating: false,
+                cancelled: false,
+            }
+        );
+    }
+
+    return state.responseStates.get(conversationId);
+}
+
+export function getConversationView(conversationId) {
+    if (!state.conversationViews.has(conversationId)) {
+        const view = document.createElement("div");
+
+        view.classList.add("conversation-view");
+        view.style.display = "none";
+
+        messages.appendChild(view);
+        state.conversationViews.set(conversationId, view);
+    }
+
+    return state.conversationViews.get(conversationId);
+}
+
+export function showConversationView(conversationId) {
+    for (const [id, view] of state.conversationViews) {
+        view.style.display = id === conversationId ? "block" : "none";
+    }
+}
+
+export function scrollToBottom(force = false) {
+    if (!state.autoScroll && !force) {
+        return;
+    }
+
+    window.scrollTo({
+        top: document.documentElement.scrollHeight,
+        behavior: "auto"
+    });
+}
+
+export function isNearBottom() {
+    const threshold = 40;
+
+    return (
+        window.innerHeight + window.scrollY >=
+        document.documentElement.scrollHeight - threshold
+    );
+}
+
+export async function sendMessage() {
     const text = input.value.trim();
 
     if (
@@ -10,7 +235,7 @@ async function sendMessage() {
 
     // A blank New Chat doesn't exist in SQLite yet.
     // Create it when the first message is actually sent.
-    if (currentConversationId === null) {
+    if (state.currentConversationId === null) {
         try {
             const response = await fetch(
                 "/api/conversations",
@@ -27,14 +252,14 @@ async function sendMessage() {
 
             const conversation = await response.json();
 
-            currentConversationId = conversation.id;
+            state.currentConversationId = conversation.id;
             chat.classList.remove("new-chat");
 
             await loadConversations();
 
             console.log(
                 "Conversation:",
-                currentConversationId
+                state.currentConversationId
             );
         }
 
@@ -47,32 +272,32 @@ async function sendMessage() {
             return;
         }
     }
-    let hasAttachment = false;
+    const attachment =
+        getCurrentAttachment();
 
-    if (currentAttachment !== null) {
-        hasAttachment = true;
-    }
+    const hasAttachment =
+        attachment !== null;
 
-    getConversationView(currentConversationId);
-    showConversationView(currentConversationId);
+    getConversationView(state.currentConversationId);
+    showConversationView(state.currentConversationId);
 
-    currentUserMessage = addUserMessage(
+    state.currentUserMessage = addUserMessage(
         text,
         [],
-        currentConversationId
+        state.currentConversationId
     );
-    createAssistantMessage(currentConversationId);
+    createAssistantMessage(state.currentConversationId);
 
-    autoScroll = true;
+    state.autoScroll = true;
 
-    const state = getResponseState(currentConversationId);
-    state.generating = true;
-    state.cancelled = false;
+    const responseState = getResponseState(state.currentConversationId);
+    responseState.generating = true;
+    responseState.cancelled = false;
 
 
 
     ws.send(JSON.stringify({
-        conversation_id: currentConversationId,
+        conversation_id: state.currentConversationId,
         message: text,
         has_attachment: hasAttachment
     }));
@@ -85,22 +310,23 @@ async function sendMessage() {
     scrollToBottom(true);
 }
 
-function stopChat(conversationId) {
-    const state = getResponseState(conversationId);
+export function stopChat(conversationId) {
+    const responseState =
+        getResponseState(conversationId);
 
-    if (!state.generating) {
+    if (!responseState.generating) {
         return;
     }
 
-    state.cancelled = true;
-    state.generating = false;
+    responseState.cancelled = true;
+    responseState.generating = false;
 
-    if (state.assistant) {
-        state.assistant.thinkingDetails.open = false;
-        state.assistant.thinkingSummary.textContent = "Stopped";
+    if (responseState.assistant) {
+        responseState.assistant.thinkingDetails.open = false;
+        responseState.assistant.thinkingSummary.textContent = "Stopped";
     }
 
-    if (conversationId === currentConversationId) {
+    if (conversationId === state.currentConversationId) {
         sendButton.disabled = false;
         sendButton.textContent = "Send";
     }
@@ -111,48 +337,7 @@ function stopChat(conversationId) {
     }));
 }
 
-function getResponseState(conversationId) {
-    if (!responseStates.has(conversationId)) {
-        responseStates.set(
-            conversationId,
-            {
-                assistant: null,
-                thoughtStream: null,
-                thinkingBlock: null,
-                stats: null,
-                markdown: "",
-                activeTools: {},
-                renderPending: false,
-                generating: false,
-                cancelled: false,
-            }
-        );
-    }
-
-    return responseStates.get(conversationId);
-}
-
-function getConversationView(conversationId) {
-    if (!conversationViews.has(conversationId)) {
-        const view = document.createElement("div");
-
-        view.classList.add("conversation-view");
-        view.style.display = "none";
-
-        messages.appendChild(view);
-        conversationViews.set(conversationId, view);
-    }
-
-    return conversationViews.get(conversationId);
-}
-
-function showConversationView(conversationId) {
-    for (const [id, view] of conversationViews) {
-        view.style.display = id === conversationId ? "block" : "none";
-    }
-}
-
-function addUserMessage(text, attachments = [], conversationId = currentConversationId) {
+export function addUserMessage(text, attachments = [], conversationId = state.currentConversationId) {
     const element = document.createElement("div");
 
     element.classList.add(
@@ -259,24 +444,25 @@ function addUserMessage(text, attachments = [], conversationId = currentConversa
     return element;
 }
 
-function addThinkingDelta(state, text) {
-    if (!state.thinkingBlock) {
-        state.thinkingBlock = document.createElement("div");
-        state.thinkingBlock.classList.add("thinking");
+function addThinkingDelta(responseState, text) {
+    if (!responseState.thinkingBlock) {
+        responseState.thinkingBlock = document.createElement("div");
+        responseState.thinkingBlock.classList.add("thinking");
 
-        state.thoughtStream.appendChild(
-            state.thinkingBlock
+        responseState.thoughtStream.appendChild(
+            responseState.thinkingBlock
         );
     }
 
-    state.thinkingBlock.textContent += text;
+    responseState.thinkingBlock.textContent += text;
 }
 
 function createAssistantMessage(conversationId) {
     const container = document.createElement("div");
-    const state = getResponseState(conversationId);
+    const responseState =
+        getResponseState(conversationId);
 
-    state.markdown = "";
+    responseState.markdown = "";
 
     container.classList.add(
         "message",
@@ -293,36 +479,121 @@ function createAssistantMessage(conversationId) {
     thinkingSummary.textContent = "Thinking...";
 
 
-    state.thoughtStream = document.createElement("div");
-    state.thoughtStream.classList.add("thought-stream");
+    responseState.thoughtStream = document.createElement("div");
+    responseState.thoughtStream.classList.add("thought-stream");
 
 
     thinkingDetails.appendChild(thinkingSummary);
-    thinkingDetails.appendChild(state.thoughtStream);
+    thinkingDetails.appendChild(responseState.thoughtStream);
 
 
-    state.assistant = document.createElement("div");
-    state.assistant.classList.add("assistant-content");
+    responseState.assistant = document.createElement("div");
+    responseState.assistant.classList.add("assistant-content");
 
-    state.stats = document.createElement("div");
-    state.stats.classList.add("response-stats");
+    responseState.stats = document.createElement("div");
+    responseState.stats.classList.add("response-stats");
 
 
     container.appendChild(thinkingDetails);
-    container.appendChild(state.assistant);
-    container.appendChild(state.stats);
+    container.appendChild(responseState.assistant);
+    container.appendChild(responseState.stats);
 
     getConversationView(conversationId).appendChild(container);
 
 
-    state.assistant.thinkingDetails = thinkingDetails;
-    state.assistant.thinkingSummary = thinkingSummary;
+    responseState.assistant.thinkingDetails = thinkingDetails;
+    responseState.assistant.thinkingSummary = thinkingSummary;
 
-    state.thinkingBlock = null;
-    state.activeTools = {};
+    responseState.thinkingBlock = null;
+    responseState.activeTools = {};
 }
 
-function addStoredAssistantMessage(message, conversationId = currentConversationId) {
+function addTool(responseState, data) {
+    // End the current reasoning block.
+    // Any reasoning after this tool gets a new block.
+    responseState.thinkingBlock = null;
+
+    const tool = document.createElement("div");
+    tool.classList.add("tool");
+
+    const status = document.createElement("span");
+    status.classList.add("tool-status");
+    status.textContent = "●";
+
+    const name = document.createElement("span");
+    name.classList.add("tool-name");
+    name.textContent = getToolLabel(data.name);
+
+    const details = document.createElement("div");
+    details.classList.add("tool-details");
+
+    if (data.arguments) {
+        details.textContent = getToolDetails(
+            data.name,
+            data.arguments
+        );
+    }
+
+    tool.appendChild(status);
+    tool.appendChild(name);
+
+    if (details.textContent) {
+        tool.appendChild(details);
+    }
+
+    responseState.thoughtStream.appendChild(tool);
+
+    responseState.activeTools[data.name] = tool;
+}
+
+function finishTool(responseState, data) {
+    const tool = responseState.activeTools[data.name];
+
+    if (!tool) {
+        return;
+    }
+
+    const status = tool.querySelector(".tool-status");
+
+    status.textContent = "✓";
+
+    const time = document.createElement("span");
+    time.classList.add("tool-time");
+    time.textContent = `${data.elapsed.toFixed(2)}s`;
+
+    tool.appendChild(time);
+
+    delete responseState.activeTools[data.name];
+}
+
+function getToolLabel(name) {
+    const labels = {
+        search_text: "Searched the web",
+        search_news: "Searched news",
+        get_collections: "Checked document collections",
+        query_collection: "Searched documents",
+        sequentialthinking: "Used sequential thinking"
+    };
+
+    return labels[name] || name;
+}
+
+function getToolDetails(name, args) {
+    if (
+        name === "search_text" ||
+        name === "search_news"
+    ) {
+        return args.query || "";
+    }
+
+    if (name === "query_collection") {
+        return args.query || args.collection || "";
+    }
+
+    return "";
+}
+
+export function addStoredAssistantMessage(message, conversationId = state.currentConversationId) {
     const container = document.createElement("div");
 
     container.classList.add(
@@ -395,60 +666,70 @@ function addStoredAssistantMessage(message, conversationId = currentConversation
     renderMath(content);
 }
 
-function addTool(state,data) {
-    // End the current reasoning block.
-    // Any reasoning after this tool gets a new block.
-    state.thinkingBlock = null;
+export function initializeChat() {
+    window.addEventListener(
+        "wheel",
+        (event) => {
+            if (event.deltaY < 0) {
+                state.autoScroll = false;
+            }
+        },
+        { passive: true }
+    );
 
-    const tool = document.createElement("div");
-    tool.classList.add("tool");
 
-    const status = document.createElement("span");
-    status.classList.add("tool-status");
-    status.textContent = "●";
+    window.addEventListener("keydown", (event) => {
+        if (
+            event.key === "ArrowUp" ||
+            event.key === "PageUp" ||
+            event.key === "Home"
+        ) {
+            state.autoScroll = false;
+        }
+    });
 
-    const name = document.createElement("span");
-    name.classList.add("tool-name");
-    name.textContent = getToolLabel(data.name);
 
-    const details = document.createElement("div");
-    details.classList.add("tool-details");
+    window.addEventListener(
+        "scroll",
+        () => {
+            if (!state.autoScroll && isNearBottom()) {
+                state.autoScroll = true;
+            }
+        },
+        { passive: true }
+    );
 
-    if (data.arguments) {
-        details.textContent = getToolDetails(
-            data.name,
-            data.arguments
-        );
-    }
+    sendButton.addEventListener(
+        "click",
+        () => {
+            const responseState =
+                getResponseState(
+                    state.currentConversationId
+                );
 
-    tool.appendChild(status);
-    tool.appendChild(name);
+            if (responseState.generating) {
+                stopChat(
+                    state.currentConversationId
+                );
+            }
+            else {
+                sendMessage();
+            }
+        }
+    );
 
-    if (details.textContent) {
-        tool.appendChild(details);
-    }
+    input.addEventListener(
+        "keydown",
+        (event) => {
+            if (
+                event.key === "Enter" &&
+                !event.shiftKey
+            ) {
+                event.preventDefault();
 
-    state.thoughtStream.appendChild(tool);
-
-    state.activeTools[data.name] = tool;
+                sendMessage();
+            }
+        }
+    );
 }
 
-function finishTool(state, data) {
-    const tool = state.activeTools[data.name];
-
-    if (!tool) {
-        return;
-    }
-
-    const status = tool.querySelector(".tool-status");
-
-    status.textContent = "✓";
-
-    const time = document.createElement("span");
-    time.classList.add("tool-time");
-    time.textContent = `${data.elapsed.toFixed(2)}s`;
-
-    tool.appendChild(time);
-
-    delete state.activeTools[data.name];
-}
