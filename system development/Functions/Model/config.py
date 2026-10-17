@@ -1,4 +1,9 @@
+import os
 from pathlib import Path
+
+ModelDirectory = Path(__file__).parent
+FunctionsDirectory = ModelDirectory.parent
+
 
 CHATBOT_NAME = "GlorpCat"
 MODEL_NAME = "nemotron-3.5-lightning-fixed:30b"

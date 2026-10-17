@@ -39,9 +39,6 @@ http://127.0.0.1:8000
 ```
 
 Keep the terminal running while using GlorpCat. Press `Ctrl+C` when you want to stop the FastAPI server.
-
-If the browser UI uses a separate frontend development server, start it in another terminal after activating the required environment.
-
 ---
 
 ## Model Requirements
@@ -60,58 +57,46 @@ Tool-calling support is particularly important. GlorpCat's agent loop allows the
 
 A model that is good at normal chat but poor at tool calling may appear to work until GlorpCat attempts to use its tools.
 
-### Local Model Server
+### Local Model Backend
 
-Make sure your local model server is running and that the configured model is available before starting GlorpCat.
+GlorpCat communicates with a configured local inference backend.
 
-For example, when using Ollama:
+The current development configuration uses **llama.cpp with ROCm**. GlorpCat can manage the llama.cpp server lifecycle, including starting the configured server when the application starts and stopping it during application shutdown.
+
+Other local inference backends can also be used when supported by the configured model interface. Ollama remains supported by parts of the project and can be inspected with:
 
 ```bash
 ollama list
-```
-
-You can check whether a model is currently loaded with:
-
-```bash
 ollama ps
-```
-
-GlorpCat's configured model must match a model available through the selected local inference backend.
 
 ---
 
 ## Installation
 
-It is recommended to run GlorpCat inside a Python virtual environment rather than installing its dependencies globally.
+GlorpCat requires Python 3.14 or newer. A virtual environment is
+recommended rather than installing dependencies globally.
 
-Create a virtual environment:
-
-```bash
-python -m venv .venv
-```
-
-Activate it:
+### 1. Create the virtual environment
 
 ```bash
+python3.14 -m venv .venv
 source .venv/bin/activate
-```
-
-Upgrade pip:
-
-```bash
 python -m pip install --upgrade pip
 ```
 
-Install the required Python packages:
+### 2. Install ROCm PyTorch
 
 ```bash
-python -m pip install -r requirements.txt
+python -m pip install \
+    --index-url https://repo.amd.com/rocm/whl-multi-arch/ \
+    "torch[device-all]==2.12.0+rocm7.14.0" \
+    "torchvision[device-all]==0.27.0+rocm7.14.0" \
+    "torchaudio==2.11.0+rocm7.14.0"
 ```
 
-The environment must be activated again whenever you open a new terminal:
-
+### 3. Install GlorpCat dependencies
 ```bash
-source .venv/bin/activate
+python -m pip install -r requirements.txt
 ```
 
 ---
@@ -241,39 +226,4 @@ The path should point to the GlorpCat virtual environment rather than the system
 GlorpCat is under active development. The architecture is intentionally modular so that the inference backend, models, RAG pipeline, MCP servers, tools, CLI, and browser UI can evolve independently.
 
 When adding new functionality, prefer keeping capabilities behind well-defined interfaces rather than directly coupling them to the agent. This is especially important for MCP tools and RAG, since both are expected to expand significantly as the project develops.
-
-## Start Strata Q4
-
-```bash
-cd ~/src/Strata
-
-export SDK="$HOME/rocm/strata-7.14.1"
-export ROCM_PATH="$SDK"
-export HIP_PATH="$SDK"
-export HIP_PLATFORM=amd
-export PATH="$SDK/bin:$SDK/lib/llvm/bin:$PATH"
-export LD_LIBRARY_PATH="$SDK/lib:$SDK/lib/rocm_sysdeps/lib:$SDK/lib/llvm/lib${LD_LIBRARY_PATH:+:$LD_LIBRARY_PATH}"
-
-./.venv/bin/python serve/server.py \
-  --engine strata \
-  --config "$PWD/strata-unsloth-ud-iq4_xs.json" \
-  --port 8080 \
-  --open
-```
-
-Strata opens at `http://127.0.0.1:8080`.
-
-## Stop Strata Q4 and Release RAM
-
-Run this from another terminal:
-
-```bash
-pkill -TERM -f 'serve/server.py.*strata-unsloth-ud-iq4_xs.json'
-
-sleep 3
-
-free -h
-```
-
-> Do not run a large Ollama model while Strata Q4 is loaded.
 

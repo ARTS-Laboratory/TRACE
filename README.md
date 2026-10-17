@@ -122,7 +122,7 @@ Future work includes context-aware chunk generation, parser-output normalization
 
 ### ChromaDB integration *(under development)*
 
-A ChromaDB client is initialized at startup and can create collections, open existing collections, and provide a basic query interface. Automatic ingestion of parsed chunks remains disabled while the chunking pipeline is finalized.
+A ChromaDB client is initialized at startup, with browser-based collection management for listing, selecting, creating, and deleting collections. A basic query interface is also being developed. Automatic ingestion of parsed chunks remains disabled while the chunking pipeline is finalized.
 
 ### Query system
 
@@ -149,15 +149,13 @@ Its long-term objective is a flexible RAG ingestion pipeline that reliably proce
 
 Glorp-Cat is intended for a local model that supports both **thinking** and **tool calling**. A capable GPU and sufficient VRAM/RAM are strongly recommended, especially for larger models or longer context windows.
 
-The project is being developed and tested primarily on Linux with Python.
+The project is currently developed and tested primarily on Linux with Python 3.14. AMD ROCm is used for GPU-accelerated PyTorch workloads in the current development environment.
 
 ## Getting started
 
-The browser UI is served through FastAPI. From the project directory, start the application's FastAPI server, then open the local address shown in the terminal in your browser.
+The browser UI is served through FastAPI, while a command-line interface remains available for direct terminal interaction.
 
-The command-line version remains available for directly interacting with the agent from a terminal.
-
-> Exact setup commands and configuration details will be documented here as the project structure stabilizes.
+For installation, configuration, model setup, and launch instructions, see the [system development README](system%20development/README.md).
 
 ## Project direction
 

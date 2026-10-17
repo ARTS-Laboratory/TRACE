@@ -1,0 +1,12 @@
+.git
+.gitignore
+
+system development/Data/
+system development/glorp-cat/
+system development/current-environment.txt
+
+media/
+
+**/__pycache__/
+**/*.pyc
+**/*.pyo
