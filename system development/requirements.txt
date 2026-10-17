@@ -13,12 +13,12 @@
 #     "torchaudio==2.11.0+rocm7.14.0"
 
 # Application dependencies
+fastapi[standard]>=0.141.1
 pytictoc
 ollama
 chromadb
 sentence-transformers
 httpx
-
 # MCP SDK
 mcp[cli]>=1.26,<2
 

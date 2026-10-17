@@ -199,6 +199,7 @@ body {
 .message {
     margin-bottom: 30px;
 
+    font-size: 1rem;
     line-height: 1.6;
     white-space: pre-wrap;
 }
@@ -560,8 +561,12 @@ body {
 }
 
 .assistant-content {
+    font-family: monospace;
+    font-size: inherit;
     line-height: 1.6;
-    white-space: pre-wrap;
+    white-space: normal;
+    text-align: left;
+    overflow-x: auto;
 }
 
 #input-container {
@@ -1638,11 +1643,6 @@ body {
 
 /* Markdown */
 
-.assistant-content {
-    line-height: 1.6;
-    overflow-x: auto;
-}
-
 .assistant-content p {
     margin: 0 0 14px 0;
 }
@@ -1736,7 +1736,7 @@ body {
     width: 100%;
     margin: 16px 0;
     border-collapse: collapse;
-    font-size: 0.95rem;
+    font-size: inherit;
 }
 
 .assistant-content th,

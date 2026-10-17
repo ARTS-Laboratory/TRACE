@@ -19,14 +19,21 @@ import {
     openImageViewer
 } from "./attachments.js";
 
+import {
+    initializeConversations,
+    loadConversations,
+    loadConversation,
+    startNewChat,
+    updateConversationTitle
+} from "./conversations.js";
+
+import { state } from "./state.js";
+
 const messages = document.getElementById("messages");
 const input = document.getElementById("message-input");
 const sendButton = document.getElementById("send-button");
 const inputContainer =
     document.getElementById("input-container");
-
-const conversationList =
-    document.getElementById("conversation-list");
 
 const newChatButton =
     document.getElementById("new-chat-button");
@@ -39,20 +46,47 @@ const ragSectionButton =
         "rag-section-button"
     );
 
+const chat =
+    document.getElementById("chat");
+
 const ws = new WebSocket(
     `ws://${window.location.host}/ws/chat`
 );
 
-const responseStates = new Map();
-const conversationViews = new Map();
+initializeConversations({
+    chatTitle,
+    chat,
+    input,
+    getConversationView,
+    showConversationView,
+    showChatSection,
+    addUserMessage,
+    addStoredAssistantMessage,
+    scrollToBottom
+});
 
-let currentConversationId = null;
-let currentUserMessage = null;
-let autoScroll = true;
+async function initializeApp() {
+    const conversations =
+        await loadConversations();
+
+    console.log(
+        "Loaded conversations:",
+        conversations
+    );
+
+    if (conversations.length > 0) {
+        await loadConversation(
+            conversations[0].id
+        );
+    }
+    else {
+        startNewChat();
+    }
+}
 
 function getResponseState(conversationId) {
-    if (!responseStates.has(conversationId)) {
-        responseStates.set(
+    if (!state.responseStates.has(conversationId)) {
+        state.responseStates.set(
             conversationId,
             {
                 assistant: null,
@@ -68,25 +102,25 @@ function getResponseState(conversationId) {
         );
     }
 
-    return responseStates.get(conversationId);
+    return state.responseStates.get(conversationId);
 }
 
 function getConversationView(conversationId) {
-    if (!conversationViews.has(conversationId)) {
+    if (!state.conversationViews.has(conversationId)) {
         const view = document.createElement("div");
 
         view.classList.add("conversation-view");
         view.style.display = "none";
 
         messages.appendChild(view);
-        conversationViews.set(conversationId, view);
+        state.conversationViews.set(conversationId, view);
     }
 
-    return conversationViews.get(conversationId);
+    return state.conversationViews.get(conversationId);
 }
 
 function showConversationView(conversationId) {
-    for (const [id, view] of conversationViews) {
+    for (const [id, view] of state.conversationViews) {
         view.style.display = id === conversationId ? "block" : "none";
     }
 }
@@ -97,29 +131,30 @@ ws.onopen = () => {
 
 ws.onmessage = async (event) => {
     const message = JSON.parse(event.data);
-    const state = getResponseState(message.conversation_id);
+    const responseState = getResponseState(message.conversation_id);
 
     if (message.type === "thinking_delta") {
-        if (state.cancelled) {
+
+        if (responseState.cancelled) {
             return;
         }
 
-        addThinkingDelta(state, message.data);
+        addThinkingDelta(responseState, message.data);
     }
 
     else if (message.type === "content_delta") {
-        if (state.cancelled) {
+        if (responseState.cancelled) {
             return;
         }
 
-        state.markdown += message.data;
+        responseState.markdown += message.data;
 
-        if (!state.renderPending) {
-            state.renderPending = true;
+        if (!responseState.renderPending) {
+            responseState.renderPending = true;
 
             requestAnimationFrame(() => {
-                renderMarkdown(state);
-                state.renderPending = false;
+                renderMarkdown(responseState);
+                responseState.renderPending = false;
             });
         }
     }
@@ -138,7 +173,7 @@ ws.onmessage = async (event) => {
                     );
 
                 addMessageAttachment(
-                    currentUserMessage,
+                    state.currentUserMessage,
                     {
                         id: uploadedAttachment.id,
                         original_name: attachment.name,
@@ -158,33 +193,33 @@ ws.onmessage = async (event) => {
     }
 
     else if (message.type === "done") {
-        state.assistant.thinkingDetails.open = false;
-        state.assistant.thinkingSummary.textContent = "Thought";
+        responseState.assistant.thinkingDetails.open = false;
+        responseState.assistant.thinkingSummary.textContent = "Thought";
 
-        await renderMath(state.assistant);
-        state.assistant = null;
-        state.thoughtStream = null;
-        state.thinkingBlock = null;
-        state.stats = null;
-        state.activeTools = {};
-        state.generating = false;
+        await renderMath(responseState.assistant);
+        responseState.assistant = null;
+        responseState.thoughtStream = null;
+        responseState.thinkingBlock = null;
+        responseState.stats = null;
+        responseState.activeTools = {};
+        responseState.generating = false;
 
-        if (currentConversationId === message.conversation_id) {
+        if (state.currentConversationId === message.conversation_id) {
             sendButton.disabled = false;
             sendButton.textContent = "Send";
         }
     }
 
     else if (message.type === "tool_started") {
-        addTool(state, message.data);
+        addTool(responseState, message.data);
     }
 
     else if (message.type === "tool_finished") {
-        finishTool(state ,message.data);
+        finishTool(responseState ,message.data);
     }
 
     else if (message.type === "response_stats") {
-        renderStats(state,message.data);
+        renderStats(responseState,message.data);
     }
 
     else if (message.type === "conversation_title") {
@@ -195,21 +230,21 @@ ws.onmessage = async (event) => {
     }
 
     else if (message.type === "cancelled") {
-        if (state.assistant) {
-            state.assistant.thinkingDetails.open = false;
-            state.assistant.thinkingSummary.textContent = "Stopped";
+        if (responseState.assistant) {
+            responseState.assistant.thinkingDetails.open = false;
+            responseState.assistant.thinkingSummary.textContent = "Stopped";
         }
 
-        state.generating = false;
+        responseState.generating = false;
 
-        if (currentConversationId === message.conversationId) {
+        if (state.currentConversationId === message.conversation_Id) {
             sendButton.disabled = false;
             sendButton.textContent = "Send";
         }
     }
 
     if (
-        message.conversation_id === currentConversationId
+        message.conversation_id === state.currentConversationId
     ) {
         scrollToBottom();
     }
@@ -219,7 +254,7 @@ window.addEventListener(
     "wheel",
     (event) => {
         if (event.deltaY < 0) {
-            autoScroll = false;
+            state.autoScroll = false;
         }
     },
     { passive: true }
@@ -232,7 +267,7 @@ window.addEventListener("keydown", (event) => {
         event.key === "PageUp" ||
         event.key === "Home"
     ) {
-        autoScroll = false;
+        state.autoScroll = false;
     }
 });
 
@@ -240,96 +275,15 @@ window.addEventListener("keydown", (event) => {
 window.addEventListener(
     "scroll",
     () => {
-        if (!autoScroll && isNearBottom()) {
-            autoScroll = true;
+        if (!state.autoScroll && isNearBottom()) {
+            state.autoScroll = true;
         }
     },
     { passive: true }
 );
 
-function updateConversationTitle(
-    conversationId,
-    title
-) {
-    const item = conversationList.querySelector(
-        `[data-conversation-id="${conversationId}"]`
-    );
-
-    if (item) {
-        const titleElement =
-            item.querySelector(".conversation-title");
-
-        if (titleElement) {
-            titleElement.textContent = title;
-        }
-    }
-
-    if (conversationId === currentConversationId) {
-        chatTitle.textContent = title;
-    }
-
-}
-
-async function deleteConversation(conversationId) {
-    const confirmed = window.confirm(
-        "Delete this conversation?"
-    );
-
-    if (!confirmed) {
-        return;
-    }
-
-    const response = await fetch(
-        `/api/conversations/${conversationId}`,
-        {
-            method: "DELETE"
-        }
-    );
-
-    if (!response.ok) {
-        console.error(
-            "Failed to delete conversation:",
-            conversationId
-        );
-
-        return;
-    }
-
-    const deletedCurrent =
-        conversationId === currentConversationId;
-
-    const view = conversationViews.get(conversationId);
-    if (view) {
-        view.remove();
-        conversationViews.delete(conversationId);
-    }
-
-    responseStates.delete(conversationId);
-
-    if (deletedCurrent) {
-        currentConversationId = null;
-    }
-
-    const conversations =
-        await loadConversations();
-
-    // If we deleted the active chat,
-    // select the newest remaining one.
-    if (deletedCurrent) {
-        if (conversations.length > 0) {
-            await loadConversation(
-                conversations[0].id
-            );
-        }
-
-        else {
-            startNewChat();
-        }
-    }
-}
-
 function scrollToBottom(force = false) {
-    if (!autoScroll && !force) {
+    if (!state.autoScroll && !force) {
         return;
     }
 
@@ -360,7 +314,7 @@ async function sendMessage() {
 
     // A blank New Chat doesn't exist in SQLite yet.
     // Create it when the first message is actually sent.
-    if (currentConversationId === null) {
+    if (state.currentConversationId === null) {
         try {
             const response = await fetch(
                 "/api/conversations",
@@ -377,14 +331,14 @@ async function sendMessage() {
 
             const conversation = await response.json();
 
-            currentConversationId = conversation.id;
+            state.currentConversationId = conversation.id;
             chat.classList.remove("new-chat");
 
             await loadConversations();
 
             console.log(
                 "Conversation:",
-                currentConversationId
+                state.currentConversationId
             );
         }
 
@@ -403,26 +357,26 @@ async function sendMessage() {
     const hasAttachment =
         attachment !== null;
 
-    getConversationView(currentConversationId);
-    showConversationView(currentConversationId);
+    getConversationView(state.currentConversationId);
+    showConversationView(state.currentConversationId);
 
-    currentUserMessage = addUserMessage(
+    state.currentUserMessage = addUserMessage(
         text,
         [],
-        currentConversationId
+        state.currentConversationId
     );
-    createAssistantMessage(currentConversationId);
+    createAssistantMessage(state.currentConversationId);
 
-    autoScroll = true;
+    state.autoScroll = true;
 
-    const state = getResponseState(currentConversationId);
-    state.generating = true;
-    state.cancelled = false;
+    const responseState = getResponseState(state.currentConversationId);
+    responseState.generating = true;
+    responseState.cancelled = false;
 
 
 
     ws.send(JSON.stringify({
-        conversation_id: currentConversationId,
+        conversation_id: state.currentConversationId,
         message: text,
         has_attachment: hasAttachment
     }));
@@ -436,21 +390,22 @@ async function sendMessage() {
 }
 
 function stopChat(conversationId) {
-    const state = getResponseState(conversationId);
+    const responseState =
+        getResponseState(conversationId);
 
-    if (!state.generating) {
+    if (!responseState.generating) {
         return;
     }
 
-    state.cancelled = true;
-    state.generating = false;
+    responseState.cancelled = true;
+    responseState.generating = false;
 
-    if (state.assistant) {
-        state.assistant.thinkingDetails.open = false;
-        state.assistant.thinkingSummary.textContent = "Stopped";
+    if (responseState.assistant) {
+        responseState.assistant.thinkingDetails.open = false;
+        responseState.assistant.thinkingSummary.textContent = "Stopped";
     }
 
-    if (conversationId === currentConversationId) {
+    if (conversationId === state.currentConversationId) {
         sendButton.disabled = false;
         sendButton.textContent = "Send";
     }
@@ -461,7 +416,7 @@ function stopChat(conversationId) {
     }));
 }
 
-function addUserMessage(text, attachments = [], conversationId = currentConversationId) {
+function addUserMessage(text, attachments = [], conversationId = state.currentConversationId) {
     const element = document.createElement("div");
 
     element.classList.add(
@@ -568,24 +523,25 @@ function addUserMessage(text, attachments = [], conversationId = currentConversa
     return element;
 }
 
-function addThinkingDelta(state, text) {
-    if (!state.thinkingBlock) {
-        state.thinkingBlock = document.createElement("div");
-        state.thinkingBlock.classList.add("thinking");
+function addThinkingDelta(responseState, text) {
+    if (!responseState.thinkingBlock) {
+        responseState.thinkingBlock = document.createElement("div");
+        responseState.thinkingBlock.classList.add("thinking");
 
-        state.thoughtStream.appendChild(
-            state.thinkingBlock
+        responseState.thoughtStream.appendChild(
+            responseState.thinkingBlock
         );
     }
 
-    state.thinkingBlock.textContent += text;
+    responseState.thinkingBlock.textContent += text;
 }
 
 function createAssistantMessage(conversationId) {
     const container = document.createElement("div");
-    const state = getResponseState(conversationId);
+    const responseState =
+        getResponseState(conversationId);
 
-    state.markdown = "";
+    responseState.markdown = "";
 
     container.classList.add(
         "message",
@@ -602,39 +558,39 @@ function createAssistantMessage(conversationId) {
     thinkingSummary.textContent = "Thinking...";
 
 
-    state.thoughtStream = document.createElement("div");
-    state.thoughtStream.classList.add("thought-stream");
+    responseState.thoughtStream = document.createElement("div");
+    responseState.thoughtStream.classList.add("thought-stream");
 
 
     thinkingDetails.appendChild(thinkingSummary);
-    thinkingDetails.appendChild(state.thoughtStream);
+    thinkingDetails.appendChild(responseState.thoughtStream);
 
 
-    state.assistant = document.createElement("div");
-    state.assistant.classList.add("assistant-content");
+    responseState.assistant = document.createElement("div");
+    responseState.assistant.classList.add("assistant-content");
 
-    state.stats = document.createElement("div");
-    state.stats.classList.add("response-stats");
+    responseState.stats = document.createElement("div");
+    responseState.stats.classList.add("response-stats");
 
 
     container.appendChild(thinkingDetails);
-    container.appendChild(state.assistant);
-    container.appendChild(state.stats);
+    container.appendChild(responseState.assistant);
+    container.appendChild(responseState.stats);
 
     getConversationView(conversationId).appendChild(container);
 
 
-    state.assistant.thinkingDetails = thinkingDetails;
-    state.assistant.thinkingSummary = thinkingSummary;
+    responseState.assistant.thinkingDetails = thinkingDetails;
+    responseState.assistant.thinkingSummary = thinkingSummary;
 
-    state.thinkingBlock = null;
-    state.activeTools = {};
+    responseState.thinkingBlock = null;
+    responseState.activeTools = {};
 }
 
-function addTool(state,data) {
+function addTool(responseState, data) {
     // End the current reasoning block.
     // Any reasoning after this tool gets a new block.
-    state.thinkingBlock = null;
+    responseState.thinkingBlock = null;
 
     const tool = document.createElement("div");
     tool.classList.add("tool");
@@ -664,13 +620,13 @@ function addTool(state,data) {
         tool.appendChild(details);
     }
 
-    state.thoughtStream.appendChild(tool);
+    responseState.thoughtStream.appendChild(tool);
 
-    state.activeTools[data.name] = tool;
+    responseState.activeTools[data.name] = tool;
 }
 
-function finishTool(state, data) {
-    const tool = state.activeTools[data.name];
+function finishTool(responseState, data) {
+    const tool = responseState.activeTools[data.name];
 
     if (!tool) {
         return;
@@ -686,32 +642,7 @@ function finishTool(state, data) {
 
     tool.appendChild(time);
 
-    delete state.activeTools[data.name];
-}
-
-function startNewChat() {
-    if (currentConversationId !== null) {
-        const currentView =
-            conversationViews.get(currentConversationId);
-
-        if (currentView) {
-            currentView.style.display = "none";
-        }
-    }
-
-    currentConversationId = null;
-    chat.classList.add("new-chat");
-
-    document
-        .querySelectorAll(".conversation-item.active")
-        .forEach((item) => {
-            item.classList.remove("active");
-        });
-
-    input.value = "";
-    input.focus();
-
-    autoScroll = true;
+    delete responseState.activeTools[data.name];
 }
 
 function getToolLabel(name) {
@@ -741,397 +672,6 @@ function getToolDetails(name, args) {
     return "";
 }
 
-async function loadConversation(conversationId) {
-    const response = await fetch(
-        `/api/conversations/${conversationId}`
-    );
-
-    if (!response.ok) {
-        console.error(
-            "Failed to load conversation:",
-            conversationId
-        );
-
-        return;
-    }
-
-    const conversation = await response.json();
-
-    chatTitle.textContent = conversation.title;
-    const view = getConversationView(conversation.id);
-
-    if (view.childElementCount === 0) {
-        for (const message of conversation.messages) {
-            if (message.role === "user") {
-                addUserMessage(
-                    message.content,
-                    message.attachments,
-                    conversation.id
-                );
-            }
-
-            else if (message.role === "assistant") {
-                addStoredAssistantMessage(
-                    message,
-                    conversation.id
-                );
-            }
-        }
-    }
-
-    currentConversationId = conversation.id;
-    showChatSection();
-    chat.classList.remove("new-chat");
-    showConversationView(conversation.id);
-
-    await loadConversations();
-
-    autoScroll = true;
-
-    scrollToBottom(true);
-}
-
-async function renameConversation(
-    conversationId,
-    currentTitle
-) {
-    const newTitle = window.prompt(
-        "Rename conversation:",
-        currentTitle
-    );
-
-    // Cancel was pressed
-    if (newTitle === null) {
-        return;
-    }
-
-    const title = newTitle.trim();
-
-    // Don't allow an empty title
-    if (!title) {
-        return;
-    }
-
-    // Nothing actually changed
-    if (title === currentTitle) {
-        return;
-    }
-
-    try {
-        const response = await fetch(
-            `/api/conversations/${conversationId}`,
-            {
-                method: "PATCH",
-
-                headers: {
-                    "Content-Type": "application/json"
-                },
-
-                body: JSON.stringify({
-                    title: title
-                })
-            }
-        );
-
-        if (!response.ok) {
-            throw new Error(
-                `Failed to rename conversation: ${response.status}`
-            );
-        }
-
-        const result = await response.json();
-
-        if (result.error) {
-            console.error(result.error);
-            return;
-        }
-
-        await loadConversations();
-    }
-
-    catch (error) {
-        console.error(
-            "Could not rename conversation:",
-            error
-        );
-    }
-}
-
-function getConversationGroup(updatedAt) {
-    const date = new Date(
-        updatedAt.replace(" ", "T") + "Z"
-    );
-
-    const now = new Date();
-
-    const today = new Date(
-        now.getFullYear(),
-        now.getMonth(),
-        now.getDate()
-    );
-
-    const conversationDay = new Date(
-        date.getFullYear(),
-        date.getMonth(),
-        date.getDate()
-    );
-
-    const difference =
-        today - conversationDay;
-
-    const days =
-        Math.floor(
-            difference / (1000 * 60 * 60 * 24)
-        );
-
-    if (days === 0) {
-        return "Today";
-    }
-
-    if (days === 1) {
-        return "Yesterday";
-    }
-
-    if (days < 7) {
-        return "Previous 7 Days";
-    }
-
-    if (days < 30) {
-        return "Previous 30 Days";
-    }
-
-    return "Older";
-}
-
-async function loadConversations() {
-    const response = await fetch(
-        "/api/conversations"
-    );
-
-    const conversations = await response.json();
-
-    conversationList.innerHTML = "";
-
-
-    // Group conversations by date
-    const groups = {};
-
-    for (const conversation of conversations) {
-        const groupName = getConversationGroup(
-            conversation.updated_at
-        );
-
-        if (!groups[groupName]) {
-            groups[groupName] = [];
-        }
-
-        groups[groupName].push(conversation);
-    }
-
-
-    // Order the groups
-    const groupOrder = [
-        "Today",
-        "Yesterday",
-        "Previous 7 Days",
-        "Previous 30 Days",
-        "Older"
-    ];
-
-
-    // Render groups
-    for (const groupName of groupOrder) {
-        const group = groups[groupName];
-
-        if (!group) {
-            continue;
-        }
-
-
-        // Group heading
-        const heading = document.createElement("div");
-
-        heading.classList.add(
-            "conversation-group-title"
-        );
-
-        heading.textContent = groupName;
-
-        conversationList.appendChild(heading);
-
-
-        // Conversations inside this group
-        for (const conversation of group) {
-            const item = document.createElement("div");
-            item.classList.add("conversation-item");
-            item.dataset.conversationId = conversation.id;
-
-
-            const title = document.createElement("button");
-            title.classList.add("conversation-title");
-            title.textContent = conversation.title;
-
-
-            const menuContainer = document.createElement("div");
-            menuContainer.classList.add(
-                "conversation-menu-container"
-            );
-
-
-            const menuButton = document.createElement("button");
-            menuButton.classList.add(
-                "conversation-menu-button"
-            );
-
-            menuButton.textContent = "⋯";
-            menuButton.title = "Conversation options";
-
-
-            if (
-                conversation.id ===
-                currentConversationId
-            ) {
-                item.classList.add("active");
-            }
-
-
-            title.addEventListener(
-                "click",
-                () => {
-                    loadConversation(
-                        conversation.id
-                    );
-                }
-            );
-
-
-            menuButton.addEventListener(
-                "click",
-                (event) => {
-                    event.stopPropagation();
-
-                    openConversationMenu(
-                        menuButton,
-                        conversation
-                    );
-                }
-            );
-
-
-            menuContainer.appendChild(menuButton);
-
-            item.appendChild(title);
-            item.appendChild(menuContainer);
-
-            conversationList.appendChild(item);
-        }
-    }
-
-
-    return conversations;
-}
-
-function openConversationMenu(
-    button,
-    conversation
-) {
-    document
-        .querySelectorAll(
-            ".floating-conversation-menu"
-        )
-        .forEach((menu) => menu.remove());
-
-
-    const menu = document.createElement("div");
-
-    menu.classList.add(
-        "floating-conversation-menu"
-    );
-
-
-    const renameOption =
-        document.createElement("button");
-
-    renameOption.classList.add(
-        "conversation-menu-option"
-    );
-
-    renameOption.textContent = "Rename";
-
-
-    const deleteOption =
-        document.createElement("button");
-
-    deleteOption.classList.add(
-        "conversation-menu-option",
-        "delete-option"
-    );
-
-    deleteOption.textContent = "Delete";
-
-
-    renameOption.addEventListener(
-        "click",
-        async (event) => {
-            event.stopPropagation();
-
-            menu.remove();
-
-            await renameConversation(
-                conversation.id,
-                conversation.title
-            );
-        }
-    );
-
-
-    deleteOption.addEventListener(
-        "click",
-        async (event) => {
-            event.stopPropagation();
-
-            menu.remove();
-
-            await deleteConversation(
-                conversation.id
-            );
-        }
-    );
-
-
-    menu.appendChild(renameOption);
-    menu.appendChild(deleteOption);
-
-    document.body.appendChild(menu);
-
-
-    const rect =
-        button.getBoundingClientRect();
-
-    menu.style.top =
-        `${rect.bottom + 4}px`;
-
-    menu.style.left =
-        `${rect.right - menu.offsetWidth}px`;
-}
-
-async function initializeApp() {
-    const conversations =
-        await loadConversations();
-
-    if (conversations.length > 0) {
-        await loadConversation(
-            conversations[0].id
-        );
-    }
-
-    else {
-        startNewChat();
-    }
-}
-
-initializeApp();
-
 function showRagSection() {
     messages.style.display = "none";
     inputContainer.style.display = "none";
@@ -1155,12 +695,12 @@ function showChatSection() {
 
     hideRagView();
 
-    if (currentConversationId !== null) {
-        showConversationView(currentConversationId);
+    if (state.currentConversationId !== null) {
+        showConversationView(state.currentConversationId);
     }
 }
 
-function addStoredAssistantMessage(message, conversationId = currentConversationId) {
+function addStoredAssistantMessage(message, conversationId = state.currentConversationId) {
     const container = document.createElement("div");
 
     container.classList.add(
@@ -1236,11 +776,15 @@ function addStoredAssistantMessage(message, conversationId = currentConversation
 sendButton.addEventListener(
     "click",
     () => {
-        const state =
-            getResponseState(currentConversationId);
+        const responseState =
+            getResponseState(
+                state.currentConversationId
+            );
 
-        if (state.generating) {
-            stopChat(currentConversationId);
+        if (responseState.generating) {
+            stopChat(
+                state.currentConversationId
+            );
         }
         else {
             sendMessage();
@@ -1287,3 +831,5 @@ document.addEventListener(
             });
     }
 );
+
+initializeApp();

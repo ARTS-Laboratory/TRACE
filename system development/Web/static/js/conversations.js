@@ -1,5 +1,42 @@
+import { state } from "./state.js";
+
+let chatTitle;
+let chat;
+let input;
+
+let getConversationView;
+let showConversationView;
+let showChatSection;
+let addUserMessage;
+let addStoredAssistantMessage;
+let scrollToBottom;
+
 const conversationList =
     document.getElementById("conversation-list");
+
+export function initializeConversations(dependencies) {
+    chatTitle = dependencies.chatTitle;
+    chat = dependencies.chat;
+    input = dependencies.input;
+
+    getConversationView =
+        dependencies.getConversationView;
+
+    showConversationView =
+        dependencies.showConversationView;
+
+    showChatSection =
+        dependencies.showChatSection;
+
+    addUserMessage =
+        dependencies.addUserMessage;
+
+    addStoredAssistantMessage =
+        dependencies.addStoredAssistantMessage;
+
+    scrollToBottom =
+        dependencies.scrollToBottom;
+}
 
 export async function loadConversations() {
     const response = await fetch(
@@ -10,89 +47,126 @@ export async function loadConversations() {
 
     conversationList.innerHTML = "";
 
+
+    // Group conversations by date
+    const groups = {};
+
     for (const conversation of conversations) {
-        const item = document.createElement("div");
-
-        item.classList.add("conversation-item");
-
-        item.dataset.conversationId =
-            conversation.id;
-
-
-        const title = document.createElement("button");
-
-        title.classList.add("conversation-title");
-
-        title.textContent = conversation.title;
-
-        const renameButton = document.createElement("button");
-
-        renameButton.classList.add("conversation-rename");
-        renameButton.textContent = "✎";
-        renameButton.title = "Rename chat";
-
-        renameButton.addEventListener(
-            "click",
-            async (event) => {
-                event.stopPropagation();
-
-                await renameConversation(
-                    conversation.id,
-                    conversation.title
-                );
-            }
+        const groupName = getConversationGroup(
+            conversation.updated_at
         );
 
-        const deleteButton = document.createElement("button");
+        if (!groups[groupName]) {
+            groups[groupName] = [];
+        }
 
-        deleteButton.classList.add("conversation-delete");
-
-        deleteButton.textContent = "×";
-
-        deleteButton.title = "Delete chat";
+        groups[groupName].push(conversation);
+    }
 
 
-        if (
-            conversation.id ===
-            currentConversationId
-        ) {
-            item.classList.add("active");
+    // Order the groups
+    const groupOrder = [
+        "Today",
+        "Yesterday",
+        "Previous 7 Days",
+        "Previous 30 Days",
+        "Older"
+    ];
+
+
+    // Render groups
+    for (const groupName of groupOrder) {
+        const group = groups[groupName];
+
+        if (!group) {
+            continue;
         }
 
 
-        title.addEventListener(
-            "click",
-            () => {
-                loadConversation(
-                    conversation.id
-                );
-            }
+        // Group heading
+        const heading = document.createElement("div");
+
+        heading.classList.add(
+            "conversation-group-title"
         );
 
+        heading.textContent = groupName;
 
-        deleteButton.addEventListener(
-            "click",
-            async (event) => {
-                event.stopPropagation();
+        conversationList.appendChild(heading);
 
-                await deleteConversation(
-                    conversation.id
-                );
+
+        // Conversations inside this group
+        for (const conversation of group) {
+            const item = document.createElement("div");
+            item.classList.add("conversation-item");
+            item.dataset.conversationId = conversation.id;
+
+
+            const title = document.createElement("button");
+            title.classList.add("conversation-title");
+            title.textContent = conversation.title;
+
+
+            const menuContainer = document.createElement("div");
+            menuContainer.classList.add(
+                "conversation-menu-container"
+            );
+
+
+            const menuButton = document.createElement("button");
+            menuButton.classList.add(
+                "conversation-menu-button"
+            );
+
+            menuButton.textContent = "⋯";
+            menuButton.title = "Conversation options";
+
+
+            if (
+                conversation.id ===
+                state.currentConversationId
+            ) {
+                item.classList.add("active");
             }
-        );
 
 
-        item.appendChild(title);
-        item.appendChild(renameButton);
-        item.appendChild(deleteButton);
+            title.addEventListener(
+                "click",
+                () => {
+                    loadConversation(
+                        conversation.id
+                    );
+                }
+            );
 
-        conversationList.appendChild(item);
+
+            menuButton.addEventListener(
+                "click",
+                (event) => {
+                    event.stopPropagation();
+
+                    openConversationMenu(
+                        menuButton,
+                        conversation
+                    );
+                }
+            );
+
+
+            menuContainer.appendChild(menuButton);
+
+            item.appendChild(title);
+            item.appendChild(menuContainer);
+
+            conversationList.appendChild(item);
+        }
     }
+
 
     return conversations;
 }
 
-async function loadConversation(conversationId) {
+export async function loadConversation(conversationId) {
     const response = await fetch(
         `/api/conversations/${conversationId}`
     );
@@ -130,29 +204,29 @@ async function loadConversation(conversationId) {
         }
     }
 
-    currentConversationId = conversation.id;
+    state.currentConversationId = conversation.id;
     showChatSection();
     chat.classList.remove("new-chat");
     showConversationView(conversation.id);
 
     await loadConversations();
 
-    autoScroll = true;
+    state.autoScroll = true;
 
     scrollToBottom(true);
 }
 
-function startNewChat() {
-    if (currentConversationId !== null) {
+export function startNewChat() {
+    if (state.currentConversationId !== null) {
         const currentView =
-            conversationViews.get(currentConversationId);
+            state.conversationViews.get(state.currentConversationId);
 
         if (currentView) {
             currentView.style.display = "none";
         }
     }
 
-    currentConversationId = null;
+    state.currentConversationId = null;
     chat.classList.add("new-chat");
 
     document
@@ -164,7 +238,7 @@ function startNewChat() {
     input.value = "";
     input.focus();
 
-    autoScroll = true;
+    state.autoScroll = true;
 }
 
 async function renameConversation(
@@ -259,18 +333,18 @@ async function deleteConversation(conversationId) {
     }
 
     const deletedCurrent =
-        conversationId === currentConversationId;
+        conversationId === state.currentConversationId;
 
-    const view = conversationViews.get(conversationId);
+    const view = state.conversationViews.get(conversationId);
     if (view) {
         view.remove();
-        conversationViews.delete(conversationId);
+        state.conversationViews.delete(conversationId);
     }
 
-    responseStates.delete(conversationId);
+    state.responseStates.delete(conversationId);
 
     if (deletedCurrent) {
-        currentConversationId = null;
+        state.currentConversationId = null;
     }
 
     const conversations =
@@ -335,4 +409,111 @@ function getConversationGroup(updatedAt) {
     }
 
     return "Older";
+}
+
+function openConversationMenu(
+    button,
+    conversation
+) {
+    document
+        .querySelectorAll(
+            ".floating-conversation-menu"
+        )
+        .forEach((menu) => menu.remove());
+
+
+    const menu = document.createElement("div");
+
+    menu.classList.add(
+        "floating-conversation-menu"
+    );
+
+
+    const renameOption =
+        document.createElement("button");
+
+    renameOption.classList.add(
+        "conversation-menu-option"
+    );
+
+    renameOption.textContent = "Rename";
+
+
+    const deleteOption =
+        document.createElement("button");
+
+    deleteOption.classList.add(
+        "conversation-menu-option",
+        "delete-option"
+    );
+
+    deleteOption.textContent = "Delete";
+
+
+    renameOption.addEventListener(
+        "click",
+        async (event) => {
+            event.stopPropagation();
+
+            menu.remove();
+
+            await renameConversation(
+                conversation.id,
+                conversation.title
+            );
+        }
+    );
+
+
+    deleteOption.addEventListener(
+        "click",
+        async (event) => {
+            event.stopPropagation();
+
+            menu.remove();
+
+            await deleteConversation(
+                conversation.id
+            );
+        }
+    );
+
+
+    menu.appendChild(renameOption);
+    menu.appendChild(deleteOption);
+
+    document.body.appendChild(menu);
+
+
+    const rect =
+        button.getBoundingClientRect();
+
+    menu.style.top =
+        `${rect.bottom + 4}px`;
+
+    menu.style.left =
+        `${rect.right - menu.offsetWidth}px`;
+}
+
+export function updateConversationTitle(
+    conversationId,
+    title
+) {
+    const item = conversationList.querySelector(
+        `[data-conversation-id="${conversationId}"]`
+    );
+
+    if (item) {
+        const titleElement =
+            item.querySelector(".conversation-title");
+
+        if (titleElement) {
+            titleElement.textContent = title;
+        }
+    }
+
+    if (conversationId === state.currentConversationId) {
+        chatTitle.textContent = title;
+    }
+
 }

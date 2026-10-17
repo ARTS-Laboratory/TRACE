@@ -23,7 +23,7 @@ VISION_NAME = "gemma4:e2b"
 
 # ChromaDB settings
 CHROMADB_PATH = "/home/thienan/Documents/GitHub/PaperParsing/Docling Parsing/v0.2/ChromaDB"
-DATA_PATH = Path("/home/thienan/Documents/GitHub/Glorp-Cat/system development/v0.1/Data")
+DATA_PATH = Path("/home/thienan/Documents/GitHub/Glorp-Cat/system development/Data")
 RERANKER_MODEL = "BAAI/bge-reranker-base"
 
 STREAM = True
