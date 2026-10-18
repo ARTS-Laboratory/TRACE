@@ -29,11 +29,28 @@ Glorp-Cat keeps each responsibility separate so the project can grow without tur
 
 | Component | Role |
 | --- | --- |
-| Local model backend | Runs the language model and produces chat/tool-call responses. |
+| GlorpCat application | Runs the FastAPI browser UI, agent, tools, conversation management, RAG integration, and application logic. |
+| Local inference backend | Runs the language model independently from the main application. The current Docker deployment uses llama.cpp with ROCm. |
 | Agent layer | Coordinates messages, reasoning output, tool calls, and final responses. |
 | MCP tools | Adds capabilities such as search and other external actions through a standard interface. |
 | RAG pipeline *(in integration)* | Parses, chunks, embeds, and retrieves information from local documents for use by Glorp-Cat. |
-| FastAPI browser UI | Provides a more convenient interface than the terminal while using the same backend. |
+| FastAPI browser UI | Provides the primary interface while using the same underlying agent system as the CLI. |
+
+The recommended deployment uses Docker Compose to keep the application and inference engine separate:
+
+```text
+Docker Compose
+│
+├── glorpcat
+│   ├── FastAPI / Browser UI
+│   ├── Agent
+│   ├── MCP Tools
+│   └── RAG
+│
+└── inference
+    ├── llama.cpp
+    ├── ROCm
+    └── User-supplied model
 
 ## RAG pipeline *(work in progress)*
 
@@ -147,13 +164,28 @@ Its long-term objective is a flexible RAG ingestion pipeline that reliably proce
 
 ## Requirements
 
-Glorp-Cat is intended for a local model that supports both **thinking** and **tool calling**. A capable GPU and sufficient VRAM/RAM are strongly recommended, especially for larger models or longer context windows.
+Glorp-Cat is intended for a local model that supports both **thinking/reasoning** and **tool calling**. A capable GPU and sufficient VRAM/RAM are strongly recommended, especially for larger models or longer context windows.
 
-The project is currently developed and tested primarily on Linux with Python 3.14. AMD ROCm is used for GPU-accelerated PyTorch workloads in the current development environment.
+The recommended deployment uses **Docker Compose**. The current development environment targets Linux and AMD ROCm, with the inference stack tested on AMD Strix Halo hardware.
+
+The Docker deployment provides the application and inference environments, but **does not bundle a language model**. Users provide and configure their own llama.cpp-compatible model.
+
+Native Python execution remains available for development and debugging.
 
 ## Getting started
 
 The browser UI is served through FastAPI, while a command-line interface remains available for direct terminal interaction.
+
+The recommended way to run Glorp-Cat is through Docker Compose.
+
+At a high level:
+
+```bash
+git clone https://github.com/thoang12345/Glorp-Cat.git
+cd Glorp-Cat
+
+cp .env.example .env
+```
 
 For installation, configuration, model setup, and launch instructions, see the [system development README](system%20development/README.md).
 
