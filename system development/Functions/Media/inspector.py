@@ -1,42 +1,83 @@
-import ollama
 from pathlib import Path
+import mimetypes
+import base64
+import httpx
 
-from Functions.Model.config import VISION_NAME
-from Functions.Model.config import MODEL_NAME
+from Functions.Model.config import MEDIA_BASE_URL, MEDIA_MODEL_NAME
+
+timeout = httpx.Timeout(
+            connect=10.0,
+            read=None,
+            write=60.0,
+            pool=10.0,
+        )
 
 class MediaInspector:
     def __init__(self):
-        self.client = ollama.AsyncClient()
-        self.vision_model = VISION_NAME
-        self.model = MODEL_NAME
+        self.model_name = MEDIA_MODEL_NAME
+        self.url = f"{MEDIA_BASE_URL.rstrip("/")}/chat/completions" 
 
-    async def inspect_image(self, file_path, question):
-        response = await self.client.chat(
-            model=self.vision_model,
-            messages=[
+    def _prepare_payload(self, file_path, question):
+        file_path = Path(file_path)
+        
+        with open(file_path, "rb") as file:
+            encoded_bytes = base64.b64encode(file.read())
+        
+        encoded_file = encoded_bytes.decode("utf-8")
+        mime, _ = mimetypes.guess_type(file_path)
+
+        if mime is None:
+            return {
+                "error", "invalid type"
+            }
+
+        if "image" in mime:
+            data_url = f"data:{mime};base64,{encoded_file}"
+            content_payload = {
+                "type": "image_url",
+                    "image_url": {
+                        "url": data_url
+                    }
+                }
+            
+        elif "audio" in mime:
+            content_payload = {
+                    "type": "input_audio",
+                    "input_audio": {
+                        "data": encoded_file
+                    }
+                }
+            
+        return {
+            "model": self.model_name,
+            "stream": False,
+            "messages": [
                 {
-                    "role": "user",
-                    "content": question,
-                    "images": [file_path],
+                "role": "user",
+                "content": [ 
+                        content_payload,
+                        {
+                        "type": "text",
+                        "text": question
+                        }
+                    ]
                 }
             ],
-        )
+            "temperature": 0,
+            "top_p": 0.95    
+        }
 
-        return response.message.content
+    async def inspect_media(self, file_path, question):
+        payload = self._prepare_payload(file_path, question)
 
-    async def inspect_audio(self, file_path, question):
-        response = await self.client.chat(
-            model=self.vision_model,
-            messages=[
-                {
-                    "role": "user",
-                    "content": question,
-                    "images": [file_path],
-                }
-            ],
-        )
+        async with httpx.AsyncClient(timeout=timeout) as client:
+            response = await client.post(self.url, json=payload)
+            response.raise_for_status()
 
-        return response.message.content
+            event = response.json()
+            choice = event["choices"][0]["message"]["content"]
+            
+        return choice
 
     async def inspect_file(self, file_path, question, content_type):
         file_path = Path(file_path)

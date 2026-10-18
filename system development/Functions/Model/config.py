@@ -26,7 +26,8 @@ LLAMA_CPP_TEMPLATE_PATH = (
 )
 
 #inspect media settings
-VISION_NAME = "gemma4:e2b"
+MEDIA_BASE_URL = os.getenv("GLORPCAT_MEDIA_URL") or "http://127.0.0.1:8082/v1"
+MEDIA_MODEL_NAME = os.getenv("GLORPCAT_MEDIA_ALIAS") or "gemma-4-E2B-it-UD-Q8_K_XL"
 
 # ChromaDB settings
 CHROMADB_PATH = Path(os.getenv("GLORPCAT_CHROMADB_DIR") or GitHubDirectory / "PaperParsing/Docling Parsing/v0.2/ChromaDB")

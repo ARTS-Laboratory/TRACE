@@ -21,9 +21,11 @@ services:
     environment:
       GLORPCAT_DATA_DIR: /app/Data
       GLORPCAT_CHROMADB_DIR: /app/ChromaDB
-      GLORPCAT_LLAMA_CPP_URL: http://inference:8081/v1
       GLORPCAT_LLAMA_CPP_AUTO_START: "false"
+      GLORPCAT_LLAMA_CPP_URL: http://inference:8081/v1
       GLORPCAT_MODEL_ALIAS: ${GLORPCAT_MODEL_ALIAS}
+      GLORPCAT_MEDIA_URL: http://media:8082/v1
+      GLORPCAT_MEDIA_ALIAS: ${GLORPCAT_MEDIA_ALIAS}
 
     volumes:
       - "./system development/Data:/app/Data"
@@ -42,6 +44,8 @@ services:
 
     depends_on:
       inference:
+        condition: service_healthy
+      media:
         condition: service_healthy
 
   inference:
@@ -91,6 +95,54 @@ services:
         - curl
         - -f
         - http://127.0.0.1:8081/health
+      interval: 5s
+      timeout: 3s
+      retries: 60
+
+  media:
+    image: kyuz0/amd-strix-halo-toolboxes:rocm-10.0
+
+    devices:
+      - /dev/kfd:/dev/kfd
+      - /dev/dri:/dev/dri
+
+    group_add:
+      - video
+
+    ipc: host
+
+    volumes:
+      - "./models:/models:ro"
+    
+    command:
+      - llama-server
+      - -m
+      - /models/${GLORPCAT_MEDIA_FILE}
+      - --mmproj 
+      - /models/${GLORPCAT_MEDIA_MMPROJ}
+      - --host
+      - 0.0.0.0
+      - --port
+      - "8082"
+      - -c
+      - "32768"
+      - --device
+      - ROCm0
+      - -ngl
+      - "999"
+      - --flash-attn
+      - "on"
+      - --load-mode
+      - "none"
+      - --alias
+      - ${GLORPCAT_MEDIA_ALIAS}
+
+    healthcheck:
+      test:
+        - CMD
+        - curl
+        - -f
+        - http://127.0.0.1:8082/health
       interval: 5s
       timeout: 3s
       retries: 60

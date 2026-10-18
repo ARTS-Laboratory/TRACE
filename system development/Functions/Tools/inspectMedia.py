@@ -58,11 +58,8 @@ class InspectMedia(Tool):
             }
         file_path = attachment["file_path"]
         content_type = attachment["content_type"]
-        if content_type.startswith("image/"):
-            response = await self.media_inspector.inspect_image(file_path, question)
-
-        elif content_type.startswith("audio/"):
-            response = await self.media_inspector.inspect_audio(file_path, question)
+        if content_type.startswith("image/") or content_type.startswith("audio/"):
+            response = await self.media_inspector.inspect_media(file_path, question)
 
         elif content_type.startswith("text/"):
             response = await self.media_inspector.inspect_file(file_path, question, content_type)
