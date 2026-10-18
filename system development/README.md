@@ -34,7 +34,7 @@ Inference Container
 └── User-supplied model
 ```
 
-The inference image does **not** include a language model. The user supplies the model separately through the local `.env` configuration.
+The inference image does **not** include a language model. The GGUF lives in models/, while .env selects its filename and API alias
 
 This keeps large model files outside of Docker images and makes it possible to change models without rebuilding GlorpCat.
 
@@ -110,97 +110,118 @@ nano .env
 
 ## Model Configuration
 
-The Docker inference service does not contain a model by default.
+The Docker inference service includes llama.cpp, but **does not include a language model**. Models are stored locally in the repository's `models/` directory and are not committed to Git.
 
-The following variables in `.env` tell Docker Compose where the selected model and llama.cpp chat template are located.
+### 1. Create the model directory
 
-### `GLORPCAT_MODEL_DIR`
+From the GlorpCat repository root:
 
-Host directory containing the model.
+```bash
+mkdir -p models
+```
+
+The `models/` directory is excluded from Git, allowing large local model files to remain alongside the installation without being committed to the repository.
+
+### 2. Add a compatible GGUF model
+
+Place a llama.cpp-compatible `.gguf` model inside:
+
+```text
+Glorp-Cat/
+└── models/
+    └── your-model.gguf
+```
+
+GlorpCat requires an agent-capable model with reliable **thinking/reasoning** and **tool-calling** support.
+
+The current Docker configuration has been tested with:
+
+```text
+NVIDIA-Nemotron-3.5-Lightning-30B-A3B-Q4_0.gguf
+```
+
+The model can be downloaded from the official `ggml-org` GGUF release on Hugging Face.
+
+For example, from the `models/` directory:
+
+```bash
+curl -L -C - \
+    -o NVIDIA-Nemotron-3.5-Lightning-30B-A3B-Q4_0.gguf \
+    "https://huggingface.co/ggml-org/NVIDIA-Nemotron-3.5-Lightning-30B-A3B-GGUF/resolve/main/NVIDIA-Nemotron-3.5-Lightning-30B-A3B-Q4_0.gguf"
+```
+
+`-L` allows `curl` to follow the Hugging Face download redirects, while `-C -` allows an interrupted download to resume.
+
+Other compatible GGUF models may also be used, but models without reliable reasoning and tool-calling support may not work correctly with GlorpCat's agent workflows.
+
+### 3. Configure `.env`
+
+Create your local environment file if you have not already done so:
+
+```bash
+cp .env.example .env
+```
+
+Then edit:
+
+```bash
+nano .env
+```
+
+The Docker model configuration currently requires two values:
+
+### `GLORPCAT_MODEL_FILE`
+
+The filename of the GGUF located inside the repository's `models/` directory.
 
 Example:
 
 ```dotenv
-GLORPCAT_MODEL_DIR=/path/to/models
+GLORPCAT_MODEL_FILE=NVIDIA-Nemotron-3.5-Lightning-30B-A3B-Q4_0.gguf
 ```
 
-This directory is mounted read-only inside the inference container as:
+Do **not** include `models/` in this value. Docker Compose mounts the repository's `models/` directory inside the inference container as:
 
 ```text
 /models
 ```
 
-### `GLORPCAT_MODEL_FILE`
-
-Path to the model relative to `GLORPCAT_MODEL_DIR`.
-
-Example:
+Therefore:
 
 ```dotenv
 GLORPCAT_MODEL_FILE=my-model.gguf
 ```
 
-If the model is located inside a subdirectory:
-
-```dotenv
-GLORPCAT_MODEL_FILE=blobs/my-model-file
-```
-
-The resulting path inside the inference container becomes:
+becomes:
 
 ```text
-/models/<GLORPCAT_MODEL_FILE>
+/models/my-model.gguf
 ```
 
-### `GLORPCAT_TEMPLATE_DIR`
-
-Host directory containing the llama.cpp chat template.
-
-Example:
-
-```dotenv
-GLORPCAT_TEMPLATE_DIR=/path/to/templates
-```
-
-This directory is mounted read-only inside the inference container as:
-
-```text
-/templates
-```
-
-### `GLORPCAT_TEMPLATE_FILE`
-
-Chat-template filename relative to `GLORPCAT_TEMPLATE_DIR`.
-
-Example:
-
-```dotenv
-GLORPCAT_TEMPLATE_FILE=model_chat_template.jinja2
-```
+inside the inference container.
 
 ### `GLORPCAT_MODEL_ALIAS`
 
-Name exposed by the llama.cpp OpenAI-compatible API.
+The name used by llama.cpp's OpenAI-compatible API and by GlorpCat when referring to the loaded model.
 
 Example:
 
 ```dotenv
-GLORPCAT_MODEL_ALIAS=my-model
+GLORPCAT_MODEL_ALIAS=NVIDIA-Nemotron-3.5-Lightning-30B-A3B-Q4_0
 ```
 
-A completed `.env` may therefore look similar to:
+The same alias is automatically passed to both the inference service and the GlorpCat application, so it only needs to be configured once.
+
+A complete `.env` can therefore be as simple as:
 
 ```dotenv
-GLORPCAT_MODEL_DIR=/path/to/models
-GLORPCAT_MODEL_FILE=my-model.gguf
-
-GLORPCAT_TEMPLATE_DIR=/path/to/templates
-GLORPCAT_TEMPLATE_FILE=model_chat_template.jinja2
-
-GLORPCAT_MODEL_ALIAS=my-model
+GLORPCAT_MODEL_FILE=NVIDIA-Nemotron-3.5-Lightning-30B-A3B-Q4_0.gguf
+GLORPCAT_MODEL_ALIAS=NVIDIA-Nemotron-3.5-Lightning-30B-A3B-Q4_0
 ```
 
-Do not commit `.env` to Git.
+The current tested Nemotron GGUF contains its own compatible chat template. A separate template file is therefore **not required** for this configuration.
+
+Do not commit `.env` or files inside `models/` to Git.
 
 ---
 
@@ -634,7 +655,7 @@ Inspect the inference logs:
 sudo docker compose logs inference
 ```
 
-The model path, template path, GPU access, and llama.cpp arguments should be checked first.
+The model filename, model availability, GPU access, and llama.cpp arguments should be checked first.
 
 The inference health endpoint is:
 
@@ -705,7 +726,7 @@ Check that:
 - MCP servers started successfully.
 - Tool schemas are reaching the model.
 - Tool results are being returned to the conversation.
-- The selected chat template supports the expected tool-call format.
+- The model's embedded chat template supports the expected tool-call format.
 
 ### Thinking output does not appear
 
