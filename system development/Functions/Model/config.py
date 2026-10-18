@@ -8,7 +8,7 @@ GlorpCatDirectory = SystemDevelopmentDirectory.parent
 GitHubDirectory = GlorpCatDirectory.parent
 
 CHATBOT_NAME = "GlorpCat"
-MODEL_NAME = "nemotron-3.5-lightning-fixed:30b"
+MODEL_NAME = os.getenv("GLORPCAT_MODEL_ALIAS") or "nemotron-3.5-lightning-fixed:30b"
 MODEL_PROVIDER = "llama_cpp"  # Change to "ollama" to use the old backend.
 
 #llama.cpp server settings

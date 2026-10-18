@@ -23,6 +23,7 @@ services:
       GLORPCAT_CHROMADB_DIR: /app/ChromaDB
       GLORPCAT_LLAMA_CPP_URL: http://inference:8081/v1
       GLORPCAT_LLAMA_CPP_AUTO_START: "false"
+      GLORPCAT_MODEL_ALIAS: ${GLORPCAT_MODEL_ALIAS}
 
     volumes:
       - "./system development/Data:/app/Data"
@@ -56,8 +57,7 @@ services:
     ipc: host
 
     volumes:
-    - "${GLORPCAT_MODEL_DIR}:/models:ro"
-    - "${GLORPCAT_TEMPLATE_DIR}:/templates:ro"
+      - "./models:/models:ro"
 
     command:
       - llama-server
@@ -77,8 +77,6 @@ services:
       - "on"
       - --load-mode
       - "none"
-      - --chat-template-file
-      - /templates/${GLORPCAT_TEMPLATE_FILE}
       - --alias
       - ${GLORPCAT_MODEL_ALIAS}
       - --reasoning
