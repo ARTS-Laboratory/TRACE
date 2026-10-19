@@ -9,21 +9,13 @@ GitHubDirectory = GlorpCatDirectory.parent
 
 CHATBOT_NAME = "GlorpCat"
 MODEL_NAME = os.getenv("GLORPCAT_MODEL_ALIAS") or "nemotron-3.5-lightning-fixed:30b"
-MODEL_PROVIDER = "llama_cpp"  # Change to "ollama" to use the old backend.
 
 #llama.cpp server settings
 LLAMA_CPP_BASE_URL = os.getenv("GLORPCAT_LLAMA_CPP_URL") or "http://127.0.0.1:8081/v1"
 LLAMA_CPP_AUTO_START = os.getenv("GLORPCAT_LLAMA_CPP_AUTO_START", "true").lower() == "true"
 LLAMA_CPP_TOOLBOX = "llama-rocm-10.0"
 LLAMA_CPP_STARTUP_TIMEOUT_S = 120.0
-LLAMA_CPP_MODEL_PATH = (
-    "/run/host/usr/share/ollama/.ollama/models/blobs/"
-    "sha256-5c19f6282f4fc51cb114cb6c876d70ca2fc3b9cf0fbd0a018d9908f4fe1f63b3"
-)
-LLAMA_CPP_TEMPLATE_PATH = (
-    "/run/host/home/thienan/src/ollama-source/model/renderers/testdata/"
-    "nemotron35_chat_template.jinja2"
-)
+LLAMA_CPP_MODEL_PATH = (GlorpCatDirectory / "models" /( os.getenv("GLORPCAT_MODEL_FILE") or "nemotron/NVIDIA-Nemotron-3.5-Lightning-30B-A3B-Q4_0.gguf")) 
 
 #inspect media settings
 MEDIA_BASE_URL = os.getenv("GLORPCAT_MEDIA_URL") or "http://127.0.0.1:8082/v1"

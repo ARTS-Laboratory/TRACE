@@ -12,10 +12,8 @@ from Functions.Model.config import (
     LLAMA_CPP_BASE_URL,
     LLAMA_CPP_MODEL_PATH,
     LLAMA_CPP_STARTUP_TIMEOUT_S,
-    LLAMA_CPP_TEMPLATE_PATH,
     LLAMA_CPP_TOOLBOX,
     MODEL_NAME,
-    MODEL_PROVIDER,
 )
 
 
@@ -29,7 +27,7 @@ class LlamaCppServerManager:
 
     @property
     def enabled(self):
-        return MODEL_PROVIDER == "llama_cpp" and LLAMA_CPP_AUTO_START
+        return LLAMA_CPP_AUTO_START
 
     async def is_healthy(self):
         url = f"{LLAMA_CPP_BASE_URL.rstrip('/')}/models"
@@ -61,8 +59,6 @@ class LlamaCppServerManager:
             "on",
             "--load-mode",
             "none",
-            "--chat-template-file",
-            LLAMA_CPP_TEMPLATE_PATH,
             "--alias",
             MODEL_NAME,
             "--reasoning",

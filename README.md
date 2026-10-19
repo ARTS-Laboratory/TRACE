@@ -115,7 +115,7 @@ Marker is used for high-fidelity PDF extraction, especially for scientific paper
 Current features include:
 
 - Native SDK integration with no CLI subprocesses
-- Optional Ollama-powered LLM processors
+- llama.cpp-powered multimodal LLM processors
 - Markdown export
 - JSON export
 - Embedded-image extraction

@@ -39,11 +39,11 @@ class ResponseStats:
         self.cached_tokens = cached_tokens
         self.generated_tokens = generated_tokens
 
-        # Convert Ollama durations from nanoseconds to seconds
+        # Convert durations from nanoseconds to seconds
         prompt_seconds = prompt_duration / 1e9
         generation_seconds = generation_duration / 1e9
 
-        # Avoid division by zero if Ollama reports a duration of 0
+        # Avoid division by zero if it reports a duration of 0
         self.prompt_speed = (
             self.prompt_processed_tokens / prompt_seconds
             if prompt_seconds > 0

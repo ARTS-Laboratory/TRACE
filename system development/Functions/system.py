@@ -8,7 +8,7 @@ logging.basicConfig(level=logging.INFO,
 
 logging.getLogger().setLevel(logging.WARNING)
 
-# Ollama client
+# client
 logging.getLogger("httpx").setLevel(logging.ERROR)
 
 logger = logging.getLogger(__name__)

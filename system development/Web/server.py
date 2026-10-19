@@ -10,7 +10,7 @@ from fastapi import (
     File,
     Form
     )
-from Functions.Model.config import DATA_PATH, MODEL_PROVIDER
+from Functions.Model.config import DATA_PATH
 from Functions.Model.llama_cpp_server import LlamaCppServerManager
 
 from Functions.Agent.factory import create_runtime
@@ -350,9 +350,7 @@ async def handle_chat(websocket: WebSocket, data):
             message_id=message_id
         )
 
-        if MODEL_PROVIDER == "llama_cpp":
-            await llama_cpp_server.ensure_running()
-            await runtime.model_manager.load_active()
+        await llama_cpp_server.ensure_running()
 
         print("CHAT START", conversation_id)
         assistant = await agent.chat(

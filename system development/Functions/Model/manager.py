@@ -1,10 +1,8 @@
 import httpx
-import ollama
 
 from Functions.Model.config import (
     LLAMA_CPP_BASE_URL,
     MODEL_NAME,
-    MODEL_PROVIDER,
 )
 from Functions.Model.info import ModelInfo
 
@@ -50,49 +48,15 @@ class ModelManager:
         self.info.expires_at = ""
 
     async def load_static(self):
-        if MODEL_PROVIDER == "llama_cpp":
-            self.info.name = MODEL_NAME
-            self.info.loaded = False
-
-            try:
-                await self._load_llama_cpp()
-            except httpx.HTTPError:
-                pass
-
-            return
-
-        model_info = ollama.show(MODEL_NAME)
-        details = model_info.details
-
         self.info.name = MODEL_NAME
-        self.info.parameters = details.parameter_size
-        self.info.quantization = details.quantization_level
-        self.info.family = details.family
-        self.info.license = model_info.license
+        self.info.loaded = False
 
-    async def load_active(self):
-        if MODEL_PROVIDER == "llama_cpp":
+        try:
             await self._load_llama_cpp()
-            return
+        except httpx.HTTPError:
+            pass
 
-        running_info = ollama.ps()
-
-        model = next(
-            (model for model in running_info.models if model.name == MODEL_NAME),
-            None,
-        )
-
-        if model is None:
-            self.info.loaded = False
-            return
-
-        self.info.loaded = True
-        self.info.context_length = model.context_length
-        self.info.vram_gb = model.size_vram / (1024 ** 3)
-        self.info.expires_at = model.expires_at
+        return
 
     async def load(self):
         await self.load_static()
-
-        if MODEL_PROVIDER != "llama_cpp":
-            await self.load_active()
