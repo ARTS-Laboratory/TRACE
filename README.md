@@ -2,21 +2,15 @@
 
 > A local, multi-model AI agent with a browser-based interface, built to
 > keep capable AI workflows on your own hardware.
+> 
+<p align="center">
+  <img src="media/glorpCat.png" alt="Glorp Cat" width="400">
 
-```{=html}
-<p align="center">
-```
-`<img src="media/glorpCat.png" alt="Glorp Cat" width="400">`{=html}
-```{=html}
+
 </p>
-```
-```{=html}
-<p align="center">
-```
-`<em>`{=html}My king, my GOAT.`</em>`{=html}
-```{=html}
-</p>
-```
+
+<p align="center"><em>My king, my GOAT.</em></p>
+
 ## What is Glorp-Cat?
 
 Glorp-Cat is a Python-based local AI assistant that brings together
