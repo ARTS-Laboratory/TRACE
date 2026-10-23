@@ -76,7 +76,7 @@ Docker Compose
     ├── ROCm
     ├── Gemma 4 E2B + multimodal projector
     └── Image / Audio Inspection
-
+```
 ## RAG pipeline *(work in progress)*
 
 > **Project status:** 🚧 **Work in Progress**
