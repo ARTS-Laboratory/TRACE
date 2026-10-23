@@ -44,36 +44,14 @@ system's capabilities.
 Glorp-Cat keeps each responsibility separate so the project can grow
 without turning into one giant script:
 
-  -----------------------------------------------------------------------
-  Component                           Role
-  ----------------------------------- -----------------------------------
-  GlorpCat application                Runs the FastAPI browser UI, agent,
-                                      tools, conversation management, RAG
-                                      integration, and application logic.
-
-  Local inference services            Runs specialized local models
-                                      independently from the main
-                                      application. The current Docker
-                                      deployment uses llama.cpp with ROCm
-                                      for both the main agent model and
-                                      multimodal media model.
-
-  Agent layer                         Coordinates messages, reasoning
-                                      output, tool calls, and final
-                                      responses.
-
-  MCP tools                           Adds capabilities such as search
-                                      and other external actions through
-                                      a standard interface.
-
-  RAG pipeline *(in integration)*     Parses, chunks, embeds, and
-                                      retrieves information from local
-                                      documents for use by Glorp-Cat.
-
-  FastAPI browser UI                  Provides the primary interface
-                                      while using the same underlying
-                                      agent system as the CLI.
-  -----------------------------------------------------------------------
+| Component | Role |
+|---|---|
+| GlorpCat application | Runs the FastAPI browser UI, agent, tools, conversation management, RAG integration, and application logic. |
+| Local inference services | Runs specialized local models independently from the main application. The current Docker deployment uses llama.cpp with ROCm for both the main agent model and multimodal media model. |
+| Agent layer | Coordinates messages, reasoning output, tool calls, and final responses. |
+| MCP tools | Adds capabilities such as search and other external actions through a standard interface. |
+| RAG pipeline *(in integration)* | Parses, chunks, embeds, and retrieves information from local documents for use by GlorpCat. |
+| FastAPI browser UI | Provides the primary interface while using the same underlying agent system as the CLI. |
 
 The recommended deployment uses Docker Compose to keep the application
 and inference engine separate:
