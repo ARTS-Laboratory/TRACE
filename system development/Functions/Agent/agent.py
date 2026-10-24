@@ -32,6 +32,8 @@ class Agent:
                 conversation_id=self.conversation_id
             )
 
+            #print("DEBUG: streamResponse returned", flush=True)
+
             self.conversation.add_assistant(
                 assistant["thinking"],
                 assistant["content"],
@@ -50,7 +52,9 @@ class Agent:
                 )
             )
 
-        await self.model_manager.load_active()
+        #print("DEBUG: starting load_active", flush=True)
+        await self.model_manager.load()
+        #print("DEBUG: load_active returned", flush=True)
 
         stats.finish()
 

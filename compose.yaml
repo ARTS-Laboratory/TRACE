@@ -60,34 +60,49 @@ services:
 
     ipc: host
 
+    environment:
+      MTP_MODEL_FILE: "${GLORPCAT_MODEL_MTP:-}"
+
     volumes:
       - "./models:/models:ro"
 
+    entrypoint: ["/bin/sh", "-c"]
     command:
-      - llama-server
-      - -m
-      - /models/${GLORPCAT_MODEL_FILE}
-      - --host
-      - 0.0.0.0
-      - --port
-      - "8081"
-      - -c
-      - "32768"
-      - --device
-      - ROCm0
-      - -ngl
-      - "999"
-      - --flash-attn
-      - "on"
-      - --load-mode
-      - "none"
-      - --alias
-      - ${GLORPCAT_MODEL_ALIAS}
-      - --reasoning
-      - "on"
-      - --reasoning-format
-      - deepseek
-      - --reasoning-preserve
+      - |
+        set -eu
+
+        set -- llama-server \
+          -m "/models/${GLORPCAT_MODEL_FILE}" \
+          --host 0.0.0.0 \
+          --port 8081 \
+          -c 32768 \
+          --device ROCm0 \
+          -ngl 999 \
+          --flash-attn on \
+          --load-mode none \
+          --alias "${GLORPCAT_MODEL_ALIAS}" \
+          --reasoning on \
+          --reasoning-format deepseek \
+          --reasoning-preserve
+
+        if [ -n "$$MTP_MODEL_FILE" ]; then
+          draft_path="/models/$$MTP_MODEL_FILE"
+
+          if [ ! -r "$$draft_path" ]; then
+            echo "Cannot read MTP draft model: $$draft_path" >&2
+            exit 1
+          fi
+
+          set -- "$$@" \
+            --spec-type draft-mtp \
+            --model-draft "$$draft_path" \
+            --spec-draft-n-max 3 \
+            --gpu-layers-draft 999
+        else
+          set -- "$$@" --spec-type none
+        fi
+
+        exec "$$@"
 
     healthcheck:
       test:
@@ -111,31 +126,47 @@ services:
 
     ipc: host
 
+    environment:
+      MTP_MODEL_FILE: "${GLORPCAT_MEDIA_MTP:-}"
+
     volumes:
       - "./models:/models:ro"
     
+    entrypoint: ["/bin/sh", "-c"]
     command:
-      - llama-server
-      - -m
-      - /models/${GLORPCAT_MEDIA_FILE}
-      - --mmproj 
-      - /models/${GLORPCAT_MEDIA_MMPROJ}
-      - --host
-      - 0.0.0.0
-      - --port
-      - "8082"
-      - -c
-      - "32768"
-      - --device
-      - ROCm0
-      - -ngl
-      - "999"
-      - --flash-attn
-      - "on"
-      - --load-mode
-      - "none"
-      - --alias
-      - ${GLORPCAT_MEDIA_ALIAS}
+      - |
+        set -eu
+
+        set -- llama-server \
+          -m "/models/${GLORPCAT_MEDIA_FILE}" \
+          --mmproj "/models/${GLORPCAT_MEDIA_MMPROJ}" \
+          --host 0.0.0.0 \
+          --port 8082 \
+          -c 32768 \
+          --device ROCm0 \
+          -ngl 999 \
+          --flash-attn on \
+          --load-mode none \
+          --alias "${GLORPCAT_MEDIA_ALIAS}"
+
+        if [ -n "$$MTP_MODEL_FILE" ]; then
+          draft_path="/models/$$MTP_MODEL_FILE"
+
+          if [ ! -r "$$draft_path" ]; then
+            echo "Cannot read MTP draft model: $$draft_path" >&2
+            exit 1
+          fi
+
+          set -- "$$@" \
+            --spec-type draft-mtp \
+            --model-draft "$$draft_path" \
+            --spec-draft-n-max 3 \
+            --gpu-layers-draft 999
+        else
+          set -- "$$@" --spec-type none
+        fi
+
+        exec "$$@"
 
     healthcheck:
       test:
