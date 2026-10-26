@@ -23,6 +23,7 @@ requests
 # RAG
 chromadb
 sentence-transformers
+pymupdf
 
 # Agent / MCP
 mcp[cli]>=1.28,<2

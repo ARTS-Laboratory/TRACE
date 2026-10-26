@@ -21,6 +21,10 @@ LLAMA_CPP_MODEL_PATH = (GlorpCatDirectory / "models" /( os.getenv("GLORPCAT_MODE
 MEDIA_BASE_URL = os.getenv("GLORPCAT_MEDIA_URL") or "http://127.0.0.1:8082/v1"
 MEDIA_MODEL_NAME = os.getenv("GLORPCAT_MEDIA_ALIAS") or "gemma-4-E2B-it-UD-Q8_K_XL"
 
+#agentic search
+INPUT_PATH = SystemDevelopmentDirectory / "Data" / "input"
+INPUT_PATH.mkdir(parents=True, exist_ok=True)
+
 # ChromaDB settings
 CHROMADB_PATH = Path(os.getenv("GLORPCAT_CHROMADB_DIR") or GitHubDirectory / "PaperParsing/Docling Parsing/v0.2/ChromaDB")
 DATA_PATH = Path(os.getenv("GLORPCAT_DATA_DIR") or SystemDevelopmentDirectory / "Data")
