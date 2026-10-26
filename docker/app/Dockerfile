@@ -8,7 +8,7 @@ RUN apt-get update && \
         npm && \
     rm -rf /var/lib/apt/lists/*
 
-COPY ["system development/requirements.txt", "./requirements.txt"]
+COPY ["requirements.txt", "./requirements.txt"]
 
 RUN python3 -m pip install \
     --root-user-action=ignore \
