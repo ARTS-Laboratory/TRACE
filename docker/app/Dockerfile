@@ -15,6 +15,6 @@ RUN python3 -m pip install \
     --no-cache-dir \
     -r requirements.txt
 
-COPY ["system development/Functions", "./Functions"]
-COPY ["system development/Web", "./Web"]
-COPY ["system development/glorpCat.py", "./glorpCat.py"]
+COPY ["system_development/Functions", "./Functions"]
+COPY ["system_development/Web", "./Web"]
+COPY ["system_development/glorpCat.py", "./glorpCat.py"]

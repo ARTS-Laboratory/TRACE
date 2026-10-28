@@ -17,7 +17,7 @@ glorp-cat/
 # Runtime data
 # =========================
 
-system development/Data/
+system_development/Data/
 
 
 # =========================
@@ -49,7 +49,7 @@ Thumbs.db
 *.tmp
 *.swp
 *~
-system development/current-environment.txt
+system_development/current-environment.txt
 
 # =========================
 # Local environment configuration

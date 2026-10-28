@@ -45,9 +45,9 @@ SCIENTIFIC_KEYWORDS = [
 ]
 
 CITATION_PATTERNS = {
-    "narrative": r"(?:\b(?!(?:Figure|Table|Model|Experiment|Results|Section|Version|December)\b)[A-Z][A-Za-z\.,\s&]+?\s*\(\d{4}[a-z]?\))|(?:\((?!(?:Figure|Table|Model|Experiment|Results|Section|Version|December|\d{4})\b)[A-Z][^)]*\b\d{4}[a-z]?\b[^)]*\))",
-    "brackets": r"\[\d+(?:-\d+)?(?:\s*,\s*\d+(?:-\d+)?)*\]",
-    "parenthetical": r"\((?!\d{4}\))\d+(?:-\d+)?(?:\s*,\s*\d+(?:-\d+)?)*\)"
+    "author-date": r"(?:\b(?!(?:Figure|Table|Model|Experiment|Results|Section|Version|December)\b)[A-Z][A-Za-z\.,\s&]+?\s*\(\d{4}[a-z]?\))|(?:\((?!(?:Figure|Table|Model|Experiment|Results|Section|Version|December|\d{4})\b)[A-Z][^)]*\b\d{4}[a-z]?\b[^)]*\))",
+    "numeric-bracketed": r"\[\d+(?:-\d+)?(?:\s*,\s*\d+(?:-\d+)?)*\]",
+    "numeric-parenthetical": r"\((?!\d{4}\))\d+(?:-\d+)?(?:\s*,\s*\d+(?:-\d+)?)*\)"
 }
 
 CAPTION_PATTERNS = {

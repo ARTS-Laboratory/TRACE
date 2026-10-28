@@ -22,6 +22,8 @@ requests
 
 # RAG
 chromadb
+docling
+easyocr
 sentence-transformers
 pymupdf
 beautifulsoup4

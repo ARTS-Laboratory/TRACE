@@ -26,9 +26,10 @@ services:
       GLORPCAT_MODEL_ALIAS: ${GLORPCAT_MODEL_ALIAS}
       GLORPCAT_MEDIA_URL: http://media:8082/v1
       GLORPCAT_MEDIA_ALIAS: ${GLORPCAT_MEDIA_ALIAS}
+      MIOPEN_FIND_MODE: "2"
 
     volumes:
-      - "./system development/Data:/app/Data"
+      - "./system_development/Data:/app/Data"
       - "../PaperParsing/Docling Parsing/v0.2/ChromaDB:/app/ChromaDB"
       - "glorpcat-hf-cache:/root/.cache/huggingface"
 
