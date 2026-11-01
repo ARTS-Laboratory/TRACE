@@ -3,36 +3,34 @@ services:
     build:
       context: .
       dockerfile: docker/app/Dockerfile
-
     image: glorpcat-app:dev
-
     devices:
       - /dev/kfd:/dev/kfd
       - /dev/dri:/dev/dri
-
     group_add:
       - video
 
     ipc: host
 
     ports:
-      - "8000:8000"
+      - 8000:8000
 
     environment:
       GLORPCAT_DATA_DIR: /app/Data
       GLORPCAT_CHROMADB_DIR: /app/ChromaDB
-      GLORPCAT_LLAMA_CPP_AUTO_START: "false"
+      GLORPCAT_LLAMA_CPP_AUTO_START: 'false'
       GLORPCAT_LLAMA_CPP_URL: http://inference:8081/v1
       GLORPCAT_MODEL_ALIAS: ${GLORPCAT_MODEL_ALIAS}
       GLORPCAT_MEDIA_URL: http://media:8082/v1
       GLORPCAT_MEDIA_ALIAS: ${GLORPCAT_MEDIA_ALIAS}
-      MIOPEN_FIND_MODE: "2"
+      MIOPEN_FIND_MODE: '2'
       DOCLING_LIBREOFFICE_CMD: /usr/bin/libreoffice
+      GLORPCAT_CONTROLLER_URL: http://controller:8090
 
     volumes:
-      - "./system_development/Data:/app/Data"
-      - "../PaperParsing/Docling Parsing/v0.2/ChromaDB:/app/ChromaDB"
-      - "glorpcat-hf-cache:/root/.cache/huggingface"
+      - ./system_development/Data:/app/Data
+      - ../PaperParsing/Docling Parsing/v0.2/ChromaDB:/app/ChromaDB
+      - glorpcat-hf-cache:/root/.cache/huggingface
 
     command:
       - python3
@@ -42,14 +40,13 @@ services:
       - --host
       - 0.0.0.0
       - --port
-      - "8000"
+      - '8000'
 
     depends_on:
       inference:
         condition: service_healthy
-      media:
+      controller:
         condition: service_healthy
-
   inference:
     image: kyuz0/amd-strix-halo-toolboxes:rocm-10.0
 
@@ -63,10 +60,10 @@ services:
     ipc: host
 
     environment:
-      MTP_MODEL_FILE: "${GLORPCAT_MODEL_MTP:-}"
+      MTP_MODEL_FILE: ${GLORPCAT_MODEL_MTP:-}
 
     volumes:
-      - "./models:/models:ro"
+      - ./models:/models:ro
 
     entrypoint: ["/bin/sh", "-c"]
     command:
@@ -115,10 +112,8 @@ services:
       interval: 5s
       timeout: 3s
       retries: 60
-
   media:
     image: kyuz0/amd-strix-halo-toolboxes:rocm-10.0
-
     devices:
       - /dev/kfd:/dev/kfd
       - /dev/dri:/dev/dri
@@ -129,12 +124,18 @@ services:
     ipc: host
 
     environment:
-      MTP_MODEL_FILE: "${GLORPCAT_MEDIA_MTP:-}"
+      MTP_MODEL_FILE: ${GLORPCAT_MEDIA_MTP:-}
 
     volumes:
-      - "./models:/models:ro"
-    
-    entrypoint: ["/bin/sh", "-c"]
+      - ./models:/models:ro
+
+    profiles:
+      - optional
+
+    entrypoint:
+      - /bin/sh
+      - -c
+
     command:
       - |
         set -eu
@@ -170,6 +171,8 @@ services:
 
         exec "$$@"
 
+        fi\n\nexec \"$$@\"\n"
+
     healthcheck:
       test:
         - CMD
@@ -179,7 +182,6 @@ services:
       interval: 5s
       timeout: 3s
       retries: 60
-
   surya:
     image: vllm/vllm-openai-rocm@sha256:14f6a575e1fb0a580b0f633c09e06f648709d60405b85f6a7ff3f80d49f39905
 
@@ -193,16 +195,19 @@ services:
     ipc: host
 
     environment:
-      HSA_OVERRIDE_GFX_VERSION: "11.5.0"
-      MIOPEN_FIND_MODE: "2"
+      HSA_OVERRIDE_GFX_VERSION: 11.5.0
+      MIOPEN_FIND_MODE: '2'
       PYTORCH_ALLOC_CONF: expandable_segments:True
 
     volumes:
-      - "/home/thienan/opt/surya-vllm/models:/root/.cache/huggingface"
-      - "surya-vllm-cache:/root/.cache/vllm"
+      - /home/thienan/opt/surya-vllm/models:/root/.cache/huggingface
+      - surya-vllm-cache:/root/.cache/vllm
+
+    profiles:
+      - optional
 
     ports:
-      - "127.0.0.1:8001:8000"
+      - 127.0.0.1:8001:8000
 
     command:
       - --model
@@ -212,27 +217,27 @@ services:
       - --dtype
       - bfloat16
       - --max-model-len
-      - "16384"
+      - '16384'
       - --max-num-batched-tokens
-      - "4096"
+      - '4096'
       - --mm-processor-kwargs
       - '{"min_pixels":3136,"max_pixels":1048576}'
       - --gpu-memory-utilization
-      - "0.2"
+      - '0.2'
       - --port
-      - "8000"
+      - '8000'
 
     healthcheck:
       test:
         - CMD
         - python3
         - -c
-        - "import urllib.request; urllib.request.urlopen('http://127.0.0.1:8000/health', timeout=5)"
+        - import urllib.request; urllib.request.urlopen('http://127.0.0.1:8000/health',
+          timeout=5)
       interval: 10s
       timeout: 10s
       retries: 60
       start_period: 180s
-
   marker:
     build:
       context: .
@@ -243,13 +248,17 @@ services:
     environment:
       SURYA_INFERENCE_BACKEND: vllm
       SURYA_INFERENCE_URL: http://surya:8000/v1
+      SURYA_MAX_TOKENS_FULL_PAGE: '8192'
 
     volumes:
-      - "./system_development/Data:/app/Data:ro"
-      - "./system_development/Data/output:/app/Data/output:rw"
+    - ./system_development/Data:/app/Data:ro
+    - ./system_development/Data/output:/app/Data/output:rw
+
+    profiles:
+    - optional
 
     ports:
-      - "127.0.0.1:8002:8002"
+    - 127.0.0.1:8002:8002
 
     depends_on:
       surya:
@@ -257,18 +266,46 @@ services:
 
     healthcheck:
       test:
-        - CMD
-        - python3
-        - -c
-        - "import urllib.request; urllib.request.urlopen('http://127.0.0.1:8002/health', timeout=5)"
+      - CMD
+      - python3
+      - -c
+      - import urllib.request; urllib.request.urlopen('http://127.0.0.1:8002/health',
+        timeout=5)
       interval: 10s
       timeout: 5s
       retries: 12
       start_period: 30s
 
+  controller:
+    build:
+      context: .
+      dockerfile: docker/controller/Dockerfile
+
+    image: glorpcat-controller:dev
+
+    environment:
+      PROJECT_DIR: ${GLORPCAT_PROJECT_DIR}
+      IDLE_SECONDS: "300"
+      LEASE_SECONDS: "90"
+
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - ${GLORPCAT_PROJECT_DIR}:${GLORPCAT_PROJECT_DIR}:ro
+
+    working_dir: ${GLORPCAT_PROJECT_DIR}
+
+    healthcheck:
+      test:
+        - CMD
+        - python3
+        - -c
+        - "import urllib.request; urllib.request.urlopen('http://127.0.0.1:8090/health', timeout=3)"
+      interval: 5s
+      timeout: 3s
+      retries: 12
+
 volumes:
   glorpcat-hf-cache:
     name: glorpcat-hf-cache
-
   surya-vllm-cache:
     name: surya-vllm-cache

@@ -7,6 +7,7 @@ from pathlib import Path
 from docling.exceptions import ConversionError
 from docling_core.types.doc import ImageRefMode
 import httpx
+from Functions.Services.lifecycle import service_lease
 
 OUTPUT_FOLDER = DATA_PATH / "output" / "docling"
 
@@ -68,6 +69,10 @@ def convert_docling_documents(router_results):
     return parser_plans
 
 def convert_marker_documents(pdfs):
+    with service_lease("parsing"):
+        return _convert_marker_documents_active(pdfs)
+
+def _convert_marker_documents_active(pdfs):
     summaries = []
 
     url = "http://marker:8002/parse"

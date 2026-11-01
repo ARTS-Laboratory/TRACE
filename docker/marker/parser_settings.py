@@ -8,5 +8,6 @@ markerProfiles: dict[profileNames, markerPipelineOptions] = {
         paginateOutput=True,
         stripExistingOCR=False,
         mode="balanced",
+        ocrFullPage=False,
     )
 }

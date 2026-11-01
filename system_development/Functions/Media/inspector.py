@@ -4,6 +4,7 @@ import base64
 import httpx
 
 from Functions.Model.config import MEDIA_BASE_URL, MEDIA_MODEL_NAME
+from Functions.Services.lifecycle import async_service_lease
 
 timeout = httpx.Timeout(
             connect=10.0,
@@ -70,12 +71,13 @@ class MediaInspector:
     async def inspect_media(self, file_path, question):
         payload = self._prepare_payload(file_path, question)
 
-        async with httpx.AsyncClient(timeout=timeout) as client:
-            response = await client.post(self.url, json=payload)
-            response.raise_for_status()
+        async with async_service_lease("media"):
+            async with httpx.AsyncClient(timeout=timeout) as client:
+                response = await client.post(self.url, json=payload)
+                response.raise_for_status()
 
-            event = response.json()
-            choice = event["choices"][0]["message"]["content"]
+                event = response.json()
+                choice = event["choices"][0]["message"]["content"]
             
         return choice
 

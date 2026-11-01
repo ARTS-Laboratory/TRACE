@@ -60,3 +60,4 @@ class markerPipelineOptions:
     mode: str = "balanced"
 
     llmService: str | None = None
+    ocrFullPage: bool = True

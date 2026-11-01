@@ -31,8 +31,9 @@ class MarkerParser:
                         "force_ocr": profile.forceOCR,
                         "paginate_output": profile.paginateOutput,
                         "strip_existing_ocr": profile.stripExistingOCR,
-                        "mode":  profile.mode,
-                }
+                        "mode": profile.mode,
+                        "ocr_full_page": profile.ocrFullPage,
+                        }
 
                 if profile.pageRanges:
                         config["page_range"] = profile.pageRanges
