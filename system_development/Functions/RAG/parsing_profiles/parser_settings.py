@@ -67,16 +67,6 @@ doclingProfiles: dict[profileNames, doclingPipelineOptions] = {
     )
 }
 
-markerProfiles: dict[profileNames, markerPipelineOptions] = {
-    profileNames.marker: markerPipelineOptions(
-        name=profileNames.marker,
-        forceOCR=False,
-        paginateOutput=True,
-        stripExistingOCR=False,
-        useLLM=False,
-    ),
-}
-
 def doclingSettings(profile : doclingPipelineOptions) -> ThreadedPdfPipelineOptions:
         options = ThreadedPdfPipelineOptions()
 

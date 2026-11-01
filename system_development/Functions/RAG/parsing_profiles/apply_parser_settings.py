@@ -1,5 +1,5 @@
-from Functions.RAG.parsing_profiles.parsing_profiles import profileNames, doclingPipelineOptions, markerPipelineOptions
-from Functions.RAG.parsing_profiles.parser_settings import doclingSettings, doclingProfiles, markerProfiles
+from Functions.RAG.parsing_profiles.parsing_profiles import profileNames, doclingPipelineOptions
+from Functions.RAG.parsing_profiles.parser_settings import doclingSettings, doclingProfiles
 
 from docling.document_converter import DocumentConverter, PdfFormatOption
 from docling.datamodel.base_models import InputFormat
@@ -40,10 +40,3 @@ def addDoclingParserSettings(results):
                   break
 
     return parserPlansWithSettings
-
-def getMarkerProfile(parserName: str) -> markerPipelineOptions:
-    profileMap = {
-        "marker": profileNames.marker,
-    }
-
-    return markerProfiles[profileMap[parserName]]

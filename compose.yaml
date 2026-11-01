@@ -27,6 +27,7 @@ services:
       GLORPCAT_MEDIA_URL: http://media:8082/v1
       GLORPCAT_MEDIA_ALIAS: ${GLORPCAT_MEDIA_ALIAS}
       MIOPEN_FIND_MODE: "2"
+      DOCLING_LIBREOFFICE_CMD: /usr/bin/libreoffice
 
     volumes:
       - "./system_development/Data:/app/Data"
@@ -179,6 +180,95 @@ services:
       timeout: 3s
       retries: 60
 
+  surya:
+    image: vllm/vllm-openai-rocm@sha256:14f6a575e1fb0a580b0f633c09e06f648709d60405b85f6a7ff3f80d49f39905
+
+    devices:
+      - /dev/kfd:/dev/kfd
+      - /dev/dri:/dev/dri
+
+    group_add:
+      - video
+
+    ipc: host
+
+    environment:
+      HSA_OVERRIDE_GFX_VERSION: "11.5.0"
+      MIOPEN_FIND_MODE: "2"
+      PYTORCH_ALLOC_CONF: expandable_segments:True
+
+    volumes:
+      - "/home/thienan/opt/surya-vllm/models:/root/.cache/huggingface"
+      - "surya-vllm-cache:/root/.cache/vllm"
+
+    ports:
+      - "127.0.0.1:8001:8000"
+
+    command:
+      - --model
+      - datalab-to/surya-ocr-2
+      - --served-model-name
+      - datalab-to/surya-ocr-2
+      - --dtype
+      - bfloat16
+      - --max-model-len
+      - "16384"
+      - --max-num-batched-tokens
+      - "4096"
+      - --mm-processor-kwargs
+      - '{"min_pixels":3136,"max_pixels":1048576}'
+      - --gpu-memory-utilization
+      - "0.2"
+      - --port
+      - "8000"
+
+    healthcheck:
+      test:
+        - CMD
+        - python3
+        - -c
+        - "import urllib.request; urllib.request.urlopen('http://127.0.0.1:8000/health', timeout=5)"
+      interval: 10s
+      timeout: 10s
+      retries: 60
+      start_period: 180s
+
+  marker:
+    build:
+      context: .
+      dockerfile: docker/marker/Dockerfile
+
+    image: glorpcat-marker:dev
+
+    environment:
+      SURYA_INFERENCE_BACKEND: vllm
+      SURYA_INFERENCE_URL: http://surya:8000/v1
+
+    volumes:
+      - "./system_development/Data:/app/Data:ro"
+      - "./system_development/Data/output:/app/Data/output:rw"
+
+    ports:
+      - "127.0.0.1:8002:8002"
+
+    depends_on:
+      surya:
+        condition: service_healthy
+
+    healthcheck:
+      test:
+        - CMD
+        - python3
+        - -c
+        - "import urllib.request; urllib.request.urlopen('http://127.0.0.1:8002/health', timeout=5)"
+      interval: 10s
+      timeout: 5s
+      retries: 12
+      start_period: 30s
+
 volumes:
   glorpcat-hf-cache:
     name: glorpcat-hf-cache
+
+  surya-vllm-cache:
+    name: surya-vllm-cache

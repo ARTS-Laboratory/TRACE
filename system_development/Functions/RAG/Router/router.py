@@ -3,12 +3,6 @@ from Functions.RAG.Router.pdf_features import extract_pdf_features_single_pass
 from Functions.RAG.Router.none_pdf_features import general_features
 import pymupdf
 
-"""
-cd "/home/thienan/Documents/GitHub/Glorp-Cat/system development"
-
-/home/thienan/Documents/GitHub/Glorp-Cat/glorp-cat/bin/python -m Functions.RAG.Router.router
-"""
-
 def load_documents():
     files = [{"file_path": file, "document": pymupdf.open(file)} for file in INPUT_PATH.iterdir() if file.is_file()]
     return files

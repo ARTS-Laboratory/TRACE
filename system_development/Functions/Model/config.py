@@ -27,7 +27,7 @@ INPUT_PATH.mkdir(parents=True, exist_ok=True)
 
 # ChromaDB settings
 CHROMADB_PATH = Path(os.getenv("GLORPCAT_CHROMADB_DIR") or GitHubDirectory / "PaperParsing/Docling Parsing/v0.2/ChromaDB")
-DATA_PATH = Path(os.getenv("GLORPCAT_DATA_DIR") or SystemDevelopmentDirectory / "Data")
+DATA_PATH = SystemDevelopmentDirectory / "Data"
 RERANKER_MODEL = "BAAI/bge-reranker-base"
 
 STREAM = True
