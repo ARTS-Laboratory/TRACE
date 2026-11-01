@@ -5,7 +5,6 @@ Docker socket access is powerful: isolate this container and do not publish its 
 import json
 import logging
 import os
-import subprocess
 import threading
 import time
 import uuid
@@ -17,7 +16,7 @@ logging.basicConfig(level=logging.INFO, format='%(asctime)s %(levelname)s %(mess
 LOG = logging.getLogger('service-controller')
 IDLE_SECONDS = int(os.getenv('IDLE_SECONDS', '300'))
 LEASE_SECONDS = int(os.getenv('LEASE_SECONDS', '90'))
-PROJECT_DIR = os.environ['PROJECT_DIR']
+GATEWAY_URL = os.getenv('GATEWAY_URL', 'http://gateway:8091')
 GROUPS = {
     'media': {'target': 'media', 'services': ('media',), 'url': 'http://media:8082/health', 'startup': 300},
     'parsing': {'target': 'marker', 'services': ('marker', 'surya'), 'url': 'http://marker:8002/health', 'startup': 600},
@@ -25,11 +24,16 @@ GROUPS = {
 STATE = {key: {'lock': threading.RLock(), 'leases': {}, 'idle_since': None, 'managed': False} for key in GROUPS}
 
 
-def compose(*args, timeout=180):
-    command = ['docker', 'compose', '--project-directory', PROJECT_DIR, '-f', f'{PROJECT_DIR}/compose.yaml', *args]
-    result = subprocess.run(command, capture_output=True, text=True, timeout=timeout, cwd=PROJECT_DIR)
-    if result.returncode:
-        raise RuntimeError(f"Compose {args} failed: {result.stderr[-1200:]}")
+def gateway(service, operation):
+    from urllib.request import Request
+    import json as _json
+    if service not in ('media', 'marker', 'surya') or operation not in ('start', 'stop'):
+        raise ValueError('invalid gateway operation')
+    req = Request(f'{GATEWAY_URL}/{operation}/{service}', data=b'', method='POST')
+    with urlopen(req, timeout=60) as response:
+        if response.status != 200:
+            raise RuntimeError(f'Gateway returned {response.status}')
+        return _json.loads(response.read())
 
 
 def healthy(url):
@@ -46,7 +50,17 @@ def ensure_running(group):
     with state['lock']:
         if not healthy(spec['url']):
             LOG.info('Starting %s', group)
-            compose('--profile', 'optional', 'up', '-d', '--build', spec['target'], timeout=spec['startup'])
+
+            if group == 'parsing':
+                gateway('surya', 'start')
+                surya_deadline = time.monotonic() + spec['startup']
+                while not healthy('http://surya:8000/health'):
+                    if time.monotonic() >= surya_deadline:
+                        raise TimeoutError('surya did not become healthy')
+                    time.sleep(2)
+                gateway('marker', 'start')
+            else:
+                gateway('media', 'start')
             deadline = time.monotonic() + spec['startup']
             while time.monotonic() < deadline:
                 if healthy(spec['url']):
@@ -109,7 +123,12 @@ def reap_once(now=None):
                 continue
             try:
                 LOG.info('Stopping idle %s', group)
-                compose('--profile', 'optional', 'stop', *GROUPS[group]['services'], timeout=120)
+
+                if group == 'parsing':
+                    gateway('marker', 'stop')
+                    gateway('surya', 'stop')
+                else:
+                    gateway('media', 'stop')
                 state['managed'] = False
                 state['idle_since'] = None
             except Exception:

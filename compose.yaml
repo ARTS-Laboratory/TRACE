@@ -171,7 +171,6 @@ services:
 
         exec "$$@"
 
-        fi\n\nexec \"$$@\"\n"
 
     healthcheck:
       test:
@@ -284,15 +283,18 @@ services:
     image: glorpcat-controller:dev
 
     environment:
-      PROJECT_DIR: ${GLORPCAT_PROJECT_DIR}
+      GATEWAY_URL: http://gateway:8091
       IDLE_SECONDS: "300"
       LEASE_SECONDS: "90"
 
-    volumes:
-      - /var/run/docker.sock:/var/run/docker.sock
-      - ${GLORPCAT_PROJECT_DIR}:${GLORPCAT_PROJECT_DIR}:ro
-
-    working_dir: ${GLORPCAT_PROJECT_DIR}
+    networks:
+      - default
+      - lifecycle
+    depends_on:
+      gateway:
+        condition: service_healthy
+      provisioner:
+        condition: service_completed_successfully
 
     healthcheck:
       test:
@@ -303,6 +305,53 @@ services:
       interval: 5s
       timeout: 3s
       retries: 12
+
+  provisioner:
+    build:
+      context: .
+      dockerfile: docker/provisioner/Dockerfile
+    image: glorpcat-provisioner:dev
+    entrypoint: ["/bin/sh", "-ec"]
+    command:
+      - |
+        docker compose --project-name "$${COMPOSE_PROJECT}" \
+          --project-directory "$${PROJECT_DIR}" \
+          -f "$${PROJECT_DIR}/compose.yaml" \
+          --profile optional create --build --no-recreate media surya marker
+    environment:
+      PROJECT_DIR: ${GLORPCAT_PROJECT_DIR}
+      COMPOSE_PROJECT: ${COMPOSE_PROJECT_NAME:-glorp-cat}
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - ${GLORPCAT_PROJECT_DIR}:${GLORPCAT_PROJECT_DIR}:ro
+    working_dir: ${GLORPCAT_PROJECT_DIR}
+    restart: "no"
+    network_mode: "none"
+
+  gateway:
+    build:
+      context: .
+      dockerfile: docker/gateway/Dockerfile
+    image: glorpcat-gateway:dev
+    environment:
+      COMPOSE_PROJECT: ${COMPOSE_PROJECT_NAME:-glorp-cat}
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+    networks:
+      - lifecycle
+    security_opt:
+      - no-new-privileges:true
+    cap_drop:
+      - ALL
+    healthcheck:
+      test: ["CMD", "python3", "-c", "import urllib.request; urllib.request.urlopen('http://127.0.0.1:8091/health', timeout=3)"]
+      interval: 5s
+      timeout: 3s
+      retries: 12
+
+networks:
+  lifecycle:
+    internal: true
 
 volumes:
   glorpcat-hf-cache:
