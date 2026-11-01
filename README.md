@@ -1,15 +1,8 @@
-# Glorp-Cat
+# Traceable Retrieval and Citation Engine (TRACE)​
 
 > A local, multi-model AI agent with a browser-based interface, built to
 > keep capable AI workflows on your own hardware.
-> 
-<p align="center">
-  <img src="media/glorpCat.png" alt="Glorp Cat" width="400">
-
-
-</p>
-
-<p align="center"><em>My king, my GOAT.</em></p>
+ 
 
 ## What is Glorp-Cat?
 
