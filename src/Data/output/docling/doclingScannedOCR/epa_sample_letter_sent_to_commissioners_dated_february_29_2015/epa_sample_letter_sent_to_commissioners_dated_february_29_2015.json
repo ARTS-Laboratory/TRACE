@@ -1,0 +1,1126 @@
+{
+  "schema_name": "DoclingDocument",
+  "version": "1.10.0",
+  "name": "epa_sample_letter_sent_to_commissioners_dated_february_29_2015",
+  "origin": {
+    "mimetype": "application/pdf",
+    "binary_hash": 14929313189852602426,
+    "filename": "epa_sample_letter_sent_to_commissioners_dated_february_29_2015.pdf"
+  },
+  "furniture": {
+    "self_ref": "#/furniture",
+    "children": [],
+    "content_layer": "furniture",
+    "name": "_root_",
+    "label": "unspecified"
+  },
+  "body": {
+    "self_ref": "#/body",
+    "children": [
+      {
+        "$ref": "#/pictures/0"
+      },
+      {
+        "$ref": "#/texts/3"
+      },
+      {
+        "$ref": "#/texts/4"
+      },
+      {
+        "$ref": "#/texts/5"
+      },
+      {
+        "$ref": "#/texts/6"
+      },
+      {
+        "$ref": "#/groups/0"
+      },
+      {
+        "$ref": "#/texts/11"
+      },
+      {
+        "$ref": "#/texts/12"
+      },
+      {
+        "$ref": "#/texts/13"
+      },
+      {
+        "$ref": "#/texts/14"
+      },
+      {
+        "$ref": "#/texts/15"
+      },
+      {
+        "$ref": "#/groups/1"
+      },
+      {
+        "$ref": "#/texts/19"
+      },
+      {
+        "$ref": "#/texts/20"
+      },
+      {
+        "$ref": "#/texts/21"
+      },
+      {
+        "$ref": "#/groups/2"
+      },
+      {
+        "$ref": "#/texts/26"
+      },
+      {
+        "$ref": "#/texts/27"
+      },
+      {
+        "$ref": "#/texts/28"
+      },
+      {
+        "$ref": "#/texts/29"
+      },
+      {
+        "$ref": "#/texts/30"
+      },
+      {
+        "$ref": "#/texts/31"
+      }
+    ],
+    "content_layer": "body",
+    "name": "_root_",
+    "label": "unspecified"
+  },
+  "groups": [
+    {
+      "self_ref": "#/groups/0",
+      "parent": {
+        "$ref": "#/body"
+      },
+      "children": [
+        {
+          "$ref": "#/texts/7"
+        },
+        {
+          "$ref": "#/texts/8"
+        },
+        {
+          "$ref": "#/texts/9"
+        },
+        {
+          "$ref": "#/texts/10"
+        }
+      ],
+      "content_layer": "body",
+      "name": "list",
+      "label": "list"
+    },
+    {
+      "self_ref": "#/groups/1",
+      "parent": {
+        "$ref": "#/body"
+      },
+      "children": [
+        {
+          "$ref": "#/texts/16"
+        },
+        {
+          "$ref": "#/texts/17"
+        },
+        {
+          "$ref": "#/texts/18"
+        }
+      ],
+      "content_layer": "body",
+      "name": "list",
+      "label": "list"
+    },
+    {
+      "self_ref": "#/groups/2",
+      "parent": {
+        "$ref": "#/body"
+      },
+      "children": [
+        {
+          "$ref": "#/texts/22"
+        },
+        {
+          "$ref": "#/texts/23"
+        },
+        {
+          "$ref": "#/texts/24"
+        },
+        {
+          "$ref": "#/texts/25"
+        }
+      ],
+      "content_layer": "body",
+      "name": "list",
+      "label": "list"
+    }
+  ],
+  "texts": [
+    {
+      "self_ref": "#/texts/0",
+      "parent": {
+        "$ref": "#/pictures/0"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "text",
+      "prov": [
+        {
+          "page_no": 1,
+          "bbox": {
+            "l": 97.15124407315102,
+            "t": 754.9832820049844,
+            "r": 118.18208926018231,
+            "b": 735.0167179950156,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            6
+          ]
+        }
+      ],
+      "orig": "STATES",
+      "text": "STATES"
+    },
+    {
+      "self_ref": "#/texts/1",
+      "parent": {
+        "$ref": "#/pictures/0"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "text",
+      "prov": [
+        {
+          "page_no": 1,
+          "bbox": {
+            "l": 66.56825429183154,
+            "t": 735.6593629113953,
+            "r": 68.09841237483512,
+            "b": 712.0073037552713,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            1
+          ]
+        }
+      ],
+      "orig": "?",
+      "text": "?"
+    },
+    {
+      "self_ref": "#/texts/2",
+      "parent": {
+        "$ref": "#/pictures/0"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "text",
+      "prov": [
+        {
+          "page_no": 1,
+          "bbox": {
+            "l": 57.40937186621065,
+            "t": 710.3133533895851,
+            "r": 90.25729480045601,
+            "b": 685.6866466104149,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            1
+          ]
+        }
+      ],
+      "orig": "(",
+      "text": "("
+    },
+    {
+      "self_ref": "#/texts/3",
+      "parent": {
+        "$ref": "#/body"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "section_header",
+      "prov": [
+        {
+          "page_no": 1,
+          "bbox": {
+            "l": 52.333333333333336,
+            "t": 585.3333333333334,
+            "r": 153.66666666666666,
+            "b": 573.0,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            18
+          ]
+        }
+      ],
+      "orig": "Dear Commissioner:",
+      "text": "Dear Commissioner:",
+      "level": 1
+    },
+    {
+      "self_ref": "#/texts/4",
+      "parent": {
+        "$ref": "#/body"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "text",
+      "prov": [
+        {
+          "page_no": 1,
+          "bbox": {
+            "l": 51.666666666666664,
+            "t": 562.6666666666666,
+            "r": 547.0,
+            "b": 443.6666666666667,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            758
+          ]
+        }
+      ],
+      "orig": "There is no higher priority for the U.S. Environmental Protection Agency than protecting public health and ensuring the safety of our nation 's drinking water. Under the Safe Drinking Water Act (SDWA), (Statev and other states have the primary responsibility for the implementation and enforcement of drinking water regulations; while the EPA is tasked with oversight of state efforts. Recent events in Flint; Michigan; and other U.S. cities; have led to important discussions about the safety of our nation's drinking water [am writing today to ask you to join in taking action to strengthen our safe drinking water programs; consistent with our shared recognition of the critical importance of safe drinking water for the health of all Americans. supplies.",
+      "text": "There is no higher priority for the U.S. Environmental Protection Agency than protecting public health and ensuring the safety of our nation 's drinking water. Under the Safe Drinking Water Act (SDWA), (Statev and other states have the primary responsibility for the implementation and enforcement of drinking water regulations; while the EPA is tasked with oversight of state efforts. Recent events in Flint; Michigan; and other U.S. cities; have led to important discussions about the safety of our nation's drinking water [am writing today to ask you to join in taking action to strengthen our safe drinking water programs; consistent with our shared recognition of the critical importance of safe drinking water for the health of all Americans. supplies."
+    },
+    {
+      "self_ref": "#/texts/5",
+      "parent": {
+        "$ref": "#/body"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "text",
+      "prov": [
+        {
+          "page_no": 1,
+          "bbox": {
+            "l": 51.666666666666664,
+            "t": 435.0,
+            "r": 553.9523177939235,
+            "b": 320.0,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            828
+          ]
+        }
+      ],
+      "orig": "First;, with most states having primacy under SDWA; we need to work together to ensure that states are taking action to demonstrate that the Lead and Copper Rule (LCR) is being properly implemented. To this end, the EPA's Office of Water is increasing oversight of state programs to identify and address any deficiencies in current implementation of the Lead and Copper Rule. EPA staff are meeting with every state drinking water program across the country to ensure that states are taking appropriate actions to address lead action level exceedances; including optimizing corrosion control, providing effective health communication and outreach to residents on steps to reduce exposures to lead; and removing lead service lines where required by the LCR Iask you to join us in giving these efforts the highest priority . public",
+      "text": "First;, with most states having primacy under SDWA; we need to work together to ensure that states are taking action to demonstrate that the Lead and Copper Rule (LCR) is being properly implemented. To this end, the EPA's Office of Water is increasing oversight of state programs to identify and address any deficiencies in current implementation of the Lead and Copper Rule. EPA staff are meeting with every state drinking water program across the country to ensure that states are taking appropriate actions to address lead action level exceedances; including optimizing corrosion control, providing effective health communication and outreach to residents on steps to reduce exposures to lead; and removing lead service lines where required by the LCR Iask you to join us in giving these efforts the highest priority . public"
+    },
+    {
+      "self_ref": "#/texts/6",
+      "parent": {
+        "$ref": "#/body"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "text",
+      "prov": [
+        {
+          "page_no": 1,
+          "bbox": {
+            "l": 53.333333333333336,
+            "t": 311.3333333333333,
+            "r": 554.6666666666666,
+            "b": 251.33333333333337,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            328
+          ]
+        }
+      ],
+      "orig": "Second, to assure the public of our shared commitment to addressing lead risks; F ask for your leadership in near-term actions to assure the that we are doing everything we can to work together to address risks from lead in drinking water. Specifically , I urge you to take near-term action in the following areas: public taking",
+      "text": "Second, to assure the public of our shared commitment to addressing lead risks; F ask for your leadership in near-term actions to assure the that we are doing everything we can to work together to address risks from lead in drinking water. Specifically , I urge you to take near-term action in the following areas: public taking"
+    },
+    {
+      "self_ref": "#/texts/7",
+      "parent": {
+        "$ref": "#/groups/0"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "list_item",
+      "prov": [
+        {
+          "page_no": 1,
+          "bbox": {
+            "l": 71.33333333333333,
+            "t": 250.0,
+            "r": 550.0,
+            "b": 215.66666666666663,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            142
+          ]
+        }
+      ],
+      "orig": "(1) Confirm that the state' s protocols and procedures for implementing the LCR are fully consistent with the LCR and applicable EPA guidance;",
+      "text": "Confirm that the state' s protocols and procedures for implementing the LCR are fully consistent with the LCR and applicable EPA guidance;",
+      "enumerated": true,
+      "marker": "(1)"
+    },
+    {
+      "self_ref": "#/texts/8",
+      "parent": {
+        "$ref": "#/groups/0"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "list_item",
+      "prov": [
+        {
+          "page_no": 1,
+          "bbox": {
+            "l": 71.66666666666667,
+            "t": 208.66666666666663,
+            "r": 553.6666666666666,
+            "b": 177.0,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            104
+          ]
+        }
+      ],
+      "orig": "(2) Use relevant EPA guidance on LCR sampling protocols and procedures for optimizing corrosion control;",
+      "text": "Use relevant EPA guidance on LCR sampling protocols and procedures for optimizing corrosion control;",
+      "enumerated": true,
+      "marker": "(2)"
+    },
+    {
+      "self_ref": "#/texts/9",
+      "parent": {
+        "$ref": "#/groups/0"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "list_item",
+      "prov": [
+        {
+          "page_no": 1,
+          "bbox": {
+            "l": 72.33333333333333,
+            "t": 168.66666666666663,
+            "r": 512.6666666666666,
+            "b": 135.33333333333337,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            174
+          ]
+        }
+      ],
+      "orig": "(3) Post on your agency's website all state LCR sampling protocols and guidance for identification of Tier 1 sites (at which LCR sampling is required to be conducted); public",
+      "text": "Post on your agency's website all state LCR sampling protocols and guidance for identification of Tier 1 sites (at which LCR sampling is required to be conducted); public",
+      "enumerated": true,
+      "marker": "(3)"
+    },
+    {
+      "self_ref": "#/texts/10",
+      "parent": {
+        "$ref": "#/groups/0"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "list_item",
+      "prov": [
+        {
+          "page_no": 1,
+          "bbox": {
+            "l": 89.66666666666667,
+            "t": 125.33333333333337,
+            "r": 537.6666666666666,
+            "b": 79.0,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            194
+          ]
+        }
+      ],
+      "orig": "Work with water systems with a priority on large systems to increase transparency in implementation of the LCR by posting on their website and/or on your agency's website: emphasis public public",
+      "text": "Work with water systems with a priority on large systems to increase transparency in implementation of the LCR by posting on their website and/or on your agency's website: emphasis public public",
+      "enumerated": false,
+      "marker": ""
+    },
+    {
+      "self_ref": "#/texts/11",
+      "parent": {
+        "$ref": "#/body"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "section_header",
+      "prov": [
+        {
+          "page_no": 1,
+          "bbox": {
+            "l": 166.33333333333334,
+            "t": 739.0,
+            "r": 445.6666666666667,
+            "b": 724.6666666666666,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            45
+          ]
+        }
+      ],
+      "orig": "UNITED STATES ENVIRONMENTAL PROTECTION AGENCY",
+      "text": "UNITED STATES ENVIRONMENTAL PROTECTION AGENCY",
+      "level": 1
+    },
+    {
+      "self_ref": "#/texts/12",
+      "parent": {
+        "$ref": "#/body"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "text",
+      "prov": [
+        {
+          "page_no": 1,
+          "bbox": {
+            "l": 242.0,
+            "t": 722.3333333333334,
+            "r": 369.0,
+            "b": 708.3333333333334,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            22
+          ]
+        }
+      ],
+      "orig": "WASHINGTON, D.C. 20460",
+      "text": "WASHINGTON, D.C. 20460"
+    },
+    {
+      "self_ref": "#/texts/13",
+      "parent": {
+        "$ref": "#/body"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "section_header",
+      "prov": [
+        {
+          "page_no": 1,
+          "bbox": {
+            "l": 223.33333333333334,
+            "t": 701.6666666666666,
+            "r": 400.0,
+            "b": 676.6666666666666,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            13
+          ]
+        }
+      ],
+      "orig": "SAMPLE LETTER",
+      "text": "SAMPLE LETTER",
+      "level": 1
+    },
+    {
+      "self_ref": "#/texts/14",
+      "parent": {
+        "$ref": "#/body"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "text",
+      "prov": [
+        {
+          "page_no": 1,
+          "bbox": {
+            "l": 480.0,
+            "t": 640.0,
+            "r": 521.3333333333334,
+            "b": 624.0,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            15
+          ]
+        }
+      ],
+      "orig": "OFFICE OF WATER",
+      "text": "OFFICE OF WATER"
+    },
+    {
+      "self_ref": "#/texts/15",
+      "parent": {
+        "$ref": "#/body"
+      },
+      "children": [],
+      "content_layer": "furniture",
+      "label": "page_footer",
+      "prov": [
+        {
+          "page_no": 1,
+          "bbox": {
+            "l": 122.33333333333333,
+            "t": 49.33333333333337,
+            "r": 513.6666666666666,
+            "b": 30.0,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            158
+          ]
+        }
+      ],
+      "orig": "Internet Address (URL) hup /lwww epa gov Recycled/Recyclable 0 Printed with Vegetable Oil Based Inks on 100% Postconsumer, Process Chlonne Free Recycled Paper",
+      "text": "Internet Address (URL) hup /lwww epa gov Recycled/Recyclable 0 Printed with Vegetable Oil Based Inks on 100% Postconsumer, Process Chlonne Free Recycled Paper"
+    },
+    {
+      "self_ref": "#/texts/16",
+      "parent": {
+        "$ref": "#/groups/1"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "list_item",
+      "prov": [
+        {
+          "page_no": 2,
+          "bbox": {
+            "l": 130.66666666666666,
+            "t": 736.6666666666666,
+            "r": 556.3333333333334,
+            "b": 691.3333333333334,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            231
+          ]
+        }
+      ],
+      "orig": "the materials inventory that systems were required to complete under the LCR, including the locations of lead service lines; together with any more inventory or map of lead service lines and lead plumbing in the system; and updated",
+      "text": "the materials inventory that systems were required to complete under the LCR, including the locations of lead service lines; together with any more inventory or map of lead service lines and lead plumbing in the system; and updated",
+      "enumerated": false,
+      "marker": ""
+    },
+    {
+      "self_ref": "#/texts/17",
+      "parent": {
+        "$ref": "#/groups/1"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "list_item",
+      "prov": [
+        {
+          "page_no": 2,
+          "bbox": {
+            "l": 131.0,
+            "t": 694.6666666666666,
+            "r": 543.3333333333334,
+            "b": 664.0,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            119
+          ]
+        }
+      ],
+      "orig": "LCR compliance sampling results collected by the system; as well as justifications for invalidation of LCR samples; and",
+      "text": "LCR compliance sampling results collected by the system; as well as justifications for invalidation of LCR samples; and",
+      "enumerated": false,
+      "marker": ""
+    },
+    {
+      "self_ref": "#/texts/18",
+      "parent": {
+        "$ref": "#/groups/1"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "list_item",
+      "prov": [
+        {
+          "page_no": 2,
+          "bbox": {
+            "l": 78.0,
+            "t": 652.6666666666666,
+            "r": 560.3333333333334,
+            "b": 607.6666666666666,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            273
+          ]
+        }
+      ],
+      "orig": "(5) Enhance efforts to ensure that residents promptly receive lead sampling results from their homes; together with clear information on lead risks and how to abate them; and that the general public receives prompt information on high lead levels in drinking water systems.",
+      "text": "Enhance efforts to ensure that residents promptly receive lead sampling results from their homes; together with clear information on lead risks and how to abate them; and that the general public receives prompt information on high lead levels in drinking water systems.",
+      "enumerated": true,
+      "marker": "(5)"
+    },
+    {
+      "self_ref": "#/texts/19",
+      "parent": {
+        "$ref": "#/body"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "text",
+      "prov": [
+        {
+          "page_no": 2,
+          "bbox": {
+            "l": 60.0,
+            "t": 597.6666666666666,
+            "r": 546.6666666666666,
+            "b": 541.6666666666666,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            316
+          ]
+        }
+      ],
+      "orig": "These actions are essential to restoring public confidence in our shared work to ensure safe drinking water for the American people. Lask you for leadership and partnership in this effort and request that you respond in writing; within the next 30 to provide information on your activities in these areas. your days.",
+      "text": "These actions are essential to restoring public confidence in our shared work to ensure safe drinking water for the American people. Lask you for leadership and partnership in this effort and request that you respond in writing; within the next 30 to provide information on your activities in these areas. your days."
+    },
+    {
+      "self_ref": "#/texts/20",
+      "parent": {
+        "$ref": "#/body"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "text",
+      "prov": [
+        {
+          "page_no": 2,
+          "bbox": {
+            "l": 59.0,
+            "t": 526.3333333333333,
+            "r": 560.6666666666666,
+            "b": 385.0,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            944
+          ]
+        }
+      ],
+      "orig": "To support state efforts to properly implement the LCR; the EPA will be providing information to assist states in understanding steps needed to ensure optimal corrosion control treatment and on appropriate sampling techniques. Tam attaching to this letter a memorandum from the EPA's Office of Ground Water and Drinking Water summarizing EPA recommendations on sampling techniques. We will also be conducting training for state and public water systems staff to ensure that all water systems understand how to carry out the requirements of the LCR properly . Finally, we are working to revise and strengthen the LCR, but those revisions will take time to propose and finalize; our current expectation is that proposed revisions will be issued in 2017. The actions outlined above are not a substitute for needed revisions to the rule; but we can and should work together to take immediate steps to strengthen implementation of the existing rule.",
+      "text": "To support state efforts to properly implement the LCR; the EPA will be providing information to assist states in understanding steps needed to ensure optimal corrosion control treatment and on appropriate sampling techniques. Tam attaching to this letter a memorandum from the EPA's Office of Ground Water and Drinking Water summarizing EPA recommendations on sampling techniques. We will also be conducting training for state and public water systems staff to ensure that all water systems understand how to carry out the requirements of the LCR properly . Finally, we are working to revise and strengthen the LCR, but those revisions will take time to propose and finalize; our current expectation is that proposed revisions will be issued in 2017. The actions outlined above are not a substitute for needed revisions to the rule; but we can and should work together to take immediate steps to strengthen implementation of the existing rule."
+    },
+    {
+      "self_ref": "#/texts/21",
+      "parent": {
+        "$ref": "#/body"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "text",
+      "prov": [
+        {
+          "page_no": 2,
+          "bbox": {
+            "l": 58.0,
+            "t": 374.6666666666667,
+            "r": 560.6666666666666,
+            "b": 275.0,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            632
+          ]
+        }
+      ],
+      "orig": "While we have an immediate focus on lead in drinking water; we recognize that protection of the nation's drinking water involves both legacy and emerging contaminants; and a much broader set of scientis technical and resource challenges as well as opportunities:. This is a shared responsibility involving state, tribal, local and federal governments; system owners and operators; consumers and other stakeholders . Accordingly, in the coming weeks and months; we will be working with states and other stakeholders to identify strategies and actions to improve the safety and sustainability of our drinking water systems; including:",
+      "text": "While we have an immediate focus on lead in drinking water; we recognize that protection of the nation's drinking water involves both legacy and emerging contaminants; and a much broader set of scientis technical and resource challenges as well as opportunities:. This is a shared responsibility involving state, tribal, local and federal governments; system owners and operators; consumers and other stakeholders . Accordingly, in the coming weeks and months; we will be working with states and other stakeholders to identify strategies and actions to improve the safety and sustainability of our drinking water systems; including:"
+    },
+    {
+      "self_ref": "#/texts/22",
+      "parent": {
+        "$ref": "#/groups/2"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "list_item",
+      "prov": [
+        {
+          "page_no": 2,
+          "bbox": {
+            "l": 94.0,
+            "t": 271.0,
+            "r": 556.6666666666666,
+            "b": 240.33333333333337,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            114
+          ]
+        }
+      ],
+      "orig": "ensuring adequate and sustained investment in; and attention to, regulatory oversight at all levels of government;",
+      "text": "ensuring adequate and sustained investment in; and attention to, regulatory oversight at all levels of government;",
+      "enumerated": false,
+      "marker": ""
+    },
+    {
+      "self_ref": "#/texts/23",
+      "parent": {
+        "$ref": "#/groups/2"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "list_item",
+      "prov": [
+        {
+          "page_no": 2,
+          "bbox": {
+            "l": 94.0,
+            "t": 241.66666666666663,
+            "r": 514.6666666666666,
+            "b": 209.0,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            155
+          ]
+        }
+      ],
+      "orig": "using information technology to enhance transparency and accountability with regard to reporting and public availability of drinking water compliance data;",
+      "text": "using information technology to enhance transparency and accountability with regard to reporting and public availability of drinking water compliance data;",
+      "enumerated": false,
+      "marker": ""
+    },
+    {
+      "self_ref": "#/texts/24",
+      "parent": {
+        "$ref": "#/groups/2"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "list_item",
+      "prov": [
+        {
+          "page_no": 2,
+          "bbox": {
+            "l": 93.33333333333333,
+            "t": 184.33333333333337,
+            "r": 544.6666666666666,
+            "b": 167.0,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            93
+          ]
+        }
+      ],
+      "orig": "identifying technology and infrastructure to address both existing and emerging contaminants.",
+      "text": "identifying technology and infrastructure to address both existing and emerging contaminants.",
+      "enumerated": false,
+      "marker": ""
+    },
+    {
+      "self_ref": "#/texts/25",
+      "parent": {
+        "$ref": "#/groups/2"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "list_item",
+      "prov": [
+        {
+          "page_no": 2,
+          "bbox": {
+            "l": 94.0,
+            "t": 213.0,
+            "r": 516.0,
+            "b": 182.33333333333337,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            155
+          ]
+        }
+      ],
+      "orig": "leveraging funding sources to finance maintenance; upgrading and replacement of aging infrastructure, especially for poor and overburdened communities; and",
+      "text": "leveraging funding sources to finance maintenance; upgrading and replacement of aging infrastructure, especially for poor and overburdened communities; and",
+      "enumerated": false,
+      "marker": ""
+    },
+    {
+      "self_ref": "#/texts/26",
+      "parent": {
+        "$ref": "#/body"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "text",
+      "prov": [
+        {
+          "page_no": 2,
+          "bbox": {
+            "l": 57.666666666666664,
+            "t": 156.0,
+            "r": 541.0,
+            "b": 101.0,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            215
+          ]
+        }
+      ],
+      "orig": "As always; the EPA appreciates your leadership and engagement as a partner in our efforts to protect public health and the environment. Please do not hesitate to contact me, or your staff may contact (202) 564-8954.",
+      "text": "As always; the EPA appreciates your leadership and engagement as a partner in our efforts to protect public health and the environment. Please do not hesitate to contact me, or your staff may contact (202) 564-8954."
+    },
+    {
+      "self_ref": "#/texts/27",
+      "parent": {
+        "$ref": "#/body"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "text",
+      "prov": [
+        {
+          "page_no": 3,
+          "bbox": {
+            "l": 54.666666666666664,
+            "t": 727.3333333333334,
+            "r": 544.3333333333334,
+            "b": 680.1382165729112,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            238
+          ]
+        }
+      ],
+      "orig": "Thank you in advance for your support to ensure that we are fulfilling our joint responsibility for the protection of public health and to restore confidence in our shared work to ensure safe drinking water for the American public people.",
+      "text": "Thank you in advance for your support to ensure that we are fulfilling our joint responsibility for the protection of public health and to restore confidence in our shared work to ensure safe drinking water for the American public people."
+    },
+    {
+      "self_ref": "#/texts/28",
+      "parent": {
+        "$ref": "#/body"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "text",
+      "prov": [
+        {
+          "page_no": 3,
+          "bbox": {
+            "l": 304.0,
+            "t": 666.6666666666666,
+            "r": 354.3333333333333,
+            "b": 652.3333333333334,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            11
+          ]
+        }
+      ],
+      "orig": "Sincerely ,",
+      "text": "Sincerely ,"
+    },
+    {
+      "self_ref": "#/texts/29",
+      "parent": {
+        "$ref": "#/body"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "text",
+      "prov": [
+        {
+          "page_no": 3,
+          "bbox": {
+            "l": 304.3333333333333,
+            "t": 613.3333333333334,
+            "r": 459.3333333333333,
+            "b": 583.6666666666666,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            44
+          ]
+        }
+      ],
+      "orig": "Joel Beauvais Deputy Assistant Administrator",
+      "text": "Joel Beauvais Deputy Assistant Administrator"
+    },
+    {
+      "self_ref": "#/texts/30",
+      "parent": {
+        "$ref": "#/body"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "text",
+      "prov": [
+        {
+          "page_no": 3,
+          "bbox": {
+            "l": 57.0,
+            "t": 541.0,
+            "r": 107.66666666666667,
+            "b": 529.0,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            9
+          ]
+        }
+      ],
+      "orig": "Enclosure",
+      "text": "Enclosure"
+    },
+    {
+      "self_ref": "#/texts/31",
+      "parent": {
+        "$ref": "#/body"
+      },
+      "children": [],
+      "content_layer": "furniture",
+      "label": "page_footer",
+      "prov": [
+        {
+          "page_no": 3,
+          "bbox": {
+            "l": 305.0,
+            "t": 71.0,
+            "r": 311.0,
+            "b": 61.66666666666663,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            1
+          ]
+        }
+      ],
+      "orig": "3",
+      "text": "3"
+    }
+  ],
+  "pictures": [
+    {
+      "self_ref": "#/pictures/0",
+      "parent": {
+        "$ref": "#/body"
+      },
+      "children": [
+        {
+          "$ref": "#/texts/0"
+        },
+        {
+          "$ref": "#/texts/1"
+        },
+        {
+          "$ref": "#/texts/2"
+        }
+      ],
+      "content_layer": "body",
+      "label": "picture",
+      "prov": [
+        {
+          "page_no": 1,
+          "bbox": {
+            "l": 61.8365364074707,
+            "t": 752.1576232910156,
+            "r": 129.9058074951172,
+            "b": 682.5957565307617,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            0
+          ]
+        }
+      ],
+      "captions": [],
+      "references": [],
+      "footnotes": [],
+      "image": {
+        "mimetype": "image/png",
+        "dpi": 79,
+        "size": {
+          "width": 75.0,
+          "height": 76.0
+        },
+        "uri": "/app/Data/output/docling/doclingScannedOCR/epa_sample_letter_sent_to_commissioners_dated_february_29_2015/images/image_000000_2bf5760a813298abdbac95308d65b7aaa44666e320b43acdfff47722b13779b3.png"
+      },
+      "annotations": []
+    }
+  ],
+  "tables": [],
+  "key_value_items": [],
+  "form_items": [],
+  "pages": {
+    "1": {
+      "size": {
+        "width": 612.0,
+        "height": 792.0
+      },
+      "page_no": 1
+    },
+    "2": {
+      "size": {
+        "width": 612.0,
+        "height": 792.0
+      },
+      "page_no": 2
+    },
+    "3": {
+      "size": {
+        "width": 612.0,
+        "height": 792.0
+      },
+      "page_no": 3
+    }
+  }
+}

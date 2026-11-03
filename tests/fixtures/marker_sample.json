@@ -1,0 +1,5440 @@
+{
+  "children": [
+    {
+      "id": "/page/0/Page/123",
+      "block_type": "Page",
+      "html": "<content-ref src='/page/0/PageHeader/1'></content-ref><content-ref src='/page/0/Picture/0'></content-ref><content-ref src='/page/0/SectionHeader/3'></content-ref><content-ref src='/page/0/Text/4'></content-ref><content-ref src='/page/0/Text/5'></content-ref><content-ref src='/page/0/Text/6'></content-ref><content-ref src='/page/0/SectionHeader/7'></content-ref><content-ref src='/page/0/Text/8'></content-ref><content-ref src='/page/0/SectionHeader/9'></content-ref><content-ref src='/page/0/Text/10'></content-ref><content-ref src='/page/0/Text/11'></content-ref><content-ref src='/page/0/PageFooter/12'></content-ref><content-ref src='/page/0/PageFooter/13'></content-ref><content-ref src='/page/0/PageFooter/2'></content-ref>",
+      "polygon": [
+        [
+          0.0,
+          0.0
+        ],
+        [
+          612.0,
+          0.0
+        ],
+        [
+          612.0,
+          792.0
+        ],
+        [
+          0.0,
+          792.0
+        ]
+      ],
+      "bbox": [
+        0.0,
+        0.0,
+        612.0,
+        792.0
+      ],
+      "children": [
+        {
+          "id": "/page/0/PageHeader/1",
+          "block_type": "PageHeader",
+          "html": "",
+          "polygon": [
+            [
+              13.204593658447266,
+              213.16209411621094
+            ],
+            [
+              35.6123628616333,
+              213.16209411621094
+            ],
+            [
+              35.6123628616333,
+              554.2599945068359
+            ],
+            [
+              13.204593658447266,
+              554.2599945068359
+            ]
+          ],
+          "bbox": [
+            13.204593658447266,
+            213.16209411621094,
+            35.6123628616333,
+            554.2599945068359
+          ],
+          "children": null,
+          "section_hierarchy": {},
+          "images": {}
+        },
+        {
+          "id": "/page/0/Picture/0",
+          "block_type": "Picture",
+          "html": "",
+          "polygon": [
+            [
+              258.6177463531494,
+              71.3668155670166
+            ],
+            [
+              349.2183208465576,
+              71.3668155670166
+            ],
+            [
+              349.2183208465576,
+              166.89352226257324
+            ],
+            [
+              258.6177463531494,
+              166.89352226257324
+            ]
+          ],
+          "bbox": [
+            258.6177463531494,
+            71.3668155670166,
+            349.2183208465576,
+            166.89352226257324
+          ],
+          "children": null,
+          "section_hierarchy": {},
+          "images": {
+            "/page/0/Picture/0": "images/image_000000.jpg"
+          }
+        },
+        {
+          "id": "/page/0/SectionHeader/3",
+          "block_type": "SectionHeader",
+          "html": "<h1>Docling Technical Report</h1>",
+          "polygon": [
+            [
+              208.8292007446289,
+              219.26126861572266
+            ],
+            [
+              400.41050720214844,
+              219.26126861572266
+            ],
+            [
+              400.41050720214844,
+              240.8370361328125
+            ],
+            [
+              208.8292007446289,
+              240.8370361328125
+            ]
+          ],
+          "bbox": [
+            208.8292007446289,
+            219.26126861572266,
+            400.41050720214844,
+            240.8370361328125
+          ],
+          "children": null,
+          "section_hierarchy": {
+            "1": "/page/0/SectionHeader/3"
+          },
+          "images": {}
+        },
+        {
+          "id": "/page/0/Text/4",
+          "block_type": "Text",
+          "html": "<p block-type=\"Text\">Version 1.0</p>",
+          "polygon": [
+            [
+              280.7479019165039,
+              275.5873031616211
+            ],
+            [
+              329.7791290283203,
+              275.5873031616211
+            ],
+            [
+              329.7791290283203,
+              288.659912109375
+            ],
+            [
+              280.7479019165039,
+              288.659912109375
+            ]
+          ],
+          "bbox": [
+            280.7479019165039,
+            275.5873031616211,
+            329.7791290283203,
+            288.659912109375
+          ],
+          "children": null,
+          "section_hierarchy": {
+            "1": "/page/0/SectionHeader/3"
+          },
+          "images": {}
+        },
+        {
+          "id": "/page/0/Text/5",
+          "block_type": "Text",
+          "html": "<p block-type=\"Text\">Christoph Auer Maksym Lysak Ahmed Nassar Michele Dolfi Nikolaos Livathinos Panos Vagenas Cesar Berrospi Ramis Matteo Omenetti Fabian Lindlbauer Kasper Dinkla Lokesh Mishra Yusik Kim Shubham Gupta Rafael Teixeira de Lima Valery Weber Lucas Morin Ingmar Meijer Viktor Kuropiatnyk Peter W. J. Staar</p>",
+          "polygon": [
+            [
+              111.55513000488281,
+              305.40037536621094
+            ],
+            [
+              498.90138244628906,
+              305.40037536621094
+            ],
+            [
+              498.90138244628906,
+              352.1511535644531
+            ],
+            [
+              111.55513000488281,
+              352.1511535644531
+            ]
+          ],
+          "bbox": [
+            111.55513000488281,
+            305.40037536621094,
+            498.90138244628906,
+            352.1511535644531
+          ],
+          "children": null,
+          "section_hierarchy": {
+            "1": "/page/0/SectionHeader/3"
+          },
+          "images": {}
+        },
+        {
+          "id": "/page/0/Text/6",
+          "block_type": "Text",
+          "html": "<blockquote><p block-type=\"Text\">AI4K Group, IBM Research Ruschlikon, Switzerland ¨</p></blockquote>",
+          "polygon": [
+            [
+              246.64324951171875,
+              359.9409713745117
+            ],
+            [
+              363.8733901977539,
+              359.9409713745117
+            ],
+            [
+              363.8733901977539,
+              384.00189208984375
+            ],
+            [
+              246.64324951171875,
+              384.00189208984375
+            ]
+          ],
+          "bbox": [
+            246.64324951171875,
+            359.9409713745117,
+            363.8733901977539,
+            384.00189208984375
+          ],
+          "children": null,
+          "section_hierarchy": {
+            "1": "/page/0/SectionHeader/3"
+          },
+          "images": {}
+        },
+        {
+          "id": "/page/0/SectionHeader/7",
+          "block_type": "SectionHeader",
+          "html": "<h2>Abstract</h2>",
+          "polygon": [
+            [
+              281.00438690185547,
+              395.2767333984375
+            ],
+            [
+              328.6248092651367,
+              395.2767333984375
+            ],
+            [
+              328.6248092651367,
+              409.5885925292969
+            ],
+            [
+              281.00438690185547,
+              409.5885925292969
+            ]
+          ],
+          "bbox": [
+            281.00438690185547,
+            395.2767333984375,
+            328.6248092651367,
+            409.5885925292969
+          ],
+          "children": null,
+          "section_hierarchy": {
+            "1": "/page/0/SectionHeader/3",
+            "2": "/page/0/SectionHeader/7"
+          },
+          "images": {}
+        },
+        {
+          "id": "/page/0/Text/8",
+          "block_type": "Text",
+          "html": "<p block-type=\"Text\">This technical report introduces <i>Docling</i>, an easy to use, self-contained, MITlicensed open-source package for PDF document conversion. It is powered by state-of-the-art specialized AI models for layout analysis (DocLayNet) and table structure recognition (TableFormer), and runs efficiently on commodity hardware in a small resource budget. The code interface allows for easy extensibility and addition of new features and models.</p>",
+          "polygon": [
+            [
+              140.7978057861328,
+              424.14971923828125
+            ],
+            [
+              469.2382049560547,
+              424.14971923828125
+            ],
+            [
+              469.2382049560547,
+              491.348876953125
+            ],
+            [
+              140.7978057861328,
+              491.348876953125
+            ]
+          ],
+          "bbox": [
+            140.7978057861328,
+            424.14971923828125,
+            469.2382049560547,
+            491.348876953125
+          ],
+          "children": null,
+          "section_hierarchy": {
+            "1": "/page/0/SectionHeader/3",
+            "2": "/page/0/SectionHeader/7"
+          },
+          "images": {}
+        },
+        {
+          "id": "/page/0/SectionHeader/9",
+          "block_type": "SectionHeader",
+          "html": "<h1>1 Introduction</h1>",
+          "polygon": [
+            [
+              104.78699111938477,
+              520.0532684326172
+            ],
+            [
+              191.21549606323242,
+              520.0532684326172
+            ],
+            [
+              191.21549606323242,
+              534.9455871582031
+            ],
+            [
+              104.78699111938477,
+              534.9455871582031
+            ]
+          ],
+          "bbox": [
+            104.78699111938477,
+            520.0532684326172,
+            191.21549606323242,
+            534.9455871582031
+          ],
+          "children": null,
+          "section_hierarchy": {
+            "1": "/page/0/SectionHeader/9"
+          },
+          "images": {}
+        },
+        {
+          "id": "/page/0/Text/10",
+          "block_type": "Text",
+          "html": "<p block-type=\"Text\">Converting PDF documents back into a machine-processable format has been a major challenge for decades due to their huge variability in formats, weak standardization and printing-optimized characteristic, which discards most structural features and metadata. With the advent of LLMs and popular application patterns such as retrieval-augmented generation (RAG), leveraging the rich content embedded in PDFs has become ever more relevant. In the past decade, several powerful document understanding solutions have emerged on the market, most of which are commercial software, cloud offerings <a href=\"#page-5-0\">[3]</a> and most recently, multi-modal vision-language models. As of today, only a handful of open-source tools cover PDF conversion, leaving a significant feature and quality gap to proprietary solutions.</p>",
+          "polygon": [
+            [
+              104.42144393920898,
+              547.7334594726562
+            ],
+            [
+              505.7525939941406,
+              547.7334594726562
+            ],
+            [
+              505.7525939941406,
+              648.5498199462891
+            ],
+            [
+              104.42144393920898,
+              648.5498199462891
+            ]
+          ],
+          "bbox": [
+            104.42144393920898,
+            547.7334594726562,
+            505.7525939941406,
+            648.5498199462891
+          ],
+          "children": null,
+          "section_hierarchy": {
+            "1": "/page/0/SectionHeader/9"
+          },
+          "images": {}
+        },
+        {
+          "id": "/page/0/Text/11",
+          "block_type": "Text",
+          "html": "<p block-type=\"Text\">With <i>Docling</i>, we open-source a very capable and efficient document conversion tool which builds on the powerful, specialized AI models and datasets for layout analysis and table structure recognition we developed and presented in the recent past <a href=\"#page-5-1\">[12,</a> <a href=\"#page-5-2\">13,</a> <a href=\"#page-5-3\">9]</a>. Docling is designed as a simple, self-contained python library with permissive license, running entirely locally on commodity hardware. Its code architecture allows for easy extensibility and addition of new features and models.</p>",
+          "polygon": [
+            [
+              104.36228942871094,
+              651.3735809326172
+            ],
+            [
+              505.406982421875,
+              651.3735809326172
+            ],
+            [
+              505.406982421875,
+              708.5748138427734
+            ],
+            [
+              104.36228942871094,
+              708.5748138427734
+            ]
+          ],
+          "bbox": [
+            104.36228942871094,
+            651.3735809326172,
+            505.406982421875,
+            708.5748138427734
+          ],
+          "children": null,
+          "section_hierarchy": {
+            "1": "/page/0/SectionHeader/9"
+          },
+          "images": {}
+        },
+        {
+          "id": "/page/0/PageFooter/12",
+          "block_type": "PageFooter",
+          "html": "",
+          "polygon": [
+            [
+              104.67747116088867,
+              729.1214904785156
+            ],
+            [
+              200.90029907226562,
+              729.1214904785156
+            ],
+            [
+              200.90029907226562,
+              741.8226432800293
+            ],
+            [
+              104.67747116088867,
+              741.8226432800293
+            ]
+          ],
+          "bbox": [
+            104.67747116088867,
+            729.1214904785156,
+            200.90029907226562,
+            741.8226432800293
+          ],
+          "children": null,
+          "section_hierarchy": {
+            "1": "/page/0/SectionHeader/9"
+          },
+          "images": {}
+        },
+        {
+          "id": "/page/0/PageFooter/13",
+          "block_type": "PageFooter",
+          "html": "",
+          "polygon": [
+            [
+              301.0605926513672,
+              738.4957580566406
+            ],
+            [
+              308.4902648925781,
+              738.4957580566406
+            ],
+            [
+              308.4902648925781,
+              752.039852142334
+            ],
+            [
+              301.0605926513672,
+              752.039852142334
+            ]
+          ],
+          "bbox": [
+            301.0605926513672,
+            738.4957580566406,
+            308.4902648925781,
+            752.039852142334
+          ],
+          "children": null,
+          "section_hierarchy": {
+            "1": "/page/0/SectionHeader/9"
+          },
+          "images": {}
+        },
+        {
+          "id": "/page/0/PageFooter/2",
+          "block_type": "PageFooter",
+          "html": "",
+          "polygon": [
+            [
+              13.204593658447266,
+              213.16209411621094
+            ],
+            [
+              35.6123628616333,
+              213.16209411621094
+            ],
+            [
+              35.6123628616333,
+              553.4129333496094
+            ],
+            [
+              13.204593658447266,
+              553.4129333496094
+            ]
+          ],
+          "bbox": [
+            13.204593658447266,
+            213.16209411621094,
+            35.6123628616333,
+            553.4129333496094
+          ],
+          "children": null,
+          "section_hierarchy": {
+            "1": "/page/0/SectionHeader/9"
+          },
+          "images": {}
+        }
+      ],
+      "section_hierarchy": {
+        "1": "/page/0/SectionHeader/9"
+      },
+      "images": null
+    },
+    {
+      "id": "/page/1/Page/266",
+      "block_type": "Page",
+      "html": "<content-ref src='/page/1/Text/0'></content-ref><content-ref src='/page/1/ListGroup/1'></content-ref><content-ref src='/page/1/SectionHeader/2'></content-ref><content-ref src='/page/1/Text/3'></content-ref><content-ref src='/page/1/Text/4'></content-ref><content-ref src='/page/1/Text/5'></content-ref><content-ref src='/page/1/Text/6'></content-ref><content-ref src='/page/1/SectionHeader/7'></content-ref><content-ref src='/page/1/Text/8'></content-ref><content-ref src='/page/1/SectionHeader/9'></content-ref><content-ref src='/page/1/Text/10'></content-ref><content-ref src='/page/1/PageFooter/12'></content-ref><content-ref src='/page/1/Footnote/11'></content-ref>",
+      "polygon": [
+        [
+          0.0,
+          0.0
+        ],
+        [
+          612.0,
+          0.0
+        ],
+        [
+          612.0,
+          792.0
+        ],
+        [
+          0.0,
+          792.0
+        ]
+      ],
+      "bbox": [
+        0.0,
+        0.0,
+        612.0,
+        792.0
+      ],
+      "children": [
+        {
+          "id": "/page/1/Text/0",
+          "block_type": "Text",
+          "html": "<p block-type=\"Text\">Here is what Docling delivers today:</p>",
+          "polygon": [
+            [
+              106.06450653076172,
+              71.95317077636719
+            ],
+            [
+              253.97198486328125,
+              71.95317077636719
+            ],
+            [
+              253.97198486328125,
+              84.1248779296875
+            ],
+            [
+              106.06450653076172,
+              84.1248779296875
+            ]
+          ],
+          "bbox": [
+            106.06450653076172,
+            71.95317077636719,
+            253.97198486328125,
+            84.1248779296875
+          ],
+          "children": null,
+          "section_hierarchy": {
+            "1": "/page/0/SectionHeader/9"
+          },
+          "images": {}
+        },
+        {
+          "id": "/page/1/ListGroup/1",
+          "block_type": "ListGroup",
+          "html": "<p block-type='ListGroup'><ul><content-ref src='/page/1/ListItem/260'></content-ref><content-ref src='/page/1/ListItem/261'></content-ref><content-ref src='/page/1/ListItem/262'></content-ref><content-ref src='/page/1/ListItem/263'></content-ref><content-ref src='/page/1/ListItem/264'></content-ref><content-ref src='/page/1/ListItem/265'></content-ref></ul></p>",
+          "polygon": [
+            [
+              132.75724411010742,
+              93.55807685852051
+            ],
+            [
+              505.4213562011719,
+              93.55807685852051
+            ],
+            [
+              505.4213562011719,
+              201.55487060546875
+            ],
+            [
+              132.75724411010742,
+              201.55487060546875
+            ]
+          ],
+          "bbox": [
+            132.75724411010742,
+            93.55807685852051,
+            505.4213562011719,
+            201.55487060546875
+          ],
+          "children": [
+            {
+              "id": "/page/1/ListItem/260",
+              "block_type": "ListItem",
+              "html": "<li block-type=\"ListItem\"> Converts PDF documents to JSON or Markdown format, stable and lightning fast</li>",
+              "polygon": [
+                [
+                  135.39700317382812,
+                  96.4515380859375
+                ],
+                [
+                  468.40673828125,
+                  96.4515380859375
+                ],
+                [
+                  468.40673828125,
+                  105.4178466796875
+                ],
+                [
+                  135.39700317382812,
+                  105.4178466796875
+                ]
+              ],
+              "bbox": [
+                135.39700317382812,
+                96.4515380859375,
+                468.40673828125,
+                105.4178466796875
+              ],
+              "children": null,
+              "section_hierarchy": {
+                "1": "/page/0/SectionHeader/9"
+              },
+              "images": {}
+            },
+            {
+              "id": "/page/1/ListItem/261",
+              "block_type": "ListItem",
+              "html": "<li block-type=\"ListItem\"> Understands detailed page layout, reading order, locates figures and recovers table structures</li>",
+              "polygon": [
+                [
+                  135.39700317382812,
+                  111.3155517578125
+                ],
+                [
+                  504.0032043457031,
+                  111.3155517578125
+                ],
+                [
+                  504.0032043457031,
+                  131.180908203125
+                ],
+                [
+                  135.39700317382812,
+                  131.180908203125
+                ]
+              ],
+              "bbox": [
+                135.39700317382812,
+                111.3155517578125,
+                504.0032043457031,
+                131.180908203125
+              ],
+              "children": null,
+              "section_hierarchy": {
+                "1": "/page/0/SectionHeader/9"
+              },
+              "images": {}
+            },
+            {
+              "id": "/page/1/ListItem/262",
+              "block_type": "ListItem",
+              "html": "<li block-type=\"ListItem\"> Extracts metadata from the document, such as title, authors, references and language</li>",
+              "polygon": [
+                [
+                  135.39700317382812,
+                  137.08856201171875
+                ],
+                [
+                  480.85015869140625,
+                  137.08856201171875
+                ],
+                [
+                  480.85015869140625,
+                  146.05487060546875
+                ],
+                [
+                  135.39700317382812,
+                  146.05487060546875
+                ]
+              ],
+              "bbox": [
+                135.39700317382812,
+                137.08856201171875,
+                480.85015869140625,
+                146.05487060546875
+              ],
+              "children": null,
+              "section_hierarchy": {
+                "1": "/page/0/SectionHeader/9"
+              },
+              "images": {}
+            },
+            {
+              "id": "/page/1/ListItem/263",
+              "block_type": "ListItem",
+              "html": "<li block-type=\"ListItem\"> Optionally applies OCR, e.g. for scanned PDFs</li>",
+              "polygon": [
+                [
+                  135.39700317382812,
+                  151.95257568359375
+                ],
+                [
+                  333.4634094238281,
+                  151.95257568359375
+                ],
+                [
+                  333.4634094238281,
+                  160.91888427734375
+                ],
+                [
+                  135.39700317382812,
+                  160.91888427734375
+                ]
+              ],
+              "bbox": [
+                135.39700317382812,
+                151.95257568359375,
+                333.4634094238281,
+                160.91888427734375
+              ],
+              "children": null,
+              "section_hierarchy": {
+                "1": "/page/0/SectionHeader/9"
+              },
+              "images": {}
+            },
+            {
+              "id": "/page/1/ListItem/264",
+              "block_type": "ListItem",
+              "html": "<li block-type=\"ListItem\"> Can be configured to be optimal for batch-mode (i.e high throughput, low time-to-solution) or interactive mode (compromise on efficiency, low time-to-solution)</li>",
+              "polygon": [
+                [
+                  135.39700317382812,
+                  166.8155517578125
+                ],
+                [
+                  504.0030822753906,
+                  166.8155517578125
+                ],
+                [
+                  504.0030822753906,
+                  186.69085693359375
+                ],
+                [
+                  135.39700317382812,
+                  186.69085693359375
+                ]
+              ],
+              "bbox": [
+                135.39700317382812,
+                166.8155517578125,
+                504.0030822753906,
+                186.69085693359375
+              ],
+              "children": null,
+              "section_hierarchy": {
+                "1": "/page/0/SectionHeader/9"
+              },
+              "images": {}
+            },
+            {
+              "id": "/page/1/ListItem/265",
+              "block_type": "ListItem",
+              "html": "<li block-type=\"ListItem\"> Can leverage different accelerators (GPU, MPS, etc).</li>",
+              "polygon": [
+                [
+                  135.39700317382812,
+                  192.58856201171875
+                ],
+                [
+                  355.4110107421875,
+                  192.58856201171875
+                ],
+                [
+                  355.4110107421875,
+                  201.55487060546875
+                ],
+                [
+                  135.39700317382812,
+                  201.55487060546875
+                ]
+              ],
+              "bbox": [
+                135.39700317382812,
+                192.58856201171875,
+                355.4110107421875,
+                201.55487060546875
+              ],
+              "children": null,
+              "section_hierarchy": {
+                "1": "/page/0/SectionHeader/9"
+              },
+              "images": {}
+            }
+          ],
+          "section_hierarchy": {
+            "1": "/page/0/SectionHeader/9"
+          },
+          "images": null
+        },
+        {
+          "id": "/page/1/SectionHeader/2",
+          "block_type": "SectionHeader",
+          "html": "<h2>2 Getting Started</h2>",
+          "polygon": [
+            [
+              106.23440551757812,
+              216.7599334716797
+            ],
+            [
+              205.58409118652344,
+              216.7599334716797
+            ],
+            [
+              205.58409118652344,
+              230.2576904296875
+            ],
+            [
+              106.23440551757812,
+              230.2576904296875
+            ]
+          ],
+          "bbox": [
+            106.23440551757812,
+            216.7599334716797,
+            205.58409118652344,
+            230.2576904296875
+          ],
+          "children": null,
+          "section_hierarchy": {
+            "1": "/page/0/SectionHeader/9",
+            "2": "/page/1/SectionHeader/2"
+          },
+          "images": {}
+        },
+        {
+          "id": "/page/1/Text/3",
+          "block_type": "Text",
+          "html": "<p block-type=\"Text\">To use Docling, you can simply install the <i><a href=\"https://pypi.org/project/docling/\">docling</a></i> package from PyPI. Documentation and examples are available in our <a href=\"https://github.ibm.com/DS4SD/docling\">GitHub</a> repository at <a href=\"https://github.com/DS4SD/docling\">github.com/DS4SD/docling.</a> All required model assets<a href=\"#page-1-0\"><sup>1</sup></a> are downloaded to a local huggingface datasets cache on first use, unless you choose to pre-install the model assets in advance.</p>",
+          "polygon": [
+            [
+              106.12879943847656,
+              240.42061614990234
+            ],
+            [
+              505.12486267089844,
+              240.42061614990234
+            ],
+            [
+              505.12486267089844,
+              285.72393798828125
+            ],
+            [
+              106.12879943847656,
+              285.72393798828125
+            ]
+          ],
+          "bbox": [
+            106.12879943847656,
+            240.42061614990234,
+            505.12486267089844,
+            285.72393798828125
+          ],
+          "children": null,
+          "section_hierarchy": {
+            "1": "/page/0/SectionHeader/9",
+            "2": "/page/1/SectionHeader/2"
+          },
+          "images": {}
+        },
+        {
+          "id": "/page/1/Text/4",
+          "block_type": "Text",
+          "html": "<p block-type=\"Text\">Docling provides an easy code interface to convert PDF documents from file system, URLs or binary streams, and retrieve the output in either JSON or Markdown format. For convenience, separate methods are offered to convert single documents or batches of documents. A basic usage example is illustrated below. Further examples are available in the Doclign code repository.</p>",
+          "polygon": [
+            [
+              105.9529037475586,
+              289.52030181884766
+            ],
+            [
+              504.8682403564453,
+              289.52030181884766
+            ],
+            [
+              504.8682403564453,
+              334.84991455078125
+            ],
+            [
+              105.9529037475586,
+              334.84991455078125
+            ]
+          ],
+          "bbox": [
+            105.9529037475586,
+            289.52030181884766,
+            504.8682403564453,
+            334.84991455078125
+          ],
+          "children": null,
+          "section_hierarchy": {
+            "1": "/page/0/SectionHeader/9",
+            "2": "/page/1/SectionHeader/2"
+          },
+          "images": {}
+        },
+        {
+          "id": "/page/1/Text/5",
+          "block_type": "Text",
+          "html": "<p block-type=\"Text\">from docling . document_converter import DocumentConverter source = \" https :// arxiv . org/ pdf /2206.01062 \" # PDF path or URL converter = DocumentConverter () result = converter . convert_single ( source ) print ( result . render_as_markdown () ) # output : \"## DocLayNet : A Large Human - Annotated Dataset for Document - Layout Analysis [...]\"</p>",
+          "polygon": [
+            [
+              106.13968276977539,
+              340.16136932373047
+            ],
+            [
+              492.3095397949219,
+              340.16136932373047
+            ],
+            [
+              492.3095397949219,
+              410.36944580078125
+            ],
+            [
+              106.13968276977539,
+              410.36944580078125
+            ]
+          ],
+          "bbox": [
+            106.13968276977539,
+            340.16136932373047,
+            492.3095397949219,
+            410.36944580078125
+          ],
+          "children": null,
+          "section_hierarchy": {
+            "1": "/page/0/SectionHeader/9",
+            "2": "/page/1/SectionHeader/2"
+          },
+          "images": {}
+        },
+        {
+          "id": "/page/1/Text/6",
+          "block_type": "Text",
+          "html": "<p block-type=\"Text\">Optionally, you can configure custom pipeline features and runtime options, such as turning on or off features (e.g. OCR, table structure recognition), enforcing limits on the input document size, and defining the budget of CPU threads. Advanced usage examples and options are documented in the README file. Docling also provides a <i>Dockerfile</i> to demonstrate how to install and run it inside a container.</p>",
+          "polygon": [
+            [
+              105.67096710205078,
+              420.2735595703125
+            ],
+            [
+              505.3129577636719,
+              420.2735595703125
+            ],
+            [
+              505.3129577636719,
+              476.43695068359375
+            ],
+            [
+              105.67096710205078,
+              476.43695068359375
+            ]
+          ],
+          "bbox": [
+            105.67096710205078,
+            420.2735595703125,
+            505.3129577636719,
+            476.43695068359375
+          ],
+          "children": null,
+          "section_hierarchy": {
+            "1": "/page/0/SectionHeader/9",
+            "2": "/page/1/SectionHeader/2"
+          },
+          "images": {}
+        },
+        {
+          "id": "/page/1/SectionHeader/7",
+          "block_type": "SectionHeader",
+          "html": "<h2>3 Processing pipeline</h2>",
+          "polygon": [
+            [
+              105.18890762329102,
+              490.99937438964844
+            ],
+            [
+              224.0551528930664,
+              490.99937438964844
+            ],
+            [
+              224.0551528930664,
+              505.149658203125
+            ],
+            [
+              105.18890762329102,
+              505.149658203125
+            ]
+          ],
+          "bbox": [
+            105.18890762329102,
+            490.99937438964844,
+            224.0551528930664,
+            505.149658203125
+          ],
+          "children": null,
+          "section_hierarchy": {
+            "1": "/page/0/SectionHeader/9",
+            "2": "/page/1/SectionHeader/7"
+          },
+          "images": {}
+        },
+        {
+          "id": "/page/1/Text/8",
+          "block_type": "Text",
+          "html": "<p block-type=\"Text\">Docling implements a linear pipeline of operations, which execute sequentially on each given document (see Fig. <a href=\"#page-2-0\">1)</a>. Each document is first parsed by a PDF backend, which retrieves the programmatic text tokens, consisting of string content and its coordinates on the page, and also renders a bitmap image of each page to support downstream operations. Then, the standard model pipeline applies a sequence of AI models independently on every page in the document to extract features and content, such as layout and table structures. Finally, the results from all pages are aggregated and passed through a post-processing stage, which augments metadata, detects the document language, infers reading-order and eventually assembles a typed document object which can be serialized to JSON or Markdown.</p>",
+          "polygon": [
+            [
+              105.45380401611328,
+              515.9777984619141
+            ],
+            [
+              505.39979553222656,
+              515.9777984619141
+            ],
+            [
+              505.39979553222656,
+              615.1619262695312
+            ],
+            [
+              105.45380401611328,
+              615.1619262695312
+            ]
+          ],
+          "bbox": [
+            105.45380401611328,
+            515.9777984619141,
+            505.39979553222656,
+            615.1619262695312
+          ],
+          "children": null,
+          "section_hierarchy": {
+            "1": "/page/0/SectionHeader/9",
+            "2": "/page/1/SectionHeader/7"
+          },
+          "images": {}
+        },
+        {
+          "id": "/page/1/SectionHeader/9",
+          "block_type": "SectionHeader",
+          "html": "<h4>3.1 PDF backends</h4>",
+          "polygon": [
+            [
+              105.51768493652344,
+              626.474853515625
+            ],
+            [
+              192.43185424804688,
+              626.474853515625
+            ],
+            [
+              192.43185424804688,
+              639.5221862792969
+            ],
+            [
+              105.51768493652344,
+              639.5221862792969
+            ]
+          ],
+          "bbox": [
+            105.51768493652344,
+            626.474853515625,
+            192.43185424804688,
+            639.5221862792969
+          ],
+          "children": null,
+          "section_hierarchy": {
+            "1": "/page/0/SectionHeader/9",
+            "2": "/page/1/SectionHeader/7",
+            "4": "/page/1/SectionHeader/9"
+          },
+          "images": {}
+        },
+        {
+          "id": "/page/1/Text/10",
+          "block_type": "Text",
+          "html": "<p block-type=\"Text\">Two basic requirements to process PDF documents in our pipeline are a) to retrieve all text content and their geometric coordinates on each page and b) to render the visual representation of each page as it would appear in a PDF viewer. Both these requirements are encapsulated in Docling's PDF backend interface. While there are several open-source PDF parsing libraries available for python, we faced major obstacles with all of them for different reasons, among which were restrictive</p>",
+          "polygon": [
+            [
+              105.41204452514648,
+              647.3980865478516
+            ],
+            [
+              505.35511779785156,
+              647.3980865478516
+            ],
+            [
+              505.35511779785156,
+              703.2138824462891
+            ],
+            [
+              105.41204452514648,
+              703.2138824462891
+            ]
+          ],
+          "bbox": [
+            105.41204452514648,
+            647.3980865478516,
+            505.35511779785156,
+            703.2138824462891
+          ],
+          "children": null,
+          "section_hierarchy": {
+            "1": "/page/0/SectionHeader/9",
+            "2": "/page/1/SectionHeader/7",
+            "4": "/page/1/SectionHeader/9"
+          },
+          "images": {}
+        },
+        {
+          "id": "/page/1/PageFooter/12",
+          "block_type": "PageFooter",
+          "html": "",
+          "polygon": [
+            [
+              301.426025390625,
+              739.4254760742188
+            ],
+            [
+              309.3424072265625,
+              739.4254760742188
+            ],
+            [
+              309.3424072265625,
+              752.0399208068848
+            ],
+            [
+              301.426025390625,
+              752.0399208068848
+            ]
+          ],
+          "bbox": [
+            301.426025390625,
+            739.4254760742188,
+            309.3424072265625,
+            752.0399208068848
+          ],
+          "children": null,
+          "section_hierarchy": {
+            "1": "/page/0/SectionHeader/9",
+            "2": "/page/1/SectionHeader/7",
+            "4": "/page/1/SectionHeader/9"
+          },
+          "images": {}
+        },
+        {
+          "id": "/page/1/Footnote/11",
+          "block_type": "Footnote",
+          "html": "<p><span id=\"page-1-0\"></span><sup>1</sup> see <a href=\"https://huggingface.co/ds4sd/docling-models/\">huggingface.co/ds4sd/docling-models/</a></p>",
+          "polygon": [
+            [
+              120.13341522216797,
+              709.2099609375
+            ],
+            [
+              277.0444564819336,
+              709.2099609375
+            ],
+            [
+              277.0444564819336,
+              721.9457092285156
+            ],
+            [
+              120.13341522216797,
+              721.9457092285156
+            ]
+          ],
+          "bbox": [
+            120.13341522216797,
+            709.2099609375,
+            277.0444564819336,
+            721.9457092285156
+          ],
+          "children": null,
+          "section_hierarchy": {
+            "1": "/page/0/SectionHeader/9",
+            "2": "/page/1/SectionHeader/7",
+            "4": "/page/1/SectionHeader/9"
+          },
+          "images": {}
+        }
+      ],
+      "section_hierarchy": {
+        "1": "/page/0/SectionHeader/9",
+        "2": "/page/1/SectionHeader/7",
+        "4": "/page/1/SectionHeader/9"
+      },
+      "images": null
+    },
+    {
+      "id": "/page/2/Page/214",
+      "block_type": "Page",
+      "html": "<content-ref src='/page/2/Diagram/0'></content-ref><content-ref src='/page/2/Caption/1'></content-ref><content-ref src='/page/2/Text/2'></content-ref><content-ref src='/page/2/Text/3'></content-ref><content-ref src='/page/2/SectionHeader/4'></content-ref><content-ref src='/page/2/Text/5'></content-ref><content-ref src='/page/2/SectionHeader/6'></content-ref><content-ref src='/page/2/Text/7'></content-ref><content-ref src='/page/2/Text/8'></content-ref><content-ref src='/page/2/SectionHeader/9'></content-ref><content-ref src='/page/2/Text/10'></content-ref><content-ref src='/page/2/PageFooter/11'></content-ref>",
+      "polygon": [
+        [
+          0.0,
+          0.0
+        ],
+        [
+          612.0,
+          0.0
+        ],
+        [
+          612.0,
+          792.0
+        ],
+        [
+          0.0,
+          792.0
+        ]
+      ],
+      "bbox": [
+        0.0,
+        0.0,
+        612.0,
+        792.0
+      ],
+      "children": [
+        {
+          "id": "/page/2/Diagram/0",
+          "block_type": "Diagram",
+          "html": "",
+          "polygon": [
+            [
+              97.60740280151367,
+              61.29575443267822
+            ],
+            [
+              511.2758560180664,
+              61.29575443267822
+            ],
+            [
+              511.2758560180664,
+              215.6570234298706
+            ],
+            [
+              97.60740280151367,
+              215.6570234298706
+            ]
+          ],
+          "bbox": [
+            97.60740280151367,
+            61.29575443267822,
+            511.2758560180664,
+            215.6570234298706
+          ],
+          "children": null,
+          "section_hierarchy": {
+            "1": "/page/0/SectionHeader/9",
+            "2": "/page/1/SectionHeader/7",
+            "4": "/page/1/SectionHeader/9"
+          },
+          "images": {
+            "/page/2/Diagram/0": "images/image_000001.jpg"
+          }
+        },
+        {
+          "id": "/page/2/Caption/1",
+          "block_type": "Caption",
+          "html": "<p><span id=\"page-2-0\"></span>Figure 1: Sketch of Docling's default processing pipeline. The inner part of the model pipeline is easily customizable and extensible.</p>",
+          "polygon": [
+            [
+              105.89530563354492,
+              219.17294311523438
+            ],
+            [
+              506.0163116455078,
+              219.17294311523438
+            ],
+            [
+              506.0163116455078,
+              241.5538330078125
+            ],
+            [
+              105.89530563354492,
+              241.5538330078125
+            ]
+          ],
+          "bbox": [
+            105.89530563354492,
+            219.17294311523438,
+            506.0163116455078,
+            241.5538330078125
+          ],
+          "children": null,
+          "section_hierarchy": {
+            "1": "/page/0/SectionHeader/9",
+            "2": "/page/1/SectionHeader/7",
+            "4": "/page/1/SectionHeader/9"
+          },
+          "images": {}
+        },
+        {
+          "id": "/page/2/Text/2",
+          "block_type": "Text",
+          "html": "<p block-type=\"Text\">licensing (e.g. pymupdf <a href=\"#page-5-4\">[7]</a>), poor speed or unrecoverable quality issues, such as merged text cells across far-apart text tokens or table columns (pypdfium, PyPDF) <a href=\"#page-5-5\">[15,</a> <a href=\"#page-5-6\">14]</a>.</p>",
+          "polygon": [
+            [
+              105.14252471923828,
+              263.34539794921875
+            ],
+            [
+              505.345458984375,
+              263.34539794921875
+            ],
+            [
+              505.345458984375,
+              287.15289306640625
+            ],
+            [
+              105.14252471923828,
+              287.15289306640625
+            ]
+          ],
+          "bbox": [
+            105.14252471923828,
+            263.34539794921875,
+            505.345458984375,
+            287.15289306640625
+          ],
+          "children": null,
+          "section_hierarchy": {
+            "1": "/page/0/SectionHeader/9",
+            "2": "/page/1/SectionHeader/7",
+            "4": "/page/1/SectionHeader/9"
+          },
+          "images": {}
+        },
+        {
+          "id": "/page/2/Text/3",
+          "block_type": "Text",
+          "html": "<p block-type=\"Text\">We therefore decided to provide multiple backend choices, and additionally open-source a custombuilt PDF parser, which is based on the low-level <i>qpdf</i><a href=\"#page-5-7\">[4]</a> library. It is made available in a separate package named <i><a href=\"https://pypi.org/project/docling-parse/\">docling-parse</a></i> and powers the default PDF backend in Docling. As an alternative, we provide a PDF backend relying on <i>pypdfium</i>, which may be a safe backup choice in certain cases, e.g. if issues are seen with particular font encodings.</p>",
+          "polygon": [
+            [
+              105.1164436340332,
+              291.4591369628906
+            ],
+            [
+              505.62355041503906,
+              291.4591369628906
+            ],
+            [
+              505.62355041503906,
+              347.1768798828125
+            ],
+            [
+              105.1164436340332,
+              347.1768798828125
+            ]
+          ],
+          "bbox": [
+            105.1164436340332,
+            291.4591369628906,
+            505.62355041503906,
+            347.1768798828125
+          ],
+          "children": null,
+          "section_hierarchy": {
+            "1": "/page/0/SectionHeader/9",
+            "2": "/page/1/SectionHeader/7",
+            "4": "/page/1/SectionHeader/9"
+          },
+          "images": {}
+        },
+        {
+          "id": "/page/2/SectionHeader/4",
+          "block_type": "SectionHeader",
+          "html": "<h4>3.2 AI models</h4>",
+          "polygon": [
+            [
+              105.41178131103516,
+              362.1023254394531
+            ],
+            [
+              174.02661895751953,
+              362.1023254394531
+            ],
+            [
+              174.02661895751953,
+              374.5301818847656
+            ],
+            [
+              105.41178131103516,
+              374.5301818847656
+            ]
+          ],
+          "bbox": [
+            105.41178131103516,
+            362.1023254394531,
+            174.02661895751953,
+            374.5301818847656
+          ],
+          "children": null,
+          "section_hierarchy": {
+            "1": "/page/0/SectionHeader/9",
+            "2": "/page/1/SectionHeader/7",
+            "4": "/page/2/SectionHeader/4"
+          },
+          "images": {}
+        },
+        {
+          "id": "/page/2/Text/5",
+          "block_type": "Text",
+          "html": "<p block-type=\"Text\">As part of Docling, we initially release two highly capable AI models to the open-source community, which have been developed and published recently by our team. The first model is a layout analysis model, an accurate object-detector for page elements <a href=\"#page-5-2\">[13]</a>. The second model is TableFormer <a href=\"#page-5-1\">[12,</a> <a href=\"#page-5-3\">9]</a>, a state-of-the-art table structure recognition model. We provide the pre-trained weights (hosted on <a href=\"https://huggingface.co/ds4sd/docling-models/\">huggingface)</a> and a separate package for the inference code as <i><a href=\"https://github.com/DS4SD/docling-ibm-models\">docling-ibm-models</a></i>. Both models are also powering the open-access <a href=\"https://ds4sd.github.io\">deepsearch-experience,</a> our cloud-native service for knowledge exploration tasks.</p>",
+          "polygon": [
+            [
+              105.49726867675781,
+              383.7058410644531
+            ],
+            [
+              505.8585662841797,
+              383.7058410644531
+            ],
+            [
+              505.8585662841797,
+              461.21990966796875
+            ],
+            [
+              105.49726867675781,
+              461.21990966796875
+            ]
+          ],
+          "bbox": [
+            105.49726867675781,
+            383.7058410644531,
+            505.8585662841797,
+            461.21990966796875
+          ],
+          "children": null,
+          "section_hierarchy": {
+            "1": "/page/0/SectionHeader/9",
+            "2": "/page/1/SectionHeader/7",
+            "4": "/page/2/SectionHeader/4"
+          },
+          "images": {}
+        },
+        {
+          "id": "/page/2/SectionHeader/6",
+          "block_type": "SectionHeader",
+          "html": "<h4>Layout Analysis Model</h4>",
+          "polygon": [
+            [
+              105.32033157348633,
+              474.2165222167969
+            ],
+            [
+              207.49378967285156,
+              474.2165222167969
+            ],
+            [
+              207.49378967285156,
+              487.2381896972656
+            ],
+            [
+              105.32033157348633,
+              487.2381896972656
+            ]
+          ],
+          "bbox": [
+            105.32033157348633,
+            474.2165222167969,
+            207.49378967285156,
+            487.2381896972656
+          ],
+          "children": null,
+          "section_hierarchy": {
+            "1": "/page/0/SectionHeader/9",
+            "2": "/page/1/SectionHeader/7",
+            "4": "/page/2/SectionHeader/6"
+          },
+          "images": {}
+        },
+        {
+          "id": "/page/2/Text/7",
+          "block_type": "Text",
+          "html": "<p block-type=\"Text\">Our layout analysis model is an object-detector which predicts the bounding-boxes and classes of various elements on the image of a given page. Its architecture is derived from RT-DETR <a href=\"#page-5-8\">[16]</a> and re-trained on DocLayNet <a href=\"#page-5-2\">[13]</a>, our popular human-annotated dataset for document-layout analysis, among other proprietary datasets. For inference, our implementation relies on the <i>onnxruntime</i> <a href=\"#page-5-9\">[5]</a>.</p>",
+          "polygon": [
+            [
+              105.26927947998047,
+              494.1795959472656
+            ],
+            [
+              505.9617462158203,
+              494.1795959472656
+            ],
+            [
+              505.9617462158203,
+              539.8648834228516
+            ],
+            [
+              105.26927947998047,
+              539.8648834228516
+            ]
+          ],
+          "bbox": [
+            105.26927947998047,
+            494.1795959472656,
+            505.9617462158203,
+            539.8648834228516
+          ],
+          "children": null,
+          "section_hierarchy": {
+            "1": "/page/0/SectionHeader/9",
+            "2": "/page/1/SectionHeader/7",
+            "4": "/page/2/SectionHeader/6"
+          },
+          "images": {}
+        },
+        {
+          "id": "/page/2/Text/8",
+          "block_type": "Text",
+          "html": "<p block-type=\"Text\">The Docling pipeline feeds page images at 72 dpi resolution, which can be processed on a single CPU with sub-second latency. All predicted bounding-box proposals for document elements are post-processed to remove overlapping proposals based on confidence and size, and then intersected with the text tokens in the PDF to group them into meaningful and complete units such as paragraphs, section titles, list items, captions, figures or tables.</p>",
+          "polygon": [
+            [
+              105.2039566040039,
+              543.5099487304688
+            ],
+            [
+              505.8600311279297,
+              543.5099487304688
+            ],
+            [
+              505.8600311279297,
+              599.8898773193359
+            ],
+            [
+              105.2039566040039,
+              599.8898773193359
+            ]
+          ],
+          "bbox": [
+            105.2039566040039,
+            543.5099487304688,
+            505.8600311279297,
+            599.8898773193359
+          ],
+          "children": null,
+          "section_hierarchy": {
+            "1": "/page/0/SectionHeader/9",
+            "2": "/page/1/SectionHeader/7",
+            "4": "/page/2/SectionHeader/6"
+          },
+          "images": {}
+        },
+        {
+          "id": "/page/2/SectionHeader/9",
+          "block_type": "SectionHeader",
+          "html": "<h4>Table Structure Recognition</h4>",
+          "polygon": [
+            [
+              105.50336837768555,
+              613.1408386230469
+            ],
+            [
+              228.60191345214844,
+              613.1408386230469
+            ],
+            [
+              228.60191345214844,
+              625.8981781005859
+            ],
+            [
+              105.50336837768555,
+              625.8981781005859
+            ]
+          ],
+          "bbox": [
+            105.50336837768555,
+            613.1408386230469,
+            228.60191345214844,
+            625.8981781005859
+          ],
+          "children": null,
+          "section_hierarchy": {
+            "1": "/page/0/SectionHeader/9",
+            "2": "/page/1/SectionHeader/7",
+            "4": "/page/2/SectionHeader/9"
+          },
+          "images": {}
+        },
+        {
+          "id": "/page/2/Text/10",
+          "block_type": "Text",
+          "html": "<p block-type=\"Text\">The TableFormer model <a href=\"#page-5-1\">[12]</a>, first published in 2022 and since refined with a custom structure token language <a href=\"#page-5-3\">[9]</a>, is a vision-transformer model for table structure recovery. It can predict the logical row and column structure of a given table based on an input image, and determine which table cells belong to column headers, row headers or the table body. Compared to earlier approaches, TableFormer handles many characteristics of tables, such as partial or no borderlines, empty cells, rows or columns, cell spans and hierarchy both on column-heading or row-heading level, tables with inconsistent indentation or alignment and other complexities. For inference, our implementation relies on <i>PyTorch</i> <a href=\"#page-4-0\">[2]</a>.</p>",
+          "polygon": [
+            [
+              105.30340576171875,
+              632.8553009033203
+            ],
+            [
+              506.13043212890625,
+              632.8553009033203
+            ],
+            [
+              506.13043212890625,
+              722.1518936157227
+            ],
+            [
+              105.30340576171875,
+              722.1518936157227
+            ]
+          ],
+          "bbox": [
+            105.30340576171875,
+            632.8553009033203,
+            506.13043212890625,
+            722.1518936157227
+          ],
+          "children": null,
+          "section_hierarchy": {
+            "1": "/page/0/SectionHeader/9",
+            "2": "/page/1/SectionHeader/7",
+            "4": "/page/2/SectionHeader/9"
+          },
+          "images": {}
+        },
+        {
+          "id": "/page/2/PageFooter/11",
+          "block_type": "PageFooter",
+          "html": "",
+          "polygon": [
+            [
+              301.07054901123047,
+              738.3167724609375
+            ],
+            [
+              309.3643341064453,
+              738.3167724609375
+            ],
+            [
+              309.3643341064453,
+              752.0398902893066
+            ],
+            [
+              301.07054901123047,
+              752.0398902893066
+            ]
+          ],
+          "bbox": [
+            301.07054901123047,
+            738.3167724609375,
+            309.3643341064453,
+            752.0398902893066
+          ],
+          "children": null,
+          "section_hierarchy": {
+            "1": "/page/0/SectionHeader/9",
+            "2": "/page/1/SectionHeader/7",
+            "4": "/page/2/SectionHeader/9"
+          },
+          "images": {}
+        }
+      ],
+      "section_hierarchy": {
+        "1": "/page/0/SectionHeader/9",
+        "2": "/page/1/SectionHeader/7",
+        "4": "/page/2/SectionHeader/9"
+      },
+      "images": null
+    },
+    {
+      "id": "/page/3/Page/186",
+      "block_type": "Page",
+      "html": "<content-ref src='/page/3/Text/0'></content-ref><content-ref src='/page/3/SectionHeader/1'></content-ref><content-ref src='/page/3/Text/2'></content-ref><content-ref src='/page/3/Text/3'></content-ref><content-ref src='/page/3/SectionHeader/4'></content-ref><content-ref src='/page/3/Text/5'></content-ref><content-ref src='/page/3/SectionHeader/6'></content-ref><content-ref src='/page/3/Text/7'></content-ref><content-ref src='/page/3/Text/8'></content-ref><content-ref src='/page/3/SectionHeader/9'></content-ref><content-ref src='/page/3/Text/10'></content-ref><content-ref src='/page/3/Text/11'></content-ref><content-ref src='/page/3/Text/12'></content-ref><content-ref src='/page/3/PageFooter/13'></content-ref>",
+      "polygon": [
+        [
+          0.0,
+          0.0
+        ],
+        [
+          612.0,
+          0.0
+        ],
+        [
+          612.0,
+          792.0
+        ],
+        [
+          0.0,
+          792.0
+        ]
+      ],
+      "bbox": [
+        0.0,
+        0.0,
+        612.0,
+        792.0
+      ],
+      "children": [
+        {
+          "id": "/page/3/Text/0",
+          "block_type": "Text",
+          "html": "<p block-type=\"Text\">The Docling pipeline feeds all table objects detected in the layout analysis to the TableFormer model, by providing an image-crop of the table and the included text cells. TableFormer structure predictions are matched back to the PDF cells in post-processing to avoid expensive re-transcription text in the table image. Typical tables require between 2 and 6 seconds to be processed on a standard CPU, strongly depending on the amount of included table cells.</p>",
+          "polygon": [
+            [
+              104.95949935913086,
+              70.62395668029785
+            ],
+            [
+              505.8072967529297,
+              70.62395668029785
+            ],
+            [
+              505.8072967529297,
+              127.7608642578125
+            ],
+            [
+              104.95949935913086,
+              127.7608642578125
+            ]
+          ],
+          "bbox": [
+            104.95949935913086,
+            70.62395668029785,
+            505.8072967529297,
+            127.7608642578125
+          ],
+          "children": null,
+          "section_hierarchy": {
+            "1": "/page/0/SectionHeader/9",
+            "2": "/page/1/SectionHeader/7",
+            "4": "/page/2/SectionHeader/9"
+          },
+          "images": {}
+        },
+        {
+          "id": "/page/3/SectionHeader/1",
+          "block_type": "SectionHeader",
+          "html": "<h4>OCR</h4>",
+          "polygon": [
+            [
+              105.06029891967773,
+              137.4584197998047
+            ],
+            [
+              130.77662658691406,
+              137.4584197998047
+            ],
+            [
+              130.77662658691406,
+              150.3221435546875
+            ],
+            [
+              105.06029891967773,
+              150.3221435546875
+            ]
+          ],
+          "bbox": [
+            105.06029891967773,
+            137.4584197998047,
+            130.77662658691406,
+            150.3221435546875
+          ],
+          "children": null,
+          "section_hierarchy": {
+            "1": "/page/0/SectionHeader/9",
+            "2": "/page/1/SectionHeader/7",
+            "4": "/page/3/SectionHeader/1"
+          },
+          "images": {}
+        },
+        {
+          "id": "/page/3/Text/2",
+          "block_type": "Text",
+          "html": "<p block-type=\"Text\">Docling provides optional support for OCR, for example to cover scanned PDFs or content in bitmaps images embedded on a page. In our initial release, we rely on <i>EasyOCR</i> <a href=\"#page-4-1\">[1]</a>, a popular thirdparty OCR library with support for many languages. Docling, by default, feeds a high-resolution page image (216 dpi) to the OCR engine, to allow capturing small print detail in decent quality. While EasyOCR delivers reasonable transcription quality, we observe that it runs fairly slow on CPU (upwards of 30 seconds per page).</p>",
+          "polygon": [
+            [
+              104.9198226928711,
+              156.05251693725586
+            ],
+            [
+              505.5731506347656,
+              156.05251693725586
+            ],
+            [
+              505.5731506347656,
+              223.57781982421875
+            ],
+            [
+              104.9198226928711,
+              223.57781982421875
+            ]
+          ],
+          "bbox": [
+            104.9198226928711,
+            156.05251693725586,
+            505.5731506347656,
+            223.57781982421875
+          ],
+          "children": null,
+          "section_hierarchy": {
+            "1": "/page/0/SectionHeader/9",
+            "2": "/page/1/SectionHeader/7",
+            "4": "/page/3/SectionHeader/1"
+          },
+          "images": {}
+        },
+        {
+          "id": "/page/3/Text/3",
+          "block_type": "Text",
+          "html": "<p block-type=\"Text\">We are actively seeking collaboration from the open-source community to extend Docling with additional OCR backends and speed improvements.</p>",
+          "polygon": [
+            [
+              105.09128952026367,
+              227.03784942626953
+            ],
+            [
+              505.4695129394531,
+              227.03784942626953
+            ],
+            [
+              505.4695129394531,
+              250.8648681640625
+            ],
+            [
+              105.09128952026367,
+              250.8648681640625
+            ]
+          ],
+          "bbox": [
+            105.09128952026367,
+            227.03784942626953,
+            505.4695129394531,
+            250.8648681640625
+          ],
+          "children": null,
+          "section_hierarchy": {
+            "1": "/page/0/SectionHeader/9",
+            "2": "/page/1/SectionHeader/7",
+            "4": "/page/3/SectionHeader/1"
+          },
+          "images": {}
+        },
+        {
+          "id": "/page/3/SectionHeader/4",
+          "block_type": "SectionHeader",
+          "html": "<h4>3.3 Assembly</h4>",
+          "polygon": [
+            [
+              105.13687133789062,
+              261.8974914550781
+            ],
+            [
+              171.37210083007812,
+              261.8974914550781
+            ],
+            [
+              171.37210083007812,
+              274.7811279296875
+            ],
+            [
+              105.13687133789062,
+              274.7811279296875
+            ]
+          ],
+          "bbox": [
+            105.13687133789062,
+            261.8974914550781,
+            171.37210083007812,
+            274.7811279296875
+          ],
+          "children": null,
+          "section_hierarchy": {
+            "1": "/page/0/SectionHeader/9",
+            "2": "/page/1/SectionHeader/7",
+            "4": "/page/3/SectionHeader/4"
+          },
+          "images": {}
+        },
+        {
+          "id": "/page/3/Text/5",
+          "block_type": "Text",
+          "html": "<p block-type=\"Text\">In the final pipeline stage, Docling assembles all prediction results produced on each page into a well-defined datatype that encapsulates a converted document, as defined in the auxiliary package <i><a href=\"https://github.com/DS4SD/docling-core\">docling-core</a></i>. The generated document object is passed through a post-processing model which leverages several algorithms to augment features, such as detection of the document language, correcting the reading order, matching figures with captions and labelling metadata such as title, authors and references. The final output can then be serialized to JSON or transformed into a Markdown representation at the users request.</p>",
+          "polygon": [
+            [
+              105.21163558959961,
+              281.77965545654297
+            ],
+            [
+              505.8316955566406,
+              281.77965545654297
+            ],
+            [
+              505.8316955566406,
+              360.2808837890625
+            ],
+            [
+              105.21163558959961,
+              360.2808837890625
+            ]
+          ],
+          "bbox": [
+            105.21163558959961,
+            281.77965545654297,
+            505.8316955566406,
+            360.2808837890625
+          ],
+          "children": null,
+          "section_hierarchy": {
+            "1": "/page/0/SectionHeader/9",
+            "2": "/page/1/SectionHeader/7",
+            "4": "/page/3/SectionHeader/4"
+          },
+          "images": {}
+        },
+        {
+          "id": "/page/3/SectionHeader/6",
+          "block_type": "SectionHeader",
+          "html": "<h2>3.4 Extensibility</h2>",
+          "polygon": [
+            [
+              105.00215148925781,
+              370.2293243408203
+            ],
+            [
+              184.1142578125,
+              370.2293243408203
+            ],
+            [
+              184.1142578125,
+              384.1971435546875
+            ],
+            [
+              105.00215148925781,
+              384.1971435546875
+            ]
+          ],
+          "bbox": [
+            105.00215148925781,
+            370.2293243408203,
+            184.1142578125,
+            384.1971435546875
+          ],
+          "children": null,
+          "section_hierarchy": {
+            "1": "/page/0/SectionHeader/9",
+            "2": "/page/3/SectionHeader/6"
+          },
+          "images": {}
+        },
+        {
+          "id": "/page/3/Text/7",
+          "block_type": "Text",
+          "html": "<p block-type=\"Text\">Docling provides a straight-forward interface to extend its capabilities, namely the model pipeline. A model pipeline constitutes the central part in the processing, following initial document parsing and preceding output assembly, and can be fully customized by sub-classing from an abstract baseclass (<i>BaseModelPipeline</i>) or cloning the default model pipeline. This effectively allows to fully customize the chain of models, add or replace models, and introduce additional pipeline configuration parameters. To use a custom model pipeline, the custom pipeline class to instantiate can be provided as an argument to the main document conversion methods. We invite everyone in the community to propose additional or alternative models and improvements.</p>",
+          "polygon": [
+            [
+              105.0025520324707,
+              391.5894470214844
+            ],
+            [
+              505.5132751464844,
+              391.5894470214844
+            ],
+            [
+              505.5132751464844,
+              480.6158447265625
+            ],
+            [
+              105.0025520324707,
+              480.6158447265625
+            ]
+          ],
+          "bbox": [
+            105.0025520324707,
+            391.5894470214844,
+            505.5132751464844,
+            480.6158447265625
+          ],
+          "children": null,
+          "section_hierarchy": {
+            "1": "/page/0/SectionHeader/9",
+            "2": "/page/3/SectionHeader/6"
+          },
+          "images": {}
+        },
+        {
+          "id": "/page/3/Text/8",
+          "block_type": "Text",
+          "html": "<p block-type=\"Text\">Implementations of model classes must satisfy the python Callable interface. The __call__ method must accept an iterator over page objects, and produce another iterator over the page objects which were augmented with the additional features predicted by the model, by extending the provided PagePredictions data model accordingly.</p>",
+          "polygon": [
+            [
+              104.76715850830078,
+              484.3037109375
+            ],
+            [
+              505.6967010498047,
+              484.3037109375
+            ],
+            [
+              505.6967010498047,
+              529.7308349609375
+            ],
+            [
+              104.76715850830078,
+              529.7308349609375
+            ]
+          ],
+          "bbox": [
+            104.76715850830078,
+            484.3037109375,
+            505.6967010498047,
+            529.7308349609375
+          ],
+          "children": null,
+          "section_hierarchy": {
+            "1": "/page/0/SectionHeader/9",
+            "2": "/page/3/SectionHeader/6"
+          },
+          "images": {}
+        },
+        {
+          "id": "/page/3/SectionHeader/9",
+          "block_type": "SectionHeader",
+          "html": "<h2>4 Performance</h2>",
+          "polygon": [
+            [
+              104.70565795898438,
+              544.0346374511719
+            ],
+            [
+              192.09681701660156,
+              544.0346374511719
+            ],
+            [
+              192.09681701660156,
+              557.9895782470703
+            ],
+            [
+              104.70565795898438,
+              557.9895782470703
+            ]
+          ],
+          "bbox": [
+            104.70565795898438,
+            544.0346374511719,
+            192.09681701660156,
+            557.9895782470703
+          ],
+          "children": null,
+          "section_hierarchy": {
+            "1": "/page/0/SectionHeader/9",
+            "2": "/page/3/SectionHeader/9"
+          },
+          "images": {}
+        },
+        {
+          "id": "/page/3/Text/10",
+          "block_type": "Text",
+          "html": "<p block-type=\"Text\">In this section, we establish some reference numbers for the processing speed of Docling and the resource budget it requires. All tests in this section are run with default options on our standard test set distributed with Docling, which consists of three papers from arXiv and two IBM Redbooks, with a total of 225 pages. Measurements were taken using both available PDF backends on two different hardware systems: one MacBook Pro M3 Max, and one bare-metal server running Ubuntu 20.04 LTS on an Intel Xeon E5-2690 CPU. For reproducibility, we fixed the thread budget (through setting <i>OMP</i> <i>NUM</i> <i>THREADS environment variable</i>) once to 4 (Docling default) and once to 16 (equal to full core count on the test hardware). All results are shown in Table <a href=\"#page-4-2\">1.</a></p>",
+          "polygon": [
+            [
+              104.82908248901367,
+              567.234375
+            ],
+            [
+              505.93212890625,
+              567.234375
+            ],
+            [
+              505.93212890625,
+              656.6479187011719
+            ],
+            [
+              104.82908248901367,
+              656.6479187011719
+            ]
+          ],
+          "bbox": [
+            104.82908248901367,
+            567.234375,
+            505.93212890625,
+            656.6479187011719
+          ],
+          "children": null,
+          "section_hierarchy": {
+            "1": "/page/0/SectionHeader/9",
+            "2": "/page/3/SectionHeader/9"
+          },
+          "images": {}
+        },
+        {
+          "id": "/page/3/Text/11",
+          "block_type": "Text",
+          "html": "<p block-type=\"Text\">If you need to run Docling in very low-resource environments, please consider configuring the pypdfium backend. While it is faster and more memory efficient than the default <i>docling-parse</i> backend, it will come at the expense of worse quality results, especially in table structure recovery.</p>",
+          "polygon": [
+            [
+              104.76577377319336,
+              660.2264099121094
+            ],
+            [
+              505.3757629394531,
+              660.2264099121094
+            ],
+            [
+              505.3757629394531,
+              694.8638763427734
+            ],
+            [
+              104.76577377319336,
+              694.8638763427734
+            ]
+          ],
+          "bbox": [
+            104.76577377319336,
+            660.2264099121094,
+            505.3757629394531,
+            694.8638763427734
+          ],
+          "children": null,
+          "section_hierarchy": {
+            "1": "/page/0/SectionHeader/9",
+            "2": "/page/3/SectionHeader/9"
+          },
+          "images": {}
+        },
+        {
+          "id": "/page/3/Text/12",
+          "block_type": "Text",
+          "html": "<p block-type=\"Text\" class=\"has-continuation\">Establishing GPU acceleration support for the AI models is currently work-in-progress and largely untested, but may work implicitly when CUDA is available and discovered by the onnxruntime and</p>",
+          "polygon": [
+            [
+              105.17306900024414,
+              696.9429931640625
+            ],
+            [
+              505.3772277832031,
+              696.9429931640625
+            ],
+            [
+              505.3772277832031,
+              722.1618804931641
+            ],
+            [
+              105.17306900024414,
+              722.1618804931641
+            ]
+          ],
+          "bbox": [
+            105.17306900024414,
+            696.9429931640625,
+            505.3772277832031,
+            722.1618804931641
+          ],
+          "children": null,
+          "section_hierarchy": {
+            "1": "/page/0/SectionHeader/9",
+            "2": "/page/3/SectionHeader/9"
+          },
+          "images": {}
+        },
+        {
+          "id": "/page/3/PageFooter/13",
+          "block_type": "PageFooter",
+          "html": "",
+          "polygon": [
+            [
+              300.8185729980469,
+              738.7282104492188
+            ],
+            [
+              309.10155487060547,
+              738.7282104492188
+            ],
+            [
+              309.10155487060547,
+              752.0399208068848
+            ],
+            [
+              300.8185729980469,
+              752.0399208068848
+            ]
+          ],
+          "bbox": [
+            300.8185729980469,
+            738.7282104492188,
+            309.10155487060547,
+            752.0399208068848
+          ],
+          "children": null,
+          "section_hierarchy": {
+            "1": "/page/0/SectionHeader/9",
+            "2": "/page/3/SectionHeader/9"
+          },
+          "images": {}
+        }
+      ],
+      "section_hierarchy": {
+        "1": "/page/0/SectionHeader/9",
+        "2": "/page/3/SectionHeader/9"
+      },
+      "images": null
+    },
+    {
+      "id": "/page/4/Page/206",
+      "block_type": "Page",
+      "html": "<content-ref src='/page/4/Text/0'></content-ref><content-ref src='/page/4/TableGroup/198'></content-ref><content-ref src='/page/4/SectionHeader/3'></content-ref><content-ref src='/page/4/Text/4'></content-ref><content-ref src='/page/4/SectionHeader/5'></content-ref><content-ref src='/page/4/Text/6'></content-ref><content-ref src='/page/4/Text/7'></content-ref><content-ref src='/page/4/SectionHeader/8'></content-ref><content-ref src='/page/4/ListGroup/9'></content-ref><content-ref src='/page/4/PageFooter/10'></content-ref>",
+      "polygon": [
+        [
+          0.0,
+          0.0
+        ],
+        [
+          612.0,
+          0.0
+        ],
+        [
+          612.0,
+          792.0
+        ],
+        [
+          0.0,
+          792.0
+        ]
+      ],
+      "bbox": [
+        0.0,
+        0.0,
+        612.0,
+        792.0
+      ],
+      "children": [
+        {
+          "id": "/page/4/Text/0",
+          "block_type": "Text",
+          "html": "<p block-type=\"Text\">torch runtimes backing the Docling pipeline. We will deliver updates on this topic at in a future version of this report.</p>",
+          "polygon": [
+            [
+              105.5291862487793,
+              71.00510787963867
+            ],
+            [
+              504.0325927734375,
+              71.00510787963867
+            ],
+            [
+              504.0325927734375,
+              95.02392578125
+            ],
+            [
+              105.5291862487793,
+              95.02392578125
+            ]
+          ],
+          "bbox": [
+            105.5291862487793,
+            71.00510787963867,
+            504.0325927734375,
+            95.02392578125
+          ],
+          "children": null,
+          "section_hierarchy": {
+            "1": "/page/0/SectionHeader/9",
+            "2": "/page/3/SectionHeader/9"
+          },
+          "images": {}
+        },
+        {
+          "id": "/page/4/TableGroup/198",
+          "block_type": "TableGroup",
+          "html": "<content-ref src='/page/4/Caption/1'></content-ref><content-ref src='/page/4/Table/2'></content-ref>",
+          "polygon": [
+            [
+              104.818359375,
+              102.99909210205078
+            ],
+            [
+              504.2764892578125,
+              102.99909210205078
+            ],
+            [
+              504.2764892578125,
+              249.62591552734375
+            ],
+            [
+              104.818359375,
+              249.62591552734375
+            ]
+          ],
+          "bbox": [
+            104.818359375,
+            102.99909210205078,
+            504.2764892578125,
+            249.62591552734375
+          ],
+          "children": [
+            {
+              "id": "/page/4/Caption/1",
+              "block_type": "Caption",
+              "html": "<p><span id=\"page-4-2\"></span>Table 1: Runtime characteristics of Docling with the standard model pipeline and settings, on our test dataset of 225 pages, on two different systems. OCR is disabled. We show the time-to-solution (TTS), computed throughput in pages per second, and the peak memory used (resident set size) for both the Docling-native PDF backend and for the pypdfium backend, using 4 and 16 threads.</p>",
+              "polygon": [
+                [
+                  104.818359375,
+                  102.99909210205078
+                ],
+                [
+                  504.2764892578125,
+                  102.99909210205078
+                ],
+                [
+                  504.2764892578125,
+                  148.02685546875
+                ],
+                [
+                  104.818359375,
+                  148.02685546875
+                ]
+              ],
+              "bbox": [
+                104.818359375,
+                102.99909210205078,
+                504.2764892578125,
+                148.02685546875
+              ],
+              "children": null,
+              "section_hierarchy": {
+                "1": "/page/0/SectionHeader/9",
+                "2": "/page/3/SectionHeader/9"
+              },
+              "images": {}
+            },
+            {
+              "id": "/page/4/Table/2",
+              "block_type": "Table",
+              "html": "<table><thead><tr><th></th><th>CPU Thread native backend pypdfium backend budget TTS Pages/s Mem TTS Pages/s Mem Apple M3 Max</th></tr></thead><tbody><tr><td>(16</td><td>cores)</td></tr><tr><td></td><td>4 177 s 1.27 6.20 GB 103 s 2.18 2.56 GB 16 167 s 1.34 92 s 2.45</td></tr><tr><td>Intel(R)</td><td>Xeon</td></tr><tr><td>(16</td><td>cores)</td></tr><tr><td></td><td>4 375 s 0.60 6.16 GB 239 s 0.94 2.42 GB 16 244 s 0.92 143 s 1.57 E5-2690</td></tr></tbody></table>",
+              "polygon": [
+                [
+                  130.84540557861328,
+                  153.25936889648438
+                ],
+                [
+                  477.60658264160156,
+                  153.25936889648438
+                ],
+                [
+                  477.60658264160156,
+                  249.62591552734375
+                ],
+                [
+                  130.84540557861328,
+                  249.62591552734375
+                ]
+              ],
+              "bbox": [
+                130.84540557861328,
+                153.25936889648438,
+                477.60658264160156,
+                249.62591552734375
+              ],
+              "children": [],
+              "section_hierarchy": {
+                "1": "/page/0/SectionHeader/9",
+                "2": "/page/3/SectionHeader/9"
+              },
+              "images": null
+            }
+          ],
+          "section_hierarchy": {
+            "1": "/page/0/SectionHeader/9",
+            "2": "/page/3/SectionHeader/9"
+          },
+          "images": null
+        },
+        {
+          "id": "/page/4/SectionHeader/3",
+          "block_type": "SectionHeader",
+          "html": "<h1>5 Applications</h1>",
+          "polygon": [
+            [
+              105.2138557434082,
+              259.3531265258789
+            ],
+            [
+              190.27456283569336,
+              259.3531265258789
+            ],
+            [
+              190.27456283569336,
+              274.11962890625
+            ],
+            [
+              105.2138557434082,
+              274.11962890625
+            ]
+          ],
+          "bbox": [
+            105.2138557434082,
+            259.3531265258789,
+            190.27456283569336,
+            274.11962890625
+          ],
+          "children": null,
+          "section_hierarchy": {
+            "1": "/page/4/SectionHeader/3"
+          },
+          "images": {}
+        },
+        {
+          "id": "/page/4/Text/4",
+          "block_type": "Text",
+          "html": "<p block-type=\"Text\">Thanks to the high-quality, richly structured document conversion achieved by Docling, its output qualifies for numerous downstream applications. For example, Docling can provide a base for detailed enterprise document search, passage retrieval or classification use-cases, or support knowledge extraction pipelines, allowing specific treatment of different structures in the document, such as tables, figures, section structure or references. For popular generative AI application patterns, such as retrieval-augmented generation (RAG), we provide <i><a href=\"https://pypi.org/project/quackling/\">quackling</a></i>, an open-source package which capitalizes on Docling's feature-rich document output to enable document-native optimized vector embedding and chunking. It plugs in seamlessly with LLM frameworks such as LlamaIndex <a href=\"#page-5-10\">[8]</a>. Since Docling is fast, stable and cheap to run, it also makes for an excellent choice to build document-derived datasets. With its powerful table structure recognition, it provides significant benefit to automated knowledge-base construction <a href=\"#page-5-11\">[11,</a> <a href=\"#page-5-12\">10]</a>. Docling is also integrated within the open IBM data prep kit <a href=\"#page-5-13\">[6]</a>, which implements scalable data transforms to build large-scale multi-modal training datasets.</p>",
+          "polygon": [
+            [
+              105.5533218383789,
+              285.0652313232422
+            ],
+            [
+              504.9162139892578,
+              285.0652313232422
+            ],
+            [
+              504.9162139892578,
+              427.516845703125
+            ],
+            [
+              105.5533218383789,
+              427.516845703125
+            ]
+          ],
+          "bbox": [
+            105.5533218383789,
+            285.0652313232422,
+            504.9162139892578,
+            427.516845703125
+          ],
+          "children": null,
+          "section_hierarchy": {
+            "1": "/page/4/SectionHeader/3"
+          },
+          "images": {}
+        },
+        {
+          "id": "/page/4/SectionHeader/5",
+          "block_type": "SectionHeader",
+          "html": "<h2>6 Future work and contributions</h2>",
+          "polygon": [
+            [
+              105.3713607788086,
+              442.43064880371094
+            ],
+            [
+              284.35521697998047,
+              442.43064880371094
+            ],
+            [
+              284.35521697998047,
+              455.9595642089844
+            ],
+            [
+              105.3713607788086,
+              455.9595642089844
+            ]
+          ],
+          "bbox": [
+            105.3713607788086,
+            442.43064880371094,
+            284.35521697998047,
+            455.9595642089844
+          ],
+          "children": null,
+          "section_hierarchy": {
+            "1": "/page/4/SectionHeader/3",
+            "2": "/page/4/SectionHeader/5"
+          },
+          "images": {}
+        },
+        {
+          "id": "/page/4/Text/6",
+          "block_type": "Text",
+          "html": "<p block-type=\"Text\">Docling is designed to allow easy extension of the model library and pipelines. In the future, we plan to extend Docling with several more models, such as a figure-classifier model, an equationrecognition model, a code-recognition model and more. This will help improve the quality of conversion for specific types of content, as well as augment extracted document metadata with additional information. Further investment into testing and optimizing GPU acceleration as well as improving the Docling-native PDF backend are on our roadmap, too.</p>",
+          "polygon": [
+            [
+              105.5929183959961,
+              466.2919006347656
+            ],
+            [
+              504.7350769042969,
+              466.2919006347656
+            ],
+            [
+              504.7350769042969,
+              532.9928283691406
+            ],
+            [
+              105.5929183959961,
+              532.9928283691406
+            ]
+          ],
+          "bbox": [
+            105.5929183959961,
+            466.2919006347656,
+            504.7350769042969,
+            532.9928283691406
+          ],
+          "children": null,
+          "section_hierarchy": {
+            "1": "/page/4/SectionHeader/3",
+            "2": "/page/4/SectionHeader/5"
+          },
+          "images": {}
+        },
+        {
+          "id": "/page/4/Text/7",
+          "block_type": "Text",
+          "html": "<p block-type=\"Text\">We encourage everyone to propose or implement additional features and models, and will gladly take your inputs and contributions under review. The codebase of Docling is open for use and contribution, under the MIT license agreement and in alignment with our contributing guidelines included in the Docling repository. If you use Docling in your projects, please consider citing this technical report.</p>",
+          "polygon": [
+            [
+              105.4189682006836,
+              537.3401184082031
+            ],
+            [
+              504.8956604003906,
+              537.3401184082031
+            ],
+            [
+              504.8956604003906,
+              593.0078430175781
+            ],
+            [
+              105.4189682006836,
+              593.0078430175781
+            ]
+          ],
+          "bbox": [
+            105.4189682006836,
+            537.3401184082031,
+            504.8956604003906,
+            593.0078430175781
+          ],
+          "children": null,
+          "section_hierarchy": {
+            "1": "/page/4/SectionHeader/3",
+            "2": "/page/4/SectionHeader/5"
+          },
+          "images": {}
+        },
+        {
+          "id": "/page/4/SectionHeader/8",
+          "block_type": "SectionHeader",
+          "html": "<h2>References</h2>",
+          "polygon": [
+            [
+              105.78895568847656,
+              607.3325042724609
+            ],
+            [
+              164.04956817626953,
+              607.3325042724609
+            ],
+            [
+              164.04956817626953,
+              621.4595642089844
+            ],
+            [
+              105.78895568847656,
+              621.4595642089844
+            ]
+          ],
+          "bbox": [
+            105.78895568847656,
+            607.3325042724609,
+            164.04956817626953,
+            621.4595642089844
+          ],
+          "children": null,
+          "section_hierarchy": {
+            "1": "/page/4/SectionHeader/3",
+            "2": "/page/4/SectionHeader/8"
+          },
+          "images": {}
+        },
+        {
+          "id": "/page/4/ListGroup/9",
+          "block_type": "ListGroup",
+          "html": "<p block-type='ListGroup'><ul><content-ref src='/page/4/ListItem/199'></content-ref></ul></p>",
+          "polygon": [
+            [
+              109.04784393310547,
+              625.4414978027344
+            ],
+            [
+              505.1700439453125,
+              625.4414978027344
+            ],
+            [
+              505.1700439453125,
+              722.1617736816406
+            ],
+            [
+              109.04784393310547,
+              722.1617736816406
+            ]
+          ],
+          "bbox": [
+            109.04784393310547,
+            625.4414978027344,
+            505.1700439453125,
+            722.1617736816406
+          ],
+          "children": [
+            {
+              "id": "/page/4/ListItem/199",
+              "block_type": "ListItem",
+              "html": "<li block-type=\"ListItem\"><span id=\"page-4-1\"></span><span id=\"page-4-0\"></span>[1] J. AI. Easyocr: Ready-to-use ocr with 80+ supported languages. <a href=\"https://github.com/JaidedAI/EasyOCR\">https://github.com/</a> <a href=\"https://github.com/JaidedAI/EasyOCR\">JaidedAI/EasyOCR</a>, 2024. Version: 1.7.0. [2] J. Ansel, E. Yang, H. He, N. Gimelshein, A. Jain, M. Voznesensky, B. Bao, P. Bell, D. Berard, <ul><li block-type=\"ListItem\" class=\"list-indent-1\">E. Burovski, G. Chauhan, A. Chourdia, W. Constable, A. Desmaison, Z. DeVito, E. Ellison,</li></ul><ul><li block-type=\"ListItem\" class=\"list-indent-1\">W. Feng, J. Gong, M. Gschwind, B. Hirsh, S. Huang, K. Kalambarkar, L. Kirsch, M. Lazos, M. Lezcano, Y. Liang, J. Liang, Y. Lu, C. Luk, B. Maher, Y. Pan, C. Puhrsch, M. Reso,</li></ul><ul><li block-type=\"ListItem\" class=\"list-indent-1\">M. Saroufim, M. Y. Siraichi, H. Suk, M. Suo, P. Tillet, E. Wang, X. Wang, W. Wen, S. Zhang,</li></ul><ul><li block-type=\"ListItem\" class=\"list-indent-1\">X. Zhao, K. Zhou, R. Zou, A. Mathews, G. Chanan, P. Wu, and S. Chintala. Pytorch 2: Faster</li></ul></li>",
+              "polygon": [
+                [
+                  112.98101043701172,
+                  629.3928680419922
+                ],
+                [
+                  504.02325439453125,
+                  629.3928680419922
+                ],
+                [
+                  504.02325439453125,
+                  722.1617736816406
+                ],
+                [
+                  112.98101043701172,
+                  722.1617736816406
+                ]
+              ],
+              "bbox": [
+                112.98101043701172,
+                629.3928680419922,
+                504.02325439453125,
+                722.1617736816406
+              ],
+              "children": null,
+              "section_hierarchy": {
+                "1": "/page/4/SectionHeader/3",
+                "2": "/page/4/SectionHeader/8"
+              },
+              "images": {}
+            }
+          ],
+          "section_hierarchy": {
+            "1": "/page/4/SectionHeader/3",
+            "2": "/page/4/SectionHeader/8"
+          },
+          "images": null
+        },
+        {
+          "id": "/page/4/PageFooter/10",
+          "block_type": "PageFooter",
+          "html": "",
+          "polygon": [
+            [
+              301.18970489501953,
+              739.5866088867188
+            ],
+            [
+              308.9512939453125,
+              739.5866088867188
+            ],
+            [
+              308.9512939453125,
+              752.0398139953613
+            ],
+            [
+              301.18970489501953,
+              752.0398139953613
+            ]
+          ],
+          "bbox": [
+            301.18970489501953,
+            739.5866088867188,
+            308.9512939453125,
+            752.0398139953613
+          ],
+          "children": null,
+          "section_hierarchy": {
+            "1": "/page/4/SectionHeader/3",
+            "2": "/page/4/SectionHeader/8"
+          },
+          "images": {}
+        }
+      ],
+      "section_hierarchy": {
+        "1": "/page/4/SectionHeader/3",
+        "2": "/page/4/SectionHeader/8"
+      },
+      "images": null
+    },
+    {
+      "id": "/page/5/Page/225",
+      "block_type": "Page",
+      "html": "<content-ref src='/page/5/Text/0'></content-ref><content-ref src='/page/5/Text/211'></content-ref><content-ref src='/page/5/PageFooter/2'></content-ref>",
+      "polygon": [
+        [
+          0.0,
+          0.0
+        ],
+        [
+          612.0,
+          0.0
+        ],
+        [
+          612.0,
+          792.0
+        ],
+        [
+          0.0,
+          792.0
+        ]
+      ],
+      "bbox": [
+        0.0,
+        0.0,
+        612.0,
+        792.0
+      ],
+      "children": [
+        {
+          "id": "/page/5/Text/0",
+          "block_type": "Text",
+          "html": "<p block-type=\"Text\">machine learning through dynamic python bytecode transformation and graph compilation. In <i>Proceedings of the 29th ACM International Conference on Architectural Support for Pro</i><i>gramming Languages and Operating Systems, Volume 2 (ASPLOS '24)</i>. ACM, 4 2024. doi:</p>",
+          "polygon": [
+            [
+              126.5189323425293,
+              70.82608795166016
+            ],
+            [
+              504.8430633544922,
+              70.82608795166016
+            ],
+            [
+              504.8430633544922,
+              116.47884750366211
+            ],
+            [
+              126.5189323425293,
+              116.47884750366211
+            ]
+          ],
+          "bbox": [
+            126.5189323425293,
+            70.82608795166016,
+            504.8430633544922,
+            116.47884750366211
+          ],
+          "children": null,
+          "section_hierarchy": {
+            "1": "/page/4/SectionHeader/3",
+            "2": "/page/4/SectionHeader/8"
+          },
+          "images": {}
+        },
+        {
+          "id": "/page/5/Text/211",
+          "block_type": "Text",
+          "html": "<p block-type=\"Text\"><span id=\"page-5-13\"></span><span id=\"page-5-12\"></span><span id=\"page-5-11\"></span><span id=\"page-5-10\"></span><span id=\"page-5-9\"></span><span id=\"page-5-8\"></span><span id=\"page-5-7\"></span><span id=\"page-5-6\"></span><span id=\"page-5-5\"></span><span id=\"page-5-4\"></span><span id=\"page-5-3\"></span><span id=\"page-5-2\"></span><span id=\"page-5-1\"></span><span id=\"page-5-0\"></span>10.1145/3620665.3640366. URL <a href=\"https://pytorch.org/assets/pytorch2-2.pdf\">https://pytorch.org/assets/pytorch2-2.pdf</a>. [3] C. Auer, M. Dolfi, A. Carvalho, C. B. Ramis, and P. W. Staar. Delivering document conversion as a cloud service with high throughput and responsiveness. In <i>2022 IEEE 15th International</i> <i>Conference on Cloud Computing (CLOUD)</i>, pages 363–373. IEEE, 2022. [4] J. Berkenbilt. Qpdf: A content-preserving pdf document transformer, 2024. URL <a href=\"https://github.com/qpdf/qpdf\">https:</a> <a href=\"https://github.com/qpdf/qpdf\">//github.com/qpdf/qpdf</a>. [5] O. R. developers. Onnx runtime. <a href=\"https://onnxruntime.ai/\">https://onnxruntime.ai/</a>, 2024. Version: 1.18.1. [6] IBM. Data Prep Kit: a community project to democratize and accelerate unstructured data preparation for LLM app developers, 2024. URL <a href=\"https://github.com/IBM/data-prep-kit\">https://github.com/IBM/</a> <a href=\"https://github.com/IBM/data-prep-kit\">data-prep-kit</a>. [7] A. S. Inc. PyMuPDF, 2024. URL <a href=\"https://github.com/pymupdf/PyMuPDF\">https://github.com/pymupdf/PyMuPDF</a>. [8] J. Liu. LlamaIndex, 11 2022. URL <a href=\"https://github.com/jerryjliu/llama_index\">https://github.com/jerryjliu/llama_index</a>. [9] M. Lysak, A. Nassar, N. Livathinos, C. Auer, and P. Staar. Optimized Table Tokenization for Table Structure Recognition. In <i>Document Analysis and Recognition - ICDAR 2023: 17th</i> <i>International Conference, San Jose, CA, USA, August 21–26, 2023, Proceedings, Part II</i> <i>´</i> , pages 37–50, Berlin, Heidelberg, Aug. 2023. Springer-Verlag. ISBN 978-3-031-41678-1. doi: 10. 1007/978-3-031-41679-8 3. URL <a href=\"https://doi.org/10.1007/978-3-031-41679-8_3\">https://doi.org/10.1007/978-3-031-41679-8_3</a>. [10] L. Mishra, S. Dhibi, Y. Kim, C. Berrospi Ramis, S. Gupta, M. Dolfi, and P. Staar. Statements: Universal information extraction from tables with large language models for ESG KPIs. In D. Stammbach, J. Ni, T. Schimanski, K. Dutia, A. Singh, J. Bingler, C. Christiaen, N. Kushwaha, V. Muccione, S. A. Vaghefi, and M. Leippold, editors, <i>Proceedings of the</i> <i>1st Workshop on Natural Language Processing Meets Climate Change (ClimateNLP 2024)</i>, pages 193–214, Bangkok, Thailand, Aug. 2024. Association for Computational Linguistics. URL <a href=\"https://aclanthology.org/2024.climatenlp-1.15\">https://aclanthology.org/2024.climatenlp-1.15</a>. [11] L. Morin, V. Weber, G. I. Meijer, F. Yu, and P. W. J. Staar. Patcid: an open-access dataset of chemical structures in patent documents. <i>Nature Communications</i>, 15(1):6532, August 2024. ISSN 2041-1723. doi: 10.1038/s41467-024-50779-y. URL <a href=\"https://doi.org/10.1038/s41467-024-50779-y\">https://doi.org/10.1038/</a> <a href=\"https://doi.org/10.1038/s41467-024-50779-y\">s41467-024-50779-y</a>. [12] A. Nassar, N. Livathinos, M. Lysak, and P. Staar. Tableformer: Table structure understanding with transformers. In <i>Proceedings of the IEEE/CVF Conference on Computer Vision and</i> <i>Pattern Recognition</i>, pages 4614–4623, 2022. [13] B. Pfitzmann, C. Auer, M. Dolfi, A. S. Nassar, and P. Staar. Doclaynet: a large humanannotated dataset for document-layout segmentation. pages 3743–3751, 2022. [14] pypdf Maintainers. pypdf: A Pure-Python PDF Library, 2024. URL <a href=\"https://github.com/py-pdf/pypdf\">https://github.com/</a> <a href=\"https://github.com/py-pdf/pypdf\">py-pdf/pypdf</a>. [15] P. Team. PyPDFium2: Python bindings for PDFium, 2024. URL <a href=\"https://github.com/pypdfium2-team/pypdfium2\">https://github.com/</a> <a href=\"https://github.com/pypdfium2-team/pypdfium2\">pypdfium2-team/pypdfium2</a>. [16] Y. Zhao, W. Lv, S. Xu, J. Wei, G. Wang, Q. Dang, Y. Liu, and J. Chen. Detrs beat yolos on real-time object detection, 2023.</p>",
+          "polygon": [
+            [
+              106.78808212280273,
+              105.49068832397461
+            ],
+            [
+              506.5162353515625,
+              105.49068832397461
+            ],
+            [
+              506.5162353515625,
+              642.9788360595703
+            ],
+            [
+              106.78808212280273,
+              642.9788360595703
+            ]
+          ],
+          "bbox": [
+            106.78808212280273,
+            105.49068832397461,
+            506.5162353515625,
+            642.9788360595703
+          ],
+          "children": null,
+          "section_hierarchy": {
+            "1": "/page/4/SectionHeader/3",
+            "2": "/page/4/SectionHeader/8"
+          },
+          "images": {}
+        },
+        {
+          "id": "/page/5/PageFooter/2",
+          "block_type": "PageFooter",
+          "html": "",
+          "polygon": [
+            [
+              300.3947525024414,
+              739.2661285400391
+            ],
+            [
+              309.25646209716797,
+              739.2661285400391
+            ],
+            [
+              309.25646209716797,
+              752.0398750305176
+            ],
+            [
+              300.3947525024414,
+              752.0398750305176
+            ]
+          ],
+          "bbox": [
+            300.3947525024414,
+            739.2661285400391,
+            309.25646209716797,
+            752.0398750305176
+          ],
+          "children": null,
+          "section_hierarchy": {
+            "1": "/page/4/SectionHeader/3",
+            "2": "/page/4/SectionHeader/8"
+          },
+          "images": {}
+        }
+      ],
+      "section_hierarchy": {
+        "1": "/page/4/SectionHeader/3",
+        "2": "/page/4/SectionHeader/8"
+      },
+      "images": null
+    },
+    {
+      "id": "/page/6/Page/490",
+      "block_type": "Page",
+      "html": "<content-ref src='/page/6/SectionHeader/0'></content-ref><content-ref src='/page/6/Text/1'></content-ref><content-ref src='/page/6/Text/4'></content-ref><content-ref src='/page/6/Text/5'></content-ref><content-ref src='/page/6/Text/6'></content-ref><content-ref src='/page/6/Text/7'></content-ref><content-ref src='/page/6/Text/8'></content-ref><content-ref src='/page/6/Text/9'></content-ref><content-ref src='/page/6/Text/10'></content-ref><content-ref src='/page/6/Text/11'></content-ref><content-ref src='/page/6/Text/12'></content-ref><content-ref src='/page/6/Text/13'></content-ref><content-ref src='/page/6/Text/14'></content-ref><content-ref src='/page/6/Text/15'></content-ref><content-ref src='/page/6/Caption/2'></content-ref><content-ref src='/page/6/Text/16'></content-ref><content-ref src='/page/6/Text/17'></content-ref><content-ref src='/page/6/Text/18'></content-ref><content-ref src='/page/6/Text/19'></content-ref><content-ref src='/page/6/Text/20'></content-ref><content-ref src='/page/6/Text/21'></content-ref><content-ref src='/page/6/Text/22'></content-ref><content-ref src='/page/6/Text/23'></content-ref><content-ref src='/page/6/Text/24'></content-ref><content-ref src='/page/6/Text/25'></content-ref><content-ref src='/page/6/Text/26'></content-ref><content-ref src='/page/6/Text/27'></content-ref><content-ref src='/page/6/Text/28'></content-ref><content-ref src='/page/6/Text/29'></content-ref><content-ref src='/page/6/Text/30'></content-ref><content-ref src='/page/6/Text/31'></content-ref><content-ref src='/page/6/Text/32'></content-ref><content-ref src='/page/6/Text/33'></content-ref><content-ref src='/page/6/Text/34'></content-ref><content-ref src='/page/6/Text/35'></content-ref><content-ref src='/page/6/Text/36'></content-ref><content-ref src='/page/6/Text/37'></content-ref><content-ref src='/page/6/Text/38'></content-ref><content-ref src='/page/6/Text/39'></content-ref><content-ref src='/page/6/Text/40'></content-ref><content-ref src='/page/6/Text/41'></content-ref><content-ref src='/page/6/Text/42'></content-ref><content-ref src='/page/6/PageFooter/3'></content-ref>",
+      "polygon": [
+        [
+          0.0,
+          0.0
+        ],
+        [
+          612.0,
+          0.0
+        ],
+        [
+          612.0,
+          792.0
+        ],
+        [
+          0.0,
+          792.0
+        ]
+      ],
+      "bbox": [
+        0.0,
+        0.0,
+        612.0,
+        792.0
+      ],
+      "children": [
+        {
+          "id": "/page/6/SectionHeader/0",
+          "block_type": "SectionHeader",
+          "html": "<h2>Appendix</h2>",
+          "polygon": [
+            [
+              105.27276992797852,
+              69.93219566345215
+            ],
+            [
+              158.11070251464844,
+              69.93219566345215
+            ],
+            [
+              158.11070251464844,
+              84.461669921875
+            ],
+            [
+              105.27276992797852,
+              84.461669921875
+            ]
+          ],
+          "bbox": [
+            105.27276992797852,
+            69.93219566345215,
+            158.11070251464844,
+            84.461669921875
+          ],
+          "children": null,
+          "section_hierarchy": {
+            "1": "/page/4/SectionHeader/3",
+            "2": "/page/6/SectionHeader/0"
+          },
+          "images": {}
+        },
+        {
+          "id": "/page/6/Text/1",
+          "block_type": "Text",
+          "html": "<p block-type=\"Text\">In this section, we illustrate a few examples of Docling's output in Markdown and JSON.</p>",
+          "polygon": [
+            [
+              105.29817581176758,
+              93.48280334472656
+            ],
+            [
+              463.7544250488281,
+              93.48280334472656
+            ],
+            [
+              463.7544250488281,
+              107.23785400390625
+            ],
+            [
+              105.29817581176758,
+              107.23785400390625
+            ]
+          ],
+          "bbox": [
+            105.29817581176758,
+            93.48280334472656,
+            463.7544250488281,
+            107.23785400390625
+          ],
+          "children": null,
+          "section_hierarchy": {
+            "1": "/page/4/SectionHeader/3",
+            "2": "/page/6/SectionHeader/0"
+          },
+          "images": {}
+        },
+        {
+          "id": "/page/6/Text/4",
+          "block_type": "Text",
+          "html": "<p block-type=\"Text\">Birgit Pfitzmann IBM Research Rueschlikon, Switzerland bpf@zurich.ibm.com Christoph Auer IBM Research Rueschlikon, Switzerland cau@zurich.ibm.com Michele Dolfi IBM Research Rueschlikon, Switzerland dol@zurich.ibm.com Ahmed S. Nassar IBM Research Rueschlikon, Switzerland ahn@zurich.ibm.com Peter Staar IBM Research Rueschlikon, Switzerland taa@zurich.ibm.com</p>",
+          "polygon": [
+            [
+              329.6015625,
+              135.1422119140625
+            ],
+            [
+              436.4708251953125,
+              135.1422119140625
+            ],
+            [
+              436.4708251953125,
+              169.8935546875
+            ],
+            [
+              329.6015625,
+              169.8935546875
+            ]
+          ],
+          "bbox": [
+            329.6015625,
+            135.1422119140625,
+            436.4708251953125,
+            169.8935546875
+          ],
+          "children": null,
+          "section_hierarchy": {
+            "1": "/page/4/SectionHeader/3",
+            "2": "/page/6/SectionHeader/0"
+          },
+          "images": {}
+        },
+        {
+          "id": "/page/6/Text/5",
+          "block_type": "Text",
+          "html": "<p block-type=\"Text\">Accurate document layout analysis is a key requirement for highquality PDF document conversion. With the recent availability of public, large groundtruth datasets such as PubLayNet and DocBank, deep-learning models have proven to be very effective at layout detection and segmentation. While these datasets are of adequate size to train such models, they severely lack in layout variability since they are sourced from scientific article repositories such as PubMed and arXiv only. Consequently, the accuracy of the layout segmentation drops significantly when these models are applied on more challenging and diverse layouts. In this paper, we present DocLayNet , a new, publicly available, document-layout annotation dataset in COCO format. It contains 80863 manually annotated pages from diverse data sources to represent a wide variability in layouts. For each PDF page, the layout annotations provide labelled bounding-boxes with a choice of 11 distinct classes. DocLayNet also provides a subset of double- and triple-annotated pages to determine the inter-annotator agreement. In multiple experiments, we provide baseline accuracy scores (in mAP) for a set of popular object detection models. We also demonstrate that these models fall approximately 10% behind the inter-annotator agreement. Furthermore, we provide evidence that DocLayNet is of sufficient size. Lastly, we compare models trained on PubLayNet, DocBank and DocLayNet, showing that layout predictions of the DocLayNettrained models are more robust and thus the preferred choice for general-purpose document-layout</p>",
+          "polygon": [
+            [
+              329.6015625,
+              187.48370361328125
+            ],
+            [
+              528.1126708984375,
+              187.48370361328125
+            ],
+            [
+              528.1126708984375,
+              237.67999267578125
+            ],
+            [
+              329.6015625,
+              237.67999267578125
+            ]
+          ],
+          "bbox": [
+            329.6015625,
+            187.48370361328125,
+            528.1126708984375,
+            237.67999267578125
+          ],
+          "children": null,
+          "section_hierarchy": {
+            "1": "/page/4/SectionHeader/3",
+            "2": "/page/6/SectionHeader/0"
+          },
+          "images": {}
+        },
+        {
+          "id": "/page/6/Text/6",
+          "block_type": "Text",
+          "html": "<p block-type=\"Text\">· Information systems → Document structure ; · Applied computing → Document analysis ; · Computing methodologies → Machine learning ;</p>",
+          "polygon": [
+            [
+              329.6015625,
+              259.583984375
+            ],
+            [
+              516.2177124023438,
+              259.583984375
+            ],
+            [
+              516.2177124023438,
+              262.99261474609375
+            ],
+            [
+              329.6015625,
+              262.99261474609375
+            ]
+          ],
+          "bbox": [
+            329.6015625,
+            259.583984375,
+            516.2177124023438,
+            262.99261474609375
+          ],
+          "children": null,
+          "section_hierarchy": {
+            "1": "/page/4/SectionHeader/3",
+            "2": "/page/6/SectionHeader/0"
+          },
+          "images": {}
+        },
+        {
+          "id": "/page/6/Text/7",
+          "block_type": "Text",
+          "html": "<p block-type=\"Text\">Computer vision ; Object detection ;</p>",
+          "polygon": [
+            [
+              329.6015625,
+              264.708740234375
+            ],
+            [
+              377.17596435546875,
+              264.708740234375
+            ],
+            [
+              377.17596435546875,
+              267.7119140625
+            ],
+            [
+              329.6015625,
+              267.7119140625
+            ]
+          ],
+          "bbox": [
+            329.6015625,
+            264.708740234375,
+            377.17596435546875,
+            267.7119140625
+          ],
+          "children": null,
+          "section_hierarchy": {
+            "1": "/page/4/SectionHeader/3",
+            "2": "/page/6/SectionHeader/0"
+          },
+          "images": {}
+        },
+        {
+          "id": "/page/6/Text/8",
+          "block_type": "Text",
+          "html": "<p block-type=\"Text\">Permission to make digital or hard copies of part or all of this work for personal or classroom use is granted without fee provided that copies are not made or distributed for profit or commercial advantage and that copies bear this notice and the full citation on the first page. Copyrights for third-party</p>",
+          "polygon": [
+            [
+              329.6015625,
+              272.645751953125
+            ],
+            [
+              527.0862426757812,
+              272.645751953125
+            ],
+            [
+              527.0862426757812,
+              280.36822509765625
+            ],
+            [
+              329.6015625,
+              280.36822509765625
+            ]
+          ],
+          "bbox": [
+            329.6015625,
+            272.645751953125,
+            527.0862426757812,
+            280.36822509765625
+          ],
+          "children": null,
+          "section_hierarchy": {
+            "1": "/page/4/SectionHeader/3",
+            "2": "/page/6/SectionHeader/0"
+          },
+          "images": {}
+        },
+        {
+          "id": "/page/6/Text/9",
+          "block_type": "Text",
+          "html": "<p block-type=\"Text\">components of this work must be honored. For all other uses, contact the owner/author(s).</p>",
+          "polygon": [
+            [
+              329.6015625,
+              282.08441162109375
+            ],
+            [
+              449.2904052734375,
+              282.08441162109375
+            ],
+            [
+              449.2904052734375,
+              285.0876159667969
+            ],
+            [
+              329.6015625,
+              285.0876159667969
+            ]
+          ],
+          "bbox": [
+            329.6015625,
+            282.08441162109375,
+            449.2904052734375,
+            285.0876159667969
+          ],
+          "children": null,
+          "section_hierarchy": {
+            "1": "/page/4/SectionHeader/3",
+            "2": "/page/6/SectionHeader/0"
+          },
+          "images": {}
+        },
+        {
+          "id": "/page/6/Text/10",
+          "block_type": "Text",
+          "html": "<p block-type=\"Text\">KDD '22, August 14-18, 2022, Washington, DC, USA © 2022 Copyright held by the owner/author(s). ACM ISBN 978-1-4503-9385-0/22/08.</p>",
+          "polygon": [
+            [
+              329.6015625,
+              290.02142333984375
+            ],
+            [
+              513.2440185546875,
+              290.02142333984375
+            ],
+            [
+              513.2440185546875,
+              293.0246276855469
+            ],
+            [
+              329.6015625,
+              293.0246276855469
+            ]
+          ],
+          "bbox": [
+            329.6015625,
+            290.02142333984375,
+            513.2440185546875,
+            293.0246276855469
+          ],
+          "children": null,
+          "section_hierarchy": {
+            "1": "/page/4/SectionHeader/3",
+            "2": "/page/6/SectionHeader/0"
+          },
+          "images": {}
+        },
+        {
+          "id": "/page/6/Text/11",
+          "block_type": "Text",
+          "html": "<p block-type=\"Text\">https://doi.org/10.1145/3534678.3539043</p>",
+          "polygon": [
+            [
+              329.6015625,
+              294.74072265625
+            ],
+            [
+              384.32049560546875,
+              294.74072265625
+            ],
+            [
+              384.32049560546875,
+              297.7439270019531
+            ],
+            [
+              329.6015625,
+              297.7439270019531
+            ]
+          ],
+          "bbox": [
+            329.6015625,
+            294.74072265625,
+            384.32049560546875,
+            297.7439270019531
+          ],
+          "children": null,
+          "section_hierarchy": {
+            "1": "/page/4/SectionHeader/3",
+            "2": "/page/6/SectionHeader/0"
+          },
+          "images": {}
+        },
+        {
+          "id": "/page/6/Text/12",
+          "block_type": "Text",
+          "html": "<p block-type=\"Text\">Figure 1: Four examples of complex page layouts across different document categories</p>",
+          "polygon": [
+            [
+              329.6015625,
+              302.6777648925781
+            ],
+            [
+              445.4004211425781,
+              302.6777648925781
+            ],
+            [
+              445.4004211425781,
+              305.68096923828125
+            ],
+            [
+              329.6015625,
+              305.68096923828125
+            ]
+          ],
+          "bbox": [
+            329.6015625,
+            302.6777648925781,
+            445.4004211425781,
+            305.68096923828125
+          ],
+          "children": null,
+          "section_hierarchy": {
+            "1": "/page/4/SectionHeader/3",
+            "2": "/page/6/SectionHeader/0"
+          },
+          "images": {}
+        },
+        {
+          "id": "/page/6/Text/13",
+          "block_type": "Text",
+          "html": "<p block-type=\"Text\">PDF document conversion, layout segmentation, object-detection, data set, Machine Learning</p>",
+          "polygon": [
+            [
+              329.6015625,
+              323.2710266113281
+            ],
+            [
+              454.3087158203125,
+              323.2710266113281
+            ],
+            [
+              454.3087158203125,
+              326.27423095703125
+            ],
+            [
+              329.6015625,
+              326.27423095703125
+            ]
+          ],
+          "bbox": [
+            329.6015625,
+            323.2710266113281,
+            454.3087158203125,
+            326.27423095703125
+          ],
+          "children": null,
+          "section_hierarchy": {
+            "1": "/page/4/SectionHeader/3",
+            "2": "/page/6/SectionHeader/0"
+          },
+          "images": {}
+        },
+        {
+          "id": "/page/6/Text/14",
+          "block_type": "Text",
+          "html": "<p block-type=\"Text\">Birgit Pfitzmann, Christoph Auer, Michele Dolfi, Ahmed S. Nassar, and Peter Staar. 2022. DocLayNet: A Large Human-Annotated Dataset for DocumentLayout Analysis. In Proceedings of the 28th ACM SIGKDD Conference on Knowledge Discovery and Data Mining (KDD '22), August 14-18,</p>",
+          "polygon": [
+            [
+              329.6015625,
+              343.8643798828125
+            ],
+            [
+              528.1591796875,
+              343.8643798828125
+            ],
+            [
+              528.1591796875,
+              351.5868835449219
+            ],
+            [
+              329.6015625,
+              351.5868835449219
+            ]
+          ],
+          "bbox": [
+            329.6015625,
+            343.8643798828125,
+            528.1591796875,
+            351.5868835449219
+          ],
+          "children": null,
+          "section_hierarchy": {
+            "1": "/page/4/SectionHeader/3",
+            "2": "/page/6/SectionHeader/0"
+          },
+          "images": {}
+        },
+        {
+          "id": "/page/6/Text/15",
+          "block_type": "Text",
+          "html": "<p block-type=\"Text\">2022, Washington, DC, USA. ACM, New York, NY, USA, 9 pages. https://doi.org/10.1145/ 3534678.3539043</p>",
+          "polygon": [
+            [
+              329.6015625,
+              353.302978515625
+            ],
+            [
+              473.1790466308594,
+              353.302978515625
+            ],
+            [
+              473.1790466308594,
+              356.3061828613281
+            ],
+            [
+              329.6015625,
+              356.3061828613281
+            ]
+          ],
+          "bbox": [
+            329.6015625,
+            353.302978515625,
+            473.1790466308594,
+            356.3061828613281
+          ],
+          "children": null,
+          "section_hierarchy": {
+            "1": "/page/4/SectionHeader/3",
+            "2": "/page/6/SectionHeader/0"
+          },
+          "images": {}
+        },
+        {
+          "id": "/page/6/Caption/2",
+          "block_type": "Caption",
+          "html": "<p>Despite the substantial improvements achieved with machine-learning (ML) approaches and deep neural networks in recent years, document conversion remains a challenging problem, as demonstrated by the numerous public competitions held on this topic [1-4]. The challenge originates from the huge variability in PDF documents regarding layout, language and formats (scanned, programmatic or a combination of both). Engineering a single ML model that can be applied on all types of documents and provides high-quality layout segmentation remains to this day extremely challenging [5]. To highlight the variability in document layouts, we show a few example documents from the DocLayNet dataset in Figure 1. Figure 2: Title page of the DocLayNet paper <a href=\"https://arxiv.org/pdf/2206.01062\">(arxiv.org/pdf/2206.01062)</a> - left PDF, right rendered Markdown. If recognized, metadata such as authors are appearing first under the title. Text content inside figures is currently dropped, the caption is retained and linked to the figure in the JSON representation (not shown).</p>",
+          "polygon": [
+            [
+              104.97895431518555,
+              367.77344512939453
+            ],
+            [
+              527.5913696289062,
+              367.77344512939453
+            ],
+            [
+              527.5913696289062,
+              414.3149108886719
+            ],
+            [
+              104.97895431518555,
+              414.3149108886719
+            ]
+          ],
+          "bbox": [
+            104.97895431518555,
+            367.77344512939453,
+            527.5913696289062,
+            414.3149108886719
+          ],
+          "children": null,
+          "section_hierarchy": {
+            "1": "/page/4/SectionHeader/3",
+            "2": "/page/6/SectionHeader/0"
+          },
+          "images": {}
+        },
+        {
+          "id": "/page/6/Text/16",
+          "block_type": "Text",
+          "html": "<p block-type=\"Text\"><b>DocLayNet: A Large Human-Annotated Dataset for Document-Layout Analysis</b></p>",
+          "polygon": [
+            [
+              329.6015930175781,
+              124.2664794921875
+            ],
+            [
+              520.7847900390625,
+              124.2664794921875
+            ],
+            [
+              520.7847900390625,
+              129.414794921875
+            ],
+            [
+              329.6015930175781,
+              129.414794921875
+            ]
+          ],
+          "bbox": [
+            329.6015930175781,
+            124.2664794921875,
+            520.7847900390625,
+            129.414794921875
+          ],
+          "children": null,
+          "section_hierarchy": {
+            "1": "/page/4/SectionHeader/3",
+            "2": "/page/6/SectionHeader/0"
+          },
+          "images": {}
+        },
+        {
+          "id": "/page/6/Text/17",
+          "block_type": "Text",
+          "html": "<p block-type=\"Text\"><b>ABSTRACT</b></p>",
+          "polygon": [
+            [
+              329.6015930175781,
+              176.6077880859375
+            ],
+            [
+              357.9161071777344,
+              176.6077880859375
+            ],
+            [
+              357.9161071777344,
+              181.756103515625
+            ],
+            [
+              329.6015930175781,
+              181.756103515625
+            ]
+          ],
+          "bbox": [
+            329.6015930175781,
+            176.6077880859375,
+            357.9161071777344,
+            181.756103515625
+          ],
+          "children": null,
+          "section_hierarchy": {
+            "1": "/page/4/SectionHeader/3",
+            "2": "/page/6/SectionHeader/0"
+          },
+          "images": {}
+        },
+        {
+          "id": "/page/6/Text/18",
+          "block_type": "Text",
+          "html": "<p block-type=\"Text\"><b>CCS CONCEPTS</b></p>",
+          "polygon": [
+            [
+              329.6015930175781,
+              249.11358642578125
+            ],
+            [
+              370.50677490234375,
+              249.11358642578125
+            ],
+            [
+              370.50677490234375,
+              254.26190185546875
+            ],
+            [
+              329.6015930175781,
+              254.26190185546875
+            ]
+          ],
+          "bbox": [
+            329.6015930175781,
+            249.11358642578125,
+            370.50677490234375,
+            254.26190185546875
+          ],
+          "children": null,
+          "section_hierarchy": {
+            "1": "/page/4/SectionHeader/3",
+            "2": "/page/6/SectionHeader/0"
+          },
+          "images": {}
+        },
+        {
+          "id": "/page/6/Text/19",
+          "block_type": "Text",
+          "html": "<p block-type=\"Text\"><b>KEYWORDS</b></p>",
+          "polygon": [
+            [
+              329.6015930175781,
+              312.3952331542969
+            ],
+            [
+              359.9208984375,
+              312.3952331542969
+            ],
+            [
+              359.9208984375,
+              317.5435485839844
+            ],
+            [
+              329.6015930175781,
+              317.5435485839844
+            ]
+          ],
+          "bbox": [
+            329.6015930175781,
+            312.3952331542969,
+            359.9208984375,
+            317.5435485839844
+          ],
+          "children": null,
+          "section_hierarchy": {
+            "1": "/page/4/SectionHeader/3",
+            "2": "/page/6/SectionHeader/0"
+          },
+          "images": {}
+        },
+        {
+          "id": "/page/6/Text/20",
+          "block_type": "Text",
+          "html": "<p block-type=\"Text\"><b>ACM Reference Format:</b></p>",
+          "polygon": [
+            [
+              329.6015930175781,
+              332.9885559082031
+            ],
+            [
+              388.2477722167969,
+              332.9885559082031
+            ],
+            [
+              388.2477722167969,
+              338.1368713378906
+            ],
+            [
+              329.6015930175781,
+              338.1368713378906
+            ]
+          ],
+          "bbox": [
+            329.6015930175781,
+            332.9885559082031,
+            388.2477722167969,
+            338.1368713378906
+          ],
+          "children": null,
+          "section_hierarchy": {
+            "1": "/page/4/SectionHeader/3",
+            "2": "/page/6/SectionHeader/0"
+          },
+          "images": {}
+        },
+        {
+          "id": "/page/6/Text/21",
+          "block_type": "Text",
+          "html": "<p block-type=\"Text\">DocLayNet: A Large Human-Annotated Dataset for Document-Layout Analysis</p>",
+          "polygon": [
+            [
+              144.39865112304688,
+              122.31732177734375
+            ],
+            [
+              291.9444274902344,
+              122.31732177734375
+            ],
+            [
+              291.9444274902344,
+              137.946044921875
+            ],
+            [
+              144.39865112304688,
+              137.946044921875
+            ]
+          ],
+          "bbox": [
+            144.39865112304688,
+            122.31732177734375,
+            291.9444274902344,
+            137.946044921875
+          ],
+          "children": null,
+          "section_hierarchy": {
+            "1": "/page/4/SectionHeader/3",
+            "2": "/page/6/SectionHeader/0"
+          },
+          "images": {}
+        },
+        {
+          "id": "/page/6/Text/22",
+          "block_type": "Text",
+          "html": "<p block-type=\"Text\">Birgit P!tzmann IBM Research Rueschlikon, Switzerland bpf@zurich.ibm.com</p>",
+          "polygon": [
+            [
+              138.34007263183594,
+              141.0831298828125
+            ],
+            [
+              176.4594268798828,
+              141.0831298828125
+            ],
+            [
+              176.4594268798828,
+              160.3260498046875
+            ],
+            [
+              138.34007263183594,
+              160.3260498046875
+            ]
+          ],
+          "bbox": [
+            138.34007263183594,
+            141.0831298828125,
+            176.4594268798828,
+            160.3260498046875
+          ],
+          "children": null,
+          "section_hierarchy": {
+            "1": "/page/4/SectionHeader/3",
+            "2": "/page/6/SectionHeader/0"
+          },
+          "images": {}
+        },
+        {
+          "id": "/page/6/Text/23",
+          "block_type": "Text",
+          "html": "<p block-type=\"Text\">Christoph Auer IBM Research Rueschlikon, Switzerland cau@zurich.ibm.com</p>",
+          "polygon": [
+            [
+              199.22950744628906,
+              141.0831298828125
+            ],
+            [
+              237.34886169433594,
+              141.0831298828125
+            ],
+            [
+              237.34886169433594,
+              160.3260498046875
+            ],
+            [
+              199.22950744628906,
+              160.3260498046875
+            ]
+          ],
+          "bbox": [
+            199.22950744628906,
+            141.0831298828125,
+            237.34886169433594,
+            160.3260498046875
+          ],
+          "children": null,
+          "section_hierarchy": {
+            "1": "/page/4/SectionHeader/3",
+            "2": "/page/6/SectionHeader/0"
+          },
+          "images": {}
+        },
+        {
+          "id": "/page/6/Text/24",
+          "block_type": "Text",
+          "html": "<p block-type=\"Text\">Michele Dol! IBM Research Rueschlikon, Switzerland dol@zurich.ibm.com</p>",
+          "polygon": [
+            [
+              260.1189270019531,
+              141.0831298828125
+            ],
+            [
+              298.23828125,
+              141.0831298828125
+            ],
+            [
+              298.23828125,
+              160.3260498046875
+            ],
+            [
+              260.1189270019531,
+              160.3260498046875
+            ]
+          ],
+          "bbox": [
+            260.1189270019531,
+            141.0831298828125,
+            298.23828125,
+            160.3260498046875
+          ],
+          "children": null,
+          "section_hierarchy": {
+            "1": "/page/4/SectionHeader/3",
+            "2": "/page/6/SectionHeader/0"
+          },
+          "images": {}
+        },
+        {
+          "id": "/page/6/Text/25",
+          "block_type": "Text",
+          "html": "<p block-type=\"Text\">Ahmed S. Nassar IBM Research Rueschlikon, Switzerland ahn@zurich.ibm.com</p>",
+          "polygon": [
+            [
+              168.5998992919922,
+              162.74041748046875
+            ],
+            [
+              206.71925354003906,
+              162.74041748046875
+            ],
+            [
+              206.71925354003906,
+              181.9832763671875
+            ],
+            [
+              168.5998992919922,
+              181.9832763671875
+            ]
+          ],
+          "bbox": [
+            168.5998992919922,
+            162.74041748046875,
+            206.71925354003906,
+            181.9832763671875
+          ],
+          "children": null,
+          "section_hierarchy": {
+            "1": "/page/4/SectionHeader/3",
+            "2": "/page/6/SectionHeader/0"
+          },
+          "images": {}
+        },
+        {
+          "id": "/page/6/Text/26",
+          "block_type": "Text",
+          "html": "<p block-type=\"Text\">Peter Staar IBM Research Rueschlikon, Switzerland taa@zurich.ibm.com</p>",
+          "polygon": [
+            [
+              229.48968505859375,
+              162.74041748046875
+            ],
+            [
+              267.6090393066406,
+              162.74041748046875
+            ],
+            [
+              267.6090393066406,
+              181.9832763671875
+            ],
+            [
+              229.48968505859375,
+              181.9832763671875
+            ]
+          ],
+          "bbox": [
+            229.48968505859375,
+            162.74041748046875,
+            267.6090393066406,
+            181.9832763671875
+          ],
+          "children": null,
+          "section_hierarchy": {
+            "1": "/page/4/SectionHeader/3",
+            "2": "/page/6/SectionHeader/0"
+          },
+          "images": {}
+        },
+        {
+          "id": "/page/6/Text/27",
+          "block_type": "Text",
+          "html": "<p block-type=\"Text\">ABSTRACT</p>",
+          "polygon": [
+            [
+              124.5526351928711,
+              184.0479736328125
+            ],
+            [
+              146.12112426757812,
+              184.0479736328125
+            ],
+            [
+              146.12112426757812,
+              189.478515625
+            ],
+            [
+              124.5526351928711,
+              189.478515625
+            ]
+          ],
+          "bbox": [
+            124.5526351928711,
+            184.0479736328125,
+            146.12112426757812,
+            189.478515625
+          ],
+          "children": null,
+          "section_hierarchy": {
+            "1": "/page/4/SectionHeader/3",
+            "2": "/page/6/SectionHeader/0"
+          },
+          "images": {}
+        },
+        {
+          "id": "/page/6/Text/28",
+          "block_type": "Text",
+          "html": "<p block-type=\"Text\">Accurate document layout analysis is a key requirement for highquality PDF document conversion. With the recent availability of public, large ground-truth datasets such as PubLayNet and DocBank, deep-learning models have proven to be very e\"ective at layout detection and segmentation. While these datasets are of adequate size to train such models, they severely lack in layout variability since they are sourced from scienti!c article repositories such as PubMed and arXiv only. Consequently, the accuracy of the layout segmentation drops signi!cantly when these models are applied on more challenging and diverse layouts. In this paper, we present DocLayNet, a new, publicly available, document-layout annotation dataset in COCO format. It contains 80863 manually annotated pages from diverse data sources to represent a wide variability in layouts. For each PDF page, the layout annotations provide labelled bounding-boxes with a choice of 11 distinct classes. DocLayNet also provides a subset of double- and triple-annotated pages to determine the inter-annotator agreement. In multiple experiments, we provide baseline accuracy scores (in mAP) for a set of popular object detection models. We also demonstrate that these models fall approximately 10% behind the inter-annotator agreement. Furthermore, we provide evidence that DocLayNet is of su#cient size. Lastly, we compare models trained on PubLayNet, DocBank and DocLayNet, showing that layout predictions of the DocLayNettrained models are more robust and thus the preferred choice for general-purpose document-layout analysis. CCS CONCEPTS</p>",
+          "polygon": [
+            [
+              124.42982482910156,
+              189.49053955078125
+            ],
+            [
+              214.2318878173828,
+              189.49053955078125
+            ],
+            [
+              214.2318878173828,
+              301.9823913574219
+            ],
+            [
+              124.42982482910156,
+              301.9823913574219
+            ]
+          ],
+          "bbox": [
+            124.42982482910156,
+            189.49053955078125,
+            214.2318878173828,
+            301.9823913574219
+          ],
+          "children": null,
+          "section_hierarchy": {
+            "1": "/page/4/SectionHeader/3",
+            "2": "/page/6/SectionHeader/0"
+          },
+          "images": {}
+        },
+        {
+          "id": "/page/6/Text/29",
+          "block_type": "Text",
+          "html": "<p block-type=\"Text\">•Information systems→Document structure;• Applied computing → Document analysis; • Computing methodologies → Machine learning; Computer vision; Object detection; Permission to make digital or hard copies of part or all of this work for personal or classroom use is granted without fee provided that copies are not made or distributed for pro!t or commercial advantage and that copies bear this notice and the full citation on the !rst page. Copyrights for third-party components of this work must be honored. KDD '22, August 14–18, 2022, Washington, DC, USA © 2022 Copyright held by the owner/author(s). ACM ISBN 978-1-4503-9385-0/22/08. https://doi.org/10.1145/3534678.3539043</p>",
+          "polygon": [
+            [
+              124.37419891357422,
+              301.9948425292969
+            ],
+            [
+              215.0823516845703,
+              301.9948425292969
+            ],
+            [
+              215.0823516845703,
+              355.4237365722656
+            ],
+            [
+              124.37419891357422,
+              355.4237365722656
+            ]
+          ],
+          "bbox": [
+            124.37419891357422,
+            301.9948425292969,
+            215.0823516845703,
+            355.4237365722656
+          ],
+          "children": null,
+          "section_hierarchy": {
+            "1": "/page/4/SectionHeader/3",
+            "2": "/page/6/SectionHeader/0"
+          },
+          "images": {}
+        },
+        {
+          "id": "/page/6/Text/30",
+          "block_type": "Text",
+          "html": "<p block-type=\"Text\"><b>SELECTING OBJECTIVE</b> <b>MAGNIFICATION</b> <b>CHANGING THE INTERPUPILLARY</b> <b>DISTANCE</b> 4. Open the window in the base plate and</p>",
+          "polygon": [
+            [
+              225.84982299804688,
+              191.12255859375
+            ],
+            [
+              237.38380432128906,
+              191.12255859375
+            ],
+            [
+              237.38380432128906,
+              214.2222900390625
+            ],
+            [
+              225.84982299804688,
+              214.2222900390625
+            ]
+          ],
+          "bbox": [
+            225.84982299804688,
+            191.12255859375,
+            237.38380432128906,
+            214.2222900390625
+          ],
+          "children": null,
+          "section_hierarchy": {
+            "1": "/page/4/SectionHeader/3",
+            "2": "/page/6/SectionHeader/0"
+          },
+          "images": {}
+        },
+        {
+          "id": "/page/6/Text/31",
+          "block_type": "Text",
+          "html": "<p block-type=\"Text\"><b>Model AY11230</b> <b>Model AY11234</b></p>",
+          "polygon": [
+            [
+              225.7442169189453,
+              190.2496337890625
+            ],
+            [
+              242.55076599121094,
+              190.2496337890625
+            ],
+            [
+              242.55076599121094,
+              191.2496337890625
+            ],
+            [
+              225.7442169189453,
+              191.2496337890625
+            ]
+          ],
+          "bbox": [
+            225.7442169189453,
+            190.2496337890625,
+            242.55076599121094,
+            191.2496337890625
+          ],
+          "children": null,
+          "section_hierarchy": {
+            "1": "/page/4/SectionHeader/3",
+            "2": "/page/6/SectionHeader/0"
+          },
+          "images": {}
+        },
+        {
+          "id": "/page/6/Text/32",
+          "block_type": "Text",
+          "html": "<p block-type=\"Text\">Revolving Turret SwitchLamp</p>",
+          "polygon": [
+            [
+              256.4579772949219,
+              193.15753173828125
+            ],
+            [
+              267.4638671875,
+              193.15753173828125
+            ],
+            [
+              267.4638671875,
+              203.97265625
+            ],
+            [
+              256.4579772949219,
+              203.97265625
+            ]
+          ],
+          "bbox": [
+            256.4579772949219,
+            193.15753173828125,
+            267.4638671875,
+            203.97265625
+          ],
+          "children": null,
+          "section_hierarchy": {
+            "1": "/page/4/SectionHeader/3",
+            "2": "/page/6/SectionHeader/0"
+          },
+          "images": {}
+        },
+        {
+          "id": "/page/6/Text/33",
+          "block_type": "Text",
+          "html": "<blockquote><p block-type=\"Text\">improved obstacle protection. To indicate that the new criteria had been applied to a given procedure, a is placed on  the circling line of minimums. The new circling tables and explanatory information is located in the Legend of the TPP. 7KHDSSURDFKHVXVLQJVWDQGDUGFLUFOLQJDSSURDFKDUHDVFDQEHLGHQWL¿HGE\\WKHDEVHQFHRIWKH on the circling line of</p></blockquote>",
+          "polygon": [
+            [
+              271.18621826171875,
+              236.4718017578125
+            ],
+            [
+              308.85272216796875,
+              236.4718017578125
+            ],
+            [
+              308.85272216796875,
+              240.2373046875
+            ],
+            [
+              271.18621826171875,
+              240.2373046875
+            ]
+          ],
+          "bbox": [
+            271.18621826171875,
+            236.4718017578125,
+            308.85272216796875,
+            240.2373046875
+          ],
+          "children": null,
+          "section_hierarchy": {
+            "1": "/page/4/SectionHeader/3",
+            "2": "/page/6/SectionHeader/0"
+          },
+          "images": {}
+        },
+        {
+          "id": "/page/6/Text/34",
+          "block_type": "Text",
+          "html": "<p block-type=\"Text\">Hard Surface Other Than  Hard SurfaceMetal Surface Closed Runway Under Construction</p>",
+          "polygon": [
+            [
+              271.503173828125,
+              258.10235595703125
+            ],
+            [
+              299.2850036621094,
+              258.10235595703125
+            ],
+            [
+              299.2850036621094,
+              259.5711669921875
+            ],
+            [
+              271.503173828125,
+              259.5711669921875
+            ]
+          ],
+          "bbox": [
+            271.503173828125,
+            258.10235595703125,
+            299.2850036621094,
+            259.5711669921875
+          ],
+          "children": null,
+          "section_hierarchy": {
+            "1": "/page/4/SectionHeader/3",
+            "2": "/page/6/SectionHeader/0"
+          },
+          "images": {}
+        },
+        {
+          "id": "/page/6/Text/35",
+          "block_type": "Text",
+          "html": "<p block-type=\"Text\" class=\"has-continuation\"><b>Looking back on</b> <b>175years of</b> <b>lookingforward.</b></p>",
+          "polygon": [
+            [
+              226.78643798828125,
+              249.1483154296875
+            ],
+            [
+              247.68824768066406,
+              249.1483154296875
+            ],
+            [
+              247.68824768066406,
+              260.83587646484375
+            ],
+            [
+              226.78643798828125,
+              260.83587646484375
+            ]
+          ],
+          "bbox": [
+            226.78643798828125,
+            249.1483154296875,
+            247.68824768066406,
+            260.83587646484375
+          ],
+          "children": null,
+          "section_hierarchy": {
+            "1": "/page/4/SectionHeader/3",
+            "2": "/page/6/SectionHeader/0"
+          },
+          "images": {}
+        },
+        {
+          "id": "/page/6/Text/36",
+          "block_type": "Text",
+          "html": "<p block-type=\"Text\">Stop Yield the right-of-way Explains lane use School zone signs</p>",
+          "polygon": [
+            [
+              292.0826721191406,
+              205.802001953125
+            ],
+            [
+              307.6053161621094,
+              205.802001953125
+            ],
+            [
+              307.6053161621094,
+              212.60357666015625
+            ],
+            [
+              292.0826721191406,
+              212.60357666015625
+            ]
+          ],
+          "bbox": [
+            292.0826721191406,
+            205.802001953125,
+            307.6053161621094,
+            212.60357666015625
+          ],
+          "children": null,
+          "section_hierarchy": {
+            "1": "/page/4/SectionHeader/3",
+            "2": "/page/6/SectionHeader/0"
+          },
+          "images": {}
+        },
+        {
+          "id": "/page/6/Text/37",
+          "block_type": "Text",
+          "html": "<p block-type=\"Text\">Figure 1: Four examples of complex page layouts across dif-</p>",
+          "polygon": [
+            [
+              222.53903198242188,
+              292.71966552734375
+            ],
+            [
+              312.25115966796875,
+              292.71966552734375
+            ],
+            [
+              312.25115966796875,
+              297.1831359863281
+            ],
+            [
+              222.53903198242188,
+              297.1831359863281
+            ]
+          ],
+          "bbox": [
+            222.53903198242188,
+            292.71966552734375,
+            312.25115966796875,
+            297.1831359863281
+          ],
+          "children": null,
+          "section_hierarchy": {
+            "1": "/page/4/SectionHeader/3",
+            "2": "/page/6/SectionHeader/0"
+          },
+          "images": {}
+        },
+        {
+          "id": "/page/6/Text/38",
+          "block_type": "Text",
+          "html": "<p block-type=\"Text\">ferent document categories KEYWORDS</p>",
+          "polygon": [
+            [
+              222.53903198242188,
+              296.7847900390625
+            ],
+            [
+              263.618408203125,
+              296.7847900390625
+            ],
+            [
+              263.618408203125,
+              317.3648986816406
+            ],
+            [
+              222.53903198242188,
+              317.3648986816406
+            ]
+          ],
+          "bbox": [
+            222.53903198242188,
+            296.7847900390625,
+            263.618408203125,
+            317.3648986816406
+          ],
+          "children": null,
+          "section_hierarchy": {
+            "1": "/page/4/SectionHeader/3",
+            "2": "/page/6/SectionHeader/0"
+          },
+          "images": {}
+        },
+        {
+          "id": "/page/6/Text/39",
+          "block_type": "Text",
+          "html": "<p block-type=\"Text\">PDF document conversion, layout segmentation, object-detection,</p>",
+          "polygon": [
+            [
+              222.53903198242188,
+              317.3769836425781
+            ],
+            [
+              312.0212097167969,
+              317.3769836425781
+            ],
+            [
+              312.0212097167969,
+              321.9735107421875
+            ],
+            [
+              222.53903198242188,
+              321.9735107421875
+            ]
+          ],
+          "bbox": [
+            222.53903198242188,
+            317.3769836425781,
+            312.0212097167969,
+            321.9735107421875
+          ],
+          "children": null,
+          "section_hierarchy": {
+            "1": "/page/4/SectionHeader/3",
+            "2": "/page/6/SectionHeader/0"
+          },
+          "images": {}
+        },
+        {
+          "id": "/page/6/Text/40",
+          "block_type": "Text",
+          "html": "<p block-type=\"Text\">data set, Machine Learning ACM Reference Format:</p>",
+          "polygon": [
+            [
+              222.4296112060547,
+              321.4421691894531
+            ],
+            [
+              259.2580261230469,
+              321.4421691894531
+            ],
+            [
+              259.2580261230469,
+              333.88134765625
+            ],
+            [
+              222.4296112060547,
+              333.88134765625
+            ]
+          ],
+          "bbox": [
+            222.4296112060547,
+            321.4421691894531,
+            259.2580261230469,
+            333.88134765625
+          ],
+          "children": null,
+          "section_hierarchy": {
+            "1": "/page/4/SectionHeader/3",
+            "2": "/page/6/SectionHeader/0"
+          },
+          "images": {}
+        },
+        {
+          "id": "/page/6/Text/41",
+          "block_type": "Text",
+          "html": "<p block-type=\"Text\">Birgit P!tzmann, Christoph Auer, Michele Dol!, Ahmed S. Nassar, and Peter Staar. 2022. DocLayNet: A Large Human-Annotated Dataset for Document-Layout Analysis. In Proceedings of the 28th ACM SIGKDD Conference on Knowledge Discovery and Data Mining (KDD '22), August 14–18, 2022, Washington, DC, USA. ACM, New York, NY, USA, 9 pages. https://doi.org/10.1145/</p>",
+          "polygon": [
+            [
+              222.53903198242188,
+              333.2809753417969
+            ],
+            [
+              312.15606689453125,
+              333.2809753417969
+            ],
+            [
+              312.15606689453125,
+              352.3116760253906
+            ],
+            [
+              222.53903198242188,
+              352.3116760253906
+            ]
+          ],
+          "bbox": [
+            222.53903198242188,
+            333.2809753417969,
+            312.15606689453125,
+            352.3116760253906
+          ],
+          "children": null,
+          "section_hierarchy": {
+            "1": "/page/4/SectionHeader/3",
+            "2": "/page/6/SectionHeader/0"
+          },
+          "images": {}
+        },
+        {
+          "id": "/page/6/Text/42",
+          "block_type": "Text",
+          "html": "<p block-type=\"Text\">arXiv:2206.01062v1 [cs.CV] 2 Jun 2022</p>",
+          "polygon": [
+            [
+              111.39241027832031,
+              174.5703125
+            ],
+            [
+              117.63162231445312,
+              174.5703125
+            ],
+            [
+              117.63162231445312,
+              298.9761962890625
+            ],
+            [
+              111.39241027832031,
+              298.9761962890625
+            ]
+          ],
+          "bbox": [
+            111.39241027832031,
+            174.5703125,
+            117.63162231445312,
+            298.9761962890625
+          ],
+          "children": null,
+          "section_hierarchy": {
+            "1": "/page/4/SectionHeader/3",
+            "2": "/page/6/SectionHeader/0"
+          },
+          "images": {}
+        },
+        {
+          "id": "/page/6/PageFooter/3",
+          "block_type": "PageFooter",
+          "html": "",
+          "polygon": [
+            [
+              300.8879928588867,
+              737.9410858154297
+            ],
+            [
+              309.31070709228516,
+              737.9410858154297
+            ],
+            [
+              309.31070709228516,
+              752.0399208068848
+            ],
+            [
+              300.8879928588867,
+              752.0399208068848
+            ]
+          ],
+          "bbox": [
+            300.8879928588867,
+            737.9410858154297,
+            309.31070709228516,
+            752.0399208068848
+          ],
+          "children": null,
+          "section_hierarchy": {
+            "1": "/page/4/SectionHeader/3",
+            "2": "/page/6/SectionHeader/0"
+          },
+          "images": {}
+        }
+      ],
+      "section_hierarchy": {
+        "1": "/page/4/SectionHeader/3",
+        "2": "/page/6/SectionHeader/0"
+      },
+      "images": null
+    },
+    {
+      "id": "/page/7/Page/1",
+      "block_type": "Page",
+      "html": "<content-ref src='/page/7/Caption/0'></content-ref><content-ref src='/page/7/PageFooter/1'></content-ref>",
+      "polygon": [
+        [
+          0.0,
+          0.0
+        ],
+        [
+          612.0,
+          0.0
+        ],
+        [
+          612.0,
+          792.0
+        ],
+        [
+          0.0,
+          792.0
+        ]
+      ],
+      "bbox": [
+        0.0,
+        0.0,
+        612.0,
+        792.0
+      ],
+      "children": [
+        {
+          "id": "/page/7/Caption/0",
+          "block_type": "Caption",
+          "html": "<p></p>but write the first line of the response as it would appear in the first line of the table.",
+          "polygon": [
+            [
+              104.54103469848633,
+              521.1985473632812
+            ],
+            [
+              505.25555419921875,
+              521.1985473632812
+            ],
+            [
+              505.25555419921875,
+              566.4668426513672
+            ],
+            [
+              104.54103469848633,
+              566.4668426513672
+            ]
+          ],
+          "bbox": [
+            104.54103469848633,
+            521.1985473632812,
+            505.25555419921875,
+            566.4668426513672
+          ],
+          "children": null,
+          "section_hierarchy": {
+            "1": "/page/4/SectionHeader/3",
+            "2": "/page/6/SectionHeader/0"
+          },
+          "images": {}
+        },
+        {
+          "id": "/page/7/PageFooter/1",
+          "block_type": "PageFooter",
+          "html": "",
+          "polygon": [
+            [
+              300.45753479003906,
+              738.9897766113281
+            ],
+            [
+              309.22936248779297,
+              738.9897766113281
+            ],
+            [
+              309.22936248779297,
+              749.5890655517578
+            ],
+            [
+              300.45753479003906,
+              749.5890655517578
+            ]
+          ],
+          "bbox": [
+            300.45753479003906,
+            738.9897766113281,
+            309.22936248779297,
+            749.5890655517578
+          ],
+          "children": null,
+          "section_hierarchy": {
+            "1": "/page/4/SectionHeader/3",
+            "2": "/page/6/SectionHeader/0"
+          },
+          "images": {}
+        }
+      ],
+      "section_hierarchy": {
+        "1": "/page/4/SectionHeader/3",
+        "2": "/page/6/SectionHeader/0"
+      },
+      "images": null
+    },
+    {
+      "id": "/page/8/Page/694",
+      "block_type": "Page",
+      "html": "<content-ref src='/page/8/FigureGroup/694'></content-ref><content-ref src='/page/8/PageFooter/2'></content-ref>",
+      "polygon": [
+        [
+          0.0,
+          0.0
+        ],
+        [
+          612.0,
+          0.0
+        ],
+        [
+          612.0,
+          792.0
+        ],
+        [
+          0.0,
+          792.0
+        ]
+      ],
+      "bbox": [
+        0.0,
+        0.0,
+        612.0,
+        792.0
+      ],
+      "children": [
+        {
+          "id": "/page/8/FigureGroup/694",
+          "block_type": "FigureGroup",
+          "html": "<content-ref src='/page/8/Figure/0'></content-ref><content-ref src='/page/8/Caption/1'></content-ref>",
+          "polygon": [
+            [
+              84.61539230346679,
+              196.93716888427736
+            ],
+            [
+              563.0897621154785,
+              196.93716888427736
+            ],
+            [
+              563.0897621154785,
+              578.0438842773438
+            ],
+            [
+              84.61539230346679,
+              578.0438842773438
+            ]
+          ],
+          "bbox": [
+            84.61539230346679,
+            196.93716888427736,
+            563.0897621154785,
+            578.0438842773438
+          ],
+          "children": [
+            {
+              "id": "/page/8/Figure/0",
+              "block_type": "Figure",
+              "html": "",
+              "polygon": [
+                [
+                  84.61539230346679,
+                  196.93716888427736
+                ],
+                [
+                  563.0897621154785,
+                  196.93716888427736
+                ],
+                [
+                  563.0897621154785,
+                  495.56551666259764
+                ],
+                [
+                  84.61539230346679,
+                  495.56551666259764
+                ]
+              ],
+              "bbox": [
+                84.61539230346679,
+                196.93716888427736,
+                563.0897621154785,
+                495.56551666259764
+              ],
+              "children": null,
+              "section_hierarchy": {
+                "1": "/page/4/SectionHeader/3",
+                "2": "/page/6/SectionHeader/0"
+              },
+              "images": {
+                "/page/8/Figure/0": "images/image_000002.jpg"
+              }
+            },
+            {
+              "id": "/page/8/Caption/1",
+              "block_type": "Caption",
+              "html": "<p>teria for documents were described in Section 3. A large e!ort went into ensuring that all documents are free to use. The data sources in DocBank, are often only distinguishable by discriminating on 3https://arxiv.org/ Figure 4: Table 1 from the DocLayNet paper in the original PDF (A), as rendered Markdown (B) and in JSON representation (C). Spanning table cells, such as the multi-column header \"triple interannotator mAP@0.5-0.95 (%)\", is repeated for each column in the Markdown representation (B), which guarantees that every data point can be traced back to row and column headings only by its grid coordinates in the table. In the JSON representation, the span information is reflected in the fields of each table cell (C).</p>",
+              "polygon": [
+                [
+                  88.67599487304688,
+                  509.9414520263672
+                ],
+                [
+                  505.44488525390625,
+                  509.9414520263672
+                ],
+                [
+                  505.44488525390625,
+                  578.0438842773438
+                ],
+                [
+                  88.67599487304688,
+                  578.0438842773438
+                ]
+              ],
+              "bbox": [
+                88.67599487304688,
+                509.9414520263672,
+                505.44488525390625,
+                578.0438842773438
+              ],
+              "children": null,
+              "section_hierarchy": {
+                "1": "/page/4/SectionHeader/3",
+                "2": "/page/6/SectionHeader/0"
+              },
+              "images": {}
+            }
+          ],
+          "section_hierarchy": {
+            "1": "/page/4/SectionHeader/3",
+            "2": "/page/6/SectionHeader/0"
+          },
+          "images": null
+        },
+        {
+          "id": "/page/8/PageFooter/2",
+          "block_type": "PageFooter",
+          "html": "",
+          "polygon": [
+            [
+              300.36094665527344,
+              738.3869018554688
+            ],
+            [
+              309.52571868896484,
+              738.3869018554688
+            ],
+            [
+              309.52571868896484,
+              752.0398902893066
+            ],
+            [
+              300.36094665527344,
+              752.0398902893066
+            ]
+          ],
+          "bbox": [
+            300.36094665527344,
+            738.3869018554688,
+            309.52571868896484,
+            752.0398902893066
+          ],
+          "children": null,
+          "section_hierarchy": {
+            "1": "/page/4/SectionHeader/3",
+            "2": "/page/6/SectionHeader/0"
+          },
+          "images": {}
+        }
+      ],
+      "section_hierarchy": {
+        "1": "/page/4/SectionHeader/3",
+        "2": "/page/6/SectionHeader/0"
+      },
+      "images": null
+    }
+  ],
+  "block_type": "Document",
+  "metadata": {
+    "table_of_contents": [
+      {
+        "title": "Docling Technical Report",
+        "heading_level": null,
+        "page_id": 0,
+        "polygon": [
+          [
+            208.8292007446289,
+            219.26126861572266
+          ],
+          [
+            400.41050720214844,
+            219.26126861572266
+          ],
+          [
+            400.41050720214844,
+            240.8370361328125
+          ],
+          [
+            208.8292007446289,
+            240.8370361328125
+          ]
+        ]
+      },
+      {
+        "title": "Abstract",
+        "heading_level": null,
+        "page_id": 0,
+        "polygon": [
+          [
+            281.00438690185547,
+            395.2767333984375
+          ],
+          [
+            328.6248092651367,
+            395.2767333984375
+          ],
+          [
+            328.6248092651367,
+            409.5885925292969
+          ],
+          [
+            281.00438690185547,
+            409.5885925292969
+          ]
+        ]
+      },
+      {
+        "title": "1 Introduction",
+        "heading_level": null,
+        "page_id": 0,
+        "polygon": [
+          [
+            104.78699111938477,
+            520.0532684326172
+          ],
+          [
+            191.21549606323242,
+            520.0532684326172
+          ],
+          [
+            191.21549606323242,
+            534.9455871582031
+          ],
+          [
+            104.78699111938477,
+            534.9455871582031
+          ]
+        ]
+      },
+      {
+        "title": "2 Getting Started",
+        "heading_level": null,
+        "page_id": 1,
+        "polygon": [
+          [
+            106.23440551757812,
+            216.7599334716797
+          ],
+          [
+            205.58409118652344,
+            216.7599334716797
+          ],
+          [
+            205.58409118652344,
+            230.2576904296875
+          ],
+          [
+            106.23440551757812,
+            230.2576904296875
+          ]
+        ]
+      },
+      {
+        "title": "3 Processing pipeline",
+        "heading_level": null,
+        "page_id": 1,
+        "polygon": [
+          [
+            105.18890762329102,
+            490.99937438964844
+          ],
+          [
+            224.0551528930664,
+            490.99937438964844
+          ],
+          [
+            224.0551528930664,
+            505.149658203125
+          ],
+          [
+            105.18890762329102,
+            505.149658203125
+          ]
+        ]
+      },
+      {
+        "title": "3.1 PDF backends",
+        "heading_level": null,
+        "page_id": 1,
+        "polygon": [
+          [
+            105.51768493652344,
+            626.474853515625
+          ],
+          [
+            192.43185424804688,
+            626.474853515625
+          ],
+          [
+            192.43185424804688,
+            639.5221862792969
+          ],
+          [
+            105.51768493652344,
+            639.5221862792969
+          ]
+        ]
+      },
+      {
+        "title": "3.2 AI models",
+        "heading_level": null,
+        "page_id": 2,
+        "polygon": [
+          [
+            105.41178131103516,
+            362.1023254394531
+          ],
+          [
+            174.02661895751953,
+            362.1023254394531
+          ],
+          [
+            174.02661895751953,
+            374.5301818847656
+          ],
+          [
+            105.41178131103516,
+            374.5301818847656
+          ]
+        ]
+      },
+      {
+        "title": "Layout Analysis Model",
+        "heading_level": null,
+        "page_id": 2,
+        "polygon": [
+          [
+            105.32033157348633,
+            474.2165222167969
+          ],
+          [
+            207.49378967285156,
+            474.2165222167969
+          ],
+          [
+            207.49378967285156,
+            487.2381896972656
+          ],
+          [
+            105.32033157348633,
+            487.2381896972656
+          ]
+        ]
+      },
+      {
+        "title": "Table Structure Recognition",
+        "heading_level": null,
+        "page_id": 2,
+        "polygon": [
+          [
+            105.50336837768555,
+            613.1408386230469
+          ],
+          [
+            228.60191345214844,
+            613.1408386230469
+          ],
+          [
+            228.60191345214844,
+            625.8981781005859
+          ],
+          [
+            105.50336837768555,
+            625.8981781005859
+          ]
+        ]
+      },
+      {
+        "title": "OCR",
+        "heading_level": null,
+        "page_id": 3,
+        "polygon": [
+          [
+            105.06029891967773,
+            137.4584197998047
+          ],
+          [
+            130.77662658691406,
+            137.4584197998047
+          ],
+          [
+            130.77662658691406,
+            150.3221435546875
+          ],
+          [
+            105.06029891967773,
+            150.3221435546875
+          ]
+        ]
+      },
+      {
+        "title": "3.3 Assembly",
+        "heading_level": null,
+        "page_id": 3,
+        "polygon": [
+          [
+            105.13687133789062,
+            261.8974914550781
+          ],
+          [
+            171.37210083007812,
+            261.8974914550781
+          ],
+          [
+            171.37210083007812,
+            274.7811279296875
+          ],
+          [
+            105.13687133789062,
+            274.7811279296875
+          ]
+        ]
+      },
+      {
+        "title": "3.4 Extensibility",
+        "heading_level": null,
+        "page_id": 3,
+        "polygon": [
+          [
+            105.00215148925781,
+            370.2293243408203
+          ],
+          [
+            184.1142578125,
+            370.2293243408203
+          ],
+          [
+            184.1142578125,
+            384.1971435546875
+          ],
+          [
+            105.00215148925781,
+            384.1971435546875
+          ]
+        ]
+      },
+      {
+        "title": "4 Performance",
+        "heading_level": null,
+        "page_id": 3,
+        "polygon": [
+          [
+            104.70565795898438,
+            544.0346374511719
+          ],
+          [
+            192.09681701660156,
+            544.0346374511719
+          ],
+          [
+            192.09681701660156,
+            557.9895782470703
+          ],
+          [
+            104.70565795898438,
+            557.9895782470703
+          ]
+        ]
+      },
+      {
+        "title": "5 Applications",
+        "heading_level": null,
+        "page_id": 4,
+        "polygon": [
+          [
+            105.2138557434082,
+            259.3531265258789
+          ],
+          [
+            190.27456283569336,
+            259.3531265258789
+          ],
+          [
+            190.27456283569336,
+            274.11962890625
+          ],
+          [
+            105.2138557434082,
+            274.11962890625
+          ]
+        ]
+      },
+      {
+        "title": "6 Future work and contributions",
+        "heading_level": null,
+        "page_id": 4,
+        "polygon": [
+          [
+            105.3713607788086,
+            442.43064880371094
+          ],
+          [
+            284.35521697998047,
+            442.43064880371094
+          ],
+          [
+            284.35521697998047,
+            455.9595642089844
+          ],
+          [
+            105.3713607788086,
+            455.9595642089844
+          ]
+        ]
+      },
+      {
+        "title": "References",
+        "heading_level": null,
+        "page_id": 4,
+        "polygon": [
+          [
+            105.78895568847656,
+            607.3325042724609
+          ],
+          [
+            164.04956817626953,
+            607.3325042724609
+          ],
+          [
+            164.04956817626953,
+            621.4595642089844
+          ],
+          [
+            105.78895568847656,
+            621.4595642089844
+          ]
+        ]
+      },
+      {
+        "title": "Appendix",
+        "heading_level": null,
+        "page_id": 6,
+        "polygon": [
+          [
+            105.27276992797852,
+            69.93219566345215
+          ],
+          [
+            158.11070251464844,
+            69.93219566345215
+          ],
+          [
+            158.11070251464844,
+            84.461669921875
+          ],
+          [
+            105.27276992797852,
+            84.461669921875
+          ]
+        ]
+      }
+    ],
+    "page_stats": [
+      {
+        "page_id": 0,
+        "text_extraction_method": "pdftext",
+        "block_counts": [
+          [
+            "Span",
+            77
+          ],
+          [
+            "Line",
+            33
+          ],
+          [
+            "Text",
+            6
+          ],
+          [
+            "PageFooter",
+            3
+          ],
+          [
+            "SectionHeader",
+            3
+          ],
+          [
+            "Picture",
+            1
+          ],
+          [
+            "PageHeader",
+            1
+          ]
+        ],
+        "block_metadata": {
+          "llm_request_count": 0,
+          "llm_error_count": 0,
+          "llm_tokens_used": 0,
+          "previous_text": "",
+          "previous_type": "",
+          "previous_order": 0
+        }
+      },
+      {
+        "page_id": 1,
+        "text_extraction_method": "pdftext",
+        "block_counts": [
+          [
+            "Span",
+            198
+          ],
+          [
+            "Line",
+            49
+          ],
+          [
+            "Text",
+            7
+          ],
+          [
+            "ListItem",
+            6
+          ],
+          [
+            "SectionHeader",
+            3
+          ],
+          [
+            "ListGroup",
+            1
+          ],
+          [
+            "Footnote",
+            1
+          ],
+          [
+            "PageFooter",
+            1
+          ],
+          [
+            "Reference",
+            1
+          ]
+        ],
+        "block_metadata": {
+          "llm_request_count": 0,
+          "llm_error_count": 0,
+          "llm_tokens_used": 0,
+          "previous_text": "",
+          "previous_type": "",
+          "previous_order": 0
+        }
+      },
+      {
+        "page_id": 2,
+        "text_extraction_method": "pdftext",
+        "block_counts": [
+          [
+            "Span",
+            150
+          ],
+          [
+            "Line",
+            52
+          ],
+          [
+            "Text",
+            6
+          ],
+          [
+            "SectionHeader",
+            3
+          ],
+          [
+            "Diagram",
+            1
+          ],
+          [
+            "Caption",
+            1
+          ],
+          [
+            "PageFooter",
+            1
+          ],
+          [
+            "Reference",
+            1
+          ]
+        ],
+        "block_metadata": {
+          "llm_request_count": 0,
+          "llm_error_count": 0,
+          "llm_tokens_used": 0,
+          "previous_text": "",
+          "previous_type": "",
+          "previous_order": 0
+        }
+      },
+      {
+        "page_id": 3,
+        "text_extraction_method": "pdftext",
+        "block_counts": [
+          [
+            "Span",
+            123
+          ],
+          [
+            "Line",
+            50
+          ],
+          [
+            "Text",
+            9
+          ],
+          [
+            "SectionHeader",
+            4
+          ],
+          [
+            "PageFooter",
+            1
+          ]
+        ],
+        "block_metadata": {
+          "llm_request_count": 0,
+          "llm_error_count": 0,
+          "llm_tokens_used": 0,
+          "previous_text": "",
+          "previous_type": "",
+          "previous_order": 0
+        }
+      },
+      {
+        "page_id": 4,
+        "text_extraction_method": "pdftext",
+        "block_counts": [
+          [
+            "Span",
+            134
+          ],
+          [
+            "Line",
+            53
+          ],
+          [
+            "ListItem",
+            5
+          ],
+          [
+            "Text",
+            4
+          ],
+          [
+            "SectionHeader",
+            3
+          ],
+          [
+            "Reference",
+            3
+          ],
+          [
+            "Caption",
+            1
+          ],
+          [
+            "Table",
+            1
+          ],
+          [
+            "ListGroup",
+            1
+          ],
+          [
+            "PageFooter",
+            1
+          ],
+          [
+            "TableGroup",
+            1
+          ]
+        ],
+        "block_metadata": {
+          "llm_request_count": 0,
+          "llm_error_count": 0,
+          "llm_tokens_used": 0,
+          "previous_text": "",
+          "previous_type": "",
+          "previous_order": 0
+        }
+      },
+      {
+        "page_id": 5,
+        "text_extraction_method": "pdftext",
+        "block_counts": [
+          [
+            "Span",
+            165
+          ],
+          [
+            "Line",
+            43
+          ],
+          [
+            "Reference",
+            14
+          ],
+          [
+            "Text",
+            2
+          ],
+          [
+            "ListGroup",
+            1
+          ],
+          [
+            "PageFooter",
+            1
+          ]
+        ],
+        "block_metadata": {
+          "llm_request_count": 0,
+          "llm_error_count": 0,
+          "llm_tokens_used": 0,
+          "previous_text": "",
+          "previous_type": "",
+          "previous_order": 0
+        }
+      },
+      {
+        "page_id": 6,
+        "text_extraction_method": "pdftext",
+        "block_counts": [
+          [
+            "Span",
+            315
+          ],
+          [
+            "Line",
+            133
+          ],
+          [
+            "Text",
+            40
+          ],
+          [
+            "SectionHeader",
+            1
+          ],
+          [
+            "Caption",
+            1
+          ],
+          [
+            "PageFooter",
+            1
+          ]
+        ],
+        "block_metadata": {
+          "llm_request_count": 0,
+          "llm_error_count": 0,
+          "llm_tokens_used": 0,
+          "previous_text": "",
+          "previous_type": "",
+          "previous_order": 0
+        }
+      },
+      {
+        "page_id": 7,
+        "text_extraction_method": "surya",
+        "block_counts": [
+          [
+            "Caption",
+            1
+          ],
+          [
+            "PageFooter",
+            1
+          ]
+        ],
+        "block_metadata": {
+          "llm_request_count": 0,
+          "llm_error_count": 0,
+          "llm_tokens_used": 0,
+          "previous_text": "",
+          "previous_type": "",
+          "previous_order": 0
+        }
+      },
+      {
+        "page_id": 8,
+        "text_extraction_method": "pdftext",
+        "block_counts": [
+          [
+            "Span",
+            590
+          ],
+          [
+            "Line",
+            101
+          ],
+          [
+            "Figure",
+            1
+          ],
+          [
+            "Caption",
+            1
+          ],
+          [
+            "PageFooter",
+            1
+          ],
+          [
+            "FigureGroup",
+            1
+          ]
+        ],
+        "block_metadata": {
+          "llm_request_count": 0,
+          "llm_error_count": 0,
+          "llm_tokens_used": 0,
+          "previous_text": "",
+          "previous_type": "",
+          "previous_order": 0
+        }
+      }
+    ],
+    "debug_data_path": "debug_data/2408.09869v5"
+  }
+}

@@ -1,0 +1,5547 @@
+{
+  "schema_name": "DoclingDocument",
+  "version": "1.10.0",
+  "name": "Naac_appLetter",
+  "origin": {
+    "mimetype": "application/pdf",
+    "binary_hash": 15618805566310871583,
+    "filename": "Naac_appLetter.pdf"
+  },
+  "furniture": {
+    "self_ref": "#/furniture",
+    "children": [],
+    "content_layer": "furniture",
+    "name": "_root_",
+    "label": "unspecified"
+  },
+  "body": {
+    "self_ref": "#/body",
+    "children": [
+      {
+        "$ref": "#/groups/0"
+      },
+      {
+        "$ref": "#/pictures/0"
+      },
+      {
+        "$ref": "#/texts/3"
+      },
+      {
+        "$ref": "#/texts/4"
+      },
+      {
+        "$ref": "#/texts/5"
+      },
+      {
+        "$ref": "#/groups/1"
+      },
+      {
+        "$ref": "#/texts/8"
+      },
+      {
+        "$ref": "#/groups/2"
+      },
+      {
+        "$ref": "#/texts/16"
+      },
+      {
+        "$ref": "#/texts/17"
+      },
+      {
+        "$ref": "#/texts/18"
+      },
+      {
+        "$ref": "#/groups/3"
+      },
+      {
+        "$ref": "#/groups/4"
+      },
+      {
+        "$ref": "#/pictures/2"
+      },
+      {
+        "$ref": "#/texts/23"
+      },
+      {
+        "$ref": "#/texts/24"
+      },
+      {
+        "$ref": "#/texts/25"
+      },
+      {
+        "$ref": "#/groups/5"
+      },
+      {
+        "$ref": "#/texts/33"
+      },
+      {
+        "$ref": "#/texts/34"
+      },
+      {
+        "$ref": "#/texts/35"
+      },
+      {
+        "$ref": "#/groups/6"
+      },
+      {
+        "$ref": "#/texts/37"
+      },
+      {
+        "$ref": "#/texts/38"
+      },
+      {
+        "$ref": "#/groups/7"
+      },
+      {
+        "$ref": "#/pictures/4"
+      },
+      {
+        "$ref": "#/texts/39"
+      },
+      {
+        "$ref": "#/texts/40"
+      },
+      {
+        "$ref": "#/groups/8"
+      },
+      {
+        "$ref": "#/texts/45"
+      },
+      {
+        "$ref": "#/texts/46"
+      },
+      {
+        "$ref": "#/texts/47"
+      },
+      {
+        "$ref": "#/texts/48"
+      },
+      {
+        "$ref": "#/groups/9"
+      },
+      {
+        "$ref": "#/groups/10"
+      },
+      {
+        "$ref": "#/texts/56"
+      },
+      {
+        "$ref": "#/texts/57"
+      },
+      {
+        "$ref": "#/texts/58"
+      },
+      {
+        "$ref": "#/pictures/5"
+      },
+      {
+        "$ref": "#/groups/11"
+      },
+      {
+        "$ref": "#/groups/12"
+      },
+      {
+        "$ref": "#/texts/66"
+      },
+      {
+        "$ref": "#/texts/67"
+      },
+      {
+        "$ref": "#/pictures/6"
+      },
+      {
+        "$ref": "#/texts/69"
+      },
+      {
+        "$ref": "#/groups/13"
+      },
+      {
+        "$ref": "#/texts/70"
+      },
+      {
+        "$ref": "#/texts/71"
+      },
+      {
+        "$ref": "#/texts/72"
+      },
+      {
+        "$ref": "#/texts/73"
+      },
+      {
+        "$ref": "#/texts/74"
+      },
+      {
+        "$ref": "#/texts/75"
+      },
+      {
+        "$ref": "#/texts/76"
+      },
+      {
+        "$ref": "#/texts/77"
+      },
+      {
+        "$ref": "#/texts/78"
+      },
+      {
+        "$ref": "#/texts/79"
+      },
+      {
+        "$ref": "#/texts/80"
+      },
+      {
+        "$ref": "#/groups/14"
+      },
+      {
+        "$ref": "#/pictures/7"
+      },
+      {
+        "$ref": "#/texts/83"
+      },
+      {
+        "$ref": "#/groups/15"
+      },
+      {
+        "$ref": "#/groups/16"
+      },
+      {
+        "$ref": "#/texts/91"
+      },
+      {
+        "$ref": "#/groups/17"
+      },
+      {
+        "$ref": "#/pictures/8"
+      },
+      {
+        "$ref": "#/groups/18"
+      },
+      {
+        "$ref": "#/groups/19"
+      },
+      {
+        "$ref": "#/groups/20"
+      },
+      {
+        "$ref": "#/texts/105"
+      },
+      {
+        "$ref": "#/groups/21"
+      },
+      {
+        "$ref": "#/texts/108"
+      },
+      {
+        "$ref": "#/texts/109"
+      },
+      {
+        "$ref": "#/texts/110"
+      },
+      {
+        "$ref": "#/texts/111"
+      },
+      {
+        "$ref": "#/pictures/9"
+      },
+      {
+        "$ref": "#/texts/112"
+      },
+      {
+        "$ref": "#/groups/22"
+      },
+      {
+        "$ref": "#/groups/23"
+      },
+      {
+        "$ref": "#/groups/24"
+      },
+      {
+        "$ref": "#/texts/121"
+      },
+      {
+        "$ref": "#/pictures/11"
+      },
+      {
+        "$ref": "#/texts/122"
+      },
+      {
+        "$ref": "#/texts/123"
+      },
+      {
+        "$ref": "#/texts/124"
+      },
+      {
+        "$ref": "#/texts/125"
+      },
+      {
+        "$ref": "#/texts/126"
+      },
+      {
+        "$ref": "#/texts/127"
+      },
+      {
+        "$ref": "#/texts/128"
+      },
+      {
+        "$ref": "#/texts/129"
+      },
+      {
+        "$ref": "#/texts/130"
+      },
+      {
+        "$ref": "#/texts/131"
+      },
+      {
+        "$ref": "#/groups/25"
+      },
+      {
+        "$ref": "#/texts/133"
+      },
+      {
+        "$ref": "#/texts/134"
+      },
+      {
+        "$ref": "#/texts/135"
+      },
+      {
+        "$ref": "#/pictures/12"
+      },
+      {
+        "$ref": "#/groups/26"
+      },
+      {
+        "$ref": "#/texts/142"
+      },
+      {
+        "$ref": "#/texts/143"
+      },
+      {
+        "$ref": "#/texts/144"
+      }
+    ],
+    "content_layer": "body",
+    "name": "_root_",
+    "label": "unspecified"
+  },
+  "groups": [
+    {
+      "self_ref": "#/groups/0",
+      "parent": {
+        "$ref": "#/body"
+      },
+      "children": [
+        {
+          "$ref": "#/texts/0"
+        },
+        {
+          "$ref": "#/texts/1"
+        },
+        {
+          "$ref": "#/texts/2"
+        }
+      ],
+      "content_layer": "body",
+      "name": "group",
+      "label": "key_value_area"
+    },
+    {
+      "self_ref": "#/groups/1",
+      "parent": {
+        "$ref": "#/body"
+      },
+      "children": [
+        {
+          "$ref": "#/texts/6"
+        },
+        {
+          "$ref": "#/texts/7"
+        }
+      ],
+      "content_layer": "body",
+      "name": "group",
+      "label": "key_value_area"
+    },
+    {
+      "self_ref": "#/groups/2",
+      "parent": {
+        "$ref": "#/body"
+      },
+      "children": [
+        {
+          "$ref": "#/texts/9"
+        },
+        {
+          "$ref": "#/texts/10"
+        },
+        {
+          "$ref": "#/texts/11"
+        },
+        {
+          "$ref": "#/texts/12"
+        },
+        {
+          "$ref": "#/texts/13"
+        },
+        {
+          "$ref": "#/texts/14"
+        },
+        {
+          "$ref": "#/texts/15"
+        }
+      ],
+      "content_layer": "body",
+      "name": "group",
+      "label": "key_value_area"
+    },
+    {
+      "self_ref": "#/groups/3",
+      "parent": {
+        "$ref": "#/body"
+      },
+      "children": [
+        {
+          "$ref": "#/pictures/1"
+        }
+      ],
+      "content_layer": "body",
+      "name": "group",
+      "label": "key_value_area"
+    },
+    {
+      "self_ref": "#/groups/4",
+      "parent": {
+        "$ref": "#/body"
+      },
+      "children": [
+        {
+          "$ref": "#/texts/21"
+        },
+        {
+          "$ref": "#/texts/22"
+        }
+      ],
+      "content_layer": "body",
+      "name": "group",
+      "label": "key_value_area"
+    },
+    {
+      "self_ref": "#/groups/5",
+      "parent": {
+        "$ref": "#/body"
+      },
+      "children": [
+        {
+          "$ref": "#/texts/26"
+        },
+        {
+          "$ref": "#/texts/27"
+        },
+        {
+          "$ref": "#/texts/28"
+        },
+        {
+          "$ref": "#/texts/29"
+        },
+        {
+          "$ref": "#/texts/30"
+        },
+        {
+          "$ref": "#/texts/31"
+        },
+        {
+          "$ref": "#/texts/32"
+        }
+      ],
+      "content_layer": "body",
+      "name": "group",
+      "label": "key_value_area"
+    },
+    {
+      "self_ref": "#/groups/6",
+      "parent": {
+        "$ref": "#/body"
+      },
+      "children": [
+        {
+          "$ref": "#/pictures/3"
+        },
+        {
+          "$ref": "#/texts/36"
+        }
+      ],
+      "content_layer": "body",
+      "name": "group",
+      "label": "key_value_area"
+    },
+    {
+      "self_ref": "#/groups/7",
+      "parent": {
+        "$ref": "#/body"
+      },
+      "children": [],
+      "content_layer": "body",
+      "name": "group",
+      "label": "key_value_area"
+    },
+    {
+      "self_ref": "#/groups/8",
+      "parent": {
+        "$ref": "#/body"
+      },
+      "children": [
+        {
+          "$ref": "#/texts/41"
+        },
+        {
+          "$ref": "#/texts/42"
+        },
+        {
+          "$ref": "#/texts/43"
+        },
+        {
+          "$ref": "#/texts/44"
+        }
+      ],
+      "content_layer": "body",
+      "name": "group",
+      "label": "key_value_area"
+    },
+    {
+      "self_ref": "#/groups/9",
+      "parent": {
+        "$ref": "#/body"
+      },
+      "children": [
+        {
+          "$ref": "#/texts/49"
+        },
+        {
+          "$ref": "#/texts/50"
+        }
+      ],
+      "content_layer": "body",
+      "name": "list",
+      "label": "list"
+    },
+    {
+      "self_ref": "#/groups/10",
+      "parent": {
+        "$ref": "#/body"
+      },
+      "children": [
+        {
+          "$ref": "#/texts/51"
+        },
+        {
+          "$ref": "#/texts/52"
+        },
+        {
+          "$ref": "#/texts/53"
+        },
+        {
+          "$ref": "#/texts/54"
+        },
+        {
+          "$ref": "#/texts/55"
+        }
+      ],
+      "content_layer": "body",
+      "name": "group",
+      "label": "key_value_area"
+    },
+    {
+      "self_ref": "#/groups/11",
+      "parent": {
+        "$ref": "#/body"
+      },
+      "children": [
+        {
+          "$ref": "#/texts/61"
+        },
+        {
+          "$ref": "#/texts/62"
+        },
+        {
+          "$ref": "#/texts/63"
+        },
+        {
+          "$ref": "#/texts/64"
+        },
+        {
+          "$ref": "#/texts/65"
+        }
+      ],
+      "content_layer": "body",
+      "name": "list",
+      "label": "list"
+    },
+    {
+      "self_ref": "#/groups/12",
+      "parent": {
+        "$ref": "#/body"
+      },
+      "children": [],
+      "content_layer": "body",
+      "name": "group",
+      "label": "key_value_area"
+    },
+    {
+      "self_ref": "#/groups/13",
+      "parent": {
+        "$ref": "#/body"
+      },
+      "children": [],
+      "content_layer": "body",
+      "name": "group",
+      "label": "key_value_area"
+    },
+    {
+      "self_ref": "#/groups/14",
+      "parent": {
+        "$ref": "#/body"
+      },
+      "children": [
+        {
+          "$ref": "#/texts/81"
+        }
+      ],
+      "content_layer": "body",
+      "name": "group",
+      "label": "key_value_area"
+    },
+    {
+      "self_ref": "#/groups/15",
+      "parent": {
+        "$ref": "#/body"
+      },
+      "children": [
+        {
+          "$ref": "#/texts/84"
+        },
+        {
+          "$ref": "#/texts/85"
+        },
+        {
+          "$ref": "#/texts/86"
+        },
+        {
+          "$ref": "#/texts/87"
+        },
+        {
+          "$ref": "#/texts/88"
+        },
+        {
+          "$ref": "#/texts/89"
+        }
+      ],
+      "content_layer": "body",
+      "name": "group",
+      "label": "key_value_area"
+    },
+    {
+      "self_ref": "#/groups/16",
+      "parent": {
+        "$ref": "#/body"
+      },
+      "children": [
+        {
+          "$ref": "#/texts/90"
+        }
+      ],
+      "content_layer": "body",
+      "name": "group",
+      "label": "key_value_area"
+    },
+    {
+      "self_ref": "#/groups/17",
+      "parent": {
+        "$ref": "#/body"
+      },
+      "children": [
+        {
+          "$ref": "#/texts/92"
+        }
+      ],
+      "content_layer": "body",
+      "name": "group",
+      "label": "key_value_area"
+    },
+    {
+      "self_ref": "#/groups/18",
+      "parent": {
+        "$ref": "#/body"
+      },
+      "children": [],
+      "content_layer": "body",
+      "name": "group",
+      "label": "key_value_area"
+    },
+    {
+      "self_ref": "#/groups/19",
+      "parent": {
+        "$ref": "#/body"
+      },
+      "children": [],
+      "content_layer": "body",
+      "name": "group",
+      "label": "key_value_area"
+    },
+    {
+      "self_ref": "#/groups/20",
+      "parent": {
+        "$ref": "#/body"
+      },
+      "children": [
+        {
+          "$ref": "#/texts/103"
+        },
+        {
+          "$ref": "#/texts/104"
+        }
+      ],
+      "content_layer": "body",
+      "name": "group",
+      "label": "key_value_area"
+    },
+    {
+      "self_ref": "#/groups/21",
+      "parent": {
+        "$ref": "#/body"
+      },
+      "children": [
+        {
+          "$ref": "#/texts/106"
+        },
+        {
+          "$ref": "#/texts/107"
+        }
+      ],
+      "content_layer": "body",
+      "name": "group",
+      "label": "key_value_area"
+    },
+    {
+      "self_ref": "#/groups/22",
+      "parent": {
+        "$ref": "#/body"
+      },
+      "children": [
+        {
+          "$ref": "#/texts/113"
+        },
+        {
+          "$ref": "#/texts/114"
+        },
+        {
+          "$ref": "#/texts/115"
+        },
+        {
+          "$ref": "#/texts/116"
+        },
+        {
+          "$ref": "#/texts/117"
+        }
+      ],
+      "content_layer": "body",
+      "name": "group",
+      "label": "key_value_area"
+    },
+    {
+      "self_ref": "#/groups/23",
+      "parent": {
+        "$ref": "#/body"
+      },
+      "children": [
+        {
+          "$ref": "#/texts/118"
+        },
+        {
+          "$ref": "#/pictures/10"
+        }
+      ],
+      "content_layer": "body",
+      "name": "group",
+      "label": "key_value_area"
+    },
+    {
+      "self_ref": "#/groups/24",
+      "parent": {
+        "$ref": "#/body"
+      },
+      "children": [
+        {
+          "$ref": "#/texts/120"
+        }
+      ],
+      "content_layer": "body",
+      "name": "group",
+      "label": "key_value_area"
+    },
+    {
+      "self_ref": "#/groups/25",
+      "parent": {
+        "$ref": "#/body"
+      },
+      "children": [
+        {
+          "$ref": "#/texts/132"
+        }
+      ],
+      "content_layer": "body",
+      "name": "list",
+      "label": "list"
+    },
+    {
+      "self_ref": "#/groups/26",
+      "parent": {
+        "$ref": "#/body"
+      },
+      "children": [
+        {
+          "$ref": "#/texts/140"
+        },
+        {
+          "$ref": "#/texts/141"
+        }
+      ],
+      "content_layer": "body",
+      "name": "group",
+      "label": "key_value_area"
+    }
+  ],
+  "texts": [
+    {
+      "self_ref": "#/texts/0",
+      "parent": {
+        "$ref": "#/groups/0"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "section_header",
+      "prov": [
+        {
+          "page_no": 1,
+          "bbox": {
+            "l": 58.333333333333336,
+            "t": 724.2915518213921,
+            "r": 157.3311671336903,
+            "b": 708.7084481786079,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            20
+          ]
+        }
+      ],
+      "orig": "Sample Scanned Copy:",
+      "text": "Sample Scanned Copy:",
+      "level": 1
+    },
+    {
+      "self_ref": "#/texts/1",
+      "parent": {
+        "$ref": "#/groups/0"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "text",
+      "prov": [
+        {
+          "page_no": 1,
+          "bbox": {
+            "l": 59.0,
+            "t": 699.0,
+            "r": 125.33333333333333,
+            "b": 688.0,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            13
+          ]
+        }
+      ],
+      "orig": "Academic Year",
+      "text": "Academic Year"
+    },
+    {
+      "self_ref": "#/texts/2",
+      "parent": {
+        "$ref": "#/groups/0"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "text",
+      "prov": [
+        {
+          "page_no": 1,
+          "bbox": {
+            "l": 130.0,
+            "t": 698.6666666666666,
+            "r": 177.33333333333334,
+            "b": 688.0,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            9
+          ]
+        }
+      ],
+      "orig": "2012-2013",
+      "text": "2012-2013"
+    },
+    {
+      "self_ref": "#/texts/3",
+      "parent": {
+        "$ref": "#/body"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "section_header",
+      "prov": [
+        {
+          "page_no": 1,
+          "bbox": {
+            "l": 261.6666666666667,
+            "t": 654.3333333333334,
+            "r": 363.0,
+            "b": 642.3333333333334,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            24
+          ]
+        }
+      ],
+      "orig": "ANNA UNIVERSITY; CHENNAI",
+      "text": "ANNA UNIVERSITY; CHENNAI",
+      "level": 1
+    },
+    {
+      "self_ref": "#/texts/4",
+      "parent": {
+        "$ref": "#/body"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "section_header",
+      "prov": [
+        {
+          "page_no": 1,
+          "bbox": {
+            "l": 229.0,
+            "t": 639.6666666666666,
+            "r": 394.3333333333333,
+            "b": 627.6666666666666,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            33
+          ]
+        }
+      ],
+      "orig": "FACULTY OF SCIENCE AND HUMANITIES",
+      "text": "FACULTY OF SCIENCE AND HUMANITIES",
+      "level": 1
+    },
+    {
+      "self_ref": "#/texts/5",
+      "parent": {
+        "$ref": "#/body"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "text",
+      "prov": [
+        {
+          "page_no": 1,
+          "bbox": {
+            "l": 158.0,
+            "t": 618.3333333333334,
+            "r": 239.33333333333334,
+            "b": 607.3333333333334,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            22
+          ]
+        }
+      ],
+      "orig": "Prof. K SHANTHI, Ph.D.",
+      "text": "Prof. K SHANTHI, Ph.D."
+    },
+    {
+      "self_ref": "#/texts/6",
+      "parent": {
+        "$ref": "#/groups/1"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "text",
+      "prov": [
+        {
+          "page_no": 1,
+          "bbox": {
+            "l": 276.0,
+            "t": 628.0,
+            "r": 304.0,
+            "b": 619.3333333333334,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            7
+          ]
+        }
+      ],
+      "orig": "CHENNAI",
+      "text": "CHENNAI"
+    },
+    {
+      "self_ref": "#/texts/7",
+      "parent": {
+        "$ref": "#/groups/1"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "text",
+      "prov": [
+        {
+          "page_no": 1,
+          "bbox": {
+            "l": 306.0,
+            "t": 627.3333333333334,
+            "r": 346.6666666666667,
+            "b": 619.3333333333334,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            14
+          ]
+        }
+      ],
+      "orig": "600 025. INDIA",
+      "text": "600 025. INDIA"
+    },
+    {
+      "self_ref": "#/texts/8",
+      "parent": {
+        "$ref": "#/body"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "text",
+      "prov": [
+        {
+          "page_no": 1,
+          "bbox": {
+            "l": 157.66666666666666,
+            "t": 609.3333333333334,
+            "r": 190.0,
+            "b": 600.0,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            11
+          ]
+        }
+      ],
+      "orig": "Chairperson",
+      "text": "Chairperson"
+    },
+    {
+      "self_ref": "#/texts/9",
+      "parent": {
+        "$ref": "#/groups/2"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "text",
+      "prov": [
+        {
+          "page_no": 1,
+          "bbox": {
+            "l": 405.3333333333333,
+            "t": 640.6666666666666,
+            "r": 422.0,
+            "b": 632.6666666666666,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            5
+          ]
+        }
+      ],
+      "orig": "Phone",
+      "text": "Phone"
+    },
+    {
+      "self_ref": "#/texts/10",
+      "parent": {
+        "$ref": "#/groups/2"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "text",
+      "prov": [
+        {
+          "page_no": 1,
+          "bbox": {
+            "l": 424.0,
+            "t": 640.6666666666666,
+            "r": 465.3333333333333,
+            "b": 632.0,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            15
+          ]
+        }
+      ],
+      "orig": "+91-44-22358488",
+      "text": "+91-44-22358488"
+    },
+    {
+      "self_ref": "#/texts/11",
+      "parent": {
+        "$ref": "#/groups/2"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "text",
+      "prov": [
+        {
+          "page_no": 1,
+          "bbox": {
+            "l": 407.6666666666667,
+            "t": 625.0,
+            "r": 418.3333333333333,
+            "b": 618.3333333333334,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            4
+          ]
+        }
+      ],
+      "orig": "Cell",
+      "text": "Cell"
+    },
+    {
+      "self_ref": "#/texts/12",
+      "parent": {
+        "$ref": "#/groups/2"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "text",
+      "prov": [
+        {
+          "page_no": 1,
+          "bbox": {
+            "l": 424.0,
+            "t": 633.3333333333334,
+            "r": 465.3333333333333,
+            "b": 624.6666666666666,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            15
+          ]
+        }
+      ],
+      "orig": "+91-44-22358654",
+      "text": "+91-44-22358654"
+    },
+    {
+      "self_ref": "#/texts/13",
+      "parent": {
+        "$ref": "#/groups/2"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "text",
+      "prov": [
+        {
+          "page_no": 1,
+          "bbox": {
+            "l": 425.3333333333333,
+            "t": 618.0,
+            "r": 465.3333333333333,
+            "b": 610.0,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            14
+          ]
+        }
+      ],
+      "orig": "+91-9962520678",
+      "text": "+91-9962520678"
+    },
+    {
+      "self_ref": "#/texts/14",
+      "parent": {
+        "$ref": "#/groups/2"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "text",
+      "prov": [
+        {
+          "page_no": 1,
+          "bbox": {
+            "l": 425.3333333333333,
+            "t": 625.3333333333334,
+            "r": 465.3333333333333,
+            "b": 617.3333333333334,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            14
+          ]
+        }
+      ],
+      "orig": "+91-9840146642",
+      "text": "+91-9840146642"
+    },
+    {
+      "self_ref": "#/texts/15",
+      "parent": {
+        "$ref": "#/groups/2"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "text",
+      "prov": [
+        {
+          "page_no": 1,
+          "bbox": {
+            "l": 395.6666666666667,
+            "t": 611.3333333333334,
+            "r": 465.3333333333333,
+            "b": 602.3333333333334,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            27
+          ]
+        }
+      ],
+      "orig": "shanthiramesh @annauniv edu",
+      "text": "shanthiramesh @annauniv edu"
+    },
+    {
+      "self_ref": "#/texts/16",
+      "parent": {
+        "$ref": "#/body"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "text",
+      "prov": [
+        {
+          "page_no": 1,
+          "bbox": {
+            "l": 401.6666666666667,
+            "t": 565.6666666666666,
+            "r": 445.0,
+            "b": 555.0,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            10
+          ]
+        }
+      ],
+      "orig": "24.05.2013",
+      "text": "24.05.2013"
+    },
+    {
+      "self_ref": "#/texts/17",
+      "parent": {
+        "$ref": "#/body"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "section_header",
+      "prov": [
+        {
+          "page_no": 1,
+          "bbox": {
+            "l": 240.33333333333334,
+            "t": 536.3333333333334,
+            "r": 385.0,
+            "b": 523.6666666666667,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            30
+          ]
+        }
+      ],
+      "orig": "To whom so ever it may concern",
+      "text": "To whom so ever it may concern",
+      "level": 1
+    },
+    {
+      "self_ref": "#/texts/18",
+      "parent": {
+        "$ref": "#/body"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "text",
+      "prov": [
+        {
+          "page_no": 1,
+          "bbox": {
+            "l": 179.0,
+            "t": 487.6666666666667,
+            "r": 446.0,
+            "b": 418.3333333333333,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            168
+          ]
+        }
+      ],
+      "orig": "This is to certify   that Dr.   O.D.Shakila. Associate Professor   of has attended the Anna University 18t meeting of Board of Studies at Anna University on 24.05.2013.",
+      "text": "This is to certify   that Dr.   O.D.Shakila. Associate Professor   of has attended the Anna University 18t meeting of Board of Studies at Anna University on 24.05.2013."
+    },
+    {
+      "self_ref": "#/texts/19",
+      "parent": {
+        "$ref": "#/pictures/1"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "caption",
+      "prov": [
+        {
+          "page_no": 1,
+          "bbox": {
+            "l": 354.3333333333333,
+            "t": 369.0,
+            "r": 446.3333333333333,
+            "b": 336.3333333333333,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            41
+          ]
+        }
+      ],
+      "orig": "(Dr K.SHANTHI) (Chairman, Faculty of S&H)",
+      "text": "(Dr K.SHANTHI) (Chairman, Faculty of S&H)"
+    },
+    {
+      "self_ref": "#/texts/20",
+      "parent": {
+        "$ref": "#/pictures/1"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "text",
+      "prov": [
+        {
+          "page_no": 1,
+          "bbox": {
+            "l": 393.0,
+            "t": 379.6666666666667,
+            "r": 409.0,
+            "b": 366.3333333333333,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            2
+          ]
+        }
+      ],
+      "orig": "Q4",
+      "text": "Q4"
+    },
+    {
+      "self_ref": "#/texts/21",
+      "parent": {
+        "$ref": "#/groups/4"
+      },
+      "children": [],
+      "content_layer": "furniture",
+      "label": "page_header",
+      "prov": [
+        {
+          "page_no": 2,
+          "bbox": {
+            "l": 59.333333333333336,
+            "t": 722.6666666666666,
+            "r": 125.33333333333333,
+            "b": 712.0,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            13
+          ]
+        }
+      ],
+      "orig": "Academic Year",
+      "text": "Academic Year"
+    },
+    {
+      "self_ref": "#/texts/22",
+      "parent": {
+        "$ref": "#/groups/4"
+      },
+      "children": [],
+      "content_layer": "furniture",
+      "label": "page_header",
+      "prov": [
+        {
+          "page_no": 2,
+          "bbox": {
+            "l": 130.0,
+            "t": 722.6666666666666,
+            "r": 182.0,
+            "b": 712.0,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            9
+          ]
+        }
+      ],
+      "orig": "2013 2014",
+      "text": "2013 2014"
+    },
+    {
+      "self_ref": "#/texts/23",
+      "parent": {
+        "$ref": "#/body"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "section_header",
+      "prov": [
+        {
+          "page_no": 2,
+          "bbox": {
+            "l": 196.0,
+            "t": 677.0,
+            "r": 401.3333333333333,
+            "b": 646.6666666666666,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            58
+          ]
+        }
+      ],
+      "orig": "ANNA UNIVERSITY; CHENNAI FACULTY OF SCIENCE AND HUMANITIES",
+      "text": "ANNA UNIVERSITY; CHENNAI FACULTY OF SCIENCE AND HUMANITIES",
+      "level": 1
+    },
+    {
+      "self_ref": "#/texts/24",
+      "parent": {
+        "$ref": "#/body"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "text",
+      "prov": [
+        {
+          "page_no": 2,
+          "bbox": {
+            "l": 109.0,
+            "t": 635.6666666666666,
+            "r": 209.66666666666666,
+            "b": 623.3333333333334,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            21
+          ]
+        }
+      ],
+      "orig": "Prof. K. SHANTHI PhD.",
+      "text": "Prof. K. SHANTHI PhD."
+    },
+    {
+      "self_ref": "#/texts/25",
+      "parent": {
+        "$ref": "#/body"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "text",
+      "prov": [
+        {
+          "page_no": 2,
+          "bbox": {
+            "l": 109.33333333333333,
+            "t": 624.6666666666666,
+            "r": 148.0,
+            "b": 616.6666666666666,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            11
+          ]
+        },
+        {
+          "page_no": 2,
+          "bbox": {
+            "l": 254.66666666666666,
+            "t": 650.0,
+            "r": 342.0,
+            "b": 640.0,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            12,
+            34
+          ]
+        }
+      ],
+      "orig": "Chairperson CHENNAI 600 025. INDIA",
+      "text": "Chairperson CHENNAI 600 025. INDIA"
+    },
+    {
+      "self_ref": "#/texts/26",
+      "parent": {
+        "$ref": "#/groups/5"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "text",
+      "prov": [
+        {
+          "page_no": 2,
+          "bbox": {
+            "l": 415.3333333333333,
+            "t": 666.0,
+            "r": 435.3333333333333,
+            "b": 658.0,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            5
+          ]
+        }
+      ],
+      "orig": "Phone",
+      "text": "Phone"
+    },
+    {
+      "self_ref": "#/texts/27",
+      "parent": {
+        "$ref": "#/groups/5"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "text",
+      "prov": [
+        {
+          "page_no": 2,
+          "bbox": {
+            "l": 418.0,
+            "t": 650.6666666666666,
+            "r": 431.3333333333333,
+            "b": 642.6666666666666,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            4
+          ]
+        }
+      ],
+      "orig": "Cell",
+      "text": "Cell"
+    },
+    {
+      "self_ref": "#/texts/28",
+      "parent": {
+        "$ref": "#/groups/5"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "text",
+      "prov": [
+        {
+          "page_no": 2,
+          "bbox": {
+            "l": 438.0,
+            "t": 667.3333333333334,
+            "r": 489.3333333333333,
+            "b": 658.6666666666666,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            15
+          ]
+        }
+      ],
+      "orig": "+91-44-22358488",
+      "text": "+91-44-22358488"
+    },
+    {
+      "self_ref": "#/texts/29",
+      "parent": {
+        "$ref": "#/groups/5"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "text",
+      "prov": [
+        {
+          "page_no": 2,
+          "bbox": {
+            "l": 439.6666666666667,
+            "t": 653.0,
+            "r": 489.3333333333333,
+            "b": 643.0,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            14
+          ]
+        }
+      ],
+      "orig": "+91-9840146642",
+      "text": "+91-9840146642"
+    },
+    {
+      "self_ref": "#/texts/30",
+      "parent": {
+        "$ref": "#/groups/5"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "text",
+      "prov": [
+        {
+          "page_no": 2,
+          "bbox": {
+            "l": 403.6666666666667,
+            "t": 637.0,
+            "r": 490.0,
+            "b": 626.0,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            26
+          ]
+        }
+      ],
+      "orig": "shanthiramesh@annauniv edu",
+      "text": "shanthiramesh@annauniv edu"
+    },
+    {
+      "self_ref": "#/texts/31",
+      "parent": {
+        "$ref": "#/groups/5"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "text",
+      "prov": [
+        {
+          "page_no": 2,
+          "bbox": {
+            "l": 438.0,
+            "t": 660.6666666666666,
+            "r": 489.3333333333333,
+            "b": 650.6666666666666,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            15
+          ]
+        }
+      ],
+      "orig": "+91-44-22358654",
+      "text": "+91-44-22358654"
+    },
+    {
+      "self_ref": "#/texts/32",
+      "parent": {
+        "$ref": "#/groups/5"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "text",
+      "prov": [
+        {
+          "page_no": 2,
+          "bbox": {
+            "l": 440.3333333333333,
+            "t": 645.3333333333334,
+            "r": 490.0,
+            "b": 635.3333333333334,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            14
+          ]
+        }
+      ],
+      "orig": "+91-9962520678",
+      "text": "+91-9962520678"
+    },
+    {
+      "self_ref": "#/texts/33",
+      "parent": {
+        "$ref": "#/body"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "text",
+      "prov": [
+        {
+          "page_no": 2,
+          "bbox": {
+            "l": 417.6666666666667,
+            "t": 555.0,
+            "r": 471.6666666666667,
+            "b": 543.0,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            10
+          ]
+        }
+      ],
+      "orig": "29.10.2013",
+      "text": "29.10.2013"
+    },
+    {
+      "self_ref": "#/texts/34",
+      "parent": {
+        "$ref": "#/body"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "section_header",
+      "prov": [
+        {
+          "page_no": 2,
+          "bbox": {
+            "l": 216.66666666666666,
+            "t": 522.6666666666667,
+            "r": 396.6666666666667,
+            "b": 506.0,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            29
+          ]
+        }
+      ],
+      "orig": "Io whom so everit may concern",
+      "text": "Io whom so everit may concern",
+      "level": 1
+    },
+    {
+      "self_ref": "#/texts/35",
+      "parent": {
+        "$ref": "#/body"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "text",
+      "prov": [
+        {
+          "page_no": 2,
+          "bbox": {
+            "l": 143.33333333333334,
+            "t": 472.6666666666667,
+            "r": 473.6666666666667,
+            "b": 398.0,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            265
+          ]
+        }
+      ],
+      "orig": "This to certify that Dr J K.SUBASHINI, Professor & Head, Department of Mathematics, KLN. College of Engineering; Pottapalayam630611 has attended the Anna University Syllabus Sub Committee meeting held in the Department of Mathematics, Anna University on 29.10.2013.",
+      "text": "This to certify that Dr J K.SUBASHINI, Professor & Head, Department of Mathematics, KLN. College of Engineering; Pottapalayam630611 has attended the Anna University Syllabus Sub Committee meeting held in the Department of Mathematics, Anna University on 29.10.2013."
+    },
+    {
+      "self_ref": "#/texts/36",
+      "parent": {
+        "$ref": "#/groups/6"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "text",
+      "prov": [
+        {
+          "page_no": 2,
+          "bbox": {
+            "l": 362.3333333333333,
+            "t": 329.0,
+            "r": 475.6666666666667,
+            "b": 315.0,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            26
+          ]
+        }
+      ],
+      "orig": "(Chairman, Faculty of S&H)",
+      "text": "(Chairman, Faculty of S&H)"
+    },
+    {
+      "self_ref": "#/texts/37",
+      "parent": {
+        "$ref": "#/body"
+      },
+      "children": [],
+      "content_layer": "furniture",
+      "label": "page_header",
+      "prov": [
+        {
+          "page_no": 3,
+          "bbox": {
+            "l": 59.333333333333336,
+            "t": 722.6666666666666,
+            "r": 125.33333333333333,
+            "b": 712.0,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            13
+          ]
+        }
+      ],
+      "orig": "Academic Year",
+      "text": "Academic Year"
+    },
+    {
+      "self_ref": "#/texts/38",
+      "parent": {
+        "$ref": "#/body"
+      },
+      "children": [],
+      "content_layer": "furniture",
+      "label": "page_header",
+      "prov": [
+        {
+          "page_no": 3,
+          "bbox": {
+            "l": 130.0,
+            "t": 722.6666666666666,
+            "r": 182.0,
+            "b": 712.0,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            9
+          ]
+        }
+      ],
+      "orig": "2014 2015",
+      "text": "2014 2015"
+    },
+    {
+      "self_ref": "#/texts/39",
+      "parent": {
+        "$ref": "#/body"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "text",
+      "prov": [
+        {
+          "page_no": 3,
+          "bbox": {
+            "l": 158.0,
+            "t": 617.3333333333334,
+            "r": 211.33333333333334,
+            "b": 598.0,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            26
+          ]
+        },
+        {
+          "page_no": 3,
+          "bbox": {
+            "l": 373.0,
+            "t": 670.0,
+            "r": 471.3333333333333,
+            "b": 659.0,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            27,
+            54
+          ]
+        }
+      ],
+      "orig": "Dr. V. VAIDEHI Chairperson E-Mailchairmanice@amall com",
+      "text": "Dr. V. VAIDEHI Chairperson E-Mailchairmanice@amall com"
+    },
+    {
+      "self_ref": "#/texts/40",
+      "parent": {
+        "$ref": "#/body"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "section_header",
+      "prov": [
+        {
+          "page_no": 3,
+          "bbox": {
+            "l": 218.33333333333334,
+            "t": 660.6666666666666,
+            "r": 422.6666666666667,
+            "b": 625.3333333333334,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            84
+          ]
+        }
+      ],
+      "orig": "FACULTY OF INFORMATION AND COMMUNICATION ENGINEERING ANNA UNIVERSITY CHENNAI 600 025",
+      "text": "FACULTY OF INFORMATION AND COMMUNICATION ENGINEERING ANNA UNIVERSITY CHENNAI 600 025",
+      "level": 1
+    },
+    {
+      "self_ref": "#/texts/41",
+      "parent": {
+        "$ref": "#/groups/8"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "text",
+      "prov": [
+        {
+          "page_no": 3,
+          "bbox": {
+            "l": 158.66666666666666,
+            "t": 598.6666666666666,
+            "r": 300.6666666666667,
+            "b": 589.3333333333334,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            36
+          ]
+        }
+      ],
+      "orig": "Procs. No. 3485/AUIFI&C-SSCICACI2014",
+      "text": "Procs. No. 3485/AUIFI&C-SSCICACI2014"
+    },
+    {
+      "self_ref": "#/texts/42",
+      "parent": {
+        "$ref": "#/groups/8"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "text",
+      "prov": [
+        {
+          "page_no": 3,
+          "bbox": {
+            "l": 158.66666666666666,
+            "t": 582.0,
+            "r": 169.33333333333334,
+            "b": 573.3333333333334,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            2
+          ]
+        },
+        {
+          "page_no": 3,
+          "bbox": {
+            "l": 212.66666666666666,
+            "t": 579.3333333333334,
+            "r": 270.6666666666667,
+            "b": 571.3333333333334,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            3,
+            19
+          ]
+        },
+        {
+          "page_no": 3,
+          "bbox": {
+            "l": 212.33333333333334,
+            "t": 571.3333333333334,
+            "r": 292.3333333333333,
+            "b": 560.3333333333334,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            20,
+            43
+          ]
+        },
+        {
+          "page_no": 3,
+          "bbox": {
+            "l": 212.33333333333334,
+            "t": 562.0,
+            "r": 303.3333333333333,
+            "b": 551.3333333333334,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            44,
+            71
+          ]
+        },
+        {
+          "page_no": 3,
+          "bbox": {
+            "l": 211.66666666666666,
+            "t": 552.0,
+            "r": 311.3333333333333,
+            "b": 542.0,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            72,
+            101
+          ]
+        },
+        {
+          "page_no": 3,
+          "bbox": {
+            "l": 212.33333333333334,
+            "t": 541.0,
+            "r": 239.66666666666666,
+            "b": 534.3333333333333,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            102,
+            109
+          ]
+        }
+      ],
+      "orig": "To Prolessor & Head Information Technology, KLN Collogo of Enginocring, Pottapalayam, Sivagangai Dist Madurai",
+      "text": "To Prolessor & Head Information Technology, KLN Collogo of Enginocring, Pottapalayam, Sivagangai Dist Madurai"
+    },
+    {
+      "self_ref": "#/texts/43",
+      "parent": {
+        "$ref": "#/groups/8"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "text",
+      "prov": [
+        {
+          "page_no": 3,
+          "bbox": {
+            "l": 245.0,
+            "t": 541.0,
+            "r": 274.3333333333333,
+            "b": 534.3333333333333,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            9
+          ]
+        }
+      ],
+      "orig": "630 611 .",
+      "text": "630 611 ."
+    },
+    {
+      "self_ref": "#/texts/44",
+      "parent": {
+        "$ref": "#/groups/8"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "text",
+      "prov": [
+        {
+          "page_no": 3,
+          "bbox": {
+            "l": 418.6666666666667,
+            "t": 597.3333333333334,
+            "r": 458.6666666666667,
+            "b": 588.0,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            10
+          ]
+        }
+      ],
+      "orig": "18.08.2014",
+      "text": "18.08.2014"
+    },
+    {
+      "self_ref": "#/texts/45",
+      "parent": {
+        "$ref": "#/body"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "section_header",
+      "prov": [
+        {
+          "page_no": 3,
+          "bbox": {
+            "l": 156.66666666666666,
+            "t": 533.6666666666667,
+            "r": 200.33333333333334,
+            "b": 523.3333333333333,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            13
+          ]
+        }
+      ],
+      "orig": "Sir / Madam ,",
+      "text": "Sir / Madam ,",
+      "level": 1
+    },
+    {
+      "self_ref": "#/texts/46",
+      "parent": {
+        "$ref": "#/body"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "text",
+      "prov": [
+        {
+          "page_no": 3,
+          "bbox": {
+            "l": 168.66666666666666,
+            "t": 518.6666666666667,
+            "r": 464.6666666666667,
+            "b": 498.6666666666667,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            115
+          ]
+        }
+      ],
+      "orig": "Sub: Anna University Syllabus Sub Committee Meeting of the Faculty of Information and Communication Engineering Reg",
+      "text": "Sub: Anna University Syllabus Sub Committee Meeting of the Faculty of Information and Communication Engineering Reg"
+    },
+    {
+      "self_ref": "#/texts/47",
+      "parent": {
+        "$ref": "#/body"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "text",
+      "prov": [
+        {
+          "page_no": 3,
+          "bbox": {
+            "l": 166.0,
+            "t": 498.0,
+            "r": 334.0,
+            "b": 488.0,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            50
+          ]
+        }
+      ],
+      "orig": "Ref:  Vice-Chancellor's approval dated .08.06.2012",
+      "text": "Ref:  Vice-Chancellor's approval dated .08.06.2012"
+    },
+    {
+      "self_ref": "#/texts/48",
+      "parent": {
+        "$ref": "#/body"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "text",
+      "prov": [
+        {
+          "page_no": 3,
+          "bbox": {
+            "l": 152.66666666666666,
+            "t": 466.3333333333333,
+            "r": 478.0,
+            "b": 441.6666666666667,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            167
+          ]
+        }
+      ],
+      "orig": "It is proposed t0 conduct the Syllabus Sub Committee Meeting of CSE and IT of the Faculty of Information and Communication Engineering to discuss the following items .",
+      "text": "It is proposed t0 conduct the Syllabus Sub Committee Meeting of CSE and IT of the Faculty of Information and Communication Engineering to discuss the following items ."
+    },
+    {
+      "self_ref": "#/texts/49",
+      "parent": {
+        "$ref": "#/groups/9"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "list_item",
+      "prov": [
+        {
+          "page_no": 3,
+          "bbox": {
+            "l": 222.33333333333334,
+            "t": 440.6666666666667,
+            "r": 440.0,
+            "b": 422.0,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            89
+          ]
+        }
+      ],
+      "orig": "Addition of an elective on \"Foundation Skills in Integrated Product Development (FSIPD) .",
+      "text": "Addition of an elective on \"Foundation Skills in Integrated Product Development (FSIPD) .",
+      "enumerated": false,
+      "marker": ""
+    },
+    {
+      "self_ref": "#/texts/50",
+      "parent": {
+        "$ref": "#/groups/9"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "list_item",
+      "prov": [
+        {
+          "page_no": 3,
+          "bbox": {
+            "l": 211.0,
+            "t": 423.3333333333333,
+            "r": 326.0,
+            "b": 414.0,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            33
+          ]
+        }
+      ],
+      "orig": "2 Addition of books in references",
+      "text": "2 Addition of books in references",
+      "enumerated": false,
+      "marker": ""
+    },
+    {
+      "self_ref": "#/texts/51",
+      "parent": {
+        "$ref": "#/groups/10"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "text",
+      "prov": [
+        {
+          "page_no": 3,
+          "bbox": {
+            "l": 176.0,
+            "t": 407.3333333333333,
+            "r": 226.66666666666666,
+            "b": 398.6666666666667,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            13
+          ]
+        }
+      ],
+      "orig": "Date and Time",
+      "text": "Date and Time"
+    },
+    {
+      "self_ref": "#/texts/52",
+      "parent": {
+        "$ref": "#/groups/10"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "text",
+      "prov": [
+        {
+          "page_no": 3,
+          "bbox": {
+            "l": 177.0,
+            "t": 399.6666666666667,
+            "r": 200.66666666666666,
+            "b": 389.6666666666667,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            5
+          ]
+        }
+      ],
+      "orig": "Venue",
+      "text": "Venue"
+    },
+    {
+      "self_ref": "#/texts/53",
+      "parent": {
+        "$ref": "#/groups/10"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "text",
+      "prov": [
+        {
+          "page_no": 3,
+          "bbox": {
+            "l": 257.3333333333333,
+            "t": 407.0,
+            "r": 392.0,
+            "b": 396.6666666666667,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            37
+          ]
+        }
+      ],
+      "orig": "27.08.2014 (Wednesday) at 10.00. a.m.",
+      "text": "27.08.2014 (Wednesday) at 10.00. a.m."
+    },
+    {
+      "self_ref": "#/texts/54",
+      "parent": {
+        "$ref": "#/groups/10"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "text",
+      "prov": [
+        {
+          "page_no": 3,
+          "bbox": {
+            "l": 258.0,
+            "t": 398.6666666666667,
+            "r": 339.3333333333333,
+            "b": 389.3333333333333,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            21
+          ]
+        }
+      ],
+      "orig": "Academic Council Hall",
+      "text": "Academic Council Hall"
+    },
+    {
+      "self_ref": "#/texts/55",
+      "parent": {
+        "$ref": "#/groups/10"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "text",
+      "prov": [
+        {
+          "page_no": 3,
+          "bbox": {
+            "l": 257.3333333333333,
+            "t": 390.6666666666667,
+            "r": 357.3333333333333,
+            "b": 380.0,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            28
+          ]
+        }
+      ],
+      "orig": "Anna University , Chennai 25",
+      "text": "Anna University , Chennai 25"
+    },
+    {
+      "self_ref": "#/texts/56",
+      "parent": {
+        "$ref": "#/body"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "text",
+      "prov": [
+        {
+          "page_no": 3,
+          "bbox": {
+            "l": 152.0,
+            "t": 371.0,
+            "r": 477.6666666666667,
+            "b": 343.3333333333333,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            206
+          ]
+        }
+      ],
+      "orig": "request you to kindly make it convenient to attend the meeting and offer your valuable contributions . A line of confirmation regarding your participation through Phone E-mail: will be greatly appreciated ,",
+      "text": "request you to kindly make it convenient to attend the meeting and offer your valuable contributions . A line of confirmation regarding your participation through Phone E-mail: will be greatly appreciated ,"
+    },
+    {
+      "self_ref": "#/texts/57",
+      "parent": {
+        "$ref": "#/body"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "text",
+      "prov": [
+        {
+          "page_no": 3,
+          "bbox": {
+            "l": 176.66666666666666,
+            "t": 335.3333333333333,
+            "r": 238.0,
+            "b": 325.3333333333333,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            19
+          ]
+        }
+      ],
+      "orig": "With kind regards ,",
+      "text": "With kind regards ,"
+    },
+    {
+      "self_ref": "#/texts/58",
+      "parent": {
+        "$ref": "#/body"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "section_header",
+      "prov": [
+        {
+          "page_no": 3,
+          "bbox": {
+            "l": 151.0,
+            "t": 287.0,
+            "r": 383.6666666666667,
+            "b": 275.0,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            52
+          ]
+        }
+      ],
+      "orig": "NOTE: TA/DA FOR MEMBERS PARTICIPATING IN THE MEETING",
+      "text": "NOTE: TA/DA FOR MEMBERS PARTICIPATING IN THE MEETING",
+      "level": 1
+    },
+    {
+      "self_ref": "#/texts/59",
+      "parent": {
+        "$ref": "#/pictures/5"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "text",
+      "prov": [
+        {
+          "page_no": 3,
+          "bbox": {
+            "l": 425.3333333333333,
+            "t": 324.6666666666667,
+            "r": 472.6666666666667,
+            "b": 316.0,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            16
+          ]
+        }
+      ],
+      "orig": "Yours faithfully",
+      "text": "Yours faithfully"
+    },
+    {
+      "self_ref": "#/texts/60",
+      "parent": {
+        "$ref": "#/pictures/5"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "text",
+      "prov": [
+        {
+          "page_no": 3,
+          "bbox": {
+            "l": 428.6666666666667,
+            "t": 298.0,
+            "r": 450.0,
+            "b": 290.0,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            6
+          ]
+        }
+      ],
+      "orig": "Chairi",
+      "text": "Chairi"
+    },
+    {
+      "self_ref": "#/texts/61",
+      "parent": {
+        "$ref": "#/groups/11"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "list_item",
+      "prov": [
+        {
+          "page_no": 3,
+          "bbox": {
+            "l": 166.0,
+            "t": 277.0,
+            "r": 465.6666666666667,
+            "b": 260.0,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            117
+          ]
+        }
+      ],
+      "orig": "Members from Anna University, Chennai will be paid a fee of Rs. 1000/- per day including Traveling Allowances sitting",
+      "text": "Members from Anna University, Chennai will be paid a fee of Rs. 1000/- per day including Traveling Allowances sitting",
+      "enumerated": false,
+      "marker": ""
+    },
+    {
+      "self_ref": "#/texts/62",
+      "parent": {
+        "$ref": "#/groups/11"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "list_item",
+      "prov": [
+        {
+          "page_no": 3,
+          "bbox": {
+            "l": 166.0,
+            "t": 261.60441542739034,
+            "r": 465.6666666666667,
+            "b": 245.33333333333337,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            105
+          ]
+        }
+      ],
+      "orig": "Members from Chennai be paid sitting fee of Rs. 1000/- per and Rs. 400/- as travelling allowance City day",
+      "text": "Members from Chennai be paid sitting fee of Rs. 1000/- per and Rs. 400/- as travelling allowance City day",
+      "enumerated": false,
+      "marker": ""
+    },
+    {
+      "self_ref": "#/texts/63",
+      "parent": {
+        "$ref": "#/groups/11"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "list_item",
+      "prov": [
+        {
+          "page_no": 3,
+          "bbox": {
+            "l": 166.0,
+            "t": 245.33333333333337,
+            "r": 465.0,
+            "b": 225.40485664244807,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            165
+          ]
+        }
+      ],
+      "orig": "Members from outside Chennai city will be paid Traveling Allowance at the rate of 1 & 2/3 (Both Ways) by First Class Train Fare and Fee of Rs 1,000/- per sitting day",
+      "text": "Members from outside Chennai city will be paid Traveling Allowance at the rate of 1 & 2/3 (Both Ways) by First Class Train Fare and Fee of Rs 1,000/- per sitting day",
+      "enumerated": false,
+      "marker": ""
+    },
+    {
+      "self_ref": "#/texts/64",
+      "parent": {
+        "$ref": "#/groups/11"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "list_item",
+      "prov": [
+        {
+          "page_no": 3,
+          "bbox": {
+            "l": 165.0,
+            "t": 205.66666666666663,
+            "r": 464.0,
+            "b": 185.0,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            187
+          ]
+        }
+      ],
+      "orig": "Travel by car is permitted upto a maximum of 2OOkms both ways and will be paid Rs km subject to the production of official bill from the Travel Agency (with TIN Registration number) Tlper",
+      "text": "Travel by car is permitted upto a maximum of 2OOkms both ways and will be paid Rs km subject to the production of official bill from the Travel Agency (with TIN Registration number) Tlper",
+      "enumerated": false,
+      "marker": ""
+    },
+    {
+      "self_ref": "#/texts/65",
+      "parent": {
+        "$ref": "#/groups/11"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "list_item",
+      "prov": [
+        {
+          "page_no": 3,
+          "bbox": {
+            "l": 165.33333333333334,
+            "t": 229.28565112725687,
+            "r": 465.0,
+            "b": 202.66666666666663,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            245
+          ]
+        }
+      ],
+      "orig": "Members outside the Tamil Nadu State are eligible for Airfare (Economy Class) on both ways besides Rs. 1200/- towards conveyance charges (to and fro Residence Airport University) and sitting fee Rs. 1000/- per day for attending the meeting. from",
+      "text": "Members outside the Tamil Nadu State are eligible for Airfare (Economy Class) on both ways besides Rs. 1200/- towards conveyance charges (to and fro Residence Airport University) and sitting fee Rs. 1000/- per day for attending the meeting. from",
+      "enumerated": false,
+      "marker": ""
+    },
+    {
+      "self_ref": "#/texts/66",
+      "parent": {
+        "$ref": "#/body"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "text",
+      "prov": [
+        {
+          "page_no": 4,
+          "bbox": {
+            "l": 59.333333333333336,
+            "t": 722.6666666666666,
+            "r": 125.33333333333333,
+            "b": 712.0,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            13
+          ]
+        }
+      ],
+      "orig": "Academic Year",
+      "text": "Academic Year"
+    },
+    {
+      "self_ref": "#/texts/67",
+      "parent": {
+        "$ref": "#/body"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "text",
+      "prov": [
+        {
+          "page_no": 4,
+          "bbox": {
+            "l": 130.0,
+            "t": 722.6666666666666,
+            "r": 182.0,
+            "b": 712.0,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            9
+          ]
+        }
+      ],
+      "orig": "2015 2016",
+      "text": "2015 2016"
+    },
+    {
+      "self_ref": "#/texts/68",
+      "parent": {
+        "$ref": "#/pictures/6"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "text",
+      "prov": [
+        {
+          "page_no": 4,
+          "bbox": {
+            "l": 105.33333333333333,
+            "t": 618.6666666666666,
+            "r": 164.0,
+            "b": 609.3333333333334,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            9
+          ]
+        }
+      ],
+      "orig": "REGISTRAR",
+      "text": "REGISTRAR"
+    },
+    {
+      "self_ref": "#/texts/69",
+      "parent": {
+        "$ref": "#/body"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "text",
+      "prov": [
+        {
+          "page_no": 4,
+          "bbox": {
+            "l": 236.33333333333334,
+            "t": 653.3333333333334,
+            "r": 379.0,
+            "b": 641.0,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            22
+          ]
+        }
+      ],
+      "orig": "CHENNAI 600 025. INDIA",
+      "text": "CHENNAI 600 025. INDIA"
+    },
+    {
+      "self_ref": "#/texts/70",
+      "parent": {
+        "$ref": "#/body"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "section_header",
+      "prov": [
+        {
+          "page_no": 4,
+          "bbox": {
+            "l": 133.33333333333334,
+            "t": 575.6666666666666,
+            "r": 248.33333333333334,
+            "b": 565.3333333333334,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            27
+          ]
+        }
+      ],
+      "orig": "Procs. No. 666/AUCICACI2016",
+      "text": "Procs. No. 666/AUCICACI2016",
+      "level": 1
+    },
+    {
+      "self_ref": "#/texts/71",
+      "parent": {
+        "$ref": "#/body"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "text",
+      "prov": [
+        {
+          "page_no": 4,
+          "bbox": {
+            "l": 134.0,
+            "t": 556.0,
+            "r": 144.66666666666666,
+            "b": 547.3333333333334,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            2
+          ]
+        }
+      ],
+      "orig": "To",
+      "text": "To"
+    },
+    {
+      "self_ref": "#/texts/72",
+      "parent": {
+        "$ref": "#/body"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "text",
+      "prov": [
+        {
+          "page_no": 4,
+          "bbox": {
+            "l": 142.66666666666666,
+            "t": 519.0,
+            "r": 234.0,
+            "b": 500.6666666666667,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            40
+          ]
+        }
+      ],
+      "orig": "Pollapalayam sivagangai district 630 612",
+      "text": "Pollapalayam sivagangai district 630 612"
+    },
+    {
+      "self_ref": "#/texts/73",
+      "parent": {
+        "$ref": "#/body"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "section_header",
+      "prov": [
+        {
+          "page_no": 4,
+          "bbox": {
+            "l": 134.66666666666666,
+            "t": 466.6666666666667,
+            "r": 181.33333333333334,
+            "b": 456.6666666666667,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            11
+          ]
+        }
+      ],
+      "orig": "Sir / Madam",
+      "text": "Sir / Madam",
+      "level": 1
+    },
+    {
+      "self_ref": "#/texts/74",
+      "parent": {
+        "$ref": "#/body"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "text",
+      "prov": [
+        {
+          "page_no": 4,
+          "bbox": {
+            "l": 166.66666666666666,
+            "t": 449.3333333333333,
+            "r": 472.6666666666667,
+            "b": 420.3333333333333,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            137
+          ]
+        }
+      ],
+      "orig": "Sub: Anna University Chennal Affiliated  Institutions Faculty of Management Sciences Constitution Appointment of members Information Reg.",
+      "text": "Sub: Anna University Chennal Affiliated  Institutions Faculty of Management Sciences Constitution Appointment of members Information Reg."
+    },
+    {
+      "self_ref": "#/texts/75",
+      "parent": {
+        "$ref": "#/body"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "text",
+      "prov": [
+        {
+          "page_no": 4,
+          "bbox": {
+            "l": 166.66666666666666,
+            "t": 419.6666666666667,
+            "r": 351.0,
+            "b": 407.3333333333333,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            50
+          ]
+        }
+      ],
+      "orig": "Ref: Vice-Chancellor s approval dated 28.09.2015 .",
+      "text": "Ref: Vice-Chancellor s approval dated 28.09.2015 ."
+    },
+    {
+      "self_ref": "#/texts/76",
+      "parent": {
+        "$ref": "#/body"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "text",
+      "prov": [
+        {
+          "page_no": 4,
+          "bbox": {
+            "l": 134.33333333333334,
+            "t": 393.3333333333333,
+            "r": 473.6666666666667,
+            "b": 359.3333333333333,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            204
+          ]
+        }
+      ],
+      "orig": "am pleased to inform you that the Vice Chancellor has appointed you as a Member of the Board of Studies of the Affiliated Institutions under the Faculty of Management Sciences of Anna University , Chennai",
+      "text": "am pleased to inform you that the Vice Chancellor has appointed you as a Member of the Board of Studies of the Affiliated Institutions under the Faculty of Management Sciences of Anna University , Chennai"
+    },
+    {
+      "self_ref": "#/texts/77",
+      "parent": {
+        "$ref": "#/body"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "text",
+      "prov": [
+        {
+          "page_no": 4,
+          "bbox": {
+            "l": 135.33333333333334,
+            "t": 351.3333333333333,
+            "r": 473.6666666666667,
+            "b": 328.0,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            117
+          ]
+        }
+      ],
+      "orig": "copy of the Syndicate Resolution indicating the powers and functions of the Board is also enclosed fcr your reference",
+      "text": "copy of the Syndicate Resolution indicating the powers and functions of the Board is also enclosed fcr your reference"
+    },
+    {
+      "self_ref": "#/texts/78",
+      "parent": {
+        "$ref": "#/body"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "text",
+      "prov": [
+        {
+          "page_no": 4,
+          "bbox": {
+            "l": 161.0,
+            "t": 320.3333333333333,
+            "r": 459.0,
+            "b": 307.0,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            84
+          ]
+        }
+      ],
+      "orig": "The Membership is honorary and it is for a tenure of three years upto February 2019.",
+      "text": "The Membership is honorary and it is for a tenure of three years upto February 2019."
+    },
+    {
+      "self_ref": "#/texts/79",
+      "parent": {
+        "$ref": "#/body"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "text",
+      "prov": [
+        {
+          "page_no": 4,
+          "bbox": {
+            "l": 135.66666666666666,
+            "t": 298.0,
+            "r": 474.0,
+            "b": 275.66666666666663,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            148
+          ]
+        }
+      ],
+      "orig": "am to request to kindly accept the offer and send your acceptance letter on or before 04.03.2016, either by post or by E-mail (dac@annauniv edu) you",
+      "text": "am to request to kindly accept the offer and send your acceptance letter on or before 04.03.2016, either by post or by E-mail (dac@annauniv edu) you"
+    },
+    {
+      "self_ref": "#/texts/80",
+      "parent": {
+        "$ref": "#/body"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "text",
+      "prov": [
+        {
+          "page_no": 4,
+          "bbox": {
+            "l": 136.66666666666666,
+            "t": 265.33333333333337,
+            "r": 201.33333333333334,
+            "b": 254.33333333333337,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            17
+          ]
+        }
+      ],
+      "orig": "With kind regards",
+      "text": "With kind regards"
+    },
+    {
+      "self_ref": "#/texts/81",
+      "parent": {
+        "$ref": "#/groups/14"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "text",
+      "prov": [
+        {
+          "page_no": 4,
+          "bbox": {
+            "l": 137.33333333333334,
+            "t": 206.66666666666663,
+            "r": 195.33333333333334,
+            "b": 198.0,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            14
+          ]
+        }
+      ],
+      "orig": "Encl: As above",
+      "text": "Encl: As above"
+    },
+    {
+      "self_ref": "#/texts/82",
+      "parent": {
+        "$ref": "#/pictures/7"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "text",
+      "prov": [
+        {
+          "page_no": 4,
+          "bbox": {
+            "l": 405.3333333333333,
+            "t": 258.66666666666663,
+            "r": 459.3333333333333,
+            "b": 249.33333333333337,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            16
+          ]
+        }
+      ],
+      "orig": "Yours {aithfully",
+      "text": "Yours {aithfully"
+    },
+    {
+      "self_ref": "#/texts/83",
+      "parent": {
+        "$ref": "#/body"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "section_header",
+      "prov": [
+        {
+          "page_no": 4,
+          "bbox": {
+            "l": 214.66666666666666,
+            "t": 674.0,
+            "r": 402.3333333333333,
+            "b": 652.0,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            15
+          ]
+        }
+      ],
+      "orig": "ANNA UNIVERSITY",
+      "text": "ANNA UNIVERSITY",
+      "level": 1
+    },
+    {
+      "self_ref": "#/texts/84",
+      "parent": {
+        "$ref": "#/groups/15"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "text",
+      "prov": [
+        {
+          "page_no": 4,
+          "bbox": {
+            "l": 394.0,
+            "t": 644.0,
+            "r": 418.0,
+            "b": 635.3333333333334,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            5
+          ]
+        }
+      ],
+      "orig": "Phone",
+      "text": "Phone"
+    },
+    {
+      "self_ref": "#/texts/85",
+      "parent": {
+        "$ref": "#/groups/15"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "text",
+      "prov": [
+        {
+          "page_no": 4,
+          "bbox": {
+            "l": 394.0,
+            "t": 626.6666666666666,
+            "r": 409.3333333333333,
+            "b": 618.0,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            3
+          ]
+        }
+      ],
+      "orig": "Fax",
+      "text": "Fax"
+    },
+    {
+      "self_ref": "#/texts/86",
+      "parent": {
+        "$ref": "#/groups/15"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "text",
+      "prov": [
+        {
+          "page_no": 4,
+          "bbox": {
+            "l": 445.3333333333333,
+            "t": 636.0,
+            "r": 456.0,
+            "b": 627.3333333333334,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            1
+          ]
+        }
+      ],
+      "orig": "4",
+      "text": "4"
+    },
+    {
+      "self_ref": "#/texts/87",
+      "parent": {
+        "$ref": "#/groups/15"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "text",
+      "prov": [
+        {
+          "page_no": 4,
+          "bbox": {
+            "l": 445.3333333333333,
+            "t": 626.6666666666666,
+            "r": 456.6666666666667,
+            "b": 618.6666666666666,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            2
+          ]
+        }
+      ],
+      "orig": "44",
+      "text": "44"
+    },
+    {
+      "self_ref": "#/texts/88",
+      "parent": {
+        "$ref": "#/groups/15"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "text",
+      "prov": [
+        {
+          "page_no": 4,
+          "bbox": {
+            "l": 394.0,
+            "t": 617.3333333333334,
+            "r": 415.3333333333333,
+            "b": 609.3333333333334,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            4
+          ]
+        }
+      ],
+      "orig": "Gram",
+      "text": "Gram"
+    },
+    {
+      "self_ref": "#/texts/89",
+      "parent": {
+        "$ref": "#/groups/15"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "text",
+      "prov": [
+        {
+          "page_no": 4,
+          "bbox": {
+            "l": 394.0,
+            "t": 608.6666666666666,
+            "r": 418.0,
+            "b": 600.0,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            5
+          ]
+        },
+        {
+          "page_no": 4,
+          "bbox": {
+            "l": 427.3333333333333,
+            "t": 609.3333333333334,
+            "r": 510.6666666666667,
+            "b": 599.3333333333334,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            6,
+            29
+          ]
+        },
+        {
+          "page_no": 4,
+          "bbox": {
+            "l": 427.3333333333333,
+            "t": 618.6666666666666,
+            "r": 470.0,
+            "b": 608.6666666666666,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            30,
+            38
+          ]
+        }
+      ],
+      "orig": "Emall reglstrar @annauniv edu ANNATECH",
+      "text": "Emall reglstrar @annauniv edu ANNATECH"
+    },
+    {
+      "self_ref": "#/texts/90",
+      "parent": {
+        "$ref": "#/groups/16"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "text",
+      "prov": [
+        {
+          "page_no": 4,
+          "bbox": {
+            "l": 406.0,
+            "t": 577.3333333333334,
+            "r": 474.6666666666667,
+            "b": 568.0,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            17
+          ]
+        }
+      ],
+      "orig": "Dated: 11.02.2016",
+      "text": "Dated: 11.02.2016"
+    },
+    {
+      "self_ref": "#/texts/91",
+      "parent": {
+        "$ref": "#/body"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "caption",
+      "prov": [
+        {
+          "page_no": 4,
+          "bbox": {
+            "l": 405.3333333333333,
+            "t": 222.0,
+            "r": 468.0,
+            "b": 212.0,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            13
+          ]
+        }
+      ],
+      "orig": "for REGISTRAR",
+      "text": "for REGISTRAR"
+    },
+    {
+      "self_ref": "#/texts/92",
+      "parent": {
+        "$ref": "#/groups/17"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "section_header",
+      "prov": [
+        {
+          "page_no": 5,
+          "bbox": {
+            "l": 59.333333333333336,
+            "t": 722.6666666666666,
+            "r": 176.66666666666666,
+            "b": 712.0,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            23
+          ]
+        }
+      ],
+      "orig": "Academic Year 2016-2017",
+      "text": "Academic Year 2016-2017",
+      "level": 1
+    },
+    {
+      "self_ref": "#/texts/93",
+      "parent": {
+        "$ref": "#/pictures/8"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "text",
+      "prov": [
+        {
+          "page_no": 5,
+          "bbox": {
+            "l": 137.66666666666666,
+            "t": 621.6666666666666,
+            "r": 265.0,
+            "b": 600.3333333333334,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            67
+          ]
+        }
+      ],
+      "orig": "FATIMA COLLEGE (Autonomous) (College with Potential for Excellence)",
+      "text": "FATIMA COLLEGE (Autonomous) (College with Potential for Excellence)"
+    },
+    {
+      "self_ref": "#/texts/94",
+      "parent": {
+        "$ref": "#/pictures/8"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "text",
+      "prov": [
+        {
+          "page_no": 5,
+          "bbox": {
+            "l": 357.3333333333333,
+            "t": 616.9453729816263,
+            "r": 442.6666666666667,
+            "b": 579.0,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            65
+          ]
+        }
+      ],
+      "orig": "Land, Madurai-18. PHONE: 2668016, 2669015. FAX: 0452-2668437 Mary",
+      "text": "Land, Madurai-18. PHONE: 2668016, 2669015. FAX: 0452-2668437 Mary"
+    },
+    {
+      "self_ref": "#/texts/95",
+      "parent": {
+        "$ref": "#/pictures/8"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "text",
+      "prov": [
+        {
+          "page_no": 5,
+          "bbox": {
+            "l": 138.33333333333334,
+            "t": 595.0,
+            "r": 286.3333333333333,
+            "b": 581.6666666666666,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            38
+          ]
+        }
+      ],
+      "orig": "UG Department of Computer Applications",
+      "text": "UG Department of Computer Applications"
+    },
+    {
+      "self_ref": "#/texts/96",
+      "parent": {
+        "$ref": "#/pictures/8"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "text",
+      "prov": [
+        {
+          "page_no": 5,
+          "bbox": {
+            "l": 366.0,
+            "t": 565.3333333333334,
+            "r": 431.3333333333333,
+            "b": 555.3333333333334,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            16
+          ]
+        }
+      ],
+      "orig": "Date 31,03.2017.",
+      "text": "Date 31,03.2017."
+    },
+    {
+      "self_ref": "#/texts/97",
+      "parent": {
+        "$ref": "#/pictures/8"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "text",
+      "prov": [
+        {
+          "page_no": 5,
+          "bbox": {
+            "l": 136.0,
+            "t": 512.6666666666667,
+            "r": 147.33333333333334,
+            "b": 504.0,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            2
+          ]
+        }
+      ],
+      "orig": "To",
+      "text": "To"
+    },
+    {
+      "self_ref": "#/texts/98",
+      "parent": {
+        "$ref": "#/pictures/8"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "text",
+      "prov": [
+        {
+          "page_no": 5,
+          "bbox": {
+            "l": 155.0,
+            "t": 493.0,
+            "r": 274.0,
+            "b": 433.3333333333333,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            118
+          ]
+        }
+      ],
+      "orig": "Dr. N. Balaji. Professor & Head. Dept. of Intormation Technology. KLN of Engineering. Pottapalayam Sivagangai. College",
+      "text": "Dr. N. Balaji. Professor & Head. Dept. of Intormation Technology. KLN of Engineering. Pottapalayam Sivagangai. College"
+    },
+    {
+      "self_ref": "#/texts/99",
+      "parent": {
+        "$ref": "#/pictures/8"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "text",
+      "prov": [
+        {
+          "page_no": 5,
+          "bbox": {
+            "l": 133.33333333333334,
+            "t": 425.6666666666667,
+            "r": 165.66666666666666,
+            "b": 415.3333333333333,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            9
+          ]
+        }
+      ],
+      "orig": "Dear Sir.",
+      "text": "Dear Sir."
+    },
+    {
+      "self_ref": "#/texts/100",
+      "parent": {
+        "$ref": "#/pictures/8"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "text",
+      "prov": [
+        {
+          "page_no": 5,
+          "bbox": {
+            "l": 131.66666666666666,
+            "t": 396.9377487607237,
+            "r": 464.3333333333333,
+            "b": 338.3333333333333,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            232
+          ]
+        }
+      ],
+      "orig": "are pleased to inform that you have been appointed as the Subject Expert in our Board of Studies for the course BCA. With regard to this we have planned to convene the Applications(BCA ) forward for your favorable reply . We Looking",
+      "text": "are pleased to inform that you have been appointed as the Subject Expert in our Board of Studies for the course BCA. With regard to this we have planned to convene the Applications(BCA ) forward for your favorable reply . We Looking"
+    },
+    {
+      "self_ref": "#/texts/101",
+      "parent": {
+        "$ref": "#/pictures/8"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "text",
+      "prov": [
+        {
+          "page_no": 5,
+          "bbox": {
+            "l": 268.3333333333333,
+            "t": 322.3333333333333,
+            "r": 323.3333333333333,
+            "b": 308.0,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            13
+          ]
+        }
+      ],
+      "orig": "Thanking You;",
+      "text": "Thanking You;"
+    },
+    {
+      "self_ref": "#/texts/102",
+      "parent": {
+        "$ref": "#/pictures/8"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "text",
+      "prov": [
+        {
+          "page_no": 5,
+          "bbox": {
+            "l": 347.0,
+            "t": 275.0,
+            "r": 445.3333333333333,
+            "b": 232.0,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            62
+          ]
+        }
+      ],
+      "orig": "Yours truly , (P Nancy Vincentina Mary) Head of the Department",
+      "text": "Yours truly , (P Nancy Vincentina Mary) Head of the Department"
+    },
+    {
+      "self_ref": "#/texts/103",
+      "parent": {
+        "$ref": "#/groups/20"
+      },
+      "children": [],
+      "content_layer": "furniture",
+      "label": "page_header",
+      "prov": [
+        {
+          "page_no": 6,
+          "bbox": {
+            "l": 59.333333333333336,
+            "t": 722.6666666666666,
+            "r": 125.33333333333333,
+            "b": 712.0,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            13
+          ]
+        }
+      ],
+      "orig": "Academic Year",
+      "text": "Academic Year"
+    },
+    {
+      "self_ref": "#/texts/104",
+      "parent": {
+        "$ref": "#/groups/20"
+      },
+      "children": [],
+      "content_layer": "furniture",
+      "label": "page_header",
+      "prov": [
+        {
+          "page_no": 6,
+          "bbox": {
+            "l": 130.0,
+            "t": 722.6666666666666,
+            "r": 176.66666666666666,
+            "b": 712.0,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            9
+          ]
+        }
+      ],
+      "orig": "2016-2017",
+      "text": "2016-2017"
+    },
+    {
+      "self_ref": "#/texts/105",
+      "parent": {
+        "$ref": "#/body"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "text",
+      "prov": [
+        {
+          "page_no": 6,
+          "bbox": {
+            "l": 110.66666666666667,
+            "t": 627.2787063149597,
+            "r": 196.65932401665273,
+            "b": 606.6666666666666,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            15
+          ]
+        }
+      ],
+      "orig": "Principal Mary,",
+      "text": "Principal Mary,"
+    },
+    {
+      "self_ref": "#/texts/106",
+      "parent": {
+        "$ref": "#/groups/21"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "text",
+      "prov": [
+        {
+          "page_no": 6,
+          "bbox": {
+            "l": 137.33333333333334,
+            "t": 539.3333333333334,
+            "r": 216.66666666666666,
+            "b": 529.3333333333333,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            18
+          ]
+        }
+      ],
+      "orig": "No. 25/P/2016-2017",
+      "text": "No. 25/P/2016-2017"
+    },
+    {
+      "self_ref": "#/texts/107",
+      "parent": {
+        "$ref": "#/groups/21"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "text",
+      "prov": [
+        {
+          "page_no": 6,
+          "bbox": {
+            "l": 136.33333333333334,
+            "t": 515.3333333333333,
+            "r": 249.33333333333334,
+            "b": 449.6666666666667,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            95
+          ]
+        }
+      ],
+      "orig": "Dr. N Balaji Professor & Head Department of IT KLN of Engineering Pottapalayam Sivagangai Dist.",
+      "text": "Dr. N Balaji Professor & Head Department of IT KLN of Engineering Pottapalayam Sivagangai Dist."
+    },
+    {
+      "self_ref": "#/texts/108",
+      "parent": {
+        "$ref": "#/body"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "text",
+      "prov": [
+        {
+          "page_no": 6,
+          "bbox": {
+            "l": 137.0,
+            "t": 429.6666666666667,
+            "r": 186.66666666666666,
+            "b": 418.6666666666667,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            10
+          ]
+        },
+        {
+          "page_no": 6,
+          "bbox": {
+            "l": 189.33333333333334,
+            "t": 400.0,
+            "r": 446.6666666666667,
+            "b": 375.3333333333333,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            11,
+            80
+          ]
+        }
+      ],
+      "orig": "Sir/Madam, Sub: Fatima College (Autonomous) Madurai Board of Studies Meeting Reg",
+      "text": "Sir/Madam, Sub: Fatima College (Autonomous) Madurai Board of Studies Meeting Reg"
+    },
+    {
+      "self_ref": "#/texts/109",
+      "parent": {
+        "$ref": "#/body"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "text",
+      "prov": [
+        {
+          "page_no": 6,
+          "bbox": {
+            "l": 137.0,
+            "t": 357.0,
+            "r": 467.0,
+            "b": 311.6666666666667,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            202
+          ]
+        }
+      ],
+      "orig": "Department of MCA. is haPPy to have you as the Board member and we are sure that your interactions and contributions would help us to sustain and enhance the quality of education given in Fatima College",
+      "text": "Department of MCA. is haPPy to have you as the Board member and we are sure that your interactions and contributions would help us to sustain and enhance the quality of education given in Fatima College"
+    },
+    {
+      "self_ref": "#/texts/110",
+      "parent": {
+        "$ref": "#/body"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "text",
+      "prov": [
+        {
+          "page_no": 6,
+          "bbox": {
+            "l": 137.66666666666666,
+            "t": 297.6666666666667,
+            "r": 467.0,
+            "b": 269.0,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            139
+          ]
+        }
+      ],
+      "orig": "The meeting of the Board of Studies in MCA. will be held on 04.04.2017 at 3.00 P.M. Please make it convenient to be present for the meeting",
+      "text": "The meeting of the Board of Studies in MCA. will be held on 04.04.2017 at 3.00 P.M. Please make it convenient to be present for the meeting"
+    },
+    {
+      "self_ref": "#/texts/111",
+      "parent": {
+        "$ref": "#/body"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "text",
+      "prov": [
+        {
+          "page_no": 6,
+          "bbox": {
+            "l": 190.0,
+            "t": 252.66666666666663,
+            "r": 236.0,
+            "b": 242.0,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            10
+          ]
+        }
+      ],
+      "orig": "Thank you.",
+      "text": "Thank you."
+    },
+    {
+      "self_ref": "#/texts/112",
+      "parent": {
+        "$ref": "#/body"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "text",
+      "prov": [
+        {
+          "page_no": 6,
+          "bbox": {
+            "l": 354.0,
+            "t": 627.3333333333334,
+            "r": 478.6666666666667,
+            "b": 594.0,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            128
+          ]
+        }
+      ],
+      "orig": "FATIMA COLLEGE (Autonomous) Re Accredited with 'A' Grade by NAAC) (College with Potential for Excellence) Mary Land, Madurai-1S.",
+      "text": "FATIMA COLLEGE (Autonomous) Re Accredited with 'A' Grade by NAAC) (College with Potential for Excellence) Mary Land, Madurai-1S."
+    },
+    {
+      "self_ref": "#/texts/113",
+      "parent": {
+        "$ref": "#/groups/22"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "text",
+      "prov": [
+        {
+          "page_no": 6,
+          "bbox": {
+            "l": 355.3333333333333,
+            "t": 585.3333333333334,
+            "r": 372.0,
+            "b": 577.3333333333334,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            3
+          ]
+        }
+      ],
+      "orig": "FAX",
+      "text": "FAX"
+    },
+    {
+      "self_ref": "#/texts/114",
+      "parent": {
+        "$ref": "#/groups/22"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "text",
+      "prov": [
+        {
+          "page_no": 6,
+          "bbox": {
+            "l": 386.3333333333333,
+            "t": 586.6666666666666,
+            "r": 431.3333333333333,
+            "b": 577.3333333333334,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            12
+          ]
+        }
+      ],
+      "orig": "0452-2668437",
+      "text": "0452-2668437"
+    },
+    {
+      "self_ref": "#/texts/115",
+      "parent": {
+        "$ref": "#/groups/22"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "text",
+      "prov": [
+        {
+          "page_no": 6,
+          "bbox": {
+            "l": 355.3333333333333,
+            "t": 576.6666666666666,
+            "r": 377.3333333333333,
+            "b": 568.6666666666666,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            5
+          ]
+        },
+        {
+          "page_no": 6,
+          "bbox": {
+            "l": 386.3333333333333,
+            "t": 577.0,
+            "r": 479.0,
+            "b": 568.3333333333334,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            6,
+            31
+          ]
+        }
+      ],
+      "orig": "Email fatimacollegemdu@gmailcom",
+      "text": "Email fatimacollegemdu@gmailcom"
+    },
+    {
+      "self_ref": "#/texts/116",
+      "parent": {
+        "$ref": "#/groups/22"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "text",
+      "prov": [
+        {
+          "page_no": 6,
+          "bbox": {
+            "l": 355.3333333333333,
+            "t": 562.6666666666666,
+            "r": 378.0,
+            "b": 554.0,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            4
+          ]
+        }
+      ],
+      "orig": "Date",
+      "text": "Date"
+    },
+    {
+      "self_ref": "#/texts/117",
+      "parent": {
+        "$ref": "#/groups/22"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "text",
+      "prov": [
+        {
+          "page_no": 6,
+          "bbox": {
+            "l": 394.6666666666667,
+            "t": 564.0,
+            "r": 439.3333333333333,
+            "b": 553.3333333333334,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            10
+          ]
+        }
+      ],
+      "orig": "28.03.2017",
+      "text": "28.03.2017"
+    },
+    {
+      "self_ref": "#/texts/118",
+      "parent": {
+        "$ref": "#/groups/23"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "text",
+      "prov": [
+        {
+          "page_no": 6,
+          "bbox": {
+            "l": 364.0,
+            "t": 229.0,
+            "r": 427.3333333333333,
+            "b": 218.0,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            17
+          ]
+        }
+      ],
+      "orig": "Yours sincerely ,",
+      "text": "Yours sincerely ,"
+    },
+    {
+      "self_ref": "#/texts/119",
+      "parent": {
+        "$ref": "#/pictures/10"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "caption",
+      "prov": [
+        {
+          "page_no": 6,
+          "bbox": {
+            "l": 348.6666666666667,
+            "t": 188.0,
+            "r": 443.6666666666667,
+            "b": 177.0,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            22
+          ]
+        }
+      ],
+      "orig": "(Dr. Sr. KFatima Mary)",
+      "text": "(Dr. Sr. KFatima Mary)"
+    },
+    {
+      "self_ref": "#/texts/120",
+      "parent": {
+        "$ref": "#/groups/24"
+      },
+      "children": [],
+      "content_layer": "furniture",
+      "label": "page_header",
+      "prov": [
+        {
+          "page_no": 7,
+          "bbox": {
+            "l": 59.333333333333336,
+            "t": 722.6666666666666,
+            "r": 125.33333333333333,
+            "b": 712.0,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            13
+          ]
+        }
+      ],
+      "orig": "Academic Year",
+      "text": "Academic Year"
+    },
+    {
+      "self_ref": "#/texts/121",
+      "parent": {
+        "$ref": "#/body"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "text",
+      "prov": [
+        {
+          "page_no": 7,
+          "bbox": {
+            "l": 130.0,
+            "t": 722.6666666666666,
+            "r": 181.33333333333334,
+            "b": 712.0,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            9
+          ]
+        }
+      ],
+      "orig": "2016 2017",
+      "text": "2016 2017"
+    },
+    {
+      "self_ref": "#/texts/122",
+      "parent": {
+        "$ref": "#/body"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "text",
+      "prov": [
+        {
+          "page_no": 7,
+          "bbox": {
+            "l": 132.0,
+            "t": 639.3333333333334,
+            "r": 196.66666666666666,
+            "b": 620.0,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            25
+          ]
+        }
+      ],
+      "orig": "Dr, T. V. GEETHA DIRECTOR",
+      "text": "Dr, T. V. GEETHA DIRECTOR"
+    },
+    {
+      "self_ref": "#/texts/123",
+      "parent": {
+        "$ref": "#/body"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "text",
+      "prov": [
+        {
+          "page_no": 7,
+          "bbox": {
+            "l": 131.33333333333334,
+            "t": 617.6666666666666,
+            "r": 271.3333333333333,
+            "b": 606.6666666666666,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            34
+          ]
+        }
+      ],
+      "orig": "Lr No. 444O/AIIISSCICRCSIFICFI?016",
+      "text": "Lr No. 444O/AIIISSCICRCSIFICFI?016"
+    },
+    {
+      "self_ref": "#/texts/124",
+      "parent": {
+        "$ref": "#/body"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "text",
+      "prov": [
+        {
+          "page_no": 7,
+          "bbox": {
+            "l": 190.0,
+            "t": 607.6666666666666,
+            "r": 281.3333333333333,
+            "b": 561.3333333333334,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            69
+          ]
+        }
+      ],
+      "orig": "14 Dr N Balaji Head DEPT OF IT KLN College of Engineenng Pottapalayam",
+      "text": "14 Dr N Balaji Head DEPT OF IT KLN College of Engineenng Pottapalayam"
+    },
+    {
+      "self_ref": "#/texts/125",
+      "parent": {
+        "$ref": "#/body"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "text",
+      "prov": [
+        {
+          "page_no": 7,
+          "bbox": {
+            "l": 189.66666666666666,
+            "t": 562.0,
+            "r": 286.6666666666667,
+            "b": 551.6666666666666,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            28
+          ]
+        }
+      ],
+      "orig": "Sivagangai District -630 612",
+      "text": "Sivagangai District -630 612"
+    },
+    {
+      "self_ref": "#/texts/126",
+      "parent": {
+        "$ref": "#/body"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "text",
+      "prov": [
+        {
+          "page_no": 7,
+          "bbox": {
+            "l": 140.0,
+            "t": 542.6666666666666,
+            "r": 461.0,
+            "b": 503.0,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            242
+          ]
+        }
+      ],
+      "orig": "Sub: Anna University Syllabus Sub Committee Revision of Curriculum and Syllabi under R-2017 for the Constituent Colleges and Affiliated  Institutions Faculty of   Information and Communication Engineering Appointment as Member Information Reg",
+      "text": "Sub: Anna University Syllabus Sub Committee Revision of Curriculum and Syllabi under R-2017 for the Constituent Colleges and Affiliated  Institutions Faculty of   Information and Communication Engineering Appointment as Member Information Reg"
+    },
+    {
+      "self_ref": "#/texts/127",
+      "parent": {
+        "$ref": "#/body"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "text",
+      "prov": [
+        {
+          "page_no": 7,
+          "bbox": {
+            "l": 130.66666666666666,
+            "t": 550.0,
+            "r": 174.66666666666666,
+            "b": 541.3333333333334,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            12
+          ]
+        }
+      ],
+      "orig": "Sir / Madam,",
+      "text": "Sir / Madam,"
+    },
+    {
+      "self_ref": "#/texts/128",
+      "parent": {
+        "$ref": "#/body"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "text",
+      "prov": [
+        {
+          "page_no": 7,
+          "bbox": {
+            "l": 128.33333333333334,
+            "t": 499.3333333333333,
+            "r": 462.3333333333333,
+            "b": 413.3333333333333,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            544
+          ]
+        }
+      ],
+      "orig": "have the pleasure of informing you that the Registrar, Anna University has appointed you as Member of the Syllabus Sub Committee for framing the Curricula and Syllabi  for BE Computer Science and Engincering; B Tech. Information Technology, and B.E Computer and Communication Engineering, t0 be offered in UG degree Programmes under R-2017 by thc Constituent Colleges and Affiliated Institutions of Anna University , Chennai under the Faculty of Information and Communication Engineering in accordance with the Choice Based Credit System (CBCS)",
+      "text": "have the pleasure of informing you that the Registrar, Anna University has appointed you as Member of the Syllabus Sub Committee for framing the Curricula and Syllabi  for BE Computer Science and Engincering; B Tech. Information Technology, and B.E Computer and Communication Engineering, t0 be offered in UG degree Programmes under R-2017 by thc Constituent Colleges and Affiliated Institutions of Anna University , Chennai under the Faculty of Information and Communication Engineering in accordance with the Choice Based Credit System (CBCS)"
+    },
+    {
+      "self_ref": "#/texts/129",
+      "parent": {
+        "$ref": "#/body"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "text",
+      "prov": [
+        {
+          "page_no": 7,
+          "bbox": {
+            "l": 131.33333333333334,
+            "t": 415.3333333333333,
+            "r": 462.0,
+            "b": 365.0,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            255
+          ]
+        }
+      ],
+      "orig": "am to inform   you that the Syllabus Sub Committee Meeting of   the Faculty of Information and Communication Engineering on 01.11.2016 (Tuesday) 10.00 AM at Turing Hall, Department of Computer Science and Engineering CEG Campus, Anna University , Chennai.",
+      "text": "am to inform   you that the Syllabus Sub Committee Meeting of   the Faculty of Information and Communication Engineering on 01.11.2016 (Tuesday) 10.00 AM at Turing Hall, Department of Computer Science and Engineering CEG Campus, Anna University , Chennai."
+    },
+    {
+      "self_ref": "#/texts/130",
+      "parent": {
+        "$ref": "#/body"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "text",
+      "prov": [
+        {
+          "page_no": 7,
+          "bbox": {
+            "l": 132.0,
+            "t": 364.0,
+            "r": 202.0,
+            "b": 354.0,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            19
+          ]
+        }
+      ],
+      "orig": "The Agenda will be:",
+      "text": "The Agenda will be:"
+    },
+    {
+      "self_ref": "#/texts/131",
+      "parent": {
+        "$ref": "#/body"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "text",
+      "prov": [
+        {
+          "page_no": 7,
+          "bbox": {
+            "l": 131.33333333333334,
+            "t": 321.6666666666667,
+            "r": 462.3333333333333,
+            "b": 285.0,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            249
+          ]
+        }
+      ],
+      "orig": "Please come prepared with your inputs, so that we can prepare quality Curriculum & Syllabi  The main discussions will be held on the day of the Syllabus Sub Committee meeting: However, the finalization will be through interaction using group e-mails",
+      "text": "Please come prepared with your inputs, so that we can prepare quality Curriculum & Syllabi  The main discussions will be held on the day of the Syllabus Sub Committee meeting: However, the finalization will be through interaction using group e-mails"
+    },
+    {
+      "self_ref": "#/texts/132",
+      "parent": {
+        "$ref": "#/groups/25"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "list_item",
+      "prov": [
+        {
+          "page_no": 7,
+          "bbox": {
+            "l": 131.0,
+            "t": 356.0,
+            "r": 462.0,
+            "b": 318.3333333333333,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            204
+          ]
+        }
+      ],
+      "orig": "Full Curriculum of UG Programmes and Syllabi of 1 & Il Semesters Salient   points as per AICTE norms is   enclosed The AICTE guidelines are available at wvw aicte india orglmodelsyllabus php for reference",
+      "text": "Full Curriculum of UG Programmes and Syllabi of 1 & Il Semesters Salient   points as per AICTE norms is   enclosed The AICTE guidelines are available at wvw aicte india orglmodelsyllabus php for reference",
+      "enumerated": false,
+      "marker": ""
+    },
+    {
+      "self_ref": "#/texts/133",
+      "parent": {
+        "$ref": "#/body"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "text",
+      "prov": [
+        {
+          "page_no": 7,
+          "bbox": {
+            "l": 157.33333333333334,
+            "t": 284.3333333333333,
+            "r": 311.3333333333333,
+            "b": 273.33333333333337,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            42
+          ]
+        }
+      ],
+      "orig": "Thank you in advance for your co-operation",
+      "text": "Thank you in advance for your co-operation"
+    },
+    {
+      "self_ref": "#/texts/134",
+      "parent": {
+        "$ref": "#/body"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "footnote",
+      "prov": [
+        {
+          "page_no": 7,
+          "bbox": {
+            "l": 156.66666666666666,
+            "t": 179.33333333333337,
+            "r": 264.7817818626642,
+            "b": 171.33333333333337,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            40
+          ]
+        }
+      ],
+      "orig": "Local members from the Chennai City will",
+      "text": "Local members from the Chennai City will"
+    },
+    {
+      "self_ref": "#/texts/135",
+      "parent": {
+        "$ref": "#/body"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "text",
+      "prov": [
+        {
+          "page_no": 7,
+          "bbox": {
+            "l": 132.0,
+            "t": 274.33333333333337,
+            "r": 463.0,
+            "b": 249.33333333333337,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            111
+          ]
+        }
+      ],
+      "orig": "am to request you to kindly accept the offer and send your acceptance letter on or before 21,10.2016, either by",
+      "text": "am to request you to kindly accept the offer and send your acceptance letter on or before 21,10.2016, either by"
+    },
+    {
+      "self_ref": "#/texts/136",
+      "parent": {
+        "$ref": "#/pictures/12"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "footnote",
+      "prov": [
+        {
+          "page_no": 7,
+          "bbox": {
+            "l": 330.6666666666667,
+            "t": 200.66666666666663,
+            "r": 462.6666666666667,
+            "b": 186.0,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            33
+          ]
+        }
+      ],
+      "orig": "2,000/- as per the {ollowing paid",
+      "text": "2,000/- as per the {ollowing paid"
+    },
+    {
+      "self_ref": "#/texts/137",
+      "parent": {
+        "$ref": "#/pictures/12"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "footnote",
+      "prov": [
+        {
+          "page_no": 7,
+          "bbox": {
+            "l": 156.33333333333334,
+            "t": 171.87582231413785,
+            "r": 334.7208254624794,
+            "b": 150.66666666666663,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            30
+          ]
+        }
+      ],
+      "orig": "shortest route produced). paid",
+      "text": "shortest route produced). paid"
+    },
+    {
+      "self_ref": "#/texts/138",
+      "parent": {
+        "$ref": "#/pictures/12"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "text",
+      "prov": [
+        {
+          "page_no": 7,
+          "bbox": {
+            "l": 406.6666666666667,
+            "t": 248.0,
+            "r": 460.6666666666667,
+            "b": 237.33333333333337,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            18
+          ]
+        }
+      ],
+      "orig": "Yours faithfully ,",
+      "text": "Yours faithfully ,"
+    },
+    {
+      "self_ref": "#/texts/139",
+      "parent": {
+        "$ref": "#/pictures/12"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "text",
+      "prov": [
+        {
+          "page_no": 7,
+          "bbox": {
+            "l": 412.3333333333333,
+            "t": 224.66666666666663,
+            "r": 456.3333333333333,
+            "b": 214.0,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            8
+          ]
+        }
+      ],
+      "orig": "DIRECTOR",
+      "text": "DIRECTOR"
+    },
+    {
+      "self_ref": "#/texts/140",
+      "parent": {
+        "$ref": "#/groups/26"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "text",
+      "prov": [
+        {
+          "page_no": 7,
+          "bbox": {
+            "l": 360.6666666666667,
+            "t": 700.0,
+            "r": 434.6666666666667,
+            "b": 690.0,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            18
+          ]
+        }
+      ],
+      "orig": "Off: 22357077 / 76",
+      "text": "Off: 22357077 / 76"
+    },
+    {
+      "self_ref": "#/texts/141",
+      "parent": {
+        "$ref": "#/groups/26"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "text",
+      "prov": [
+        {
+          "page_no": 7,
+          "bbox": {
+            "l": 360.6666666666667,
+            "t": 690.0,
+            "r": 440.6666666666667,
+            "b": 679.3333333333334,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            20
+          ]
+        }
+      ],
+      "orig": "Fax / Dir.. 22352272",
+      "text": "Fax / Dir.. 22352272"
+    },
+    {
+      "self_ref": "#/texts/142",
+      "parent": {
+        "$ref": "#/body"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "section_header",
+      "prov": [
+        {
+          "page_no": 7,
+          "bbox": {
+            "l": 207.0,
+            "t": 680.0,
+            "r": 383.0,
+            "b": 655.3333333333334,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            43
+          ]
+        }
+      ],
+      "orig": "CENTRE FOR ACADEMIC COURSES ANNA UNIVERSITY",
+      "text": "CENTRE FOR ACADEMIC COURSES ANNA UNIVERSITY",
+      "level": 1
+    },
+    {
+      "self_ref": "#/texts/143",
+      "parent": {
+        "$ref": "#/body"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "text",
+      "prov": [
+        {
+          "page_no": 7,
+          "bbox": {
+            "l": 417.3333333333333,
+            "t": 620.6666666666666,
+            "r": 460.0,
+            "b": 611.3333333333334,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            10
+          ]
+        }
+      ],
+      "orig": "14 10 2016",
+      "text": "14 10 2016"
+    },
+    {
+      "self_ref": "#/texts/144",
+      "parent": {
+        "$ref": "#/body"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "text",
+      "prov": [
+        {
+          "page_no": 7,
+          "bbox": {
+            "l": 266.6666666666667,
+            "t": 656.6666666666666,
+            "r": 327.3333333333333,
+            "b": 648.0,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            15
+          ]
+        }
+      ],
+      "orig": "CHENNAI 60o 025",
+      "text": "CHENNAI 60o 025"
+    }
+  ],
+  "pictures": [
+    {
+      "self_ref": "#/pictures/0",
+      "parent": {
+        "$ref": "#/body"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "picture",
+      "prov": [
+        {
+          "page_no": 1,
+          "bbox": {
+            "l": 157.64602661132812,
+            "t": 661.5512542724609,
+            "r": 193.05430603027344,
+            "b": 620.4194641113281,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            0
+          ]
+        }
+      ],
+      "captions": [],
+      "references": [],
+      "footnotes": [],
+      "image": {
+        "mimetype": "image/png",
+        "dpi": 79,
+        "size": {
+          "width": 39.0,
+          "height": 46.0
+        },
+        "uri": "/app/Data/output/docling/doclingScannedOCR/Naac_appLetter/images/image_000000_f6999ca48dafd6bf8f6ee8bdd38381062aa406ebd6f9ab4cb733035f9abe9fd2.png"
+      },
+      "annotations": []
+    },
+    {
+      "self_ref": "#/pictures/1",
+      "parent": {
+        "$ref": "#/groups/3"
+      },
+      "children": [
+        {
+          "$ref": "#/texts/19"
+        },
+        {
+          "$ref": "#/texts/20"
+        }
+      ],
+      "content_layer": "body",
+      "label": "picture",
+      "prov": [
+        {
+          "page_no": 1,
+          "bbox": {
+            "l": 356.8244323730469,
+            "t": 408.4183654785156,
+            "r": 455.9223327636719,
+            "b": 367.2089538574219,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            0
+          ]
+        }
+      ],
+      "captions": [
+        {
+          "$ref": "#/texts/19"
+        }
+      ],
+      "references": [],
+      "footnotes": [],
+      "image": {
+        "mimetype": "image/png",
+        "dpi": 79,
+        "size": {
+          "width": 109.0,
+          "height": 45.0
+        },
+        "uri": "/app/Data/output/docling/doclingScannedOCR/Naac_appLetter/images/image_000001_641f05253a8c1aa9a4f3b90395e3c21323fcd587a8266b28cc6157937a2753fe.png"
+      },
+      "annotations": []
+    },
+    {
+      "self_ref": "#/pictures/2",
+      "parent": {
+        "$ref": "#/body"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "picture",
+      "prov": [
+        {
+          "page_no": 2,
+          "bbox": {
+            "l": 108.19110107421875,
+            "t": 679.6035614013672,
+            "r": 151.34991455078125,
+            "b": 635.8902282714844,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            0
+          ]
+        }
+      ],
+      "captions": [],
+      "references": [],
+      "footnotes": [],
+      "image": {
+        "mimetype": "image/png",
+        "dpi": 79,
+        "size": {
+          "width": 47.0,
+          "height": 48.0
+        },
+        "uri": "/app/Data/output/docling/doclingScannedOCR/Naac_appLetter/images/image_000002_f3e51780e35a7b51418819c0cc6d74c442c9a12053c5b22aee86176648f71f28.png"
+      },
+      "annotations": []
+    },
+    {
+      "self_ref": "#/pictures/3",
+      "parent": {
+        "$ref": "#/groups/6"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "picture",
+      "prov": [
+        {
+          "page_no": 2,
+          "bbox": {
+            "l": 377.7430419921875,
+            "t": 378.9924621582031,
+            "r": 478.98333740234375,
+            "b": 337.7012634277344,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            0
+          ]
+        }
+      ],
+      "captions": [],
+      "references": [],
+      "footnotes": [],
+      "image": {
+        "mimetype": "image/png",
+        "dpi": 79,
+        "size": {
+          "width": 111.0,
+          "height": 46.0
+        },
+        "uri": "/app/Data/output/docling/doclingScannedOCR/Naac_appLetter/images/image_000003_2d6c2cfdf6ddc763cf611d40513e85d48861e47bb16ee3732e26542929ade026.png"
+      },
+      "annotations": []
+    },
+    {
+      "self_ref": "#/pictures/4",
+      "parent": {
+        "$ref": "#/body"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "picture",
+      "prov": [
+        {
+          "page_no": 3,
+          "bbox": {
+            "l": 158.5824737548828,
+            "t": 675.3978042602539,
+            "r": 201.39146423339844,
+            "b": 627.9561004638672,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            0
+          ]
+        }
+      ],
+      "captions": [],
+      "references": [],
+      "footnotes": [],
+      "image": {
+        "mimetype": "image/png",
+        "dpi": 79,
+        "size": {
+          "width": 48.0,
+          "height": 52.0
+        },
+        "uri": "/app/Data/output/docling/doclingScannedOCR/Naac_appLetter/images/image_000004_830130e9109373fafe35dd573dbcc31d9bee3ae303e9bfdf2d8b5624a1ad602f.png"
+      },
+      "annotations": []
+    },
+    {
+      "self_ref": "#/pictures/5",
+      "parent": {
+        "$ref": "#/body"
+      },
+      "children": [
+        {
+          "$ref": "#/texts/59"
+        },
+        {
+          "$ref": "#/texts/60"
+        }
+      ],
+      "content_layer": "body",
+      "label": "picture",
+      "prov": [
+        {
+          "page_no": 3,
+          "bbox": {
+            "l": 410.7267150878906,
+            "t": 331.3630065917969,
+            "r": 477.22283935546875,
+            "b": 279.73321533203125,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            0
+          ]
+        }
+      ],
+      "captions": [],
+      "references": [],
+      "footnotes": [],
+      "image": {
+        "mimetype": "image/png",
+        "dpi": 79,
+        "size": {
+          "width": 73.0,
+          "height": 56.0
+        },
+        "uri": "/app/Data/output/docling/doclingScannedOCR/Naac_appLetter/images/image_000005_2472066815039c1643b83377cecc87138e6566ee9300ed895db5c89bbf3ca38e.png"
+      },
+      "annotations": []
+    },
+    {
+      "self_ref": "#/pictures/6",
+      "parent": {
+        "$ref": "#/body"
+      },
+      "children": [
+        {
+          "$ref": "#/texts/68"
+        }
+      ],
+      "content_layer": "body",
+      "label": "picture",
+      "prov": [
+        {
+          "page_no": 4,
+          "bbox": {
+            "l": 105.56678009033203,
+            "t": 687.8165054321289,
+            "r": 163.77603149414062,
+            "b": 610.4589996337891,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            0
+          ]
+        }
+      ],
+      "captions": [],
+      "references": [],
+      "footnotes": [],
+      "image": {
+        "mimetype": "image/png",
+        "dpi": 79,
+        "size": {
+          "width": 64.0,
+          "height": 85.0
+        },
+        "uri": "/app/Data/output/docling/doclingScannedOCR/Naac_appLetter/images/image_000006_82482656bbfc92e089f0b5c0603e626e234069258fc8ed0fd0fe8f3d0ce020d3.png"
+      },
+      "annotations": []
+    },
+    {
+      "self_ref": "#/pictures/7",
+      "parent": {
+        "$ref": "#/body"
+      },
+      "children": [
+        {
+          "$ref": "#/texts/82"
+        }
+      ],
+      "content_layer": "body",
+      "label": "picture",
+      "prov": [
+        {
+          "page_no": 4,
+          "bbox": {
+            "l": 398.2000427246094,
+            "t": 260.721923828125,
+            "r": 466.83355712890625,
+            "b": 214.05584716796875,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            0
+          ]
+        }
+      ],
+      "captions": [],
+      "references": [],
+      "footnotes": [],
+      "image": {
+        "mimetype": "image/png",
+        "dpi": 79,
+        "size": {
+          "width": 76.0,
+          "height": 52.0
+        },
+        "uri": "/app/Data/output/docling/doclingScannedOCR/Naac_appLetter/images/image_000007_70f0f8b268648a8ed326ce27e45c7e37fb461ce44d298a9c4d7dc69f5cbd141d.png"
+      },
+      "annotations": []
+    },
+    {
+      "self_ref": "#/pictures/8",
+      "parent": {
+        "$ref": "#/body"
+      },
+      "children": [
+        {
+          "$ref": "#/texts/93"
+        },
+        {
+          "$ref": "#/texts/94"
+        },
+        {
+          "$ref": "#/texts/95"
+        },
+        {
+          "$ref": "#/texts/96"
+        },
+        {
+          "$ref": "#/texts/97"
+        },
+        {
+          "$ref": "#/texts/98"
+        },
+        {
+          "$ref": "#/texts/99"
+        },
+        {
+          "$ref": "#/texts/100"
+        },
+        {
+          "$ref": "#/texts/101"
+        },
+        {
+          "$ref": "#/texts/102"
+        }
+      ],
+      "content_layer": "body",
+      "label": "picture",
+      "prov": [
+        {
+          "page_no": 5,
+          "bbox": {
+            "l": 85.12068939208984,
+            "t": 701.6044006347656,
+            "r": 526.00634765625,
+            "b": 95.91900634765625,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            0
+          ]
+        }
+      ],
+      "captions": [],
+      "references": [],
+      "footnotes": [],
+      "image": {
+        "mimetype": "image/png",
+        "dpi": 79,
+        "size": {
+          "width": 485.0,
+          "height": 667.0
+        },
+        "uri": "/app/Data/output/docling/doclingScannedOCR/Naac_appLetter/images/image_000008_183622667ef38c7a003f1a78a1895089747b3d47266fc3b8dcb55e20361d771d.png"
+      },
+      "annotations": []
+    },
+    {
+      "self_ref": "#/pictures/9",
+      "parent": {
+        "$ref": "#/body"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "picture",
+      "prov": [
+        {
+          "page_no": 6,
+          "bbox": {
+            "l": 306.1884460449219,
+            "t": 628.0864410400391,
+            "r": 348.5001220703125,
+            "b": 583.9460906982422,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            0
+          ]
+        }
+      ],
+      "captions": [],
+      "references": [],
+      "footnotes": [],
+      "image": {
+        "mimetype": "image/png",
+        "dpi": 79,
+        "size": {
+          "width": 46.0,
+          "height": 49.0
+        },
+        "uri": "/app/Data/output/docling/doclingScannedOCR/Naac_appLetter/images/image_000009_a30768ceed4d6678f24a7b08855910f5e16dae37f8bf62251e9e26bd98e90376.png"
+      },
+      "annotations": []
+    },
+    {
+      "self_ref": "#/pictures/10",
+      "parent": {
+        "$ref": "#/groups/23"
+      },
+      "children": [
+        {
+          "$ref": "#/texts/119"
+        }
+      ],
+      "content_layer": "body",
+      "label": "picture",
+      "prov": [
+        {
+          "page_no": 6,
+          "bbox": {
+            "l": 331.4754333496094,
+            "t": 213.1307373046875,
+            "r": 462.72430419921875,
+            "b": 184.00250244140625,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            0
+          ]
+        }
+      ],
+      "captions": [
+        {
+          "$ref": "#/texts/119"
+        }
+      ],
+      "references": [],
+      "footnotes": [],
+      "image": {
+        "mimetype": "image/png",
+        "dpi": 79,
+        "size": {
+          "width": 144.0,
+          "height": 32.0
+        },
+        "uri": "/app/Data/output/docling/doclingScannedOCR/Naac_appLetter/images/image_000010_3586d00b48a41b85b19d34ed1ccad45989d602a6b4677e0e39280a51528f6ae2.png"
+      },
+      "annotations": []
+    },
+    {
+      "self_ref": "#/pictures/11",
+      "parent": {
+        "$ref": "#/body"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "picture",
+      "prov": [
+        {
+          "page_no": 7,
+          "bbox": {
+            "l": 134.26148986816406,
+            "t": 692.8885803222656,
+            "r": 178.50537109375,
+            "b": 650.350341796875,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            0
+          ]
+        }
+      ],
+      "captions": [],
+      "references": [],
+      "footnotes": [],
+      "image": {
+        "mimetype": "image/png",
+        "dpi": 79,
+        "size": {
+          "width": 48.0,
+          "height": 47.0
+        },
+        "uri": "/app/Data/output/docling/doclingScannedOCR/Naac_appLetter/images/image_000011_2a76f6e4f05c2cfbd632986024c61a103d31c15f7c6a6d4b45935e5d456446fe.png"
+      },
+      "annotations": []
+    },
+    {
+      "self_ref": "#/pictures/12",
+      "parent": {
+        "$ref": "#/body"
+      },
+      "children": [
+        {
+          "$ref": "#/texts/136"
+        },
+        {
+          "$ref": "#/texts/137"
+        },
+        {
+          "$ref": "#/texts/138"
+        },
+        {
+          "$ref": "#/texts/139"
+        }
+      ],
+      "content_layer": "body",
+      "label": "picture",
+      "prov": [
+        {
+          "page_no": 7,
+          "bbox": {
+            "l": 406.4588623046875,
+            "t": 267.8074951171875,
+            "r": 495.08380126953125,
+            "b": 207.806640625,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            0
+          ]
+        }
+      ],
+      "captions": [],
+      "references": [],
+      "footnotes": [
+        {
+          "$ref": "#/texts/136"
+        },
+        {
+          "$ref": "#/texts/137"
+        }
+      ],
+      "image": {
+        "mimetype": "image/png",
+        "dpi": 79,
+        "size": {
+          "width": 98.0,
+          "height": 66.0
+        },
+        "uri": "/app/Data/output/docling/doclingScannedOCR/Naac_appLetter/images/image_000012_ced0fa51415076792c5c7e11b135ac9ece525d5ef53e4bc47f1db8dee6fc1fba.png"
+      },
+      "annotations": []
+    }
+  ],
+  "tables": [],
+  "key_value_items": [],
+  "form_items": [],
+  "pages": {
+    "1": {
+      "size": {
+        "width": 612.0,
+        "height": 792.0
+      },
+      "page_no": 1
+    },
+    "2": {
+      "size": {
+        "width": 612.0,
+        "height": 792.0
+      },
+      "page_no": 2
+    },
+    "3": {
+      "size": {
+        "width": 612.0,
+        "height": 792.0
+      },
+      "page_no": 3
+    },
+    "4": {
+      "size": {
+        "width": 612.0,
+        "height": 792.0
+      },
+      "page_no": 4
+    },
+    "5": {
+      "size": {
+        "width": 612.0,
+        "height": 792.0
+      },
+      "page_no": 5
+    },
+    "6": {
+      "size": {
+        "width": 612.0,
+        "height": 792.0
+      },
+      "page_no": 6
+    },
+    "7": {
+      "size": {
+        "width": 612.0,
+        "height": 792.0
+      },
+      "page_no": 7
+    }
+  }
+}

@@ -1,0 +1,2004 @@
+{
+  "children": [
+    {
+      "id": "/page/0/Page/241",
+      "block_type": "Page",
+      "html": "<content-ref src='/page/0/PageHeader/0'></content-ref><content-ref src='/page/0/PageHeader/1'></content-ref><content-ref src='/page/0/SectionHeader/2'></content-ref><content-ref src='/page/0/SectionHeader/3'></content-ref><content-ref src='/page/0/Text/4'></content-ref><content-ref src='/page/0/Picture/5'></content-ref><content-ref src='/page/0/SectionHeader/6'></content-ref><content-ref src='/page/0/Text/7'></content-ref><content-ref src='/page/0/Text/8'></content-ref><content-ref src='/page/0/Text/9'></content-ref><content-ref src='/page/0/PageFooter/15'></content-ref><content-ref src='/page/0/Diagram/14'></content-ref><content-ref src='/page/0/SectionHeader/12'></content-ref><content-ref src='/page/0/Text/231'></content-ref><content-ref src='/page/0/SectionHeader/10'></content-ref><content-ref src='/page/0/ListGroup/11'></content-ref>",
+      "polygon": [
+        [
+          0.0,
+          0.0
+        ],
+        [
+          612.0,
+          0.0
+        ],
+        [
+          612.0,
+          792.0
+        ],
+        [
+          0.0,
+          792.0
+        ]
+      ],
+      "bbox": [
+        0.0,
+        0.0,
+        612.0,
+        792.0
+      ],
+      "children": [
+        {
+          "id": "/page/0/PageHeader/0",
+          "block_type": "PageHeader",
+          "html": "",
+          "polygon": [
+            [
+              52.63199999999999,
+              37.224
+            ],
+            [
+              138.924,
+              37.224
+            ],
+            [
+              138.924,
+              58.60799999999999
+            ],
+            [
+              52.63199999999999,
+              58.60799999999999
+            ]
+          ],
+          "bbox": [
+            52.63199999999999,
+            37.224,
+            138.924,
+            58.60799999999999
+          ],
+          "children": null,
+          "section_hierarchy": {},
+          "images": {}
+        },
+        {
+          "id": "/page/0/PageHeader/1",
+          "block_type": "PageHeader",
+          "html": "",
+          "polygon": [
+            [
+              153.612,
+              41.976
+            ],
+            [
+              272.2007751464844,
+              41.976
+            ],
+            [
+              272.2007751464844,
+              53.17352294921875
+            ],
+            [
+              153.612,
+              53.17352294921875
+            ]
+          ],
+          "bbox": [
+            153.612,
+            41.976,
+            272.2007751464844,
+            53.17352294921875
+          ],
+          "children": null,
+          "section_hierarchy": {},
+          "images": {}
+        },
+        {
+          "id": "/page/0/SectionHeader/2",
+          "block_type": "SectionHeader",
+          "html": "<h4><b>Datasheet</b></h4>",
+          "polygon": [
+            [
+              51.40800000000001,
+              75.24000000000001
+            ],
+            [
+              110.16,
+              75.24000000000001
+            ],
+            [
+              110.16,
+              88.781494140625
+            ],
+            [
+              51.40800000000001,
+              88.781494140625
+            ]
+          ],
+          "bbox": [
+            51.40800000000001,
+            75.24000000000001,
+            110.16,
+            88.781494140625
+          ],
+          "children": null,
+          "section_hierarchy": {
+            "4": "/page/0/SectionHeader/2"
+          },
+          "images": {}
+        },
+        {
+          "id": "/page/0/SectionHeader/3",
+          "block_type": "SectionHeader",
+          "html": "<h1><b>10 Gbps Converter/Repeater/WDM Transponder</b></h1>",
+          "polygon": [
+            [
+              57.52799999999999,
+              103.75200000000001
+            ],
+            [
+              357.408,
+              103.75200000000001
+            ],
+            [
+              357.408,
+              120.66900634765625
+            ],
+            [
+              57.52799999999999,
+              120.66900634765625
+            ]
+          ],
+          "bbox": [
+            57.52799999999999,
+            103.75200000000001,
+            357.408,
+            120.66900634765625
+          ],
+          "children": null,
+          "section_hierarchy": {
+            "1": "/page/0/SectionHeader/3"
+          },
+          "images": {}
+        },
+        {
+          "id": "/page/0/Text/4",
+          "block_type": "Text",
+          "html": "<p block-type=\"Text\">EM316-10G-XY</p>",
+          "polygon": [
+            [
+              57.52799999999999,
+              122.76
+            ],
+            [
+              123.01200000000001,
+              122.76
+            ],
+            [
+              123.01200000000001,
+              135.6309814453125
+            ],
+            [
+              57.52799999999999,
+              135.6309814453125
+            ]
+          ],
+          "bbox": [
+            57.52799999999999,
+            122.76,
+            123.01200000000001,
+            135.6309814453125
+          ],
+          "children": null,
+          "section_hierarchy": {
+            "1": "/page/0/SectionHeader/3"
+          },
+          "images": {}
+        },
+        {
+          "id": "/page/0/Picture/5",
+          "block_type": "Picture",
+          "html": "",
+          "polygon": [
+            [
+              154.68300000000002,
+              134.12519999999998
+            ],
+            [
+              211.905,
+              134.12519999999998
+            ],
+            [
+              211.905,
+              267.41880000000003
+            ],
+            [
+              154.68300000000002,
+              267.41880000000003
+            ]
+          ],
+          "bbox": [
+            154.68300000000002,
+            134.12519999999998,
+            211.905,
+            267.41880000000003
+          ],
+          "children": null,
+          "section_hierarchy": {
+            "1": "/page/0/SectionHeader/3"
+          },
+          "images": {
+            "/page/0/Picture/5": "images/image_000000.jpg"
+          }
+        },
+        {
+          "id": "/page/0/SectionHeader/6",
+          "block_type": "SectionHeader",
+          "html": "<h1><b>Overview</b></h1>",
+          "polygon": [
+            [
+              57.52799999999999,
+              257.4
+            ],
+            [
+              111.384,
+              257.4
+            ],
+            [
+              111.384,
+              271.77301025390625
+            ],
+            [
+              57.52799999999999,
+              271.77301025390625
+            ]
+          ],
+          "bbox": [
+            57.52799999999999,
+            257.4,
+            111.384,
+            271.77301025390625
+          ],
+          "children": null,
+          "section_hierarchy": {
+            "1": "/page/0/SectionHeader/6"
+          },
+          "images": {}
+        },
+        {
+          "id": "/page/0/Text/7",
+          "block_type": "Text",
+          "html": "<p block-type=\"Text\">The Fiber Driver™ XY media module family from MRV Communications  combines ultra high-speed protocol support with the fl exibility of  multi-rate and multifunction design. XY modules are an economical  alternative for enterprise applications.</p>",
+          "polygon": [
+            [
+              57.52799999999999,
+              276.408
+            ],
+            [
+              323.6676025390625,
+              276.408
+            ],
+            [
+              323.6676025390625,
+              320.5469970703125
+            ],
+            [
+              57.52799999999999,
+              320.5469970703125
+            ]
+          ],
+          "bbox": [
+            57.52799999999999,
+            276.408,
+            323.6676025390625,
+            320.5469970703125
+          ],
+          "children": null,
+          "section_hierarchy": {
+            "1": "/page/0/SectionHeader/6"
+          },
+          "images": {}
+        },
+        {
+          "id": "/page/0/Text/8",
+          "block_type": "Text",
+          "html": "<p block-type=\"Text\">EM316-10G-XY modules are ideal for large telecommunications carriers  moving very large amounts of data to distances beyond 100 kilometers  without amplifi cation. They are compact, hot-swappable, one-slot  modules with two XFP sockets and one SFP+ for modular transceivers.  Installation and setup is simple plug-n-play; insert the module into  any powered Fiber Driver chassis with the XFP and SFP+ transceivers  required for the application, and then connect to the network.</p>",
+          "polygon": [
+            [
+              57.52799999999999,
+              330.264
+            ],
+            [
+              323.7009582519531,
+              330.264
+            ],
+            [
+              323.7009582519531,
+              406.9469909667969
+            ],
+            [
+              57.52799999999999,
+              406.9469909667969
+            ]
+          ],
+          "bbox": [
+            57.52799999999999,
+            330.264,
+            323.7009582519531,
+            406.9469909667969
+          ],
+          "children": null,
+          "section_hierarchy": {
+            "1": "/page/0/SectionHeader/6"
+          },
+          "images": {}
+        },
+        {
+          "id": "/page/0/Text/9",
+          "block_type": "Text",
+          "html": "<p block-type=\"Text\">Changing a connection type at any time is simple, requiring only  replacement of a hot-swappable XFP or SFP+ transceiver. The module  ports support the MSA standard including Digital Diagnostics. Because  the transceivers meet industry standards, a smaller inventory shared  between applications maximizes the return on investment.</p>",
+          "polygon": [
+            [
+              57.52799999999999,
+              415.79999999999995
+            ],
+            [
+              323.6883850097656,
+              415.79999999999995
+            ],
+            [
+              323.6883850097656,
+              472.032
+            ],
+            [
+              57.52799999999999,
+              472.032
+            ]
+          ],
+          "bbox": [
+            57.52799999999999,
+            415.79999999999995,
+            323.6883850097656,
+            472.032
+          ],
+          "children": null,
+          "section_hierarchy": {
+            "1": "/page/0/SectionHeader/6"
+          },
+          "images": {}
+        },
+        {
+          "id": "/page/0/PageFooter/15",
+          "block_type": "PageFooter",
+          "html": "",
+          "polygon": [
+            [
+              301.716,
+              757.1519999999999
+            ],
+            [
+              309.5480041503906,
+              757.1519999999999
+            ],
+            [
+              309.5480041503906,
+              768.6998977661133
+            ],
+            [
+              301.716,
+              768.6998977661133
+            ]
+          ],
+          "bbox": [
+            301.716,
+            757.1519999999999,
+            309.5480041503906,
+            768.6998977661133
+          ],
+          "children": null,
+          "section_hierarchy": {
+            "1": "/page/0/SectionHeader/6"
+          },
+          "images": {}
+        },
+        {
+          "id": "/page/0/Diagram/14",
+          "block_type": "Diagram",
+          "html": "",
+          "polygon": [
+            [
+              40.89599999999999,
+              476.5464
+            ],
+            [
+              567.432,
+              476.5464
+            ],
+            [
+              567.432,
+              743.1336000000001
+            ],
+            [
+              40.89599999999999,
+              743.1336000000001
+            ]
+          ],
+          "bbox": [
+            40.89599999999999,
+            476.5464,
+            567.432,
+            743.1336000000001
+          ],
+          "children": null,
+          "section_hierarchy": {
+            "1": "/page/0/SectionHeader/6"
+          },
+          "images": {
+            "/page/0/Diagram/14": "images/image_000001.jpg"
+          }
+        },
+        {
+          "id": "/page/0/SectionHeader/12",
+          "block_type": "SectionHeader",
+          "html": "<h1><b>Benefi ts</b></h1>",
+          "polygon": [
+            [
+              340.27200000000005,
+              420.552
+            ],
+            [
+              381.88800000000003,
+              420.552
+            ],
+            [
+              381.88800000000003,
+              434.958984375
+            ],
+            [
+              340.27200000000005,
+              434.958984375
+            ]
+          ],
+          "bbox": [
+            340.27200000000005,
+            420.552,
+            381.88800000000003,
+            434.958984375
+          ],
+          "children": null,
+          "section_hierarchy": {
+            "1": "/page/0/SectionHeader/12"
+          },
+          "images": {}
+        },
+        {
+          "id": "/page/0/Text/231",
+          "block_type": "Text",
+          "html": "<p block-type=\"Text\">Extend fi ber optic links by hundreds of kilometers Reduce capital and operating expenses</p>",
+          "polygon": [
+            [
+              340.27200000000005,
+              440.3520000000001
+            ],
+            [
+              539.172,
+              440.3520000000001
+            ],
+            [
+              539.172,
+              466.4403991699219
+            ],
+            [
+              340.27200000000005,
+              466.4403991699219
+            ]
+          ],
+          "bbox": [
+            340.27200000000005,
+            440.3520000000001,
+            539.172,
+            466.4403991699219
+          ],
+          "children": null,
+          "section_hierarchy": {
+            "1": "/page/0/SectionHeader/12"
+          },
+          "images": {}
+        },
+        {
+          "id": "/page/0/SectionHeader/10",
+          "block_type": "SectionHeader",
+          "html": "<h3><b>Highlights</b></h3>",
+          "polygon": [
+            [
+              340.27200000000005,
+              144.144
+            ],
+            [
+              392.904,
+              144.144
+            ],
+            [
+              392.904,
+              157.78802490234375
+            ],
+            [
+              340.27200000000005,
+              157.78802490234375
+            ]
+          ],
+          "bbox": [
+            340.27200000000005,
+            144.144,
+            392.904,
+            157.78802490234375
+          ],
+          "children": null,
+          "section_hierarchy": {
+            "1": "/page/0/SectionHeader/12",
+            "3": "/page/0/SectionHeader/10"
+          },
+          "images": {}
+        },
+        {
+          "id": "/page/0/ListGroup/11",
+          "block_type": "ListGroup",
+          "html": "<p block-type='ListGroup'><ul><content-ref src='/page/0/ListItem/232'></content-ref><content-ref src='/page/0/ListItem/233'></content-ref><content-ref src='/page/0/ListItem/234'></content-ref><content-ref src='/page/0/ListItem/235'></content-ref><content-ref src='/page/0/ListItem/236'></content-ref><content-ref src='/page/0/ListItem/237'></content-ref><content-ref src='/page/0/ListItem/238'></content-ref><content-ref src='/page/0/ListItem/239'></content-ref><content-ref src='/page/0/ListItem/240'></content-ref><content-ref src='/page/0/ListItem/241'></content-ref></ul></p>",
+          "polygon": [
+            [
+              340.27200000000005,
+              162.35999999999999
+            ],
+            [
+              556.9085083007812,
+              162.35999999999999
+            ],
+            [
+              556.9085083007812,
+              405.5323181152344
+            ],
+            [
+              340.27200000000005,
+              405.5323181152344
+            ]
+          ],
+          "bbox": [
+            340.27200000000005,
+            162.35999999999999,
+            556.9085083007812,
+            405.5323181152344
+          ],
+          "children": [
+            {
+              "id": "/page/0/ListItem/232",
+              "block_type": "ListItem",
+              "html": "<li block-type=\"ListItem\">Multiple functions in one module:</li>",
+              "polygon": [
+                [
+                  353.0,
+                  166.260986328125
+                ],
+                [
+                  479.6543273925781,
+                  166.260986328125
+                ],
+                [
+                  479.6543273925781,
+                  174.52301025390625
+                ],
+                [
+                  353.0,
+                  174.52301025390625
+                ]
+              ],
+              "bbox": [
+                353.0,
+                166.260986328125,
+                479.6543273925781,
+                174.52301025390625
+              ],
+              "children": null,
+              "section_hierarchy": {
+                "1": "/page/0/SectionHeader/12",
+                "3": "/page/0/SectionHeader/10"
+              },
+              "images": {}
+            },
+            {
+              "id": "/page/0/ListItem/233",
+              "block_type": "ListItem",
+              "html": "<li block-type=\"ListItem\"> 10G redundant converter</li>",
+              "polygon": [
+                [
+                  353.0,
+                  177.10595703125
+                ],
+                [
+                  452.37261962890625,
+                  177.10595703125
+                ],
+                [
+                  452.37261962890625,
+                  185.09796142578125
+                ],
+                [
+                  353.0,
+                  185.09796142578125
+                ]
+              ],
+              "bbox": [
+                353.0,
+                177.10595703125,
+                452.37261962890625,
+                185.09796142578125
+              ],
+              "children": null,
+              "section_hierarchy": {
+                "1": "/page/0/SectionHeader/12",
+                "3": "/page/0/SectionHeader/10"
+              },
+              "images": {}
+            },
+            {
+              "id": "/page/0/ListItem/234",
+              "block_type": "ListItem",
+              "html": "<li block-type=\"ListItem\"> WDM transponder  Data rates between 9.95 Gbps and 11.3 Gbps  (10G Ethernet/Fibre Channel/SONET/SDH) XFP and SFP+ ports for fl exibility and scalability</li>",
+              "polygon": [
+                [
+                  353.0,
+                  187.906005859375
+                ],
+                [
+                  531.9002075195312,
+                  187.906005859375
+                ],
+                [
+                  531.9002075195312,
+                  235.1298828125
+                ],
+                [
+                  353.0,
+                  235.1298828125
+                ]
+              ],
+              "bbox": [
+                353.0,
+                187.906005859375,
+                531.9002075195312,
+                235.1298828125
+              ],
+              "children": null,
+              "section_hierarchy": {
+                "1": "/page/0/SectionHeader/12",
+                "3": "/page/0/SectionHeader/10"
+              },
+              "images": {}
+            },
+            {
+              "id": "/page/0/ListItem/235",
+              "block_type": "ListItem",
+              "html": "<li block-type=\"ListItem\"> Add or change optics to adjust data rates as needed</li>",
+              "polygon": [
+                [
+                  353.0,
+                  237.505859375
+                ],
+                [
+                  553.2796630859375,
+                  237.505859375
+                ],
+                [
+                  553.2796630859375,
+                  245.83990478515625
+                ],
+                [
+                  353.0,
+                  245.83990478515625
+                ]
+              ],
+              "bbox": [
+                353.0,
+                237.505859375,
+                553.2796630859375,
+                245.83990478515625
+              ],
+              "children": null,
+              "section_hierarchy": {
+                "1": "/page/0/SectionHeader/12",
+                "3": "/page/0/SectionHeader/10"
+              },
+              "images": {}
+            },
+            {
+              "id": "/page/0/ListItem/236",
+              "block_type": "ListItem",
+              "html": "<li block-type=\"ListItem\"> Single item module inventory Link Integrity Notifi cation (LIN) Loopback Management through EM316LNXNM-OT</li>",
+              "polygon": [
+                [
+                  353.0,
+                  248.305908203125
+                ],
+                [
+                  505.42034912109375,
+                  248.305908203125
+                ],
+                [
+                  505.42034912109375,
+                  298.62310791015625
+                ],
+                [
+                  353.0,
+                  298.62310791015625
+                ]
+              ],
+              "bbox": [
+                353.0,
+                248.305908203125,
+                505.42034912109375,
+                298.62310791015625
+              ],
+              "children": null,
+              "section_hierarchy": {
+                "1": "/page/0/SectionHeader/12",
+                "3": "/page/0/SectionHeader/10"
+              },
+              "images": {}
+            },
+            {
+              "id": "/page/0/ListItem/237",
+              "block_type": "ListItem",
+              "html": "<li block-type=\"ListItem\"> Command line interface (CLI)</li>",
+              "polygon": [
+                [
+                  353.0,
+                  301.06207275390625
+                ],
+                [
+                  466.40179443359375,
+                  301.06207275390625
+                ],
+                [
+                  466.40179443359375,
+                  309.0990905761719
+                ],
+                [
+                  353.0,
+                  309.0990905761719
+                ]
+              ],
+              "bbox": [
+                353.0,
+                301.06207275390625,
+                466.40179443359375,
+                309.0990905761719
+              ],
+              "children": null,
+              "section_hierarchy": {
+                "1": "/page/0/SectionHeader/12",
+                "3": "/page/0/SectionHeader/10"
+              },
+              "images": {}
+            },
+            {
+              "id": "/page/0/ListItem/238",
+              "block_type": "ListItem",
+              "html": "<li block-type=\"ListItem\"> SNMP management</li>",
+              "polygon": [
+                [
+                  353.0,
+                  311.9070739746094
+                ],
+                [
+                  432.63018798828125,
+                  311.9070739746094
+                ],
+                [
+                  432.63018798828125,
+                  320.2231140136719
+                ],
+                [
+                  353.0,
+                  320.2231140136719
+                ]
+              ],
+              "bbox": [
+                353.0,
+                311.9070739746094,
+                432.63018798828125,
+                320.2231140136719
+              ],
+              "children": null,
+              "section_hierarchy": {
+                "1": "/page/0/SectionHeader/12",
+                "3": "/page/0/SectionHeader/10"
+              },
+              "images": {}
+            },
+            {
+              "id": "/page/0/ListItem/239",
+              "block_type": "ListItem",
+              "html": "<li block-type=\"ListItem\"> Full graphical management with MegaVision Pro®</li>",
+              "polygon": [
+                [
+                  353.0,
+                  322.70709228515625
+                ],
+                [
+                  542.761474609375,
+                  322.70709228515625
+                ],
+                [
+                  542.761474609375,
+                  331.02313232421875
+                ],
+                [
+                  353.0,
+                  331.02313232421875
+                ]
+              ],
+              "bbox": [
+                353.0,
+                322.70709228515625,
+                542.761474609375,
+                331.02313232421875
+              ],
+              "children": null,
+              "section_hierarchy": {
+                "1": "/page/0/SectionHeader/12",
+                "3": "/page/0/SectionHeader/10"
+              },
+              "images": {}
+            },
+            {
+              "id": "/page/0/ListItem/240",
+              "block_type": "ListItem",
+              "html": "<li block-type=\"ListItem\"> Port feature control</li>",
+              "polygon": [
+                [
+                  353.0,
+                  333.46209716796875
+                ],
+                [
+                  430.55389404296875,
+                  333.46209716796875
+                ],
+                [
+                  430.55389404296875,
+                  341.4991149902344
+                ],
+                [
+                  353.0,
+                  341.4991149902344
+                ]
+              ],
+              "bbox": [
+                353.0,
+                333.46209716796875,
+                430.55389404296875,
+                341.4991149902344
+              ],
+              "children": null,
+              "section_hierarchy": {
+                "1": "/page/0/SectionHeader/12",
+                "3": "/page/0/SectionHeader/10"
+              },
+              "images": {}
+            },
+            {
+              "id": "/page/0/ListItem/241",
+              "block_type": "ListItem",
+              "html": "<li block-type=\"ListItem\"> Digital Diagnostics Pseudo Random Bit Sequence (PRBS) sender/checker  for connection testing Hot-swap support (module and interfaces) Fiber Driver chassis compatibility</li>",
+              "polygon": [
+                [
+                  353.0,
+                  344.30712890625
+                ],
+                [
+                  556.9085083007812,
+                  344.30712890625
+                ],
+                [
+                  556.9085083007812,
+                  405.5323181152344
+                ],
+                [
+                  353.0,
+                  405.5323181152344
+                ]
+              ],
+              "bbox": [
+                353.0,
+                344.30712890625,
+                556.9085083007812,
+                405.5323181152344
+              ],
+              "children": null,
+              "section_hierarchy": {
+                "1": "/page/0/SectionHeader/12",
+                "3": "/page/0/SectionHeader/10"
+              },
+              "images": {}
+            }
+          ],
+          "section_hierarchy": {
+            "1": "/page/0/SectionHeader/12",
+            "3": "/page/0/SectionHeader/10"
+          },
+          "images": null
+        }
+      ],
+      "section_hierarchy": {
+        "1": "/page/0/SectionHeader/12",
+        "3": "/page/0/SectionHeader/10"
+      },
+      "images": null
+    },
+    {
+      "id": "/page/1/Page/218",
+      "block_type": "Page",
+      "html": "<content-ref src='/page/1/PageHeader/1'></content-ref><content-ref src='/page/1/Picture/0'></content-ref><content-ref src='/page/1/SectionHeader/2'></content-ref><content-ref src='/page/1/PageFooter/20'></content-ref><content-ref src='/page/1/Text/13'></content-ref><content-ref src='/page/1/Text/14'></content-ref><content-ref src='/page/1/Text/15'></content-ref><content-ref src='/page/1/Text/16'></content-ref><content-ref src='/page/1/Text/17'></content-ref><content-ref src='/page/1/PageFooter/18'></content-ref><content-ref src='/page/1/PageFooter/19'></content-ref><content-ref src='/page/1/Table/12'></content-ref><content-ref src='/page/1/Text/3'></content-ref><content-ref src='/page/1/Text/4'></content-ref><content-ref src='/page/1/SectionHeader/5'></content-ref><content-ref src='/page/1/Text/6'></content-ref><content-ref src='/page/1/SectionHeader/7'></content-ref><content-ref src='/page/1/Text/8'></content-ref><content-ref src='/page/1/Text/9'></content-ref><content-ref src='/page/1/Table/10'></content-ref><content-ref src='/page/1/Text/11'></content-ref>",
+      "polygon": [
+        [
+          0.0,
+          0.0
+        ],
+        [
+          612.0,
+          0.0
+        ],
+        [
+          612.0,
+          792.0
+        ],
+        [
+          0.0,
+          792.0
+        ]
+      ],
+      "bbox": [
+        0.0,
+        0.0,
+        612.0,
+        792.0
+      ],
+      "children": [
+        {
+          "id": "/page/1/PageHeader/1",
+          "block_type": "PageHeader",
+          "html": "",
+          "polygon": [
+            [
+              153.0,
+              41.184
+            ],
+            [
+              272.0187683105469,
+              41.184
+            ],
+            [
+              272.0187683105469,
+              52.94012451171875
+            ],
+            [
+              153.0,
+              52.94012451171875
+            ]
+          ],
+          "bbox": [
+            153.0,
+            41.184,
+            272.0187683105469,
+            52.94012451171875
+          ],
+          "children": null,
+          "section_hierarchy": {
+            "1": "/page/0/SectionHeader/12",
+            "3": "/page/0/SectionHeader/10"
+          },
+          "images": {}
+        },
+        {
+          "id": "/page/1/Picture/0",
+          "block_type": "Picture",
+          "html": "",
+          "polygon": [
+            [
+              48.25619999999999,
+              36.154799999999994
+            ],
+            [
+              144.5238,
+              36.154799999999994
+            ],
+            [
+              144.5238,
+              59.67719999999999
+            ],
+            [
+              48.25619999999999,
+              59.67719999999999
+            ]
+          ],
+          "bbox": [
+            48.25619999999999,
+            36.154799999999994,
+            144.5238,
+            59.67719999999999
+          ],
+          "children": null,
+          "section_hierarchy": {
+            "1": "/page/0/SectionHeader/12",
+            "3": "/page/0/SectionHeader/10"
+          },
+          "images": {
+            "/page/1/Picture/0": "images/image_000002.jpg"
+          }
+        },
+        {
+          "id": "/page/1/SectionHeader/2",
+          "block_type": "SectionHeader",
+          "html": "<h2><b>Datasheet</b></h2>",
+          "polygon": [
+            [
+              51.40800000000001,
+              74.448
+            ],
+            [
+              109.548,
+              74.448
+            ],
+            [
+              109.548,
+              88.54815673828125
+            ],
+            [
+              51.40800000000001,
+              88.54815673828125
+            ]
+          ],
+          "bbox": [
+            51.40800000000001,
+            74.448,
+            109.548,
+            88.54815673828125
+          ],
+          "children": null,
+          "section_hierarchy": {
+            "1": "/page/0/SectionHeader/12",
+            "2": "/page/1/SectionHeader/2"
+          },
+          "images": {}
+        },
+        {
+          "id": "/page/1/PageFooter/20",
+          "block_type": "PageFooter",
+          "html": "",
+          "polygon": [
+            [
+              62.20500183105469,
+              756.3599999999999
+            ],
+            [
+              551.2635498046875,
+              756.3599999999999
+            ],
+            [
+              551.2635498046875,
+              767.4120006561279
+            ],
+            [
+              62.20500183105469,
+              767.4120006561279
+            ]
+          ],
+          "bbox": [
+            62.20500183105469,
+            756.3599999999999,
+            551.2635498046875,
+            767.4120006561279
+          ],
+          "children": null,
+          "section_hierarchy": {
+            "1": "/page/0/SectionHeader/12",
+            "2": "/page/1/SectionHeader/2"
+          },
+          "images": {}
+        },
+        {
+          "id": "/page/1/Text/13",
+          "block_type": "Text",
+          "html": "<p block-type=\"Text\">MRV has more than 50 offi ces throughout the world. Addresses, phone numbers and fax numbers are listed at www.mrv.com. Please e-mail us at <b>info@mrv.com</b> or call us for assistance.</p>",
+          "polygon": [
+            [
+              68.544,
+              609.84
+            ],
+            [
+              541.008,
+              609.84
+            ],
+            [
+              541.008,
+              632.5690002441406
+            ],
+            [
+              68.544,
+              632.5690002441406
+            ]
+          ],
+          "bbox": [
+            68.544,
+            609.84,
+            541.008,
+            632.5690002441406
+          ],
+          "children": null,
+          "section_hierarchy": {
+            "1": "/page/0/SectionHeader/12",
+            "2": "/page/1/SectionHeader/2"
+          },
+          "images": {}
+        },
+        {
+          "id": "/page/1/Text/14",
+          "block_type": "Text",
+          "html": "<p block-type=\"Text\"></p>",
+          "polygon": [
+            [
+              88.12799999999999,
+              640.7280000000001
+            ],
+            [
+              165.24,
+              640.7280000000001
+            ],
+            [
+              165.24,
+              689.04
+            ],
+            [
+              88.12799999999999,
+              689.04
+            ]
+          ],
+          "bbox": [
+            88.12799999999999,
+            640.7280000000001,
+            165.24,
+            689.04
+          ],
+          "children": null,
+          "section_hierarchy": {
+            "1": "/page/0/SectionHeader/12",
+            "2": "/page/1/SectionHeader/2"
+          },
+          "images": {}
+        },
+        {
+          "id": "/page/1/Text/15",
+          "block_type": "Text",
+          "html": "<p block-type=\"Text\"> MRV Los Angeles MRV Boston MRV International 818-773-0900 978-674-6800 Germany</p>",
+          "polygon": [
+            [
+              62.20500183105469,
+              640.7280000000001
+            ],
+            [
+              501.2193603515625,
+              640.7280000000001
+            ],
+            [
+              501.2193603515625,
+              690.3180084228516
+            ],
+            [
+              62.20500183105469,
+              690.3180084228516
+            ]
+          ],
+          "bbox": [
+            62.20500183105469,
+            640.7280000000001,
+            501.2193603515625,
+            690.3180084228516
+          ],
+          "children": null,
+          "section_hierarchy": {
+            "1": "/page/0/SectionHeader/12",
+            "2": "/page/1/SectionHeader/2"
+          },
+          "images": {}
+        },
+        {
+          "id": "/page/1/Text/16",
+          "block_type": "Text",
+          "html": "<p block-type=\"Text\"> 20415 Nordhoff Street 300 Apollo Drive Business Park Moerfelden  Chatsworth, CA 91311 Chelmsford, MA 01824 Waldeckerstrasse 13  800-338-5316 800-338-5316 64546 Moerfelden-Walldorf  Tel. (49) 6105/2070 Fax (49) 6105/207-100</p>",
+          "polygon": [
+            [
+              62.20500183105469,
+              640.7280000000001
+            ],
+            [
+              517.752,
+              640.7280000000001
+            ],
+            [
+              517.752,
+              709.1340026855469
+            ],
+            [
+              62.20500183105469,
+              709.1340026855469
+            ]
+          ],
+          "bbox": [
+            62.20500183105469,
+            640.7280000000001,
+            517.752,
+            709.1340026855469
+          ],
+          "children": null,
+          "section_hierarchy": {
+            "1": "/page/0/SectionHeader/12",
+            "2": "/page/1/SectionHeader/2"
+          },
+          "images": {}
+        },
+        {
+          "id": "/page/1/Text/17",
+          "block_type": "Text",
+          "html": "<p block-type=\"Text\">All statements, technical information and recommendations related to the products herein are based upon information believed to be reliable or accurate. However, the  accuracy or completeness thereof is not guaranteed, and no responsibility is assumed for any inaccuracies. Please contact MRV Communications for more information. MRV Communications and the MRV Communications logo are trademarks of MRV Communications, Inc. Other trademarks are the property of their respective holders.</p>",
+          "polygon": [
+            [
+              58.751999999999995,
+              716.76
+            ],
+            [
+              552.6360000000001,
+              716.76
+            ],
+            [
+              552.6360000000001,
+              744.0980072021484
+            ],
+            [
+              58.751999999999995,
+              744.0980072021484
+            ]
+          ],
+          "bbox": [
+            58.751999999999995,
+            716.76,
+            552.6360000000001,
+            744.0980072021484
+          ],
+          "children": null,
+          "section_hierarchy": {
+            "1": "/page/0/SectionHeader/12",
+            "2": "/page/1/SectionHeader/2"
+          },
+          "images": {}
+        },
+        {
+          "id": "/page/1/PageFooter/18",
+          "block_type": "PageFooter",
+          "html": "",
+          "polygon": [
+            [
+              58.751999999999995,
+              756.3599999999999
+            ],
+            [
+              140.76,
+              756.3599999999999
+            ],
+            [
+              140.76,
+              766.656
+            ],
+            [
+              58.751999999999995,
+              766.656
+            ]
+          ],
+          "bbox": [
+            58.751999999999995,
+            756.3599999999999,
+            140.76,
+            766.656
+          ],
+          "children": null,
+          "section_hierarchy": {
+            "1": "/page/0/SectionHeader/12",
+            "2": "/page/1/SectionHeader/2"
+          },
+          "images": {}
+        },
+        {
+          "id": "/page/1/PageFooter/19",
+          "block_type": "PageFooter",
+          "html": "",
+          "polygon": [
+            [
+              199.512,
+              756.3599999999999
+            ],
+            [
+              271.728,
+              756.3599999999999
+            ],
+            [
+              271.728,
+              766.656
+            ],
+            [
+              199.512,
+              766.656
+            ]
+          ],
+          "bbox": [
+            199.512,
+            756.3599999999999,
+            271.728,
+            766.656
+          ],
+          "children": null,
+          "section_hierarchy": {
+            "1": "/page/0/SectionHeader/12",
+            "2": "/page/1/SectionHeader/2"
+          },
+          "images": {}
+        },
+        {
+          "id": "/page/1/Table/12",
+          "block_type": "Table",
+          "html": "lledTable\"&gt;\n<table>\n<thead>\n<tr>\n<th>Ordering Info</th>\n<th>Model Number</th>\n<th>Description</th>\n<th>Data Rate</th>\n<th>Connectors</th>\n</tr>\n</thead>\n<tbody>\n<tr>\n<td></td>\n<td><b>EM316-10G-XY</b></td>\n<td>10 Gbps Repeater, Converter, or Transponder, two universal XFP sockets, one SFP+ socket</td>\n<td>Data rate independent, protocol transparent from 9.95 to 11.32 Gbps</td>\n<td>XFP (x2)<br/>SFP (x1)</td>\n</tr>\n</tbody>\n</table>",
+          "polygon": [
+            [
+              68.544,
+              508.464
+            ],
+            [
+              537.336,
+              508.464
+            ],
+            [
+              537.336,
+              582.912
+            ],
+            [
+              68.544,
+              582.912
+            ]
+          ],
+          "bbox": [
+            68.544,
+            508.464,
+            537.336,
+            582.912
+          ],
+          "children": [],
+          "section_hierarchy": {
+            "1": "/page/0/SectionHeader/12",
+            "2": "/page/1/SectionHeader/2"
+          },
+          "images": null
+        },
+        {
+          "id": "/page/1/Text/3",
+          "block_type": "Text",
+          "html": "<p block-type=\"Text\">Pluggable XFP transceivers support SONET/SDH OC-192/STM-64, SONET/SDH OC-192/STM-64 with Forward Error Correction  (FEC), 10 Gigabit Ethernet, 10 Gbps Fibre Channel, and G.709. Pluggable SFP+ transceivers support 10 Gbps Ethernet, Fibre  Channel, and SONET/SDH applications. XY modules support an extremely wide range of optical infrastructure solutions  including media conversion, signal repeating, lambda conversion, and Wave Division Multiplexing (WDM).</p>",
+          "polygon": [
+            [
+              68.544,
+              111.672
+            ],
+            [
+              540.934326171875,
+              111.672
+            ],
+            [
+              540.934326171875,
+              156.52105712890625
+            ],
+            [
+              68.544,
+              156.52105712890625
+            ]
+          ],
+          "bbox": [
+            68.544,
+            111.672,
+            540.934326171875,
+            156.52105712890625
+          ],
+          "children": null,
+          "section_hierarchy": {
+            "1": "/page/0/SectionHeader/12",
+            "2": "/page/1/SectionHeader/2"
+          },
+          "images": {}
+        },
+        {
+          "id": "/page/1/Text/4",
+          "block_type": "Text",
+          "html": "<p block-type=\"Text\">The EM316-10G-XY also off ers advanced module loopback and PRBS capabilities on each interface. Loopback eases the challenge  of validating the installation, debugging the optical link, and fi nding potential faults on either the client or line interface. PRBS  provides additional circuit testing.</p>",
+          "polygon": [
+            [
+              68.544,
+              167.112
+            ],
+            [
+              540.9876708984375,
+              167.112
+            ],
+            [
+              540.9876708984375,
+              200.92071533203125
+            ],
+            [
+              68.544,
+              200.92071533203125
+            ]
+          ],
+          "bbox": [
+            68.544,
+            167.112,
+            540.9876708984375,
+            200.92071533203125
+          ],
+          "children": null,
+          "section_hierarchy": {
+            "1": "/page/0/SectionHeader/12",
+            "2": "/page/1/SectionHeader/2"
+          },
+          "images": {}
+        },
+        {
+          "id": "/page/1/SectionHeader/5",
+          "block_type": "SectionHeader",
+          "html": "<h3><b>Operational Modes</b></h3>",
+          "polygon": [
+            [
+              68.544,
+              211.464
+            ],
+            [
+              164.01600000000002,
+              211.464
+            ],
+            [
+              164.01600000000002,
+              225.21600341796875
+            ],
+            [
+              68.544,
+              225.21600341796875
+            ]
+          ],
+          "bbox": [
+            68.544,
+            211.464,
+            164.01600000000002,
+            225.21600341796875
+          ],
+          "children": null,
+          "section_hierarchy": {
+            "1": "/page/0/SectionHeader/12",
+            "2": "/page/1/SectionHeader/2",
+            "3": "/page/1/SectionHeader/5"
+          },
+          "images": {}
+        },
+        {
+          "id": "/page/1/Text/6",
+          "block_type": "Text",
+          "html": "<p block-type=\"Text\">The Fiber Driver XY family modules provide operational modes to change the module function for diff erent application roles.  The EM316-10G-XY has two modes: 10G converter with redundant link and XFP-to-XFP converter/repeater. (See diagram on  page 1.)</p>",
+          "polygon": [
+            [
+              68.544,
+              223.344
+            ],
+            [
+              540.92919921875,
+              223.344
+            ],
+            [
+              540.92919921875,
+              257.32098388671875
+            ],
+            [
+              68.544,
+              257.32098388671875
+            ]
+          ],
+          "bbox": [
+            68.544,
+            223.344,
+            540.92919921875,
+            257.32098388671875
+          ],
+          "children": null,
+          "section_hierarchy": {
+            "1": "/page/0/SectionHeader/12",
+            "2": "/page/1/SectionHeader/2",
+            "3": "/page/1/SectionHeader/5"
+          },
+          "images": {}
+        },
+        {
+          "id": "/page/1/SectionHeader/7",
+          "block_type": "SectionHeader",
+          "html": "<h2><b>Management</b></h2>",
+          "polygon": [
+            [
+              68.544,
+              263.736
+            ],
+            [
+              137.088,
+              263.736
+            ],
+            [
+              137.088,
+              277.73699951171875
+            ],
+            [
+              68.544,
+              277.73699951171875
+            ]
+          ],
+          "bbox": [
+            68.544,
+            263.736,
+            137.088,
+            277.73699951171875
+          ],
+          "children": null,
+          "section_hierarchy": {
+            "1": "/page/0/SectionHeader/12",
+            "2": "/page/1/SectionHeader/7"
+          },
+          "images": {}
+        },
+        {
+          "id": "/page/1/Text/8",
+          "block_type": "Text",
+          "html": "<p block-type=\"Text\">The EM316LNXNM-OT management module provides Fiber Driver network administration through a command line, SNMP,  and MegaVision Pro®, the MRV Communications graphical network management system. The EM316LNXNM-OT monitors XFP  and SFP+ port status, manages module confi guration, and provides vendor information.</p>",
+          "polygon": [
+            [
+              68.544,
+              276.408
+            ],
+            [
+              540.9635009765625,
+              276.408
+            ],
+            [
+              540.9635009765625,
+              309.72100830078125
+            ],
+            [
+              68.544,
+              309.72100830078125
+            ]
+          ],
+          "bbox": [
+            68.544,
+            276.408,
+            540.9635009765625,
+            309.72100830078125
+          ],
+          "children": null,
+          "section_hierarchy": {
+            "1": "/page/0/SectionHeader/12",
+            "2": "/page/1/SectionHeader/7"
+          },
+          "images": {}
+        },
+        {
+          "id": "/page/1/Text/9",
+          "block_type": "Text",
+          "html": "<p block-type=\"Text\">For more information on Fiber Driver and other MRV products, visit http://www.mrv.com or send email to MRV sales at  sales@mrv.com.</p>",
+          "polygon": [
+            [
+              68.544,
+              318.384
+            ],
+            [
+              540.89208984375,
+              318.384
+            ],
+            [
+              540.89208984375,
+              341.7969970703125
+            ],
+            [
+              68.544,
+              341.7969970703125
+            ]
+          ],
+          "bbox": [
+            68.544,
+            318.384,
+            540.89208984375,
+            341.7969970703125
+          ],
+          "children": null,
+          "section_hierarchy": {
+            "1": "/page/0/SectionHeader/12",
+            "2": "/page/1/SectionHeader/7"
+          },
+          "images": {}
+        },
+        {
+          "id": "/page/1/Table/10",
+          "block_type": "Table",
+          "html": "<table><thead><tr><th>Physical Specifi cations</th><th></th></tr></thead><tbody><tr><td>Operating Temperature Range*</td><td>0 0</td></tr><tr><td></td><td>F to 140 0 C to 600 C (320 F)</td></tr><tr><td>Storage Temperature</td><td>-40 0 C to 700 C (-400 F to 1580 F)</td></tr><tr><td>Relative Humidity</td><td>85% maximum, non-condensing</td></tr><tr><td>Approximate Dimensions</td><td>25 mm x 75 mm x 175 mm deep (1” x 3” x 7” deep)</td></tr><tr><td>Approximate Weight</td><td>213 g (7.5 oz)</td></tr><tr><td>Regulatory Compliances</td><td>FCC Part 15 (Class A); IC (Class A); EMC Directive: Emission (Class A) and Immunity; RoHS Directive; China RoHS; REACH Directive; WEEE Directive; The Quality Management System is certifi ed to ISO 9001 by QMI-SAI Global The Environmental Management System is in compliance with ISO 14001</td></tr></tbody></table>",
+          "polygon": [
+            [
+              68.544,
+              350.064
+            ],
+            [
+              537.336,
+              350.064
+            ],
+            [
+              537.336,
+              488.664
+            ],
+            [
+              68.544,
+              488.664
+            ]
+          ],
+          "bbox": [
+            68.544,
+            350.064,
+            537.336,
+            488.664
+          ],
+          "children": [],
+          "section_hierarchy": {
+            "1": "/page/0/SectionHeader/12",
+            "2": "/page/1/SectionHeader/7"
+          },
+          "images": null
+        },
+        {
+          "id": "/page/1/Text/11",
+          "block_type": "Text",
+          "html": "<p block-type=\"Text\">*Operating Range listed is for the module only. Operating Range of pluggable interface(s) used may diff er.</p>",
+          "polygon": [
+            [
+              68.544,
+              492.624
+            ],
+            [
+              381.27880859375,
+              492.624
+            ],
+            [
+              381.27880859375,
+              503.0899963378906
+            ],
+            [
+              68.544,
+              503.0899963378906
+            ]
+          ],
+          "bbox": [
+            68.544,
+            492.624,
+            381.27880859375,
+            503.0899963378906
+          ],
+          "children": null,
+          "section_hierarchy": {
+            "1": "/page/0/SectionHeader/12",
+            "2": "/page/1/SectionHeader/7"
+          },
+          "images": {}
+        }
+      ],
+      "section_hierarchy": {
+        "1": "/page/0/SectionHeader/12",
+        "2": "/page/1/SectionHeader/7"
+      },
+      "images": null
+    }
+  ],
+  "block_type": "Document",
+  "metadata": {
+    "table_of_contents": [
+      {
+        "title": "Datasheet",
+        "heading_level": null,
+        "page_id": 0,
+        "polygon": [
+          [
+            51.40800000000001,
+            75.24000000000001
+          ],
+          [
+            110.16,
+            75.24000000000001
+          ],
+          [
+            110.16,
+            88.781494140625
+          ],
+          [
+            51.40800000000001,
+            88.781494140625
+          ]
+        ]
+      },
+      {
+        "title": "10 Gbps Converter/Repeater/WDM Transponder",
+        "heading_level": null,
+        "page_id": 0,
+        "polygon": [
+          [
+            57.52799999999999,
+            103.75200000000001
+          ],
+          [
+            357.408,
+            103.75200000000001
+          ],
+          [
+            357.408,
+            120.66900634765625
+          ],
+          [
+            57.52799999999999,
+            120.66900634765625
+          ]
+        ]
+      },
+      {
+        "title": "Overview",
+        "heading_level": null,
+        "page_id": 0,
+        "polygon": [
+          [
+            57.52799999999999,
+            257.4
+          ],
+          [
+            111.384,
+            257.4
+          ],
+          [
+            111.384,
+            271.77301025390625
+          ],
+          [
+            57.52799999999999,
+            271.77301025390625
+          ]
+        ]
+      },
+      {
+        "title": "Benefi ts",
+        "heading_level": null,
+        "page_id": 0,
+        "polygon": [
+          [
+            340.27200000000005,
+            420.552
+          ],
+          [
+            381.88800000000003,
+            420.552
+          ],
+          [
+            381.88800000000003,
+            434.958984375
+          ],
+          [
+            340.27200000000005,
+            434.958984375
+          ]
+        ]
+      },
+      {
+        "title": "Highlights",
+        "heading_level": null,
+        "page_id": 0,
+        "polygon": [
+          [
+            340.27200000000005,
+            144.144
+          ],
+          [
+            392.904,
+            144.144
+          ],
+          [
+            392.904,
+            157.78802490234375
+          ],
+          [
+            340.27200000000005,
+            157.78802490234375
+          ]
+        ]
+      },
+      {
+        "title": "Datasheet",
+        "heading_level": null,
+        "page_id": 1,
+        "polygon": [
+          [
+            51.40800000000001,
+            74.448
+          ],
+          [
+            109.548,
+            74.448
+          ],
+          [
+            109.548,
+            88.54815673828125
+          ],
+          [
+            51.40800000000001,
+            88.54815673828125
+          ]
+        ]
+      },
+      {
+        "title": "Operational Modes",
+        "heading_level": null,
+        "page_id": 1,
+        "polygon": [
+          [
+            68.544,
+            211.464
+          ],
+          [
+            164.01600000000002,
+            211.464
+          ],
+          [
+            164.01600000000002,
+            225.21600341796875
+          ],
+          [
+            68.544,
+            225.21600341796875
+          ]
+        ]
+      },
+      {
+        "title": "Management",
+        "heading_level": null,
+        "page_id": 1,
+        "polygon": [
+          [
+            68.544,
+            263.736
+          ],
+          [
+            137.088,
+            263.736
+          ],
+          [
+            137.088,
+            277.73699951171875
+          ],
+          [
+            68.544,
+            277.73699951171875
+          ]
+        ]
+      }
+    ],
+    "page_stats": [
+      {
+        "page_id": 0,
+        "text_extraction_method": "pdftext",
+        "block_counts": [
+          [
+            "Span",
+            143
+          ],
+          [
+            "Line",
+            72
+          ],
+          [
+            "ListItem",
+            10
+          ],
+          [
+            "SectionHeader",
+            5
+          ],
+          [
+            "Text",
+            5
+          ],
+          [
+            "PageHeader",
+            2
+          ],
+          [
+            "ListGroup",
+            2
+          ],
+          [
+            "Picture",
+            1
+          ],
+          [
+            "Diagram",
+            1
+          ],
+          [
+            "PageFooter",
+            1
+          ]
+        ],
+        "block_metadata": {
+          "llm_request_count": 0,
+          "llm_error_count": 0,
+          "llm_tokens_used": 0,
+          "previous_text": "",
+          "previous_type": "",
+          "previous_order": 0
+        }
+      },
+      {
+        "page_id": 1,
+        "text_extraction_method": "pdftext",
+        "block_counts": [
+          [
+            "Span",
+            139
+          ],
+          [
+            "Line",
+            59
+          ],
+          [
+            "Text",
+            11
+          ],
+          [
+            "SectionHeader",
+            3
+          ],
+          [
+            "PageFooter",
+            3
+          ],
+          [
+            "Table",
+            2
+          ],
+          [
+            "Picture",
+            1
+          ],
+          [
+            "PageHeader",
+            1
+          ]
+        ],
+        "block_metadata": {
+          "llm_request_count": 0,
+          "llm_error_count": 0,
+          "llm_tokens_used": 0,
+          "previous_text": "",
+          "previous_type": "",
+          "previous_order": 0
+        }
+      }
+    ],
+    "debug_data_path": "debug_data/datasheet2"
+  }
+}

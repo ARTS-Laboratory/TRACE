@@ -1,0 +1,2199 @@
+{
+  "children": [
+    {
+      "id": "/page/0/Page/79",
+      "block_type": "Page",
+      "html": "<content-ref src='/page/0/Picture/0'></content-ref><content-ref src='/page/0/Text/1'></content-ref><content-ref src='/page/0/PageFooter/10'></content-ref><content-ref src='/page/0/PageFooter/11'></content-ref><content-ref src='/page/0/SectionHeader/2'></content-ref><content-ref src='/page/0/Table/3'></content-ref><content-ref src='/page/0/SectionHeader/4'></content-ref><content-ref src='/page/0/Text/5'></content-ref><content-ref src='/page/0/Text/6'></content-ref><content-ref src='/page/0/Figure/7'></content-ref><content-ref src='/page/0/Text/8'></content-ref><content-ref src='/page/0/Text/9'></content-ref>",
+      "polygon": [
+        [
+          0.0,
+          0.0
+        ],
+        [
+          612.0,
+          0.0
+        ],
+        [
+          612.0,
+          792.0
+        ],
+        [
+          0.0,
+          792.0
+        ]
+      ],
+      "bbox": [
+        0.0,
+        0.0,
+        612.0,
+        792.0
+      ],
+      "children": [
+        {
+          "id": "/page/0/Picture/0",
+          "block_type": "Picture",
+          "html": "",
+          "polygon": [
+            [
+              72.46079999999999,
+              30.1356
+            ],
+            [
+              107.46719999999998,
+              30.1356
+            ],
+            [
+              107.46719999999998,
+              64.11240000000001
+            ],
+            [
+              72.46079999999999,
+              64.11240000000001
+            ]
+          ],
+          "bbox": [
+            72.46079999999999,
+            30.1356,
+            107.46719999999998,
+            64.11240000000001
+          ],
+          "children": null,
+          "section_hierarchy": {},
+          "images": {
+            "/page/0/Picture/0": "images/image_000000.jpg"
+          }
+        },
+        {
+          "id": "/page/0/Text/1",
+          "block_type": "Text",
+          "html": "<p block-type=\"Text\"></p>",
+          "polygon": [
+            [
+              54.467999999999996,
+              71.28
+            ],
+            [
+              129.744,
+              71.28
+            ],
+            [
+              129.744,
+              84.744
+            ],
+            [
+              54.467999999999996,
+              84.744
+            ]
+          ],
+          "bbox": [
+            54.467999999999996,
+            71.28,
+            129.744,
+            84.744
+          ],
+          "children": null,
+          "section_hierarchy": {},
+          "images": {}
+        },
+        {
+          "id": "/page/0/PageFooter/10",
+          "block_type": "PageFooter",
+          "html": "",
+          "polygon": [
+            [
+              54.467999999999996,
+              734.184
+            ],
+            [
+              524.4937133789062,
+              734.184
+            ],
+            [
+              524.4937133789062,
+              745.5935935974121
+            ],
+            [
+              54.467999999999996,
+              745.5935935974121
+            ]
+          ],
+          "bbox": [
+            54.467999999999996,
+            734.184,
+            524.4937133789062,
+            745.5935935974121
+          ],
+          "children": null,
+          "section_hierarchy": {},
+          "images": {}
+        },
+        {
+          "id": "/page/0/PageFooter/11",
+          "block_type": "PageFooter",
+          "html": "",
+          "polygon": [
+            [
+              473.076,
+              734.184
+            ],
+            [
+              522.648,
+              734.184
+            ],
+            [
+              522.648,
+              745.2719999999999
+            ],
+            [
+              473.076,
+              745.2719999999999
+            ]
+          ],
+          "bbox": [
+            473.076,
+            734.184,
+            522.648,
+            745.2719999999999
+          ],
+          "children": null,
+          "section_hierarchy": {},
+          "images": {}
+        },
+        {
+          "id": "/page/0/SectionHeader/2",
+          "block_type": "SectionHeader",
+          "html": "<h1><b>PDF BOOKMARK SAMPLE</b></h1>",
+          "polygon": [
+            [
+              189.108,
+              117.21599999999998
+            ],
+            [
+              388.62,
+              117.21599999999998
+            ],
+            [
+              388.62,
+              138.66644287109375
+            ],
+            [
+              189.108,
+              138.66644287109375
+            ]
+          ],
+          "bbox": [
+            189.108,
+            117.21599999999998,
+            388.62,
+            138.66644287109375
+          ],
+          "children": null,
+          "section_hierarchy": {
+            "1": "/page/0/SectionHeader/2"
+          },
+          "images": {}
+        },
+        {
+          "id": "/page/0/Table/3",
+          "block_type": "Table",
+          "html": "<table><thead><tr><th>Sample Date:</th><th>May 2001</th></tr></thead><tbody><tr><td>Prepared by:</td><td>Accelio Present Applied Technology</td></tr><tr><td>Created and Tested Using:</td><td>Accelio Present Central 5.4</td></tr><tr><td>Features Demonstrated:</td><td>Primary bookmarks in a PDF file.</td></tr></tbody></table>",
+          "polygon": [
+            [
+              54.467999999999996,
+              154.44
+            ],
+            [
+              512.856,
+              154.44
+            ],
+            [
+              512.856,
+              293.832
+            ],
+            [
+              54.467999999999996,
+              293.832
+            ]
+          ],
+          "bbox": [
+            54.467999999999996,
+            154.44,
+            512.856,
+            293.832
+          ],
+          "children": [],
+          "section_hierarchy": {
+            "1": "/page/0/SectionHeader/2"
+          },
+          "images": null
+        },
+        {
+          "id": "/page/0/SectionHeader/4",
+          "block_type": "SectionHeader",
+          "html": "<h2><b>Overview </b></h2>",
+          "polygon": [
+            [
+              54.467999999999996,
+              312.048
+            ],
+            [
+              123.93132019042969,
+              312.048
+            ],
+            [
+              123.93132019042969,
+              329.0950012207031
+            ],
+            [
+              54.467999999999996,
+              329.0950012207031
+            ]
+          ],
+          "bbox": [
+            54.467999999999996,
+            312.048,
+            123.93132019042969,
+            329.0950012207031
+          ],
+          "children": null,
+          "section_hierarchy": {
+            "1": "/page/0/SectionHeader/2",
+            "2": "/page/0/SectionHeader/4"
+          },
+          "images": {}
+        },
+        {
+          "id": "/page/0/Text/5",
+          "block_type": "Text",
+          "html": "<p block-type=\"Text\">This sample consists of a simple form containing four distinct fields. The data file contains eight  separate records.</p>",
+          "polygon": [
+            [
+              54.467999999999996,
+              333.43199999999996
+            ],
+            [
+              522.7495727539062,
+              333.43199999999996
+            ],
+            [
+              522.7495727539062,
+              360.4997253417969
+            ],
+            [
+              54.467999999999996,
+              360.4997253417969
+            ]
+          ],
+          "bbox": [
+            54.467999999999996,
+            333.43199999999996,
+            522.7495727539062,
+            360.4997253417969
+          ],
+          "children": null,
+          "section_hierarchy": {
+            "1": "/page/0/SectionHeader/2",
+            "2": "/page/0/SectionHeader/4"
+          },
+          "images": {}
+        },
+        {
+          "id": "/page/0/Text/6",
+          "block_type": "Text",
+          "html": "<p block-type=\"Text\">By default, the data file will produce a PDF file containing eight separate pages. The selective  use of the bookmark file will produce the same PDF with a separate pane containing  bookmarks. This screenshot of the sample output shows a PDF file with bookmarks.</p>",
+          "polygon": [
+            [
+              54.467999999999996,
+              364.32000000000005
+            ],
+            [
+              514.8754272460938,
+              364.32000000000005
+            ],
+            [
+              514.8754272460938,
+              404.4165954589844
+            ],
+            [
+              54.467999999999996,
+              404.4165954589844
+            ]
+          ],
+          "bbox": [
+            54.467999999999996,
+            364.32000000000005,
+            514.8754272460938,
+            404.4165954589844
+          ],
+          "children": null,
+          "section_hierarchy": {
+            "1": "/page/0/SectionHeader/2",
+            "2": "/page/0/SectionHeader/4"
+          },
+          "images": {}
+        },
+        {
+          "id": "/page/0/Figure/7",
+          "block_type": "Figure",
+          "html": "",
+          "polygon": [
+            [
+              49.716000000000044,
+              403.12800000000004
+            ],
+            [
+              524.952,
+              403.12800000000004
+            ],
+            [
+              524.952,
+              641.52
+            ],
+            [
+              49.716000000000044,
+              641.52
+            ]
+          ],
+          "bbox": [
+            49.716000000000044,
+            403.12800000000004,
+            524.952,
+            641.52
+          ],
+          "children": null,
+          "section_hierarchy": {
+            "1": "/page/0/SectionHeader/2",
+            "2": "/page/0/SectionHeader/4"
+          },
+          "images": {
+            "/page/0/Figure/7": "images/image_000001.jpg"
+          }
+        },
+        {
+          "id": "/page/0/Text/8",
+          "block_type": "Text",
+          "html": "<p block-type=\"Text\">The left pane displays the available bookmarks for this PDF. You may need to enable the  display of bookmarks in Adobe Acrobat Reader by clicking <b>Window &gt; Show Bookmarks</b>.  Selecting a date from the left pane displays the corresponding page within the document.</p>",
+          "polygon": [
+            [
+              54.467999999999996,
+              642.312
+            ],
+            [
+              511.7489318847656,
+              642.312
+            ],
+            [
+              511.7489318847656,
+              682.4328155517578
+            ],
+            [
+              54.467999999999996,
+              682.4328155517578
+            ]
+          ],
+          "bbox": [
+            54.467999999999996,
+            642.312,
+            511.7489318847656,
+            682.4328155517578
+          ],
+          "children": null,
+          "section_hierarchy": {
+            "1": "/page/0/SectionHeader/2",
+            "2": "/page/0/SectionHeader/4"
+          },
+          "images": {}
+        },
+        {
+          "id": "/page/0/Text/9",
+          "block_type": "Text",
+          "html": "<p block-type=\"Text\">Note that the index has been sorted according to the specification in the bookmark file, and that  pages within the file are created according to the original order in the data file.</p>",
+          "polygon": [
+            [
+              54.467999999999996,
+              686.664
+            ],
+            [
+              524.12060546875,
+              686.664
+            ],
+            [
+              524.12060546875,
+              713.7507247924805
+            ],
+            [
+              54.467999999999996,
+              713.7507247924805
+            ]
+          ],
+          "bbox": [
+            54.467999999999996,
+            686.664,
+            524.12060546875,
+            713.7507247924805
+          ],
+          "children": null,
+          "section_hierarchy": {
+            "1": "/page/0/SectionHeader/2",
+            "2": "/page/0/SectionHeader/4"
+          },
+          "images": {}
+        }
+      ],
+      "section_hierarchy": {
+        "1": "/page/0/SectionHeader/2",
+        "2": "/page/0/SectionHeader/4"
+      },
+      "images": null
+    },
+    {
+      "id": "/page/1/Page/140",
+      "block_type": "Page",
+      "html": "<content-ref src='/page/1/Picture/0'></content-ref><content-ref src='/page/1/Text/1'></content-ref><content-ref src='/page/1/PageFooter/8'></content-ref><content-ref src='/page/1/PageFooter/9'></content-ref><content-ref src='/page/1/SectionHeader/2'></content-ref><content-ref src='/page/1/Text/3'></content-ref><content-ref src='/page/1/Text/4'></content-ref><content-ref src='/page/1/Text/5'></content-ref><content-ref src='/page/1/Text/6'></content-ref><content-ref src='/page/1/ListGroup/7'></content-ref>",
+      "polygon": [
+        [
+          0.0,
+          0.0
+        ],
+        [
+          612.0,
+          0.0
+        ],
+        [
+          612.0,
+          792.0
+        ],
+        [
+          0.0,
+          792.0
+        ]
+      ],
+      "bbox": [
+        0.0,
+        0.0,
+        612.0,
+        792.0
+      ],
+      "children": [
+        {
+          "id": "/page/1/Picture/0",
+          "block_type": "Picture",
+          "html": "",
+          "polygon": [
+            [
+              71.8182,
+              30.1356
+            ],
+            [
+              107.49779999999997,
+              30.1356
+            ],
+            [
+              107.49779999999997,
+              64.11240000000001
+            ],
+            [
+              71.8182,
+              64.11240000000001
+            ]
+          ],
+          "bbox": [
+            71.8182,
+            30.1356,
+            107.49779999999997,
+            64.11240000000001
+          ],
+          "children": null,
+          "section_hierarchy": {
+            "1": "/page/0/SectionHeader/2",
+            "2": "/page/0/SectionHeader/4"
+          },
+          "images": {
+            "/page/1/Picture/0": "images/image_000002.jpg"
+          }
+        },
+        {
+          "id": "/page/1/Text/1",
+          "block_type": "Text",
+          "html": "nt",
+          "polygon": [
+            [
+              53.855999999999995,
+              71.28
+            ],
+            [
+              129.744,
+              71.28
+            ],
+            [
+              129.744,
+              84.744
+            ],
+            [
+              53.855999999999995,
+              84.744
+            ]
+          ],
+          "bbox": [
+            53.855999999999995,
+            71.28,
+            129.744,
+            84.744
+          ],
+          "children": null,
+          "section_hierarchy": {
+            "1": "/page/0/SectionHeader/2",
+            "2": "/page/0/SectionHeader/4"
+          },
+          "images": {}
+        },
+        {
+          "id": "/page/1/PageFooter/8",
+          "block_type": "PageFooter",
+          "html": "",
+          "polygon": [
+            [
+              53.855999999999995,
+              733.392
+            ],
+            [
+              524.4937133789062,
+              733.392
+            ],
+            [
+              524.4937133789062,
+              745.5935935974121
+            ],
+            [
+              53.855999999999995,
+              745.5935935974121
+            ]
+          ],
+          "bbox": [
+            53.855999999999995,
+            733.392,
+            524.4937133789062,
+            745.5935935974121
+          ],
+          "children": null,
+          "section_hierarchy": {
+            "1": "/page/0/SectionHeader/2",
+            "2": "/page/0/SectionHeader/4"
+          },
+          "images": {}
+        },
+        {
+          "id": "/page/1/PageFooter/9",
+          "block_type": "PageFooter",
+          "html": "",
+          "polygon": [
+            [
+              471.852,
+              733.392
+            ],
+            [
+              522.648,
+              733.392
+            ],
+            [
+              522.648,
+              745.2719999999999
+            ],
+            [
+              471.852,
+              745.2719999999999
+            ]
+          ],
+          "bbox": [
+            471.852,
+            733.392,
+            522.648,
+            745.2719999999999
+          ],
+          "children": null,
+          "section_hierarchy": {
+            "1": "/page/0/SectionHeader/2",
+            "2": "/page/0/SectionHeader/4"
+          },
+          "images": {}
+        },
+        {
+          "id": "/page/1/SectionHeader/2",
+          "block_type": "SectionHeader",
+          "html": "<h3><i>Sample Data File </i></h3>",
+          "polygon": [
+            [
+              55.08,
+              110.08800000000002
+            ],
+            [
+              157.09800720214844,
+              110.08800000000002
+            ],
+            [
+              157.09800720214844,
+              125.8814697265625
+            ],
+            [
+              55.08,
+              125.8814697265625
+            ]
+          ],
+          "bbox": [
+            55.08,
+            110.08800000000002,
+            157.09800720214844,
+            125.8814697265625
+          ],
+          "children": null,
+          "section_hierarchy": {
+            "1": "/page/0/SectionHeader/2",
+            "2": "/page/0/SectionHeader/4",
+            "3": "/page/1/SectionHeader/2"
+          },
+          "images": {}
+        },
+        {
+          "id": "/page/1/Text/3",
+          "block_type": "Text",
+          "html": "me in the given set of code using the same style as the original code. The code is also string set and is allowed to contain a set of code that is not allowed in the original code. The code is also allowed to contain a set of code that is not allowed in the original code. The code is also allowed to contain a set of code that is not allowed in the original code. The code is also allowed to contain a set of code that is not allowed in the original code. The code is also allowed to contain a set of code that is not allowed in",
+          "polygon": [
+            [
+              53.855999999999995,
+              130.68
+            ],
+            [
+              195.84,
+              130.68
+            ],
+            [
+              195.84,
+              426.2729187011719
+            ],
+            [
+              53.855999999999995,
+              426.2729187011719
+            ]
+          ],
+          "bbox": [
+            53.855999999999995,
+            130.68,
+            195.84,
+            426.2729187011719
+          ],
+          "children": null,
+          "section_hierarchy": {
+            "1": "/page/0/SectionHeader/2",
+            "2": "/page/0/SectionHeader/4",
+            "3": "/page/1/SectionHeader/2"
+          },
+          "images": {}
+        },
+        {
+          "id": "/page/1/Text/4",
+          "block_type": "Text",
+          "html": "<b>Sample Bookmark File</b>",
+          "polygon": [
+            [
+              306.0,
+              112.464
+            ],
+            [
+              439.8951721191406,
+              112.464
+            ],
+            [
+              439.8951721191406,
+              127.68133544921875
+            ],
+            [
+              306.0,
+              127.68133544921875
+            ]
+          ],
+          "bbox": [
+            306.0,
+            112.464,
+            439.8951721191406,
+            127.68133544921875
+          ],
+          "children": null,
+          "section_hierarchy": {
+            "1": "/page/0/SectionHeader/2",
+            "2": "/page/0/SectionHeader/4",
+            "3": "/page/1/SectionHeader/2"
+          },
+          "images": {}
+        },
+        {
+          "id": "/page/1/Text/5",
+          "block_type": "Text",
+          "html": "me the list of invoices by date and trans_date and type. The list includes invoices for Item Type=0 and Transaction Amount=0, and invoices for Item Type=1, Amount=1, D.",
+          "polygon": [
+            [
+              306.0,
+              132.264
+            ],
+            [
+              500.0039999999999,
+              132.264
+            ],
+            [
+              500.0039999999999,
+              235.4898681640625
+            ],
+            [
+              306.0,
+              235.4898681640625
+            ]
+          ],
+          "bbox": [
+            306.0,
+            132.264,
+            500.0039999999999,
+            235.4898681640625
+          ],
+          "children": null,
+          "section_hierarchy": {
+            "1": "/page/0/SectionHeader/2",
+            "2": "/page/0/SectionHeader/4",
+            "3": "/page/1/SectionHeader/2"
+          },
+          "images": {}
+        },
+        {
+          "id": "/page/1/Text/6",
+          "block_type": "Text",
+          "html": "<p>The example bookmark file includes three distinct sections:</p>",
+          "polygon": [
+            [
+              53.855999999999995,
+              433.22400000000005
+            ],
+            [
+              348.2413330078125,
+              433.22400000000005
+            ],
+            [
+              348.2413330078125,
+              447.01214599609375
+            ],
+            [
+              53.855999999999995,
+              447.01214599609375
+            ]
+          ],
+          "bbox": [
+            53.855999999999995,
+            433.22400000000005,
+            348.2413330078125,
+            447.01214599609375
+          ],
+          "children": null,
+          "section_hierarchy": {
+            "1": "/page/0/SectionHeader/2",
+            "2": "/page/0/SectionHeader/4",
+            "3": "/page/1/SectionHeader/2"
+          },
+          "images": {}
+        },
+        {
+          "id": "/page/1/ListGroup/7",
+          "block_type": "ListGroup",
+          "html": "<p block-type='ListGroup'><ul><content-ref src='/page/1/ListItem/138'></content-ref><content-ref src='/page/1/ListItem/139'></content-ref><content-ref src='/page/1/ListItem/140'></content-ref></ul></p>",
+          "polygon": [
+            [
+              53.855999999999995,
+              453.02399999999994
+            ],
+            [
+              332.5979919433594,
+              453.02399999999994
+            ],
+            [
+              332.5979919433594,
+              509.515869140625
+            ],
+            [
+              53.855999999999995,
+              509.515869140625
+            ]
+          ],
+          "bbox": [
+            53.855999999999995,
+            453.02399999999994,
+            332.5979919433594,
+            509.515869140625
+          ],
+          "children": [
+            {
+              "id": "/page/1/ListItem/138",
+              "block_type": "ListItem",
+              "html": "<li block-type=\"ListItem\"><p>• Invoices sorted, ascending, by date.</p></li>",
+              "polygon": [
+                [
+                  57.63589859008789,
+                  455.26239013671875
+                ],
+                [
+                  254.2314910888672,
+                  455.26239013671875
+                ],
+                [
+                  254.2314910888672,
+                  468.2392578125
+                ],
+                [
+                  57.63589859008789,
+                  468.2392578125
+                ]
+              ],
+              "bbox": [
+                57.63589859008789,
+                455.26239013671875,
+                254.2314910888672,
+                468.2392578125
+              ],
+              "children": null,
+              "section_hierarchy": {
+                "1": "/page/0/SectionHeader/2",
+                "2": "/page/0/SectionHeader/4",
+                "3": "/page/1/SectionHeader/2"
+              },
+              "images": {}
+            },
+            {
+              "id": "/page/1/ListItem/139",
+              "block_type": "ListItem",
+              "html": "<li block-type=\"ListItem\"><p>• Invoices sorted, ascending, by item type.</p></li>",
+              "polygon": [
+                [
+                  57.63589859008789,
+                  475.90069580078125
+                ],
+                [
+                  277.3231201171875,
+                  475.90069580078125
+                ],
+                [
+                  277.3231201171875,
+                  488.8775634765625
+                ],
+                [
+                  57.63589859008789,
+                  488.8775634765625
+                ]
+              ],
+              "bbox": [
+                57.63589859008789,
+                475.90069580078125,
+                277.3231201171875,
+                488.8775634765625
+              ],
+              "children": null,
+              "section_hierarchy": {
+                "1": "/page/0/SectionHeader/2",
+                "2": "/page/0/SectionHeader/4",
+                "3": "/page/1/SectionHeader/2"
+              },
+              "images": {}
+            },
+            {
+              "id": "/page/1/ListItem/140",
+              "block_type": "ListItem",
+              "html": "<li block-type=\"ListItem\"><p>• Invoices sorted, descending, by transaction amount.</p></li>",
+              "polygon": [
+                [
+                  57.63589859008789,
+                  496.53900146484375
+                ],
+                [
+                  332.5979919433594,
+                  496.53900146484375
+                ],
+                [
+                  332.5979919433594,
+                  509.515869140625
+                ],
+                [
+                  57.63589859008789,
+                  509.515869140625
+                ]
+              ],
+              "bbox": [
+                57.63589859008789,
+                496.53900146484375,
+                332.5979919433594,
+                509.515869140625
+              ],
+              "children": null,
+              "section_hierarchy": {
+                "1": "/page/0/SectionHeader/2",
+                "2": "/page/0/SectionHeader/4",
+                "3": "/page/1/SectionHeader/2"
+              },
+              "images": {}
+            }
+          ],
+          "section_hierarchy": {
+            "1": "/page/0/SectionHeader/2",
+            "2": "/page/0/SectionHeader/4",
+            "3": "/page/1/SectionHeader/2"
+          },
+          "images": null
+        }
+      ],
+      "section_hierarchy": {
+        "1": "/page/0/SectionHeader/2",
+        "2": "/page/0/SectionHeader/4",
+        "3": "/page/1/SectionHeader/2"
+      },
+      "images": null
+    },
+    {
+      "id": "/page/2/Page/116",
+      "block_type": "Page",
+      "html": "<content-ref src='/page/2/PageHeader/1'></content-ref><content-ref src='/page/2/Picture/0'></content-ref><content-ref src='/page/2/PageFooter/10'></content-ref><content-ref src='/page/2/PageFooter/11'></content-ref><content-ref src='/page/2/SectionHeader/2'></content-ref><content-ref src='/page/2/Text/3'></content-ref><content-ref src='/page/2/Table/4'></content-ref><content-ref src='/page/2/SectionHeader/5'></content-ref><content-ref src='/page/2/Text/6'></content-ref><content-ref src='/page/2/ListGroup/7'></content-ref><content-ref src='/page/2/Text/8'></content-ref><content-ref src='/page/2/Table/9'></content-ref>",
+      "polygon": [
+        [
+          0.0,
+          0.0
+        ],
+        [
+          612.0,
+          0.0
+        ],
+        [
+          612.0,
+          792.0
+        ],
+        [
+          0.0,
+          792.0
+        ]
+      ],
+      "bbox": [
+        0.0,
+        0.0,
+        612.0,
+        792.0
+      ],
+      "children": [
+        {
+          "id": "/page/2/PageHeader/1",
+          "block_type": "PageHeader",
+          "html": "",
+          "polygon": [
+            [
+              53.855999999999995,
+              70.488
+            ],
+            [
+              129.744,
+              70.488
+            ],
+            [
+              129.744,
+              84.744
+            ],
+            [
+              53.855999999999995,
+              84.744
+            ]
+          ],
+          "bbox": [
+            53.855999999999995,
+            70.488,
+            129.744,
+            84.744
+          ],
+          "children": null,
+          "section_hierarchy": {
+            "1": "/page/0/SectionHeader/2",
+            "2": "/page/0/SectionHeader/4",
+            "3": "/page/1/SectionHeader/2"
+          },
+          "images": {}
+        },
+        {
+          "id": "/page/2/Picture/0",
+          "block_type": "Picture",
+          "html": "",
+          "polygon": [
+            [
+              71.8182,
+              30.1356
+            ],
+            [
+              107.49779999999997,
+              30.1356
+            ],
+            [
+              107.49779999999997,
+              64.11240000000001
+            ],
+            [
+              71.8182,
+              64.11240000000001
+            ]
+          ],
+          "bbox": [
+            71.8182,
+            30.1356,
+            107.49779999999997,
+            64.11240000000001
+          ],
+          "children": null,
+          "section_hierarchy": {
+            "1": "/page/0/SectionHeader/2",
+            "2": "/page/0/SectionHeader/4",
+            "3": "/page/1/SectionHeader/2"
+          },
+          "images": {
+            "/page/2/Picture/0": "images/image_000003.jpg"
+          }
+        },
+        {
+          "id": "/page/2/PageFooter/10",
+          "block_type": "PageFooter",
+          "html": "",
+          "polygon": [
+            [
+              53.855999999999995,
+              733.392
+            ],
+            [
+              524.4937133789062,
+              733.392
+            ],
+            [
+              524.4937133789062,
+              745.5935935974121
+            ],
+            [
+              53.855999999999995,
+              745.5935935974121
+            ]
+          ],
+          "bbox": [
+            53.855999999999995,
+            733.392,
+            524.4937133789062,
+            745.5935935974121
+          ],
+          "children": null,
+          "section_hierarchy": {
+            "1": "/page/0/SectionHeader/2",
+            "2": "/page/0/SectionHeader/4",
+            "3": "/page/1/SectionHeader/2"
+          },
+          "images": {}
+        },
+        {
+          "id": "/page/2/PageFooter/11",
+          "block_type": "PageFooter",
+          "html": "",
+          "polygon": [
+            [
+              472.464,
+              733.392
+            ],
+            [
+              522.0360000000001,
+              733.392
+            ],
+            [
+              522.0360000000001,
+              744.48
+            ],
+            [
+              472.464,
+              744.48
+            ]
+          ],
+          "bbox": [
+            472.464,
+            733.392,
+            522.0360000000001,
+            744.48
+          ],
+          "children": null,
+          "section_hierarchy": {
+            "1": "/page/0/SectionHeader/2",
+            "2": "/page/0/SectionHeader/4",
+            "3": "/page/1/SectionHeader/2"
+          },
+          "images": {}
+        },
+        {
+          "id": "/page/2/SectionHeader/2",
+          "block_type": "SectionHeader",
+          "html": "<h2><b>Sample Files </b></h2>",
+          "polygon": [
+            [
+              53.855999999999995,
+              115.63199999999999
+            ],
+            [
+              147.31715393066406,
+              115.63199999999999
+            ],
+            [
+              147.31715393066406,
+              134.23114013671875
+            ],
+            [
+              53.855999999999995,
+              134.23114013671875
+            ]
+          ],
+          "bbox": [
+            53.855999999999995,
+            115.63199999999999,
+            147.31715393066406,
+            134.23114013671875
+          ],
+          "children": null,
+          "section_hierarchy": {
+            "1": "/page/0/SectionHeader/2",
+            "2": "/page/2/SectionHeader/2"
+          },
+          "images": {}
+        },
+        {
+          "id": "/page/2/Text/3",
+          "block_type": "Text",
+          "html": "<p>This sample package contains:</p>",
+          "polygon": [
+            [
+              53.855999999999995,
+              137.808
+            ],
+            [
+              211.86424255371094,
+              137.808
+            ],
+            [
+              211.86424255371094,
+              152.91668701171875
+            ],
+            [
+              53.855999999999995,
+              152.91668701171875
+            ]
+          ],
+          "bbox": [
+            53.855999999999995,
+            137.808,
+            211.86424255371094,
+            152.91668701171875
+          ],
+          "children": null,
+          "section_hierarchy": {
+            "1": "/page/0/SectionHeader/2",
+            "2": "/page/2/SectionHeader/2"
+          },
+          "images": {}
+        },
+        {
+          "id": "/page/2/Table/4",
+          "block_type": "Table",
+          "html": "<table><thead><tr><th>Filename</th><th>Description</th></tr></thead><tbody><tr><td>ap_bookmark.IFD</td><td>The template design.</td></tr><tr><td>ap_bookmark.mdf</td><td>The template targeted for PDF output.</td></tr><tr><td>ap_bookmark.dat</td><td>A sample data file in DAT format.</td></tr><tr><td>ap_bookmark.bmk</td><td>A sample bookmark file.</td></tr><tr><td>ap_bookmark.pdf</td><td>Sample PDF output.</td></tr><tr><td>ap_bookmark_doc.pdf</td><td>A document describing the sample.</td></tr></tbody></table>",
+          "polygon": [
+            [
+              53.855999999999995,
+              162.35999999999999
+            ],
+            [
+              514.0799999999999,
+              162.35999999999999
+            ],
+            [
+              514.0799999999999,
+              325.51199999999994
+            ],
+            [
+              53.855999999999995,
+              325.51199999999994
+            ]
+          ],
+          "bbox": [
+            53.855999999999995,
+            162.35999999999999,
+            514.0799999999999,
+            325.51199999999994
+          ],
+          "children": [],
+          "section_hierarchy": {
+            "1": "/page/0/SectionHeader/2",
+            "2": "/page/2/SectionHeader/2"
+          },
+          "images": null
+        },
+        {
+          "id": "/page/2/SectionHeader/5",
+          "block_type": "SectionHeader",
+          "html": "<h2><b>Deploying the Sample </b></h2>",
+          "polygon": [
+            [
+              53.855999999999995,
+              343.72799999999995
+            ],
+            [
+              207.9156494140625,
+              343.72799999999995
+            ],
+            [
+              207.9156494140625,
+              361.3722839355469
+            ],
+            [
+              53.855999999999995,
+              361.3722839355469
+            ]
+          ],
+          "bbox": [
+            53.855999999999995,
+            343.72799999999995,
+            207.9156494140625,
+            361.3722839355469
+          ],
+          "children": null,
+          "section_hierarchy": {
+            "1": "/page/0/SectionHeader/2",
+            "2": "/page/2/SectionHeader/5"
+          },
+          "images": {}
+        },
+        {
+          "id": "/page/2/Text/6",
+          "block_type": "Text",
+          "html": "ller",
+          "polygon": [
+            [
+              53.855999999999995,
+              365.112
+            ],
+            [
+              270.5281677246094,
+              365.112
+            ],
+            [
+              270.5281677246094,
+              380.0577392578125
+            ],
+            [
+              53.855999999999995,
+              380.0577392578125
+            ]
+          ],
+          "bbox": [
+            53.855999999999995,
+            365.112,
+            270.5281677246094,
+            380.0577392578125
+          ],
+          "children": null,
+          "section_hierarchy": {
+            "1": "/page/0/SectionHeader/2",
+            "2": "/page/2/SectionHeader/5"
+          },
+          "images": {}
+        },
+        {
+          "id": "/page/2/ListGroup/7",
+          "block_type": "ListGroup",
+          "html": "<p block-type='ListGroup'><ul><content-ref src='/page/2/ListItem/112'></content-ref><content-ref src='/page/2/ListItem/113'></content-ref></ul></p>",
+          "polygon": [
+            [
+              53.855999999999995,
+              384.91200000000003
+            ],
+            [
+              485.928,
+              384.91200000000003
+            ],
+            [
+              485.928,
+              510.8467712402344
+            ],
+            [
+              53.855999999999995,
+              510.8467712402344
+            ]
+          ],
+          "bbox": [
+            53.855999999999995,
+            384.91200000000003,
+            485.928,
+            510.8467712402344
+          ],
+          "children": [
+            {
+              "id": "/page/2/ListItem/112",
+              "block_type": "ListItem",
+              "html": "<li block-type=\"ListItem\"><p>1. Open the template design <b>ap_bookmark.IFD</b> in Output Designer and recompile the template for the appropriate presentment target.</p></li>",
+              "polygon": [
+                [
+                  57.63589859008789,
+                  388.3768005371094
+                ],
+                [
+                  485.3182373046875,
+                  388.3768005371094
+                ],
+                [
+                  485.3182373046875,
+                  413.4156799316406
+                ],
+                [
+                  57.63589859008789,
+                  413.4156799316406
+                ]
+              ],
+              "bbox": [
+                57.63589859008789,
+                388.3768005371094,
+                485.3182373046875,
+                413.4156799316406
+              ],
+              "children": null,
+              "section_hierarchy": {
+                "1": "/page/0/SectionHeader/2",
+                "2": "/page/2/SectionHeader/5"
+              },
+              "images": {}
+            },
+            {
+              "id": "/page/2/ListItem/113",
+              "block_type": "ListItem",
+              "html": "<li block-type=\"ListItem\"><p>2. Modify the <b>-z</b> option in the <b>^job</b> command in the data file <b>ap_bookmark.dat</b> to:</p></li>",
+              "polygon": [
+                [
+                  57.63698959350586,
+                  421.6143798828125
+                ],
+                [
+                  485.1769714355469,
+                  421.6143798828125
+                ],
+                [
+                  485.1769714355469,
+                  510.8467712402344
+                ],
+                [
+                  57.63698959350586,
+                  510.8467712402344
+                ]
+              ],
+              "bbox": [
+                57.63698959350586,
+                421.6143798828125,
+                485.1769714355469,
+                510.8467712402344
+              ],
+              "children": null,
+              "section_hierarchy": {
+                "1": "/page/0/SectionHeader/2",
+                "2": "/page/2/SectionHeader/5"
+              },
+              "images": {}
+            }
+          ],
+          "section_hierarchy": {
+            "1": "/page/0/SectionHeader/2",
+            "2": "/page/2/SectionHeader/5"
+          },
+          "images": null
+        },
+        {
+          "id": "/page/2/Text/8",
+          "block_type": "Text",
+          "html": "For example,",
+          "polygon": [
+            [
+              72.216,
+              514.008
+            ],
+            [
+              143.02777099609375,
+              514.008
+            ],
+            [
+              143.02777099609375,
+              529.4454956054688
+            ],
+            [
+              72.216,
+              529.4454956054688
+            ]
+          ],
+          "bbox": [
+            72.216,
+            514.008,
+            143.02777099609375,
+            529.4454956054688
+          ],
+          "children": null,
+          "section_hierarchy": {
+            "1": "/page/0/SectionHeader/2",
+            "2": "/page/2/SectionHeader/5"
+          },
+          "images": {}
+        },
+        {
+          "id": "/page/2/Table/9",
+          "block_type": "Table",
+          "html": "<table><thead><tr><th>To bookmark by Ö</th><th>Use the command line parameter Ö</th><th></th><th></th><th></th></tr></thead><tbody><tr><td>Invoices</td><td>-abmk</td><td>ap_bookmark.bmk</td><td>-abms</td><td>invoices</td></tr><tr><td>Type</td><td>-abmk</td><td>ap_bookmark.bmk</td><td>-abms</td><td>type</td></tr><tr><td>Amount</td><td>-abmk</td><td>ap_bookmark.bmk</td><td>-abms</td><td>amount</td></tr></tbody></table>",
+          "polygon": [
+            [
+              72.216,
+              539.3520000000001
+            ],
+            [
+              514.0799999999999,
+              539.3520000000001
+            ],
+            [
+              514.0799999999999,
+              631.224
+            ],
+            [
+              72.216,
+              631.224
+            ]
+          ],
+          "bbox": [
+            72.216,
+            539.3520000000001,
+            514.0799999999999,
+            631.224
+          ],
+          "children": [],
+          "section_hierarchy": {
+            "1": "/page/0/SectionHeader/2",
+            "2": "/page/2/SectionHeader/5"
+          },
+          "images": null
+        }
+      ],
+      "section_hierarchy": {
+        "1": "/page/0/SectionHeader/2",
+        "2": "/page/2/SectionHeader/5"
+      },
+      "images": null
+    },
+    {
+      "id": "/page/3/Page/45",
+      "block_type": "Page",
+      "html": "<content-ref src='/page/3/Picture/0'></content-ref><content-ref src='/page/3/SectionHeader/1'></content-ref><content-ref src='/page/3/PageFooter/5'></content-ref><content-ref src='/page/3/PageFooter/6'></content-ref><content-ref src='/page/3/ListGroup/2'></content-ref><content-ref src='/page/3/SectionHeader/3'></content-ref><content-ref src='/page/3/ListGroup/4'></content-ref>",
+      "polygon": [
+        [
+          0.0,
+          0.0
+        ],
+        [
+          612.0,
+          0.0
+        ],
+        [
+          612.0,
+          792.0
+        ],
+        [
+          0.0,
+          792.0
+        ]
+      ],
+      "bbox": [
+        0.0,
+        0.0,
+        612.0,
+        792.0
+      ],
+      "children": [
+        {
+          "id": "/page/3/Picture/0",
+          "block_type": "Picture",
+          "html": "",
+          "polygon": [
+            [
+              73.07279999999999,
+              31.680000000000003
+            ],
+            [
+              108.07919999999999,
+              31.680000000000003
+            ],
+            [
+              108.07919999999999,
+              66.528
+            ],
+            [
+              73.07279999999999,
+              66.528
+            ]
+          ],
+          "bbox": [
+            73.07279999999999,
+            31.680000000000003,
+            108.07919999999999,
+            66.528
+          ],
+          "children": null,
+          "section_hierarchy": {
+            "1": "/page/0/SectionHeader/2",
+            "2": "/page/2/SectionHeader/5"
+          },
+          "images": {
+            "/page/3/Picture/0": "images/image_000004.jpg"
+          }
+        },
+        {
+          "id": "/page/3/SectionHeader/1",
+          "block_type": "SectionHeader",
+          "html": "",
+          "polygon": [
+            [
+              53.855999999999995,
+              72.072
+            ],
+            [
+              130.356,
+              72.072
+            ],
+            [
+              130.356,
+              86.328
+            ],
+            [
+              53.855999999999995,
+              86.328
+            ]
+          ],
+          "bbox": [
+            53.855999999999995,
+            72.072,
+            130.356,
+            86.328
+          ],
+          "children": null,
+          "section_hierarchy": {
+            "1": "/page/0/SectionHeader/2",
+            "2": "/page/3/SectionHeader/1"
+          },
+          "images": {}
+        },
+        {
+          "id": "/page/3/PageFooter/5",
+          "block_type": "PageFooter",
+          "html": "",
+          "polygon": [
+            [
+              53.855999999999995,
+              732.6
+            ],
+            [
+              524.4937133789062,
+              732.6
+            ],
+            [
+              524.4937133789062,
+              745.5935935974121
+            ],
+            [
+              53.855999999999995,
+              745.5935935974121
+            ]
+          ],
+          "bbox": [
+            53.855999999999995,
+            732.6,
+            524.4937133789062,
+            745.5935935974121
+          ],
+          "children": null,
+          "section_hierarchy": {
+            "1": "/page/0/SectionHeader/2",
+            "2": "/page/3/SectionHeader/1"
+          },
+          "images": {}
+        },
+        {
+          "id": "/page/3/PageFooter/6",
+          "block_type": "PageFooter",
+          "html": "",
+          "polygon": [
+            [
+              471.24,
+              732.6
+            ],
+            [
+              523.872,
+              732.6
+            ],
+            [
+              523.872,
+              745.2719999999999
+            ],
+            [
+              471.24,
+              745.2719999999999
+            ]
+          ],
+          "bbox": [
+            471.24,
+            732.6,
+            523.872,
+            745.2719999999999
+          ],
+          "children": null,
+          "section_hierarchy": {
+            "1": "/page/0/SectionHeader/2",
+            "2": "/page/3/SectionHeader/1"
+          },
+          "images": {}
+        },
+        {
+          "id": "/page/3/ListGroup/2",
+          "block_type": "ListGroup",
+          "html": "<p block-type='ListGroup'><ul><content-ref src='/page/3/ListItem/41'></content-ref></ul></p>",
+          "polygon": [
+            [
+              53.855999999999995,
+              106.92
+            ],
+            [
+              467.123779296875,
+              106.92
+            ],
+            [
+              467.123779296875,
+              185.85882568359375
+            ],
+            [
+              53.855999999999995,
+              185.85882568359375
+            ]
+          ],
+          "bbox": [
+            53.855999999999995,
+            106.92,
+            467.123779296875,
+            185.85882568359375
+          ],
+          "children": [
+            {
+              "id": "/page/3/ListItem/41",
+              "block_type": "ListItem",
+              "html": "<li block-type=\"ListItem\"><p>3. Place the accompanying files in directories consistent with your implementation:</p></li>",
+              "polygon": [
+                [
+                  57.63589859008789,
+                  108.55975341796875
+                ],
+                [
+                  467.123779296875,
+                  108.55975341796875
+                ],
+                [
+                  467.123779296875,
+                  185.85882568359375
+                ],
+                [
+                  57.63589859008789,
+                  185.85882568359375
+                ]
+              ],
+              "bbox": [
+                57.63589859008789,
+                108.55975341796875,
+                467.123779296875,
+                185.85882568359375
+              ],
+              "children": null,
+              "section_hierarchy": {
+                "1": "/page/0/SectionHeader/2",
+                "2": "/page/3/SectionHeader/1"
+              },
+              "images": {}
+            }
+          ],
+          "section_hierarchy": {
+            "1": "/page/0/SectionHeader/2",
+            "2": "/page/3/SectionHeader/1"
+          },
+          "images": null
+        },
+        {
+          "id": "/page/3/SectionHeader/3",
+          "block_type": "SectionHeader",
+          "html": "<h2><b>Running the Sample </b></h2>",
+          "polygon": [
+            [
+              53.855999999999995,
+              201.96000000000004
+            ],
+            [
+              196.90780639648438,
+              201.96000000000004
+            ],
+            [
+              196.90780639648438,
+              219.06414794921875
+            ],
+            [
+              53.855999999999995,
+              219.06414794921875
+            ]
+          ],
+          "bbox": [
+            53.855999999999995,
+            201.96000000000004,
+            196.90780639648438,
+            219.06414794921875
+          ],
+          "children": null,
+          "section_hierarchy": {
+            "1": "/page/0/SectionHeader/2",
+            "2": "/page/3/SectionHeader/3"
+          },
+          "images": {}
+        },
+        {
+          "id": "/page/3/ListGroup/4",
+          "block_type": "ListGroup",
+          "html": "<p block-type='ListGroup'><ul><content-ref src='/page/3/ListItem/45'></content-ref></ul></p>",
+          "polygon": [
+            [
+              53.855999999999995,
+              224.928
+            ],
+            [
+              515.9508666992188,
+              224.928
+            ],
+            [
+              515.9508666992188,
+              240.25830078125
+            ],
+            [
+              53.855999999999995,
+              240.25830078125
+            ]
+          ],
+          "bbox": [
+            53.855999999999995,
+            224.928,
+            515.9508666992188,
+            240.25830078125
+          ],
+          "children": [
+            {
+              "id": "/page/3/ListItem/45",
+              "block_type": "ListItem",
+              "html": "<li block-type=\"ListItem\"><p>• To run this sample, place <b>ap_bookmark.dat</b> in the collector directory scanned by Central.</p></li>",
+              "polygon": [
+                [
+                  57.63589859008789,
+                  227.28143310546875
+                ],
+                [
+                  515.9508666992188,
+                  227.28143310546875
+                ],
+                [
+                  515.9508666992188,
+                  240.25830078125
+                ],
+                [
+                  57.63589859008789,
+                  240.25830078125
+                ]
+              ],
+              "bbox": [
+                57.63589859008789,
+                227.28143310546875,
+                515.9508666992188,
+                240.25830078125
+              ],
+              "children": null,
+              "section_hierarchy": {
+                "1": "/page/0/SectionHeader/2",
+                "2": "/page/3/SectionHeader/3"
+              },
+              "images": {}
+            }
+          ],
+          "section_hierarchy": {
+            "1": "/page/0/SectionHeader/2",
+            "2": "/page/3/SectionHeader/3"
+          },
+          "images": null
+        }
+      ],
+      "section_hierarchy": {
+        "1": "/page/0/SectionHeader/2",
+        "2": "/page/3/SectionHeader/3"
+      },
+      "images": null
+    }
+  ],
+  "block_type": "Document",
+  "metadata": {
+    "table_of_contents": [
+      {
+        "title": "PDF BOOKMARK SAMPLE",
+        "heading_level": null,
+        "page_id": 0,
+        "polygon": [
+          [
+            189.108,
+            117.21599999999998
+          ],
+          [
+            388.62,
+            117.21599999999998
+          ],
+          [
+            388.62,
+            138.66644287109375
+          ],
+          [
+            189.108,
+            138.66644287109375
+          ]
+        ]
+      },
+      {
+        "title": "Overview",
+        "heading_level": null,
+        "page_id": 0,
+        "polygon": [
+          [
+            54.467999999999996,
+            312.048
+          ],
+          [
+            123.93132019042969,
+            312.048
+          ],
+          [
+            123.93132019042969,
+            329.0950012207031
+          ],
+          [
+            54.467999999999996,
+            329.0950012207031
+          ]
+        ]
+      },
+      {
+        "title": "Sample Data File",
+        "heading_level": null,
+        "page_id": 1,
+        "polygon": [
+          [
+            55.08,
+            110.08800000000002
+          ],
+          [
+            157.09800720214844,
+            110.08800000000002
+          ],
+          [
+            157.09800720214844,
+            125.8814697265625
+          ],
+          [
+            55.08,
+            125.8814697265625
+          ]
+        ]
+      },
+      {
+        "title": "Sample Files",
+        "heading_level": null,
+        "page_id": 2,
+        "polygon": [
+          [
+            53.855999999999995,
+            115.63199999999999
+          ],
+          [
+            147.31715393066406,
+            115.63199999999999
+          ],
+          [
+            147.31715393066406,
+            134.23114013671875
+          ],
+          [
+            53.855999999999995,
+            134.23114013671875
+          ]
+        ]
+      },
+      {
+        "title": "Deploying the Sample",
+        "heading_level": null,
+        "page_id": 2,
+        "polygon": [
+          [
+            53.855999999999995,
+            343.72799999999995
+          ],
+          [
+            207.9156494140625,
+            343.72799999999995
+          ],
+          [
+            207.9156494140625,
+            361.3722839355469
+          ],
+          [
+            53.855999999999995,
+            361.3722839355469
+          ]
+        ]
+      },
+      {
+        "title": "",
+        "heading_level": null,
+        "page_id": 3,
+        "polygon": [
+          [
+            53.855999999999995,
+            72.072
+          ],
+          [
+            130.356,
+            72.072
+          ],
+          [
+            130.356,
+            86.328
+          ],
+          [
+            53.855999999999995,
+            86.328
+          ]
+        ]
+      },
+      {
+        "title": "Running the Sample",
+        "heading_level": null,
+        "page_id": 3,
+        "polygon": [
+          [
+            53.855999999999995,
+            201.96000000000004
+          ],
+          [
+            196.90780639648438,
+            201.96000000000004
+          ],
+          [
+            196.90780639648438,
+            219.06414794921875
+          ],
+          [
+            53.855999999999995,
+            219.06414794921875
+          ]
+        ]
+      }
+    ],
+    "page_stats": [
+      {
+        "page_id": 0,
+        "text_extraction_method": "pdftext",
+        "block_counts": [
+          [
+            "Span",
+            49
+          ],
+          [
+            "Line",
+            19
+          ],
+          [
+            "Text",
+            5
+          ],
+          [
+            "SectionHeader",
+            2
+          ],
+          [
+            "PageFooter",
+            2
+          ],
+          [
+            "Picture",
+            1
+          ],
+          [
+            "Table",
+            1
+          ],
+          [
+            "Figure",
+            1
+          ]
+        ],
+        "block_metadata": {
+          "llm_request_count": 0,
+          "llm_error_count": 0,
+          "llm_tokens_used": 0,
+          "previous_text": "",
+          "previous_type": "",
+          "previous_order": 0
+        }
+      },
+      {
+        "page_id": 1,
+        "text_extraction_method": "pdftext",
+        "block_counts": [
+          [
+            "Span",
+            86
+          ],
+          [
+            "Line",
+            42
+          ],
+          [
+            "Text",
+            5
+          ],
+          [
+            "ListItem",
+            3
+          ],
+          [
+            "PageFooter",
+            2
+          ],
+          [
+            "Picture",
+            1
+          ],
+          [
+            "SectionHeader",
+            1
+          ],
+          [
+            "ListGroup",
+            1
+          ]
+        ],
+        "block_metadata": {
+          "llm_request_count": 0,
+          "llm_error_count": 0,
+          "llm_tokens_used": 0,
+          "previous_text": "",
+          "previous_type": "",
+          "previous_order": 0
+        }
+      },
+      {
+        "page_id": 2,
+        "text_extraction_method": "pdftext",
+        "block_counts": [
+          [
+            "Span",
+            76
+          ],
+          [
+            "Line",
+            24
+          ],
+          [
+            "ListItem",
+            5
+          ],
+          [
+            "Text",
+            3
+          ],
+          [
+            "SectionHeader",
+            2
+          ],
+          [
+            "Table",
+            2
+          ],
+          [
+            "PageFooter",
+            2
+          ],
+          [
+            "Picture",
+            1
+          ],
+          [
+            "PageHeader",
+            1
+          ],
+          [
+            "ListGroup",
+            1
+          ]
+        ],
+        "block_metadata": {
+          "llm_request_count": 0,
+          "llm_error_count": 0,
+          "llm_tokens_used": 0,
+          "previous_text": "",
+          "previous_type": "",
+          "previous_order": 0
+        }
+      },
+      {
+        "page_id": 3,
+        "text_extraction_method": "pdftext",
+        "block_counts": [
+          [
+            "Span",
+            27
+          ],
+          [
+            "Line",
+            7
+          ],
+          [
+            "ListItem",
+            5
+          ],
+          [
+            "SectionHeader",
+            2
+          ],
+          [
+            "ListGroup",
+            2
+          ],
+          [
+            "PageFooter",
+            2
+          ],
+          [
+            "Picture",
+            1
+          ]
+        ],
+        "block_metadata": {
+          "llm_request_count": 0,
+          "llm_error_count": 0,
+          "llm_tokens_used": 0,
+          "previous_text": "",
+          "previous_type": "",
+          "previous_order": 0
+        }
+      }
+    ],
+    "debug_data_path": "debug_data/Sample Mixed PDF - Multiple"
+  }
+}

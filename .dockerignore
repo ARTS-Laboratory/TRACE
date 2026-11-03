@@ -1,9 +1,9 @@
 .git
 .gitignore
 
-system development/Data/
-system development/glorp-cat/
-system development/current-environment.txt
+src/Data/
+src/glorp-cat/
+src/current-environment.txt
 
 media/
 

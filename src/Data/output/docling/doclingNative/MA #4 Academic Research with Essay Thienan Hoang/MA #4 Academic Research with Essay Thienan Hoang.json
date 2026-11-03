@@ -1,0 +1,1471 @@
+{
+  "schema_name": "DoclingDocument",
+  "version": "1.10.0",
+  "name": "MA #4 Academic Research with Essay Thienan Hoang",
+  "origin": {
+    "mimetype": "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+    "binary_hash": 5356808653162370151,
+    "filename": "MA #4 Academic Research with Essay Thienan Hoang.docx"
+  },
+  "furniture": {
+    "self_ref": "#/furniture",
+    "children": [],
+    "content_layer": "furniture",
+    "name": "_root_",
+    "label": "unspecified"
+  },
+  "body": {
+    "self_ref": "#/body",
+    "children": [
+      {
+        "$ref": "#/texts/0"
+      },
+      {
+        "$ref": "#/texts/1"
+      },
+      {
+        "$ref": "#/texts/2"
+      },
+      {
+        "$ref": "#/groups/0"
+      },
+      {
+        "$ref": "#/texts/6"
+      },
+      {
+        "$ref": "#/texts/7"
+      },
+      {
+        "$ref": "#/groups/1"
+      },
+      {
+        "$ref": "#/groups/2"
+      },
+      {
+        "$ref": "#/groups/3"
+      },
+      {
+        "$ref": "#/groups/4"
+      },
+      {
+        "$ref": "#/texts/20"
+      },
+      {
+        "$ref": "#/groups/5"
+      },
+      {
+        "$ref": "#/texts/24"
+      },
+      {
+        "$ref": "#/texts/25"
+      },
+      {
+        "$ref": "#/texts/26"
+      },
+      {
+        "$ref": "#/texts/27"
+      },
+      {
+        "$ref": "#/groups/6"
+      },
+      {
+        "$ref": "#/groups/7"
+      },
+      {
+        "$ref": "#/groups/8"
+      },
+      {
+        "$ref": "#/groups/9"
+      },
+      {
+        "$ref": "#/groups/10"
+      },
+      {
+        "$ref": "#/groups/11"
+      }
+    ],
+    "content_layer": "body",
+    "name": "_root_",
+    "label": "unspecified"
+  },
+  "groups": [
+    {
+      "self_ref": "#/groups/0",
+      "parent": {
+        "$ref": "#/body"
+      },
+      "children": [
+        {
+          "$ref": "#/texts/3"
+        },
+        {
+          "$ref": "#/texts/4"
+        },
+        {
+          "$ref": "#/texts/5"
+        }
+      ],
+      "content_layer": "body",
+      "name": "group",
+      "label": "inline"
+    },
+    {
+      "self_ref": "#/groups/1",
+      "parent": {
+        "$ref": "#/body"
+      },
+      "children": [
+        {
+          "$ref": "#/texts/8"
+        },
+        {
+          "$ref": "#/texts/9"
+        },
+        {
+          "$ref": "#/texts/10"
+        }
+      ],
+      "content_layer": "body",
+      "name": "group",
+      "label": "inline"
+    },
+    {
+      "self_ref": "#/groups/2",
+      "parent": {
+        "$ref": "#/body"
+      },
+      "children": [
+        {
+          "$ref": "#/texts/11"
+        },
+        {
+          "$ref": "#/texts/12"
+        },
+        {
+          "$ref": "#/texts/13"
+        }
+      ],
+      "content_layer": "body",
+      "name": "group",
+      "label": "inline"
+    },
+    {
+      "self_ref": "#/groups/3",
+      "parent": {
+        "$ref": "#/body"
+      },
+      "children": [
+        {
+          "$ref": "#/texts/14"
+        },
+        {
+          "$ref": "#/texts/15"
+        },
+        {
+          "$ref": "#/texts/16"
+        }
+      ],
+      "content_layer": "body",
+      "name": "group",
+      "label": "inline"
+    },
+    {
+      "self_ref": "#/groups/4",
+      "parent": {
+        "$ref": "#/body"
+      },
+      "children": [
+        {
+          "$ref": "#/texts/17"
+        },
+        {
+          "$ref": "#/texts/18"
+        },
+        {
+          "$ref": "#/texts/19"
+        }
+      ],
+      "content_layer": "body",
+      "name": "group",
+      "label": "inline"
+    },
+    {
+      "self_ref": "#/groups/5",
+      "parent": {
+        "$ref": "#/body"
+      },
+      "children": [
+        {
+          "$ref": "#/texts/21"
+        },
+        {
+          "$ref": "#/texts/22"
+        },
+        {
+          "$ref": "#/texts/23"
+        }
+      ],
+      "content_layer": "body",
+      "name": "group",
+      "label": "inline"
+    },
+    {
+      "self_ref": "#/groups/6",
+      "parent": {
+        "$ref": "#/body"
+      },
+      "children": [
+        {
+          "$ref": "#/texts/28"
+        },
+        {
+          "$ref": "#/texts/29"
+        },
+        {
+          "$ref": "#/texts/30"
+        },
+        {
+          "$ref": "#/texts/31"
+        },
+        {
+          "$ref": "#/texts/32"
+        }
+      ],
+      "content_layer": "body",
+      "name": "group",
+      "label": "inline"
+    },
+    {
+      "self_ref": "#/groups/7",
+      "parent": {
+        "$ref": "#/body"
+      },
+      "children": [
+        {
+          "$ref": "#/texts/33"
+        },
+        {
+          "$ref": "#/texts/34"
+        },
+        {
+          "$ref": "#/texts/35"
+        },
+        {
+          "$ref": "#/texts/36"
+        },
+        {
+          "$ref": "#/texts/37"
+        }
+      ],
+      "content_layer": "body",
+      "name": "group",
+      "label": "inline"
+    },
+    {
+      "self_ref": "#/groups/8",
+      "parent": {
+        "$ref": "#/body"
+      },
+      "children": [
+        {
+          "$ref": "#/texts/38"
+        },
+        {
+          "$ref": "#/texts/39"
+        },
+        {
+          "$ref": "#/texts/40"
+        },
+        {
+          "$ref": "#/texts/41"
+        },
+        {
+          "$ref": "#/texts/42"
+        }
+      ],
+      "content_layer": "body",
+      "name": "group",
+      "label": "inline"
+    },
+    {
+      "self_ref": "#/groups/9",
+      "parent": {
+        "$ref": "#/body"
+      },
+      "children": [
+        {
+          "$ref": "#/texts/43"
+        },
+        {
+          "$ref": "#/texts/44"
+        },
+        {
+          "$ref": "#/texts/45"
+        },
+        {
+          "$ref": "#/texts/46"
+        },
+        {
+          "$ref": "#/texts/47"
+        }
+      ],
+      "content_layer": "body",
+      "name": "group",
+      "label": "inline"
+    },
+    {
+      "self_ref": "#/groups/10",
+      "parent": {
+        "$ref": "#/body"
+      },
+      "children": [
+        {
+          "$ref": "#/texts/48"
+        },
+        {
+          "$ref": "#/texts/49"
+        },
+        {
+          "$ref": "#/texts/50"
+        },
+        {
+          "$ref": "#/texts/51"
+        },
+        {
+          "$ref": "#/texts/52"
+        }
+      ],
+      "content_layer": "body",
+      "name": "group",
+      "label": "inline"
+    },
+    {
+      "self_ref": "#/groups/11",
+      "parent": {
+        "$ref": "#/body"
+      },
+      "children": [
+        {
+          "$ref": "#/texts/53"
+        },
+        {
+          "$ref": "#/texts/54"
+        },
+        {
+          "$ref": "#/texts/55"
+        },
+        {
+          "$ref": "#/texts/56"
+        },
+        {
+          "$ref": "#/texts/57"
+        }
+      ],
+      "content_layer": "body",
+      "name": "group",
+      "label": "inline"
+    }
+  ],
+  "texts": [
+    {
+      "self_ref": "#/texts/0",
+      "parent": {
+        "$ref": "#/body"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "text",
+      "prov": [],
+      "orig": "Thienan Hoang",
+      "text": "Thienan Hoang",
+      "formatting": {
+        "bold": false,
+        "italic": false,
+        "underline": false,
+        "strikethrough": false,
+        "script": "baseline"
+      }
+    },
+    {
+      "self_ref": "#/texts/1",
+      "parent": {
+        "$ref": "#/body"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "text",
+      "prov": [],
+      "orig": "Professor West",
+      "text": "Professor West",
+      "formatting": {
+        "bold": false,
+        "italic": false,
+        "underline": false,
+        "strikethrough": false,
+        "script": "baseline"
+      }
+    },
+    {
+      "self_ref": "#/texts/2",
+      "parent": {
+        "$ref": "#/body"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "text",
+      "prov": [],
+      "orig": "ENG 101",
+      "text": "ENG 101",
+      "formatting": {
+        "bold": false,
+        "italic": false,
+        "underline": false,
+        "strikethrough": false,
+        "script": "baseline"
+      }
+    },
+    {
+      "self_ref": "#/texts/3",
+      "parent": {
+        "$ref": "#/groups/0"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "text",
+      "prov": [],
+      "orig": "29",
+      "text": "29",
+      "formatting": {
+        "bold": false,
+        "italic": false,
+        "underline": false,
+        "strikethrough": false,
+        "script": "baseline"
+      }
+    },
+    {
+      "self_ref": "#/texts/4",
+      "parent": {
+        "$ref": "#/groups/0"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "text",
+      "prov": [],
+      "orig": "th",
+      "text": "th",
+      "formatting": {
+        "bold": false,
+        "italic": false,
+        "underline": false,
+        "strikethrough": false,
+        "script": "super"
+      }
+    },
+    {
+      "self_ref": "#/texts/5",
+      "parent": {
+        "$ref": "#/groups/0"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "text",
+      "prov": [],
+      "orig": "November 2023",
+      "text": "November 2023",
+      "formatting": {
+        "bold": false,
+        "italic": false,
+        "underline": false,
+        "strikethrough": false,
+        "script": "baseline"
+      }
+    },
+    {
+      "self_ref": "#/texts/6",
+      "parent": {
+        "$ref": "#/body"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "text",
+      "prov": [],
+      "orig": "MA #4 Not so Local Food",
+      "text": "MA #4 Not so Local Food",
+      "formatting": {
+        "bold": false,
+        "italic": false,
+        "underline": false,
+        "strikethrough": false,
+        "script": "baseline"
+      }
+    },
+    {
+      "self_ref": "#/texts/7",
+      "parent": {
+        "$ref": "#/body"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "text",
+      "prov": [],
+      "orig": "Walmart announced in 2023 that they will close 4 of their stores in the Chicago area due to poor performance. This announcement came without warning, shocking many residents in the Chicago area, leaving many without access to fresh and affordable food and produce. Despite rallies and petitions, Walmart ultimately stuck with their decision to leave after losing millions of dollars and never making a profit once. Being able to access fresh and local food is very important to a community, this is, however, not possible for people who live in food deserts, a place with a lack of nutritious food. Despite buying local food coming with many benefits, the prevalence of food deserts creates barriers that restrict access to any benefits of buying local food.",
+      "text": "Walmart announced in 2023 that they will close 4 of their stores in the Chicago area due to poor performance. This announcement came without warning, shocking many residents in the Chicago area, leaving many without access to fresh and affordable food and produce. Despite rallies and petitions, Walmart ultimately stuck with their decision to leave after losing millions of dollars and never making a profit once. Being able to access fresh and local food is very important to a community, this is, however, not possible for people who live in food deserts, a place with a lack of nutritious food. Despite buying local food coming with many benefits, the prevalence of food deserts creates barriers that restrict access to any benefits of buying local food.",
+      "formatting": {
+        "bold": false,
+        "italic": false,
+        "underline": false,
+        "strikethrough": false,
+        "script": "baseline"
+      }
+    },
+    {
+      "self_ref": "#/texts/8",
+      "parent": {
+        "$ref": "#/groups/1"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "text",
+      "prov": [],
+      "orig": "Local food comes with a myriad of benefits to both the local economy and the environment. There are four advantages that supporters of the local food movement, in an article written by",
+      "text": "Local food comes with a myriad of benefits to both the local economy and the environment. There are four advantages that supporters of the local food movement, in an article written by",
+      "formatting": {
+        "bold": false,
+        "italic": false,
+        "underline": false,
+        "strikethrough": false,
+        "script": "baseline"
+      }
+    },
+    {
+      "self_ref": "#/texts/9",
+      "parent": {
+        "$ref": "#/groups/1"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "text",
+      "prov": [],
+      "orig": "Gale Opposing Viewpoints Online Collection, \u201c",
+      "text": "Gale Opposing Viewpoints Online Collection, \u201c",
+      "formatting": {
+        "bold": false,
+        "italic": true,
+        "underline": false,
+        "strikethrough": false,
+        "script": "baseline"
+      }
+    },
+    {
+      "self_ref": "#/texts/10",
+      "parent": {
+        "$ref": "#/groups/1"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "text",
+      "prov": [],
+      "orig": "Local Food Movement\u201d, the environmental benefits come from the reduced time to transport goods to markets and stores. Many supporters of local food also believe that locally grown foods are healthier due to their being less processing and less preservatives and additives. The ones that benefit are the local communities that can enjoy farms that are close to them. \u201cLocal Food Movement\u201d also mentions the economic support that buying local food has, specifically farmers. There are many benefits to buying locally, however not everyone can enjoy these benefits.",
+      "text": "Local Food Movement\u201d, the environmental benefits come from the reduced time to transport goods to markets and stores. Many supporters of local food also believe that locally grown foods are healthier due to their being less processing and less preservatives and additives. The ones that benefit are the local communities that can enjoy farms that are close to them. \u201cLocal Food Movement\u201d also mentions the economic support that buying local food has, specifically farmers. There are many benefits to buying locally, however not everyone can enjoy these benefits.",
+      "formatting": {
+        "bold": false,
+        "italic": false,
+        "underline": false,
+        "strikethrough": false,
+        "script": "baseline"
+      }
+    },
+    {
+      "self_ref": "#/texts/11",
+      "parent": {
+        "$ref": "#/groups/2"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "text",
+      "prov": [],
+      "orig": "Despite the shorter distance to ship local food allowing for more nutritional value to be preserved and less emissions to be released, many low-income communities facing food deserts often must drive long distances to access locally grown food in their area. For many people time is an issue, \u201cthere simply aren\u2019t enough hours in a day to make an extended trip for fresh, local produce,\u201d Vayner, a writer for",
+      "text": "Despite the shorter distance to ship local food allowing for more nutritional value to be preserved and less emissions to be released, many low-income communities facing food deserts often must drive long distances to access locally grown food in their area. For many people time is an issue, \u201cthere simply aren\u2019t enough hours in a day to make an extended trip for fresh, local produce,\u201d Vayner, a writer for",
+      "formatting": {
+        "bold": false,
+        "italic": false,
+        "underline": false,
+        "strikethrough": false,
+        "script": "baseline"
+      }
+    },
+    {
+      "self_ref": "#/texts/12",
+      "parent": {
+        "$ref": "#/groups/2"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "text",
+      "prov": [],
+      "orig": "Simon & Schuster,",
+      "text": "Simon & Schuster,",
+      "formatting": {
+        "bold": false,
+        "italic": true,
+        "underline": false,
+        "strikethrough": false,
+        "script": "baseline"
+      }
+    },
+    {
+      "self_ref": "#/texts/13",
+      "parent": {
+        "$ref": "#/groups/2"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "text",
+      "prov": [],
+      "orig": "pointed out that this is especially true for \u201cpeople living below the poverty line tend to work multiple jobs; in addition, they may also be responsible for household errands and family care\u201d. (qtd. In Vayner) For some people the extra distance travel is an unreasonable ask as the long distance takes up too much time. This especially impacts people living under the poverty line as the cost of fuel begins to eat up the already low incomes of these communities. It\u2019s not just poorer communities, residents of rural communities, where many retailers have found it hard to make money, also must travel for hours on end to reach the nearest grocery store. Rhonda Price, a guest on \u201cSoutheastern Ohio Food Desert\u201d, pointed out that due to the local grocery store closing 4 years previously, the residents of the county need to drive for one hour to buy the most basic groceries. In 2016, this all added up to around 150,000 miles travelled in terms of grocery trips. The amount of distance that would be travelled for one person is negligible, but when considering that whole communities are doing the same trip. This begins to eat away at any environmental benefits of having local food transported over a shorter distance.",
+      "text": "pointed out that this is especially true for \u201cpeople living below the poverty line tend to work multiple jobs; in addition, they may also be responsible for household errands and family care\u201d. (qtd. In Vayner) For some people the extra distance travel is an unreasonable ask as the long distance takes up too much time. This especially impacts people living under the poverty line as the cost of fuel begins to eat up the already low incomes of these communities. It\u2019s not just poorer communities, residents of rural communities, where many retailers have found it hard to make money, also must travel for hours on end to reach the nearest grocery store. Rhonda Price, a guest on \u201cSoutheastern Ohio Food Desert\u201d, pointed out that due to the local grocery store closing 4 years previously, the residents of the county need to drive for one hour to buy the most basic groceries. In 2016, this all added up to around 150,000 miles travelled in terms of grocery trips. The amount of distance that would be travelled for one person is negligible, but when considering that whole communities are doing the same trip. This begins to eat away at any environmental benefits of having local food transported over a shorter distance.",
+      "formatting": {
+        "bold": false,
+        "italic": false,
+        "underline": false,
+        "strikethrough": false,
+        "script": "baseline"
+      }
+    },
+    {
+      "self_ref": "#/texts/14",
+      "parent": {
+        "$ref": "#/groups/3"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "text",
+      "prov": [],
+      "orig": "Many consequences arise when access to fresh food is inaccessible to a community, namely the negative health effects. Jack Healy, a writer for the",
+      "text": "Many consequences arise when access to fresh food is inaccessible to a community, namely the negative health effects. Jack Healy, a writer for the",
+      "formatting": {
+        "bold": false,
+        "italic": false,
+        "underline": false,
+        "strikethrough": false,
+        "script": "baseline"
+      }
+    },
+    {
+      "self_ref": "#/texts/15",
+      "parent": {
+        "$ref": "#/groups/3"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "text",
+      "prov": [],
+      "orig": "New York Times",
+      "text": "New York Times",
+      "formatting": {
+        "bold": false,
+        "italic": true,
+        "underline": false,
+        "strikethrough": false,
+        "script": "baseline"
+      }
+    },
+    {
+      "self_ref": "#/texts/16",
+      "parent": {
+        "$ref": "#/groups/3"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "text",
+      "prov": [],
+      "orig": ", discovered that the closing of markets that sell fresh food results in higher rates of obesity and heart problems. The only option for food available being cheap frozen food found in dollar stores. These foods are often full of preservatives and artificial flavorings to change flavors and contain low nutritional value, exacerbating the problem. This is on top of the nutritional value that is lost due to these kinds of foods being transported over large distances. With the increased reliance on frozen preserved food, many dollar store chains take advantage by supplying most food to residents.",
+      "text": ", discovered that the closing of markets that sell fresh food results in higher rates of obesity and heart problems. The only option for food available being cheap frozen food found in dollar stores. These foods are often full of preservatives and artificial flavorings to change flavors and contain low nutritional value, exacerbating the problem. This is on top of the nutritional value that is lost due to these kinds of foods being transported over large distances. With the increased reliance on frozen preserved food, many dollar store chains take advantage by supplying most food to residents.",
+      "formatting": {
+        "bold": false,
+        "italic": false,
+        "underline": false,
+        "strikethrough": false,
+        "script": "baseline"
+      }
+    },
+    {
+      "self_ref": "#/texts/17",
+      "parent": {
+        "$ref": "#/groups/4"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "text",
+      "prov": [],
+      "orig": "When traveling around you may have noticed stores like Dollar General and Family Dollar down every block and corner. Even in the most unlikely places where you won\u2019t even find a Walmart or any other major big box store. A reporter from",
+      "text": "When traveling around you may have noticed stores like Dollar General and Family Dollar down every block and corner. Even in the most unlikely places where you won\u2019t even find a Walmart or any other major big box store. A reporter from",
+      "formatting": {
+        "bold": false,
+        "italic": false,
+        "underline": false,
+        "strikethrough": false,
+        "script": "baseline"
+      }
+    },
+    {
+      "self_ref": "#/texts/18",
+      "parent": {
+        "$ref": "#/groups/4"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "text",
+      "prov": [],
+      "orig": "USA Today,",
+      "text": "USA Today,",
+      "formatting": {
+        "bold": false,
+        "italic": true,
+        "underline": false,
+        "strikethrough": false,
+        "script": "baseline"
+      }
+    },
+    {
+      "self_ref": "#/texts/19",
+      "parent": {
+        "$ref": "#/groups/4"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "text",
+      "prov": [],
+      "orig": "Amanda Pintado, noticed that in areas that have lost grocery stores, dollar stores such as Dollar General come in and supply cheap food to the area. She explains that \u201cDollar General\u2014which has a location in Mount Pulaski\u2014now has 18,000 stores nationwide\u2026 dollar-store chains, which mostly sell packaged and frozen goods, have begun to offer fresh foods in some stores\u201d (Pintado). The issue that arises from this is that fresh food choices are not the best, fresh food is more expensive because it requires more time and labor to produce. On top of the fact that for many people, dollar stores are the only option too get food at all, people are still left without access to local food.",
+      "text": "Amanda Pintado, noticed that in areas that have lost grocery stores, dollar stores such as Dollar General come in and supply cheap food to the area. She explains that \u201cDollar General\u2014which has a location in Mount Pulaski\u2014now has 18,000 stores nationwide\u2026 dollar-store chains, which mostly sell packaged and frozen goods, have begun to offer fresh foods in some stores\u201d (Pintado). The issue that arises from this is that fresh food choices are not the best, fresh food is more expensive because it requires more time and labor to produce. On top of the fact that for many people, dollar stores are the only option too get food at all, people are still left without access to local food.",
+      "formatting": {
+        "bold": false,
+        "italic": false,
+        "underline": false,
+        "strikethrough": false,
+        "script": "baseline"
+      }
+    },
+    {
+      "self_ref": "#/texts/20",
+      "parent": {
+        "$ref": "#/body"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "text",
+      "prov": [],
+      "orig": "One of the communities that is the most affected by food deserts are those that live under the poverty line. Vayner points out in an argument against Katherine Spriggs, a local food supporter, food deserts exist overwhelmingly in low-income areas, and studies have shown that \u201cboth poverty and race matter when it comes to having healthy food options\u201d (qtd. in Vayner). Buying locally sourced food comes at an increased cost making it less likely for low-income families and communities to afford to buy such kinds of food. Such food is not only found in stores that are far and out of reach, even if they are close by, but the higher cost acts as another barrier also restricting access to purchasing local food creating a disconnect from source and buyer.",
+      "text": "One of the communities that is the most affected by food deserts are those that live under the poverty line. Vayner points out in an argument against Katherine Spriggs, a local food supporter, food deserts exist overwhelmingly in low-income areas, and studies have shown that \u201cboth poverty and race matter when it comes to having healthy food options\u201d (qtd. in Vayner). Buying locally sourced food comes at an increased cost making it less likely for low-income families and communities to afford to buy such kinds of food. Such food is not only found in stores that are far and out of reach, even if they are close by, but the higher cost acts as another barrier also restricting access to purchasing local food creating a disconnect from source and buyer.",
+      "formatting": {
+        "bold": false,
+        "italic": false,
+        "underline": false,
+        "strikethrough": false,
+        "script": "baseline"
+      }
+    },
+    {
+      "self_ref": "#/texts/21",
+      "parent": {
+        "$ref": "#/groups/5"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "text",
+      "prov": [],
+      "orig": "The reliance on dollar stores lead what little money that is in that community is whisked away from that local economy. In a radio transcript on",
+      "text": "The reliance on dollar stores lead what little money that is in that community is whisked away from that local economy. In a radio transcript on",
+      "formatting": {
+        "bold": false,
+        "italic": false,
+        "underline": false,
+        "strikethrough": false,
+        "script": "baseline"
+      }
+    },
+    {
+      "self_ref": "#/texts/22",
+      "parent": {
+        "$ref": "#/groups/5"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "text",
+      "prov": [],
+      "orig": "All Things Considered,",
+      "text": "All Things Considered,",
+      "formatting": {
+        "bold": false,
+        "italic": true,
+        "underline": false,
+        "strikethrough": false,
+        "script": "baseline"
+      }
+    },
+    {
+      "self_ref": "#/texts/23",
+      "parent": {
+        "$ref": "#/groups/5"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "text",
+      "prov": [],
+      "orig": "Gunderson was telling a story \u201cThe local grocery store, in business for more than 70 years, had just closed. That meant at least a 40-mile round trip drive just to get basic groceries.\u201d (qtd. in \u201cA Rural Minnesota Self-Serve\u201d). Driving such distances to spend money will not recirculate in the rural town where buyers originate from making the community poorer and poorer. Under normal circumstances, local food\u201d supports local economies and farmers, helping food producers maintain higher levels of profitability while making it less likely that they will need to sell parcels of farmland for commercial or residential development\u201d (\u201cLocal Food Movement\u201d). The problem arises when food deserts come into play, when no one can buy food because it is too expensive, or the food is too far away, local farmers do not get the support that they need to stay afloat.",
+      "text": "Gunderson was telling a story \u201cThe local grocery store, in business for more than 70 years, had just closed. That meant at least a 40-mile round trip drive just to get basic groceries.\u201d (qtd. in \u201cA Rural Minnesota Self-Serve\u201d). Driving such distances to spend money will not recirculate in the rural town where buyers originate from making the community poorer and poorer. Under normal circumstances, local food\u201d supports local economies and farmers, helping food producers maintain higher levels of profitability while making it less likely that they will need to sell parcels of farmland for commercial or residential development\u201d (\u201cLocal Food Movement\u201d). The problem arises when food deserts come into play, when no one can buy food because it is too expensive, or the food is too far away, local farmers do not get the support that they need to stay afloat.",
+      "formatting": {
+        "bold": false,
+        "italic": false,
+        "underline": false,
+        "strikethrough": false,
+        "script": "baseline"
+      }
+    },
+    {
+      "self_ref": "#/texts/24",
+      "parent": {
+        "$ref": "#/body"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "text",
+      "prov": [],
+      "orig": "One-way rural towns are fixing this problem is that they are just opening shops of their own. Evansville, a small rural town in Minnesota, has adopted a self-serve grocery store model to solve the food desert in their town. Although the cost of running the store is high and requires lots of work to maintain shelves, the residents do enjoy the benefits of having a proper store. In a farm town named Winchester, \u201cGreat Scott! (named for the surrounding county), operates as a for-profit cooperative, financed by locals who got together in a church meeting hall last year to discuss the urgent need for a grocery store in their town\u201d (Healy). There are towns that are opening more traditional style grocery stores. Although food deserts are a large problem for many, things are being done to address the issue.",
+      "text": "One-way rural towns are fixing this problem is that they are just opening shops of their own. Evansville, a small rural town in Minnesota, has adopted a self-serve grocery store model to solve the food desert in their town. Although the cost of running the store is high and requires lots of work to maintain shelves, the residents do enjoy the benefits of having a proper store. In a farm town named Winchester, \u201cGreat Scott! (named for the surrounding county), operates as a for-profit cooperative, financed by locals who got together in a church meeting hall last year to discuss the urgent need for a grocery store in their town\u201d (Healy). There are towns that are opening more traditional style grocery stores. Although food deserts are a large problem for many, things are being done to address the issue.",
+      "formatting": {
+        "bold": false,
+        "italic": false,
+        "underline": false,
+        "strikethrough": false,
+        "script": "baseline"
+      }
+    },
+    {
+      "self_ref": "#/texts/25",
+      "parent": {
+        "$ref": "#/body"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "text",
+      "prov": [],
+      "orig": "Although the local food movement brings massive benefits to those who can access it. Food deserts act as a barrier to entry for many, whether it be the far distance to travel, or the higher cost of local food, not everyone can enjoy the benefits of buying locally. People who are living under the poverty line are most affected by this because they often must work multiple jobs just to get by, they cannot afford the higher cost of local food. For many, they will continue to rely on highly processed, industrially grown food.",
+      "text": "Although the local food movement brings massive benefits to those who can access it. Food deserts act as a barrier to entry for many, whether it be the far distance to travel, or the higher cost of local food, not everyone can enjoy the benefits of buying locally. People who are living under the poverty line are most affected by this because they often must work multiple jobs just to get by, they cannot afford the higher cost of local food. For many, they will continue to rely on highly processed, industrially grown food.",
+      "formatting": {
+        "bold": false,
+        "italic": false,
+        "underline": false,
+        "strikethrough": false,
+        "script": "baseline"
+      }
+    },
+    {
+      "self_ref": "#/texts/26",
+      "parent": {
+        "$ref": "#/body"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "text",
+      "prov": [],
+      "orig": "",
+      "text": ""
+    },
+    {
+      "self_ref": "#/texts/27",
+      "parent": {
+        "$ref": "#/body"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "text",
+      "prov": [],
+      "orig": "Work Cited",
+      "text": "Work Cited",
+      "formatting": {
+        "bold": false,
+        "italic": false,
+        "underline": false,
+        "strikethrough": false,
+        "script": "baseline"
+      }
+    },
+    {
+      "self_ref": "#/texts/28",
+      "parent": {
+        "$ref": "#/groups/6"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "text",
+      "prov": [],
+      "orig": "\u201cA Rural Minnesota Self Serve Grocery Store Could Be a Model for Other Food Deserts.\"",
+      "text": "\u201cA Rural Minnesota Self Serve Grocery Store Could Be a Model for Other Food Deserts.\"",
+      "formatting": {
+        "bold": false,
+        "italic": false,
+        "underline": false,
+        "strikethrough": false,
+        "script": "baseline"
+      }
+    },
+    {
+      "self_ref": "#/texts/29",
+      "parent": {
+        "$ref": "#/groups/6"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "text",
+      "prov": [],
+      "orig": "All Things Considered",
+      "text": "All Things Considered",
+      "formatting": {
+        "bold": false,
+        "italic": true,
+        "underline": false,
+        "strikethrough": false,
+        "script": "baseline"
+      }
+    },
+    {
+      "self_ref": "#/texts/30",
+      "parent": {
+        "$ref": "#/groups/6"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "text",
+      "prov": [],
+      "orig": ", 14 July 2022, p. NA.",
+      "text": ", 14 July 2022, p. NA.",
+      "formatting": {
+        "bold": false,
+        "italic": false,
+        "underline": false,
+        "strikethrough": false,
+        "script": "baseline"
+      }
+    },
+    {
+      "self_ref": "#/texts/31",
+      "parent": {
+        "$ref": "#/groups/6"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "text",
+      "prov": [],
+      "orig": "Gale in Context: Opposing Viewpoints",
+      "text": "Gale in Context: Opposing Viewpoints",
+      "formatting": {
+        "bold": false,
+        "italic": true,
+        "underline": false,
+        "strikethrough": false,
+        "script": "baseline"
+      }
+    },
+    {
+      "self_ref": "#/texts/32",
+      "parent": {
+        "$ref": "#/groups/6"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "text",
+      "prov": [],
+      "orig": ", link.gale.com/apps/doc/A710244044/OVIC?u=midlandstc&sid=bookmark-\nOVIC&xid=2f56e7c3.",
+      "text": ", link.gale.com/apps/doc/A710244044/OVIC?u=midlandstc&sid=bookmark-\nOVIC&xid=2f56e7c3.",
+      "formatting": {
+        "bold": false,
+        "italic": false,
+        "underline": false,
+        "strikethrough": false,
+        "script": "baseline"
+      }
+    },
+    {
+      "self_ref": "#/texts/33",
+      "parent": {
+        "$ref": "#/groups/7"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "text",
+      "prov": [],
+      "orig": "Healy, Jack. \"In Land of Plenty, Few Places to Find Fresh Food.\"",
+      "text": "Healy, Jack. \"In Land of Plenty, Few Places to Find Fresh Food.\"",
+      "formatting": {
+        "bold": false,
+        "italic": false,
+        "underline": false,
+        "strikethrough": false,
+        "script": "baseline"
+      }
+    },
+    {
+      "self_ref": "#/texts/34",
+      "parent": {
+        "$ref": "#/groups/7"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "text",
+      "prov": [],
+      "orig": "New York Times",
+      "text": "New York Times",
+      "formatting": {
+        "bold": false,
+        "italic": true,
+        "underline": false,
+        "strikethrough": false,
+        "script": "baseline"
+      }
+    },
+    {
+      "self_ref": "#/texts/35",
+      "parent": {
+        "$ref": "#/groups/7"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "text",
+      "prov": [],
+      "orig": ", 6 Nov. 2019, p. A1(L).",
+      "text": ", 6 Nov. 2019, p. A1(L).",
+      "formatting": {
+        "bold": false,
+        "italic": false,
+        "underline": false,
+        "strikethrough": false,
+        "script": "baseline"
+      }
+    },
+    {
+      "self_ref": "#/texts/36",
+      "parent": {
+        "$ref": "#/groups/7"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "text",
+      "prov": [],
+      "orig": "Gale In Context: Opposing\nViewpoints",
+      "text": "Gale In Context: Opposing\nViewpoints",
+      "formatting": {
+        "bold": false,
+        "italic": true,
+        "underline": false,
+        "strikethrough": false,
+        "script": "baseline"
+      }
+    },
+    {
+      "self_ref": "#/texts/37",
+      "parent": {
+        "$ref": "#/groups/7"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "text",
+      "prov": [],
+      "orig": ", link.gale.com/apps/doc/A604866380/OVIC?u=midlandstc&sid=bookmark-OVIC&xid=81fb6d20.",
+      "text": ", link.gale.com/apps/doc/A604866380/OVIC?u=midlandstc&sid=bookmark-OVIC&xid=81fb6d20.",
+      "formatting": {
+        "bold": false,
+        "italic": false,
+        "underline": false,
+        "strikethrough": false,
+        "script": "baseline"
+      }
+    },
+    {
+      "self_ref": "#/texts/38",
+      "parent": {
+        "$ref": "#/groups/8"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "text",
+      "prov": [],
+      "orig": "\"Local Food Movement.\"",
+      "text": "\"Local Food Movement.\"",
+      "formatting": {
+        "bold": false,
+        "italic": false,
+        "underline": false,
+        "strikethrough": false,
+        "script": "baseline"
+      }
+    },
+    {
+      "self_ref": "#/texts/39",
+      "parent": {
+        "$ref": "#/groups/8"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "text",
+      "prov": [],
+      "orig": "Gale Opposing Viewpoints Online Collection",
+      "text": "Gale Opposing Viewpoints Online Collection",
+      "formatting": {
+        "bold": false,
+        "italic": true,
+        "underline": false,
+        "strikethrough": false,
+        "script": "baseline"
+      }
+    },
+    {
+      "self_ref": "#/texts/40",
+      "parent": {
+        "$ref": "#/groups/8"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "text",
+      "prov": [],
+      "orig": ", Gale, 2021.",
+      "text": ", Gale, 2021.",
+      "formatting": {
+        "bold": false,
+        "italic": false,
+        "underline": false,
+        "strikethrough": false,
+        "script": "baseline"
+      }
+    },
+    {
+      "self_ref": "#/texts/41",
+      "parent": {
+        "$ref": "#/groups/8"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "text",
+      "prov": [],
+      "orig": "Gale In Context: Opposing Viewpoints",
+      "text": "Gale In Context: Opposing Viewpoints",
+      "formatting": {
+        "bold": false,
+        "italic": true,
+        "underline": false,
+        "strikethrough": false,
+        "script": "baseline"
+      }
+    },
+    {
+      "self_ref": "#/texts/42",
+      "parent": {
+        "$ref": "#/groups/8"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "text",
+      "prov": [],
+      "orig": ",\nlink.gale.com/apps/doc/PC3010999003/OVIC?u=midlandstc&sid=bookmark-OVIC&xid=501caddf.",
+      "text": ",\nlink.gale.com/apps/doc/PC3010999003/OVIC?u=midlandstc&sid=bookmark-OVIC&xid=501caddf.",
+      "formatting": {
+        "bold": false,
+        "italic": false,
+        "underline": false,
+        "strikethrough": false,
+        "script": "baseline"
+      }
+    },
+    {
+      "self_ref": "#/texts/43",
+      "parent": {
+        "$ref": "#/groups/9"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "text",
+      "prov": [],
+      "orig": "\"Southeastern Ohio Food Desert Is About to Get a Grocery Store.\"",
+      "text": "\"Southeastern Ohio Food Desert Is About to Get a Grocery Store.\"",
+      "formatting": {
+        "bold": false,
+        "italic": false,
+        "underline": false,
+        "strikethrough": false,
+        "script": "baseline"
+      }
+    },
+    {
+      "self_ref": "#/texts/44",
+      "parent": {
+        "$ref": "#/groups/9"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "text",
+      "prov": [],
+      "orig": "Morning Edition",
+      "text": "Morning Edition",
+      "formatting": {
+        "bold": false,
+        "italic": true,
+        "underline": false,
+        "strikethrough": false,
+        "script": "baseline"
+      }
+    },
+    {
+      "self_ref": "#/texts/45",
+      "parent": {
+        "$ref": "#/groups/9"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "text",
+      "prov": [],
+      "orig": ", 10 Oct. 2017.",
+      "text": ", 10 Oct. 2017.",
+      "formatting": {
+        "bold": false,
+        "italic": false,
+        "underline": false,
+        "strikethrough": false,
+        "script": "baseline"
+      }
+    },
+    {
+      "self_ref": "#/texts/46",
+      "parent": {
+        "$ref": "#/groups/9"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "text",
+      "prov": [],
+      "orig": "Nexis Uni",
+      "text": "Nexis Uni",
+      "formatting": {
+        "bold": false,
+        "italic": true,
+        "underline": false,
+        "strikethrough": false,
+        "script": "baseline"
+      }
+    },
+    {
+      "self_ref": "#/texts/47",
+      "parent": {
+        "$ref": "#/groups/9"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "text",
+      "prov": [],
+      "orig": ",\u00a0advance-lexis-com.ezproxy.midlandstech.edu/api/document?collection=news&id=urn:contentItem:5PP6-B791-JBJH-349G-00000-00&context=1516831.",
+      "text": ",\u00a0advance-lexis-com.ezproxy.midlandstech.edu/api/document?collection=news&id=urn:contentItem:5PP6-B791-JBJH-349G-00000-00&context=1516831.",
+      "formatting": {
+        "bold": false,
+        "italic": false,
+        "underline": false,
+        "strikethrough": false,
+        "script": "baseline"
+      }
+    },
+    {
+      "self_ref": "#/texts/48",
+      "parent": {
+        "$ref": "#/groups/10"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "text",
+      "prov": [],
+      "orig": "P\u00e9rez Pintado, Amanda. \"'Strange Paradox:' Rural Towns Surrounded by Farmland Are Losing Food Access.\"",
+      "text": "P\u00e9rez Pintado, Amanda. \"'Strange Paradox:' Rural Towns Surrounded by Farmland Are Losing Food Access.\"",
+      "formatting": {
+        "bold": false,
+        "italic": false,
+        "underline": false,
+        "strikethrough": false,
+        "script": "baseline"
+      }
+    },
+    {
+      "self_ref": "#/texts/49",
+      "parent": {
+        "$ref": "#/groups/10"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "text",
+      "prov": [],
+      "orig": "Gale Opposing Viewpoints Online Collection",
+      "text": "Gale Opposing Viewpoints Online Collection",
+      "formatting": {
+        "bold": false,
+        "italic": true,
+        "underline": false,
+        "strikethrough": false,
+        "script": "baseline"
+      }
+    },
+    {
+      "self_ref": "#/texts/50",
+      "parent": {
+        "$ref": "#/groups/10"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "text",
+      "prov": [],
+      "orig": ", Gale, 2022.",
+      "text": ", Gale, 2022.",
+      "formatting": {
+        "bold": false,
+        "italic": false,
+        "underline": false,
+        "strikethrough": false,
+        "script": "baseline"
+      }
+    },
+    {
+      "self_ref": "#/texts/51",
+      "parent": {
+        "$ref": "#/groups/10"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "text",
+      "prov": [],
+      "orig": "Gale In Context: Opposing Viewpoints",
+      "text": "Gale In Context: Opposing Viewpoints",
+      "formatting": {
+        "bold": false,
+        "italic": true,
+        "underline": false,
+        "strikethrough": false,
+        "script": "baseline"
+      }
+    },
+    {
+      "self_ref": "#/texts/52",
+      "parent": {
+        "$ref": "#/groups/10"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "text",
+      "prov": [],
+      "orig": ",\nlink.gale.com/apps/doc/JHAAJC334937938/OVIC?u=midlandstc&sid=bookmark-OVIC&xid=c4e0d5eb.",
+      "text": ",\nlink.gale.com/apps/doc/JHAAJC334937938/OVIC?u=midlandstc&sid=bookmark-OVIC&xid=c4e0d5eb.",
+      "formatting": {
+        "bold": false,
+        "italic": false,
+        "underline": false,
+        "strikethrough": false,
+        "script": "baseline"
+      }
+    },
+    {
+      "self_ref": "#/texts/53",
+      "parent": {
+        "$ref": "#/groups/11"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "text",
+      "prov": [],
+      "orig": "Vayner, Yuliya, \"The Higher Price of Buying Local.\"",
+      "text": "Vayner, Yuliya, \"The Higher Price of Buying Local.\"",
+      "formatting": {
+        "bold": false,
+        "italic": false,
+        "underline": false,
+        "strikethrough": false,
+        "script": "baseline"
+      }
+    },
+    {
+      "self_ref": "#/texts/54",
+      "parent": {
+        "$ref": "#/groups/11"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "text",
+      "prov": [],
+      "orig": "Everyone\u2019s an Author",
+      "text": "Everyone\u2019s an Author",
+      "formatting": {
+        "bold": false,
+        "italic": true,
+        "underline": false,
+        "strikethrough": false,
+        "script": "baseline"
+      }
+    },
+    {
+      "self_ref": "#/texts/55",
+      "parent": {
+        "$ref": "#/groups/11"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "text",
+      "prov": [],
+      "orig": ", edited by Andrea Lunsford, et al., Norton, 2020, 3",
+      "text": ", edited by Andrea Lunsford, et al., Norton, 2020, 3",
+      "formatting": {
+        "bold": false,
+        "italic": false,
+        "underline": false,
+        "strikethrough": false,
+        "script": "baseline"
+      }
+    },
+    {
+      "self_ref": "#/texts/56",
+      "parent": {
+        "$ref": "#/groups/11"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "text",
+      "prov": [],
+      "orig": "rd",
+      "text": "rd",
+      "formatting": {
+        "bold": false,
+        "italic": false,
+        "underline": false,
+        "strikethrough": false,
+        "script": "super"
+      }
+    },
+    {
+      "self_ref": "#/texts/57",
+      "parent": {
+        "$ref": "#/groups/11"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "text",
+      "prov": [],
+      "orig": "edition, 93-97.",
+      "text": "edition, 93-97.",
+      "formatting": {
+        "bold": false,
+        "italic": false,
+        "underline": false,
+        "strikethrough": false,
+        "script": "baseline"
+      }
+    }
+  ],
+  "pictures": [],
+  "tables": [],
+  "key_value_items": [],
+  "form_items": [],
+  "pages": {}
+}

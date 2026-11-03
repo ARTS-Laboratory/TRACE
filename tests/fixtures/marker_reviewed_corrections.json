@@ -1,0 +1,21 @@
+{
+  "document_id": "82dd470712ce8389f19f20eb9330475e2166a281f8c7990a9f1d0763d73b4d22",
+  "review_id": "docling-report-v5-review-1",
+  "source": "Auer et al., Docling Technical Report, arXiv:2408.09869v5, Table 1, CC BY 4.0. https://arxiv.org/html/2408.09869v5",
+  "blocks": [
+    {
+      "source_ref": "/page/4/Table/2",
+      "expected_html_sha256": "f3b3ade0f03e94fafb2ee6d6b65b31a8eb2a20b82b8f2a9fee7a4c88b0625630",
+      "replacement_html": "<table><thead><tr><th>CPU</th><th>Threads</th><th>Native TTS</th><th>Native pages/s</th><th>Native memory</th><th>pypdfium TTS</th><th>pypdfium pages/s</th><th>pypdfium memory</th></tr></thead><tbody><tr><td>Apple M3 Max (16 cores)</td><td>4</td><td>177 s</td><td>1.27</td><td>6.20 GB</td><td>103 s</td><td>2.18</td><td>2.56 GB</td></tr><tr><td>Apple M3 Max (16 cores)</td><td>16</td><td>167 s</td><td>1.34</td><td>6.20 GB</td><td>92 s</td><td>2.45</td><td>2.56 GB</td></tr><tr><td>Intel Xeon E5-2690 (16 cores)</td><td>4</td><td>375 s</td><td>0.60</td><td>6.16 GB</td><td>239 s</td><td>0.94</td><td>2.42 GB</td></tr><tr><td>Intel Xeon E5-2690 (16 cores)</td><td>16</td><td>244 s</td><td>0.92</td><td>6.16 GB</td><td>143 s</td><td>1.57</td><td>2.42 GB</td></tr></tbody></table>",
+      "reason": "Restore Table 1 from the published v5 table: eight columns, four data rows; expand shared memory/CPU cells across their rows.",
+      "evidence": "https://arxiv.org/html/2408.09869v5#S4.T1"
+    },
+    {
+      "source_ref": "/page/7/Caption/0",
+      "expected_html_sha256": "dfab8c3e0bd2764d223c428be5a189abbcd6327687b3fe77711aa3f6364fa006",
+      "exclude_from_index": true,
+      "reason": "Quarantine the isolated instruction-like extracted caption pending comparison with the local PDF. Its wording does not occur in the published searchable version. Original content is retained in this audit, not discarded.",
+      "evidence": "Published v5 Figure 3 caption differs: https://arxiv.org/html/2408.09869v5 ; local PDF still needs comparison."
+    }
+  ]
+}
