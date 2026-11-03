@@ -1,7 +1,9 @@
-import chromadb
 import os
 
+import chromadb
+
 from Functions.Model.config import CHROMADB_PATH
+
 
 class ChromaDB:
     def __init__(self):
@@ -29,10 +31,7 @@ class ChromaDB:
 
         self.client.create_collection(
             name=collection_name,
-            metadata={
-                "description": collection_description,
-                "hnsw:space": "cosine"
-            },
+            metadata={"description": collection_description, "hnsw:space": "cosine"},
             configuration={
                 "hnsw": {
                     "space": "cosine",
@@ -44,7 +43,7 @@ class ChromaDB:
                     "sync_threshold": 1000,
                     "resize_factor": 1.2,
                 }
-            }
+            },
         )
 
         return True

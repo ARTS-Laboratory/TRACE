@@ -22,6 +22,7 @@ requests
 
 # RAG
 chromadb
+qdrant-client
 docling
 easyocr
 sentence-transformers

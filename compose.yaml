@@ -26,9 +26,10 @@ services:
       MIOPEN_FIND_MODE: '2'
       DOCLING_LIBREOFFICE_CMD: /usr/bin/libreoffice
       GLORPCAT_CONTROLLER_URL: http://controller:8090
+      GLORPCAT_QDRANT_URL: http://qdrant:6333
 
     volumes:
-      - ./system_development/Data:/app/Data
+      - ./src/Data:/app/Data
       - ../PaperParsing/Docling Parsing/v0.2/ChromaDB:/app/ChromaDB
       - glorpcat-hf-cache:/root/.cache/huggingface
 
@@ -250,8 +251,8 @@ services:
       SURYA_MAX_TOKENS_FULL_PAGE: '8192'
 
     volumes:
-    - ./system_development/Data:/app/Data:ro
-    - ./system_development/Data/output:/app/Data/output:rw
+    - ./src/Data:/app/Data:ro
+    - ./src/Data/output:/app/Data/output:rw
 
     profiles:
     - optional
@@ -317,7 +318,7 @@ services:
         docker compose --project-name "$${COMPOSE_PROJECT}" \
           --project-directory "$${PROJECT_DIR}" \
           -f "$${PROJECT_DIR}/compose.yaml" \
-          --profile optional create --build --no-recreate media surya marker
+          --profile optional create --no-build --pull never --no-recreate media surya marker
     environment:
       PROJECT_DIR: ${GLORPCAT_PROJECT_DIR}
       COMPOSE_PROJECT: ${COMPOSE_PROJECT_NAME:-glorp-cat}
@@ -349,6 +350,14 @@ services:
       timeout: 3s
       retries: 12
 
+  qdrant:
+    image: qdrant/qdrant:v1.20.0
+
+    volumes:
+      - glorpcat-qdrant-storage:/qdrant/storage
+
+    restart: unless-stopped
+
 networks:
   lifecycle:
     internal: true
@@ -358,3 +367,4 @@ volumes:
     name: glorpcat-hf-cache
   surya-vllm-cache:
     name: surya-vllm-cache
+  glorpcat-qdrant-storage:

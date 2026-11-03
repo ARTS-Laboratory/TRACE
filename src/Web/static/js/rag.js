@@ -244,7 +244,7 @@ function updateCollectionRequirements() {
 async function loadRagCollections(collectionToSelect = null) {
 
     const collections = await fetch(
-        "/api/chromadb/collections",
+        "/api/rag/collections",
         {
             method: "GET"
         }
@@ -260,6 +260,12 @@ async function loadRagCollections(collectionToSelect = null) {
 
     const data = await collections.json();
 
+    if (data.error || !Array.isArray(data.collections)) {
+        console.error("Failed to load collections:", data.error || data);
+        return;
+    }
+
+    const previousSelection = collectionToSelect ?? selectedRagCollection;
     const collectionNames = data.collections;
 
     collectionNames.sort(
@@ -290,9 +296,11 @@ async function loadRagCollections(collectionToSelect = null) {
         ragCollection.appendChild(option);
     }
 
-    if (collectionToSelect !== null) {
-        ragCollection.value = collectionToSelect;
+    if (previousSelection && collectionNames.includes(previousSelection)) {
+        ragCollection.value = previousSelection;
     }
+
+    selectedRagCollection = ragCollection.value || null;
 }
 
 async function deleteRagCollection(collection_name) {
@@ -306,7 +314,7 @@ async function deleteRagCollection(collection_name) {
     }
 
     const response = await fetch(
-        `/api/chromadb/collections/${collection_name}`,
+        `/api/rag/collections/${encodeURIComponent(collection_name)}`,
         {
             method: "DELETE"
         }
@@ -317,6 +325,13 @@ async function deleteRagCollection(collection_name) {
             "Failed to delete collection"
         );
 
+        return;
+    }
+
+    const data = await response.json();
+
+    if (data.error || data.deleted !== true) {
+        console.error("Failed to delete collection:", data.error || data);
         return;
     }
 
@@ -519,7 +534,7 @@ ragCreateCollectionButton.addEventListener(
         }
 
         const response = await fetch(
-            "/api/chromadb/collections",
+            "/api/rag/collections",
             {
                 method: "POST",
                 headers: {

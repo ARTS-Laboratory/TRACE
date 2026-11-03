@@ -1,26 +1,18 @@
+import asyncio
+import uuid
 from contextlib import asynccontextmanager
+from pathlib import Path
 
-from fastapi.staticfiles import StaticFiles
+from fastapi import FastAPI, File, Form, UploadFile, WebSocket, WebSocketDisconnect
 from fastapi.responses import FileResponse
-from fastapi import (
-    FastAPI,
-    WebSocket,
-    WebSocketDisconnect,
-    UploadFile,
-    File,
-    Form
-    )
-from Functions.Model.config import DATA_PATH
-from Functions.Model.llama_cpp_server import LlamaCppServerManager
+from fastapi.staticfiles import StaticFiles
+from pydantic import BaseModel
 
 from Functions.Agent.factory import create_runtime
-from Functions.Storage.database import Database
-
 from Functions.Conversation.manager import ConversationManager
-from pydantic import BaseModel
-import uuid
-from pathlib import Path
-import asyncio
+from Functions.Model.config import DATA_PATH
+from Functions.Model.llama_cpp_server import LlamaCppServerManager
+from Functions.Storage.database import Database
 
 runtime = None
 database = None
@@ -29,12 +21,15 @@ llama_cpp_server = None
 pending_attachments = {}
 chat_tasks = {}
 
+
 class UpdateName(BaseModel):
-    title : str
+    title: str
+
 
 class CollectionCreate(BaseModel):
-    collection_name : str
-    collection_description : str
+    collection_name: str
+    collection_description: str
+
 
 @asynccontextmanager
 async def lifespan(app: FastAPI):
@@ -49,10 +44,7 @@ async def lifespan(app: FastAPI):
 
     database = Database()
 
-    conversation_manager = ConversationManager(
-        runtime=runtime,
-        database=database
-    )
+    conversation_manager = ConversationManager(runtime=runtime, database=database)
 
     try:
         yield
@@ -64,55 +56,46 @@ async def lifespan(app: FastAPI):
 
 app = FastAPI(lifespan=lifespan)
 
-app.mount(
-    "/static",
-    StaticFiles(directory="Web/static"),
-    name="static"
-)
+app.mount("/static", StaticFiles(directory="Web/static"), name="static")
+
 
 @app.get("/")
 async def root():
     return FileResponse("Web/static/index.html")
 
+
 @app.get("/api/conversations")
 async def get_conversations():
     return conversation_manager.get_conversations()
+
 
 @app.post("/api/conversations")
 async def create_conversation():
     conversation_id = conversation_manager.create()
 
-    return {
-        "id": conversation_id
-    }
+    return {"id": conversation_id}
+
 
 @app.get("/api/conversations/{conversation_id}")
 async def get_conversation(conversation_id: int):
-    conversation = conversation_manager.get_conversation(
-        conversation_id
-    )
+    conversation = conversation_manager.get_conversation(conversation_id)
 
     if conversation is None:
-        return {
-            "error": "Conversation not found"
-        }
+        return {"error": "Conversation not found"}
 
     return conversation
 
+
 @app.post("/api/attachments")
 async def upload_attachments(
-    file : UploadFile = File(...),
-    conversation_id : int = Form(...),
-    message_id: int = Form(...)
+    file: UploadFile = File(...),
+    conversation_id: int = Form(...),
+    message_id: int = Form(...),
 ):
-    conversation = conversation_manager.get_conversation(
-        conversation_id
-    )
+    conversation = conversation_manager.get_conversation(conversation_id)
 
     if conversation is None:
-        return {
-            "error": "Conversation not found"
-        }
+        return {"error": "Conversation not found"}
 
     messages = conversation["messages"]
 
@@ -125,21 +108,14 @@ async def upload_attachments(
         break
 
     if match is None:
-        return {
-            "error": "Message not found"
-        }
+        return {"error": "Message not found"}
 
     if match["role"] != "user":
-        return {
-            "error": "Message not from user"
-        }
+        return {"error": "Message not from user"}
 
     conversation_media = DATA_PATH / "media" / str(conversation_id)
 
-    conversation_media.mkdir(
-            parents=True,
-            exist_ok=True
-        )
+    conversation_media.mkdir(parents=True, exist_ok=True)
 
     contents = await file.read()
     original = Path(file.filename)
@@ -157,14 +133,12 @@ async def upload_attachments(
         original_name=file.filename,
         file_path=file_path,
         content_type=file.content_type,
-        size=len(contents)
+        size=len(contents),
     )
 
     if attachment_id is None:
         file_path.unlink()
-        return {
-            "error": "Failed to save attachment"
-        }
+        return {"error": "Failed to save attachment"}
 
     event = pending_attachments.get(message_id)
 
@@ -176,105 +150,111 @@ async def upload_attachments(
         "id": attachment_id,
     }
 
+
 @app.get("/api/attachments/{attachment_id}")
 async def get_attachment(attachment_id: int):
     attachment = conversation_manager.get_attachment_by_id(attachment_id=attachment_id)
 
     if attachment is None:
-        return{
-            "error": "Attachment not found"
-        }
+        return {"error": "Attachment not found"}
 
     file_path = Path(attachment["file_path"])
 
     if not file_path.exists():
-        return{
-            "error": "File not found"
-        }
+        return {"error": "File not found"}
 
     return FileResponse(file_path, media_type=attachment["content_type"])
+
 
 @app.get("/api/health")
 async def health():
     return {"status": "ok"}
 
+
 @app.patch("/api/conversations/{conversation_id}")
-async def rename_conversation(
-        conversation_id: int,
-        new_name: UpdateName
-    ):
-    renamed = conversation_manager.rename(
-        conversation_id, new_name.title
-    )
+async def rename_conversation(conversation_id: int, new_name: UpdateName):
+    renamed = conversation_manager.rename(conversation_id, new_name.title)
 
     if not renamed:
-        return {
-            "error": "Conversation not found"
-        }
+        return {"error": "Conversation not found"}
 
-    return {
-        "renamed": True,
-        "id": conversation_id,
-        "title": renamed
-    }
+    return {"renamed": True, "id": conversation_id, "title": renamed}
+
 
 @app.delete("/api/conversations/{conversation_id}")
 async def delete_conversation(conversation_id: int):
-    deleted = conversation_manager.delete(
-        conversation_id
-    )
+    deleted = conversation_manager.delete(conversation_id)
 
     if not deleted:
-        return {
-            "error": "Conversation not found"
-        }
+        return {"error": "Conversation not found"}
 
-    return {
-        "deleted": True,
-        "id": conversation_id
-    }
+    return {"deleted": True, "id": conversation_id}
+
 
 @app.get("/api/chromadb/collections")
 async def get_chromadb_collections():
     collections = runtime.chroma_db.get_collections()
     return {"collections": collections}
 
+
 @app.delete("/api/chromadb/collections/{collection_name}")
 async def delete_chromadb_collection(collection_name: str):
 
-    deleted_collection = runtime.chroma_db.delete_collection(
-        collection_name
-    )
+    deleted_collection = runtime.chroma_db.delete_collection(collection_name)
 
     if not deleted_collection:
-        return {
-            "error": "Collection not deleted"
-        }
+        return {"error": "Collection not deleted"}
 
-    return {
-        "deleted": True,
-        "collection": collection_name
-    }
+    return {"deleted": True, "collection": collection_name}
+
 
 @app.post("/api/chromadb/collections")
 async def create_collection(data: CollectionCreate):
 
     created_collection = runtime.chroma_db.create_collection(
-        data.collection_name,
-        data.collection_description
+        data.collection_name, data.collection_description
     )
 
     if not created_collection:
-        return {
-            "error": "Collection creation failed."
-        }
+        return {"error": "Collection creation failed."}
 
     return {
         "created": True,
         "collection": data.collection_name,
-        "description": data.collection_description
+        "description": data.collection_description,
     }
 
+
+@app.get("/api/rag/collections")
+def get_qdrant_collections():
+    collections = runtime.qdrant_db.get_collections()
+    return {"collections": collections}
+
+
+@app.post("/api/rag/collections")
+def create_qdrant_collection(data: CollectionCreate):
+    created = runtime.qdrant_db.create_collection(
+        data.collection_name, data.collection_description
+    )
+
+    if not created:
+        return {"error": "Collection creation failed."}
+
+    return {
+        "created": created,
+        "collection": data.collection_name,
+        "description": data.collection_description,
+    }
+
+
+@app.delete("/api/rag/collections/{collection_name}")
+def delete_qdrant_collection(collection_name: str):
+    deleted = runtime.qdrant_db.delete_collection(collection_name=collection_name)
+
+    if not deleted:
+        return {"error": "Collection not deleted."}
+
+    return {"deleted": deleted, "collection": collection_name}
 
 
 async def handle_chat(websocket: WebSocket, data):
@@ -283,65 +263,54 @@ async def handle_chat(websocket: WebSocket, data):
     try:
         message = data["message"]
         has_attachment = data.get("has_attachment", False)
-        agent = conversation_manager.get_agent(
-            conversation_id
-        )
+        agent = conversation_manager.get_agent(conversation_id)
 
         if agent is None:
             try:
-                await websocket.send_json({
-                    "type": "error",
-                    "data": "Conversation not found"
-                })
+                await websocket.send_json(
+                    {"type": "error", "data": "Conversation not found"}
+                )
             except WebSocketDisconnect:
                 pass
 
             return
 
         message_id = database.add_message(
-            conversation_id=conversation_id,
-            role="user",
-            content=message
+            conversation_id=conversation_id, role="user", content=message
         )
 
         if has_attachment:
             event = asyncio.Event()
             pending_attachments[message_id] = event
 
-        await websocket.send_json({
-            "type": "user_message_saved",
-            "data": {
-                "conversation_id": conversation_id,
-                "message_id": message_id
+        await websocket.send_json(
+            {
+                "type": "user_message_saved",
+                "data": {"conversation_id": conversation_id, "message_id": message_id},
             }
-        })
+        )
 
         if has_attachment:
             try:
                 await asyncio.wait_for(event.wait(), timeout=30.0)
 
             except TimeoutError:
-                await websocket.send_json({
-                    "type": "error",
-                    "data": "Attachment upload failed. (Timedout)"
-                })
+                await websocket.send_json(
+                    {"type": "error", "data": "Attachment upload failed. (Timedout)"}
+                )
                 return
 
             finally:
                 pending_attachments.pop(message_id, None)
 
-        title = conversation_manager.set_title_from_message(
-            conversation_id,
-            message
-        )
+        title = conversation_manager.set_title_from_message(conversation_id, message)
 
-        await websocket.send_json({
-            "type": "conversation_title",
-            "data": {
-                "conversation_id": conversation_id,
-                "title": title
+        await websocket.send_json(
+            {
+                "type": "conversation_title",
+                "data": {"conversation_id": conversation_id, "title": title},
             }
-        })
+        )
 
         async def send_event(event):
             await websocket.send_json(event)
@@ -355,9 +324,8 @@ async def handle_chat(websocket: WebSocket, data):
         print("CHAT START", conversation_id)
         assistant = await agent.chat(
             message,
-            attachments = attachments,
+            attachments=attachments,
             on_event=send_event,
-
         )
         print("CHAT END", conversation_id)
 
@@ -365,32 +333,25 @@ async def handle_chat(websocket: WebSocket, data):
             conversation_id=conversation_id,
             role="assistant",
             content=assistant["content"],
-            thinking=assistant["thinking"]
+            thinking=assistant["thinking"],
         )
 
-        await websocket.send_json({
-            "type": "done",
-            "conversation_id": conversation_id
-        })
+        await websocket.send_json({"type": "done", "conversation_id": conversation_id})
 
     except WebSocketDisconnect:
         pass
 
     except Exception as e:
         try:
-            await websocket.send_json({
-                "type": "error",
-                "data": str(e)
-            })
+            await websocket.send_json({"type": "error", "data": str(e)})
         except WebSocketDisconnect:
             pass
 
     except asyncio.CancelledError:
         try:
-            await websocket.send_json({
-                "type": "cancelled",
-                "conversation_id": conversation_id
-            })
+            await websocket.send_json(
+                {"type": "cancelled", "conversation_id": conversation_id}
+            )
         except WebSocketDisconnect:
             pass
 
@@ -400,6 +361,7 @@ async def handle_chat(websocket: WebSocket, data):
 
         if stored_task is current_task:
             chat_tasks.pop(conversation_id, None)
+
 
 @app.websocket("/ws/chat")
 async def websocket_chat(websocket: WebSocket):
@@ -415,10 +377,9 @@ async def websocket_chat(websocket: WebSocket):
 
                 if chat is not None:
                     chat.cancel()
-                    await websocket.send_json({
-                        "type": "cancelled",
-                        "conversation_id": conversation_id
-                    })
+                    await websocket.send_json(
+                        {"type": "cancelled", "conversation_id": conversation_id}
+                    )
 
             else:
                 chat = asyncio.create_task(handle_chat(websocket, data))
@@ -429,4 +390,3 @@ async def websocket_chat(websocket: WebSocket):
 
         for task in active_tasks:
             task.cancel()
-
