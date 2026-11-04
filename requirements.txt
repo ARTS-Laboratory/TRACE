@@ -1,0 +1,38 @@
+# Glorp-Cat Python dependencies
+#
+# Python >= 3.14
+#
+# Install ROCm PyTorch first:
+#
+# python -m pip install \
+#     --index-url https://repo.amd.com/rocm/whl-multi-arch/ \
+#     "torch[device-all]==2.12.0+rocm7.14.0" \
+#     "torchvision[device-all]==0.27.0+rocm7.14.0" \
+#     "torchaudio==2.11.0+rocm7.14.0"
+#
+# Then install Glorp-Cat:
+#
+# python -m pip install -r requirements.txt
+
+
+# Web application
+fastapi[standard]>=0.141.1
+httpx>=0.28.0
+requests
+
+# RAG
+chromadb
+qdrant-client
+fastembed
+docling
+easyocr
+sentence-transformers
+pymupdf
+beautifulsoup4
+
+# Agent / MCP
+mcp[cli]>=1.28,<2
+ddgs[mcp]
+
+# Utilities
+pytictoc

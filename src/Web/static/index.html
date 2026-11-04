@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>GlorpCat</title>
+
+    <link
+        rel="stylesheet"
+        href="/static/style.css"
+    >
+    <style>
+        #rag-query-status { overflow-wrap: anywhere; }
+        #rag-query-status[data-error="true"] { color: #fca5a5; }
+        #rag-results .rag-search-result { padding: 14px 0; border-bottom: 1px solid currentColor; }
+        #rag-results .rag-search-result h4 { margin: 0 0 8px; overflow-wrap: anywhere; }
+        #rag-results .rag-result-meta { font-size: 0.85em; opacity: 0.8; margin-bottom: 8px; overflow-wrap: anywhere; }
+        #rag-results .rag-result-text { white-space: pre-wrap; overflow-wrap: anywhere; line-height: 1.5; }
+        #rag-results details { margin-top: 10px; font-size: 0.85em; overflow-wrap: anywhere; }
+        #rag-query-button:disabled { opacity: 0.6; cursor: wait; }
+    </style>
+</head>
+
+<body>
+
+    <div id="app">
+
+        <aside id="sidebar">
+
+            <div id="sidebar-header">
+
+                <div id="sidebar-title">
+                    GlorpCat
+                </div>
+
+                <button id="new-chat-button">
+                    <i data-lucide="square-pen"></i>
+                    <span>New chat</span>
+                </button>
+
+            </div>
+
+            <div id="sidebar-tools">
+
+                <button id="rag-section-button">
+                    <i data-lucide="database"></i>
+                    <span>RAG</span>
+                </button>
+
+            </div>
+
+            <div id="conversation-section">
+
+                <div id="conversation-section-title">
+                    Chats
+                </div>
+
+                <div id="conversation-list"></div>
+
+            </div>
+
+        </aside>
+
+
+        <main id="chat">
+            <div id="chat-title"></div>
+            <div id="messages"></div>
+
+                <div id="rag-view">
+
+                    <div class="rag-header">
+                        <h1>RAG</h1>
+                        <p>Manage your document knowledge base.</p>
+                    </div>
+
+                    <div id="rag-content">
+
+                        <div class="rag-column">
+
+                    <section class="rag-section">
+                            <div class="rag-section-header">
+                                <div>
+                                    <h2>Knowledge Base</h2>
+                                    <p>Select the collection to work with.</p>
+                                </div>
+
+                            </div>
+
+                            <div class="rag-collection-row">
+
+                                <select id="rag-collection"></select>
+
+                                <button id="rag-new-collection-button" type="button">
+                                    <i data-lucide="plus"></i>
+                                    <span>New</span>
+                                </button>
+
+                                <button
+                                    id="rag-delete-collection-button"
+                                    type="button"
+                                    title="Delete collection"
+                                >
+                                    <i data-lucide="trash-2"></i>
+                                </button>
+
+                            </div>
+                        </section>
+
+
+                        <section class="rag-section">
+
+                            <div class="rag-section-header">
+                                <div>
+                                    <h2>Ingest Documents</h2>
+                                    <p>Add documents to the selected collection.</p>
+                                </div>
+                            </div>
+
+                            <div id="rag-drop-zone">
+
+                                <i data-lucide="file-up"></i>
+
+                                <div class="rag-drop-title">
+                                    Add documents
+                                </div>
+
+                                <div class="rag-drop-description">
+                                    Drag files here or click to browse
+                                </div>
+
+                            </div>
+
+                            <input
+                                id="rag-file-input"
+                                type="file"
+                                multiple
+                                hidden
+                            >
+
+                            <div class="rag-subsection">
+
+                                <h3>Selected Documents</h3>
+
+                                <div class="rag-content-box">
+
+                                    <div id="rag-selected-files"></div>
+
+                                </div>
+
+                            </div>
+
+                            <div
+                                id="rag-progress-section"
+                                class="rag-subsection"
+                                style="display: none;"
+                            >
+
+                                <h3>Ingestion Progress</h3>
+
+                                <div id="rag-progress-list"></div>
+
+                            </div>
+
+                            <div class="rag-actions">
+                                <button
+                                    id="rag-ingest-button"
+                                    type="button"
+                                >
+                                    Ingest documents
+                                </button>
+                            </div>
+
+                        </section>
+                    </div>
+
+
+                    <div class="rag-column">
+                        <section class="rag-section">
+
+                            <div class="rag-section-header">
+                                <div>
+                                    <h2>Query Collection</h2>
+                                    <p>Search the selected knowledge base.</p>
+                                </div>
+                            </div>
+
+                            <div class="rag-search-options">
+                                <label for="rag-query-method">Search method
+                                    <select id="rag-query-method">
+                                        <option value="vector">Vector similarity</option>
+                                        <option value="keyword">BM25 keyword</option>
+                                    </select>
+                                </label>
+                                <label for="rag-query-limit">Results
+                                    <input id="rag-query-limit" type="number" min="1" step="1" value="10">
+                                </label>
+                            </div>
+                            <label for="rag-query-input">Query</label>
+                            <textarea
+                                id="rag-query-input"
+                                placeholder="Ask something about this collection..."
+                                rows="4"
+                            ></textarea>
+
+                            <div class="rag-actions">
+                                <button
+                                    id="rag-query-button"
+                                    type="button"
+                                >
+                                    Query
+                                </button>
+                            </div>
+
+                            <div class="rag-subsection">
+
+                                <h3>Results</h3>
+
+                                <div class="rag-content-box">
+
+                                    <p id="rag-query-status" role="status" aria-live="polite"></p>
+                                    <div id="rag-results" aria-busy="false"></div>
+
+                                </div>
+
+                            </div>
+
+                        </section>
+                    </div>
+
+                    <div id="rag-collection-modal" class="modal">
+
+                        <div class="modal-content">
+
+                            <h2>New Collection</h2>
+
+                            <label for="rag-collection-name">
+                                Collection name
+                            </label>
+
+                            <input
+                                id="rag-collection-name"
+                                type="text"
+                                autocomplete="off"
+                            >
+
+                            <div id="rag-collection-requirements">
+
+                                <div
+                                    class="rag-name-requirement"
+                                    data-requirement="length"
+                                >
+                                    <i data-lucide="circle-x"></i>
+                                    <span>3–512 characters</span>
+                                </div>
+
+                                <div
+                                    class="rag-name-requirement"
+                                    data-requirement="edges"
+                                >
+                                    <i data-lucide="circle-x"></i>
+                                    <span>
+                                        Starts and ends with a lowercase letter or digit
+                                    </span>
+                                </div>
+
+                                <div
+                                    class="rag-name-requirement"
+                                    data-requirement="characters"
+                                >
+                                    <i data-lucide="circle-x"></i>
+                                    <span>
+                                        Only lowercase letters, numbers, dots,
+                                        dashes, and underscores
+                                    </span>
+                                </div>
+
+                                <div
+                                    class="rag-name-requirement"
+                                    data-requirement="dots"
+                                >
+                                    <i data-lucide="circle-x"></i>
+                                    <span>No consecutive dots</span>
+                                </div>
+
+                                <div
+                                    class="rag-name-requirement"
+                                    data-requirement="ip"
+                                >
+                                    <i data-lucide="circle-x"></i>
+                                    <span>Not a valid IP address</span>
+                                </div>
+
+                            </div>
+
+                            <label for="rag-collection-description">
+                                Description
+                                <span>(optional)</span>
+                            </label>
+
+                            <textarea
+                                id="rag-collection-description"
+                                rows="3"
+                            ></textarea>
+
+                            <div class="modal-actions">
+
+                                <button
+                                    id="rag-cancel-collection-button"
+                                    type="button"
+                                >
+                                    Cancel
+                                </button>
+
+                                <button
+                                    id="rag-create-collection-button"
+                                    type="button"
+                                >
+                                    Create
+                                </button>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+                </div>
+
+
+        </main>
+
+    </div>
+
+<div id="input-container">
+
+                <div
+                    id="attachment-preview"
+                    class="attachment-preview hidden"
+                ></div>
+
+                <div id="composer-row">
+
+                    <button
+                        id="attach-button"
+                        type="button"
+                        title="Attach file"
+                    >
+                        +
+                    </button>
+
+                    <input
+                        id="file-input"
+                        type="file"
+                        accept="image/*,audio/*,.txt,.md,.py,.json,.csv"
+                        hidden
+                    >
+
+                    <textarea
+                        id="message-input"
+                        placeholder="Message GlorpCat..."
+                        rows="1"
+                    ></textarea>
+
+                    <button id="send-button">
+                        Send
+                    </button>
+
+                </div>
+
+            </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/dompurify/dist/purify.min.js"></script>
+
+    <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/styles/github-dark.min.css"
+    >
+
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/dompurify/dist/purify.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/highlight.min.js"></script>
+
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <script type="module" src="/static/js/app.js"></script>
+
+    <script>
+    window.MathJax = {
+        tex: {
+            inlineMath: [
+                ["$", "$"],
+                ["\\(", "\\)"]
+            ],
+            displayMath: [
+                ["$$", "$$"],
+                ["\\[", "\\]"]
+            ]
+        },
+        svg: {
+            fontCache: "global"
+        }
+    };
+    </script>
+
+    <script
+        src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js">
+    </script>
+
+</body>
+
+</html>
