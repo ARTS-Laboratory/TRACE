@@ -53,6 +53,45 @@ class Qdrant:
 
         return created
 
+    def upsert_points(self, collection_name, points):
+        result = self.client.upsert(
+            collection_name=collection_name, points=points, wait=True
+        )
+
+        return result
+
+    def search_dense(self, collection_name, query_vector, limit=10):
+        if limit < 1:
+            raise ValueError("Limit must be at least 1")
+
+        response = self.client.query_points(
+            collection_name=collection_name,
+            query=query_vector,
+            using="dense",
+            with_payload=True,
+            with_vectors=False,
+            limit=limit,
+        )
+
+        return response.points
+
+    def search_sparse(
+        self, collection_name, query_vector: models.SparseVector, limit=10
+    ):
+        if limit < 1:
+            raise ValueError("Limit must be at least 1")
+
+        response = self.client.query_points(
+            collection_name=collection_name,
+            query=query_vector,
+            using="bm25",
+            with_payload=True,
+            with_vectors=False,
+            limit=limit,
+        )
+
+        return response.points
+
     def close(self):
         self.client.close()
 

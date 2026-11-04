@@ -1,17 +1,29 @@
 import asyncio
+import shutil
 import uuid
 from contextlib import asynccontextmanager
 from pathlib import Path
+from typing import Literal
 
-from fastapi import FastAPI, File, Form, UploadFile, WebSocket, WebSocketDisconnect
+from fastapi import (
+    FastAPI,
+    File,
+    Form,
+    HTTPException,
+    UploadFile,
+    WebSocket,
+    WebSocketDisconnect,
+)
 from fastapi.responses import FileResponse
 from fastapi.staticfiles import StaticFiles
-from pydantic import BaseModel
+from pydantic import BaseModel, Field
 
 from Functions.Agent.factory import create_runtime
 from Functions.Conversation.manager import ConversationManager
 from Functions.Model.config import DATA_PATH
 from Functions.Model.llama_cpp_server import LlamaCppServerManager
+from Functions.RAG.RAG_api import ingest_document
+from Functions.RAG.retrieval import keyword_search, vector_search
 from Functions.Storage.database import Database
 
 runtime = None
@@ -29,6 +41,13 @@ class UpdateName(BaseModel):
 class CollectionCreate(BaseModel):
     collection_name: str
     collection_description: str
+
+
+class QueryCollection(BaseModel):
+    collection_name: str
+    query: str
+    method: Literal["vector", "keyword"] = "vector"
+    limit: int = Field(default=10, ge=1)
 
 
 @asynccontextmanager
@@ -255,6 +274,69 @@ def delete_qdrant_collection(collection_name: str):
         return {"error": "Collection not deleted."}
 
     return {"deleted": deleted, "collection": collection_name}
+
+
+@app.post("/api/rag/search")
+def search_collection(data: QueryCollection):
+    try:
+        if data.method == "vector":
+            search_results = vector_search(
+                collection_name=data.collection_name,
+                query=data.query,
+                embedding=runtime.embedding,
+                qdrant_db=runtime.qdrant_db,
+                limit=data.limit,
+            )
+
+            return {
+                "collection_name": data.collection_name,
+                "method": data.method,
+                "results": search_results,
+            }
+
+        search_results = keyword_search(
+            collection_name=data.collection_name,
+            query=data.query,
+            embedding=runtime.embedding,
+            qdrant_db=runtime.qdrant_db,
+            limit=data.limit,
+        )
+
+        return {
+            "collection_name": data.collection_name,
+            "method": data.method,
+            "results": search_results,
+        }
+    except ValueError as error:
+        raise HTTPException(status_code=422, detail=str(error)) from error
+
+
+@app.post("/api/rag/ingest")
+def ingest_rag_document(
+    collection_name: str = Form(...),
+    file: UploadFile = File(...),
+):
+    try:
+        input_directory = DATA_PATH / "input"
+        input_directory.mkdir(parents=True, exist_ok=True)
+
+        original_name = Path(file.filename or "document").name
+        source_path = input_directory / f"{uuid.uuid4().hex}_{original_name}"
+
+        with open(source_path, "wb") as destination:
+            shutil.copyfileobj(file.file, destination)
+
+        result = ingest_document(
+            source_path=source_path,
+            collection_name=collection_name,
+            qdrant_db=runtime.qdrant_db,
+            embedding=runtime.embedding,
+            batch_size=8,
+        )
+
+        return result
+    finally:
+        file.file.close()
 
 
 async def handle_chat(websocket: WebSocket, data):

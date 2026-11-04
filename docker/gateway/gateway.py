@@ -102,6 +102,12 @@ class Handler(BaseHTTPRequestHandler):
                 return self.respond(503, {"error": str(exc)[:200]})
         return self.respond(404, {"error": "not found"})
 
+    def log_request(self, code="-", size="-"):
+        if self.path == "/health" and str(code) == "200":
+            return
+
+        super().log_request(code, size)
+
     def do_POST(self):
         parts = self.path.strip("/").split("/")
         if (

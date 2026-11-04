@@ -1,11 +1,18 @@
-from Functions.Model.config import INPUT_PATH
-from Functions.RAG.Router.pdf_features import extract_pdf_features_single_pass
-from Functions.RAG.Router.none_pdf_features import general_features
 import pymupdf
 
+from Functions.Model.config import INPUT_PATH
+from Functions.RAG.Router.none_pdf_features import general_features
+from Functions.RAG.Router.pdf_features import extract_pdf_features_single_pass
+
+
 def load_documents():
-    files = [{"file_path": file, "document": pymupdf.open(file)} for file in INPUT_PATH.iterdir() if file.is_file()]
+    files = [
+        {"file_path": file, "document": pymupdf.open(file)}
+        for file in INPUT_PATH.iterdir()
+        if file.is_file()
+    ]
     return files
+
 
 def filter_pdfs(files):
     pdfs = []
@@ -18,12 +25,14 @@ def filter_pdfs(files):
             non_pdfs.append(file)
     return pdfs, non_pdfs
 
+
 def extract_pdf_features(pdfs):
     extracted_results = []
     for pdf in pdfs:
         # Utilizing the optimized single-pass feature extractor
         extracted_results.append(extract_pdf_features_single_pass(pdf))
     return extracted_results
+
 
 def non_pdf_router(non_pdfs):
     results = general_features(non_pdfs)
@@ -34,20 +43,15 @@ def non_pdf_router(non_pdfs):
         if total_media_count > 0:
             result["parsing profile"] = "doclingOCR"
             routed_non_pdf.append(
-                {
-                    "file_path": result["file_path"],
-                    "parsing profile": "doclingOCR"
-                }
+                {"file_path": result["file_path"], "parsing profile": "doclingOCR"}
             )
         else:
             result["parsing profile"] = "doclingNative"
             routed_non_pdf.append(
-                {
-                    "file_path": result["file_path"],
-                    "parsing profile": "doclingNative"
-                }
-            )            
+                {"file_path": result["file_path"], "parsing profile": "doclingNative"}
+            )
     return routed_non_pdf
+
 
 def keyword_and_pattern_evidence(result, page_count):
     scientific_matches = result["scientific features"]["total matches"]
@@ -60,13 +64,12 @@ def keyword_and_pattern_evidence(result, page_count):
     citation_evidence = citation_matches / page_count >= 2
     structure_evidence = caption_matches / page_count >= 4
 
-    scientific_evidence_count = sum([
-        scientific_evidence,
-        citation_evidence,
-        structure_evidence
-    ])
+    scientific_evidence_count = sum(
+        [scientific_evidence, citation_evidence, structure_evidence]
+    )
 
     return scientific_evidence_count, technical_evidence
+
 
 def classify_density(value, low_limit, high_limit):
     if value < low_limit:
@@ -75,6 +78,7 @@ def classify_density(value, low_limit, high_limit):
         return "medium"
     else:
         return "high"
+
 
 def visual_complexity(result, total_image_count, page_count):
     if page_count <= 0:
@@ -89,10 +93,17 @@ def visual_complexity(result, total_image_count, page_count):
     drawing_operation_density = total_drawing_operators / page_count
 
     return {
-        "raster density": classify_density(raster_density, low_limit=0.5, high_limit=2.0),
-        "vector path density": classify_density(vector_path_density, low_limit=10, high_limit=150),
-        "drawing operation density": classify_density(drawing_operation_density, low_limit=30, high_limit=500)
+        "raster density": classify_density(
+            raster_density, low_limit=0.5, high_limit=2.0
+        ),
+        "vector path density": classify_density(
+            vector_path_density, low_limit=10, high_limit=150
+        ),
+        "drawing operation density": classify_density(
+            drawing_operation_density, low_limit=30, high_limit=500
+        ),
     }
+
 
 def document_statistics(result):
     page_count = result["metadata"]["page count"]
@@ -103,16 +114,10 @@ def document_statistics(result):
     image_information = images["image information"]
     images_per_page = images["images per page"]
 
-    image_coverage = [
-        image["page coverage percentage"]
-        for image in image_information
-    ]
+    image_coverage = [image["page coverage percentage"] for image in image_information]
 
     # Image distribution
-    pages_with_images = sum(
-        1 for image_count in images_per_page
-        if image_count > 0
-    )
+    pages_with_images = sum(1 for image_count in images_per_page if image_count > 0)
     image_page_ratio = pages_with_images / page_count
 
     # Image counts
@@ -122,17 +127,13 @@ def document_statistics(result):
     # Image coverage
     total_percentage = sum(image_coverage)
     max_coverage = max(image_coverage, default=0)
-    average_coverage = (
-        total_percentage / len(image_coverage)
-        if image_coverage else 0
-    )    
+    average_coverage = total_percentage / len(image_coverage) if image_coverage else 0
 
     science_evidence_count, technical_evidence = keyword_and_pattern_evidence(
-        result,
-        page_count
-    )    
+        result, page_count
+    )
     visual_complexity_rating = visual_complexity(result, total_image_count, page_count)
-    
+
     return {
         "page count": page_count,
         "word count": word_count,
@@ -146,8 +147,11 @@ def document_statistics(result):
         "technical evidence": technical_evidence,
         "raster density": visual_complexity_rating["raster density"],
         "vector path density": visual_complexity_rating["vector path density"],
-        "drawing operation density": visual_complexity_rating["drawing operation density"]
+        "drawing operation density": visual_complexity_rating[
+            "drawing operation density"
+        ],
     }
+
 
 def pdf_router(pdfs):
     results = extract_pdf_features(pdfs)
@@ -157,24 +161,20 @@ def pdf_router(pdfs):
         stats = document_statistics(result)
 
         # 1. Determine complexity using categorical density metrics
-        vector_complex = (
-            stats["vector path density"] in ("medium", "high")
-            or stats["drawing operation density"] in ("medium", "high")
-        )
+        vector_complex = stats["vector path density"] in ("medium", "high") or stats[
+            "drawing operation density"
+        ] in ("medium", "high")
 
-        raster_complex = (
-            stats["total image count"] > 0
-            and (
-                stats["average image coverage"] >= 5
-                or stats["max image coverage"] >= 10
-                or stats["raster density"] in ("medium", "high")
-            )
+        raster_complex = stats["total image count"] > 0 and (
+            stats["average image coverage"] >= 5
+            or stats["max image coverage"] >= 10
+            or stats["raster density"] in ("medium", "high")
         )
 
         visual_complex = vector_complex or raster_complex
 
         # 2. Routing logic based on streamlined hierarchy
-        
+
         # Scan-dominated PDF
         if (
             stats["average word count"] < 20
@@ -188,49 +188,34 @@ def pdf_router(pdfs):
             routed_pdf.append(
                 {
                     "file_path": result["file_path"],
-                    "parsing profile": "doclingScannedOCR"
+                    "parsing profile": "doclingScannedOCR",
                 }
             )
 
         # Scientific + complex structure
-        elif stats["science evidence count"] >= 2 and visual_complex:
+        elif (
+            stats["science evidence count"] >= 2
+            and visual_complex
+            or stats["technical evidence"]
+            and visual_complex
+        ):
             result["parsing profile"] = "marker"
             routed_pdf.append(
-                {
-                    "file_path": result["file_path"],
-                    "parsing profile": "marker"
-                }
-            )
-
-        # Technical + complex structure
-        elif stats["technical evidence"] and visual_complex:
-            result["parsing profile"] = "marker"
-            routed_pdf.append(
-                {
-                    "file_path": result["file_path"],
-                    "parsing profile": "marker"
-                }
+                {"file_path": result["file_path"], "parsing profile": "marker"}
             )
 
         # Raster-containing document where selective OCR may be useful
         elif raster_complex:
             result["parsing profile"] = "doclingOCR"
             routed_pdf.append(
-                {
-                    "file_path": result["file_path"],
-                    "parsing profile": "doclingOCR"
-                }
+                {"file_path": result["file_path"], "parsing profile": "doclingOCR"}
             )
 
         # Ordinary / simple native document
         else:
             result["parsing profile"] = "doclingNative"
             routed_pdf.append(
-                {
-                    "file_path": result["file_path"],
-                    "parsing profile": "doclingNative"
-                }
+                {"file_path": result["file_path"], "parsing profile": "doclingNative"}
             )
 
     return routed_pdf
-

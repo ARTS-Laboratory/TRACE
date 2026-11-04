@@ -239,7 +239,7 @@ After the image has already been built, GlorpCat can normally be started
 with:
 
 ``` bash
-sudo docker compose up
+docker compose up -d
 ```
 
 ### Rebuilding
@@ -257,7 +257,7 @@ Press `Ctrl+C` when Compose is running in the foreground.
 Then remove the stopped containers and Compose network with:
 
 ``` bash
-sudo docker compose down
+docker compose --profile optional down
 ```
 
 This does not delete the GlorpCat images, application data, model files,

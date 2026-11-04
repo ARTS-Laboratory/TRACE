@@ -23,6 +23,7 @@ requests
 # RAG
 chromadb
 qdrant-client
+fastembed
 docling
 easyocr
 sentence-transformers

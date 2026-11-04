@@ -9,6 +9,7 @@ from Functions.Media.inspector import MediaInspector
 from Functions.Model.config import SYSTEM_PROMPT
 from Functions.Model.manager import ModelManager
 from Functions.Qdrant.Qdrant import Qdrant
+from Functions.RAG.embedding import Embedding
 
 logger = logging.getLogger(__name__)
 
@@ -22,6 +23,7 @@ class Runtime:
         media_inspector,
         chroma_db,
         qdrant_db,
+        embedding,
     ):
         self.tool_manager = tool_manager
         self.mcp_manager = mcp_manager
@@ -29,6 +31,7 @@ class Runtime:
         self.media_inspector = media_inspector
         self.chroma_db = chroma_db
         self.qdrant_db = qdrant_db
+        self.embedding = embedding
 
     async def shutdown(self):
         try:
@@ -45,6 +48,7 @@ async def create_runtime():
     media_inspector = MediaInspector()
     chroma_db = ChromaDB()
     qdrant_db = Qdrant()
+    embedding = Embedding()
 
     try:
         await model_manager.load()
@@ -71,6 +75,7 @@ async def create_runtime():
             media_inspector=media_inspector,
             chroma_db=chroma_db,
             qdrant_db=qdrant_db,
+            embedding=embedding,
         )
 
     except BaseException:

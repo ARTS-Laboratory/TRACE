@@ -82,6 +82,12 @@ function showRagSection() {
 
     chatTitle.textContent = "";
 
+    document
+        .querySelectorAll(".conversation-item.active")
+        .forEach((item) => {
+            item.classList.remove("active");
+        });
+
     showRagView();
 }
 

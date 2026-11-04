@@ -16,6 +16,16 @@
         rel="stylesheet"
         href="/static/style.css"
     >
+    <style>
+        #rag-query-status { overflow-wrap: anywhere; }
+        #rag-query-status[data-error="true"] { color: #fca5a5; }
+        #rag-results .rag-search-result { padding: 14px 0; border-bottom: 1px solid currentColor; }
+        #rag-results .rag-search-result h4 { margin: 0 0 8px; overflow-wrap: anywhere; }
+        #rag-results .rag-result-meta { font-size: 0.85em; opacity: 0.8; margin-bottom: 8px; overflow-wrap: anywhere; }
+        #rag-results .rag-result-text { white-space: pre-wrap; overflow-wrap: anywhere; line-height: 1.5; }
+        #rag-results details { margin-top: 10px; font-size: 0.85em; overflow-wrap: anywhere; }
+        #rag-query-button:disabled { opacity: 0.6; cursor: wait; }
+    </style>
 </head>
 
 <body>
@@ -81,15 +91,16 @@
                                     <p>Select the collection to work with.</p>
                                 </div>
 
-                                <button id="rag-new-collection-button" type="button">
-                                    <i data-lucide="plus"></i>
-                                    <span>New</span>
-                                </button>
                             </div>
 
                             <div class="rag-collection-row">
 
                                 <select id="rag-collection"></select>
+
+                                <button id="rag-new-collection-button" type="button">
+                                    <i data-lucide="plus"></i>
+                                    <span>New</span>
+                                </button>
 
                                 <button
                                     id="rag-delete-collection-button"
@@ -180,6 +191,18 @@
                                 </div>
                             </div>
 
+                            <div class="rag-search-options">
+                                <label for="rag-query-method">Search method
+                                    <select id="rag-query-method">
+                                        <option value="vector">Vector similarity</option>
+                                        <option value="keyword">BM25 keyword</option>
+                                    </select>
+                                </label>
+                                <label for="rag-query-limit">Results
+                                    <input id="rag-query-limit" type="number" min="1" step="1" value="10">
+                                </label>
+                            </div>
+                            <label for="rag-query-input">Query</label>
                             <textarea
                                 id="rag-query-input"
                                 placeholder="Ask something about this collection..."
@@ -201,7 +224,8 @@
 
                                 <div class="rag-content-box">
 
-                                    <div id="rag-results"></div>
+                                    <p id="rag-query-status" role="status" aria-live="polite"></p>
+                                    <div id="rag-results" aria-busy="false"></div>
 
                                 </div>
 

@@ -1,4 +1,5 @@
 import os
+import uuid
 from pathlib import Path
 
 ModelDirectory = Path(__file__).parent
@@ -42,6 +43,7 @@ CHROMADB_PATH = Path(
 )
 DATA_PATH = SystemDevelopmentDirectory / "Data"
 RERANKER_MODEL = "BAAI/bge-reranker-base"
+MY_APP_NAMESPACE = uuid.UUID("e5bc9995-12cf-4b72-9118-2e008d7bb680")
 
 # Tokenizer settings
 EMBED_MODEL_ID = "Qwen/Qwen3-Embedding-8B"

@@ -228,6 +228,8 @@ export function startNewChat() {
 
     state.currentConversationId = null;
     chat.classList.add("new-chat");
+    chatTitle.textContent = "";
+    showChatSection();
 
     document
         .querySelectorAll(".conversation-item.active")
