@@ -9,8 +9,8 @@ import json
 BLUE_GREY = "\033[38;2;120;140;170m"
 RESET = "\033[0m"
 
-class ToolManager:
 
+class ToolManager:
     def __init__(self):
         self.tools = {}
         self.load_tools()
@@ -25,16 +25,10 @@ class ToolManager:
         self.tools[tool.name] = tool
 
     def load_tools(self):
-        for _, module_name, _ in pkgutil.iter_modules(
-            Functions.Tools.__path__
-        ):
-
-            module = importlib.import_module(
-                f"Functions.Tools.{module_name}"
-            )
+        for _, module_name, _ in pkgutil.iter_modules(Functions.Tools.__path__):
+            module = importlib.import_module(f"Functions.Tools.{module_name}")
 
             for _, obj in inspect.getmembers(module):
-
                 if (
                     inspect.isclass(obj)
                     and issubclass(obj, Tool)
@@ -49,38 +43,27 @@ class ToolManager:
 
                         if parameter.default == inspect.Parameter.empty:
                             required_parameters.append(parameter)
-                            
+
                     if required_parameters:
                         continue
-                                            
+
                     self.register(obj())
 
     def schema(self):
         return [tool.schema() for tool in self.tools.values()]
 
-    async def execute(
-        self,
-        stats,
-        name,
-        on_event=None,
-        conversation_id=None,
-        **kwargs
-    ):
+    async def execute(self, stats, name, on_event=None, conversation_id=None, **kwargs):
         async def emit(event_type, data):
             if on_event:
-                await on_event({
-                    "type": event_type,
-                    "conversation_id": conversation_id,
-                    "data": data
-                })
+                await on_event(
+                    {
+                        "type": event_type,
+                        "conversation_id": conversation_id,
+                        "data": data,
+                    }
+                )
 
-        await emit(
-            "tool_started",
-            {
-                "name": name,
-                "arguments": kwargs
-            }
-        )
+        await emit("tool_started", {"name": name, "arguments": kwargs})
 
         start = time.perf_counter()
 
@@ -90,13 +73,7 @@ class ToolManager:
 
         stats.add_tool(name, elapsed)
 
-        await emit(
-            "tool_finished",
-            {
-                "name": name,
-                "elapsed": elapsed
-            }
-        )
+        await emit("tool_finished", {"name": name, "elapsed": elapsed})
 
         return result
 

@@ -1,28 +1,22 @@
 import sqlite3
-from pathlib import Path
+
 from Functions.Model.config import DATA_PATH
 
-DATABASE_PATH = (DATA_PATH / "glorp_cat.db")
+DATABASE_PATH = DATA_PATH / "glorp_cat.db"
+
 
 class Database:
     def __init__(self):
-        DATABASE_PATH.parent.mkdir(
-            parents=True,
-            exist_ok=True
-        )
+        DATABASE_PATH.parent.mkdir(parents=True, exist_ok=True)
 
-        self.connection = sqlite3.connect(
-            DATABASE_PATH
-        )
+        self.connection = sqlite3.connect(DATABASE_PATH)
 
-        self.connection.execute(
-            "PRAGMA foreign_keys = ON"
-        )
+        self.connection.execute("PRAGMA foreign_keys = ON")
 
         self.connection.row_factory = sqlite3.Row
 
         self.create_tables()
-        
+
     def create_conversation(self, title="New chat"):
         cursor = self.connection.cursor()
 
@@ -31,7 +25,7 @@ class Database:
             INSERT INTO conversations (title)
             VALUES (?)
             """,
-            (title,)
+            (title,),
         )
 
         self.connection.commit()
@@ -58,7 +52,7 @@ class Database:
             FROM conversations
             WHERE id = ?
             """,
-            (conversation_id,)
+            (conversation_id,),
         )
 
         conversation = cursor.fetchone()
@@ -73,18 +67,13 @@ class Database:
             WHERE conversation_id = ?
             ORDER BY id ASC
             """,
-            (conversation_id,)
+            (conversation_id,),
         )
 
-        messages = [
-            dict(row)
-            for row in cursor.fetchall()
-        ]
+        messages = [dict(row) for row in cursor.fetchall()]
 
         for message in messages:
-            attachments = self.get_attachments_for_message(
-                message["id"]
-            )
+            attachments = self.get_attachments_for_message(message["id"])
 
             message["attachments"] = attachments
 
@@ -93,13 +82,7 @@ class Database:
 
         return result
 
-    def add_message(
-        self,
-        conversation_id,
-        role,
-        content,
-        thinking=None
-    ):
+    def add_message(self, conversation_id, role, content, thinking=None):
         cursor = self.connection.cursor()
 
         cursor.execute(
@@ -112,12 +95,7 @@ class Database:
             )
             VALUES (?, ?, ?, ?)
             """,
-            (
-                conversation_id,
-                role,
-                content,
-                thinking
-            )
+            (conversation_id, role, content, thinking),
         )
 
         cursor.execute(
@@ -126,7 +104,7 @@ class Database:
             SET updated_at = CURRENT_TIMESTAMP
             WHERE id = ?
             """,
-            (conversation_id,)
+            (conversation_id,),
         )
 
         self.connection.commit()
@@ -134,13 +112,13 @@ class Database:
         return cursor.lastrowid
 
     def add_attachment(
-            self,
-            conversation_id,
-            message_id,
-            original_name,
-            file_path,
-            content_type,
-            size,
+        self,
+        conversation_id,
+        message_id,
+        original_name,
+        file_path,
+        content_type,
+        size,
     ):
         cursor = self.connection.cursor()
 
@@ -162,18 +140,19 @@ class Database:
                 original_name,
                 str(file_path),
                 content_type,
-                size
-            )
+                size,
+            ),
         )
 
         attachment_id = cursor.lastrowid
 
-        cursor.execute("""
+        cursor.execute(
+            """
             UPDATE conversations
             SET updated_at = CURRENT_TIMESTAMP
             WHERE id = ?
             """,
-            (conversation_id,)
+            (conversation_id,),
         )
 
         self.connection.commit()
@@ -189,7 +168,7 @@ class Database:
             FROM attachments
             WHERE id = ?
             """,
-            (attachment_id,)
+            (attachment_id,),
         )
 
         row = cursor.fetchone()
@@ -210,13 +189,10 @@ class Database:
             FROM attachments
             WHERE message_id = ?
             """,
-            (message_id,)
+            (message_id,),
         )
 
-        attachments = [
-            dict(row)
-            for row in cursor.fetchall()
-        ]
+        attachments = [dict(row) for row in cursor.fetchall()]
 
         return attachments
 
@@ -228,18 +204,14 @@ class Database:
             DELETE FROM conversations
             WHERE id = ?
             """,
-            (conversation_id,)
+            (conversation_id,),
         )
 
         self.connection.commit()
 
         return cursor.rowcount > 0
 
-    def update_conversation_title(
-        self,
-        conversation_id,
-        title
-    ):
+    def update_conversation_title(self, conversation_id, title):
         cursor = self.connection.cursor()
 
         cursor.execute(
@@ -249,10 +221,7 @@ class Database:
                 updated_at = CURRENT_TIMESTAMP
             WHERE id = ?
             """,
-            (
-                title,
-                conversation_id
-            )
+            (title, conversation_id),
         )
 
         self.connection.commit()
@@ -302,6 +271,25 @@ class Database:
                 FOREIGN KEY (message_id)
                     REFERENCES messages(id)
                     ON DELETE CASCADE 
+            )
+        """)
+
+        cursor.execute("""
+            CREATE TABLE IF NOT EXISTS ingestion_jobs (
+                id INTEGER PRIMARY KEY AUTOINCREMENT,
+                job_id TEXT UNIQUE NOT NULL,
+                collection_name TEXT NOT NULL,
+                original_name TEXT NOT NULL,
+                source_path TEXT NOT NULL,
+                status TEXT NOT NULL DEFAULT 'queued',
+                stage TEXT NOT NULL DEFAULT 'queued',
+                created_at REAL NOT NULL,
+                started_at REAL,
+                finished_at REAL,
+                stage_started_at REAL,
+                stage_timings_json TEXT NOT NULL DEFAULT '{}',
+                result_json TEXT,
+                error TEXT
             )
         """)
 

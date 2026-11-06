@@ -1,12 +1,7 @@
-# =========================
 # Python
-# =========================
-
 __pycache__/
 *.py[cod]
 *$py.class
-*.pyc
-
 
 # Virtual environments
 .venv/
@@ -14,57 +9,41 @@ venv/
 env/
 glorp-cat/
 
+# Runtime data (paths relative to the repository root)
+/system_development/Data/
+/system_development/current-environment.txt
+/input/
+/src/Data/
 
-# =========================
-# Runtime data
-# =========================
-
-system_development/Data/
-
-
-# =========================
-# Model / ML artifacts
-# =========================
-
+# Models / ML artifacts
+models/
 *.gguf
 *.safetensors
 *.pt
 *.pth
 *.onnx
 
-
-# =========================
 # IDE / editor
-# =========================
-
 .vscode/
 .idea/
 *.code-workspace
 
-
-# =========================
 # OS / temporary files
-# =========================
-
 .DS_Store
 Thumbs.db
 *.tmp
 *.swp
 *~
-system_development/current-environment.txt
 
-# =========================
-# Local environment configuration
-# =========================
+# Local environment configuration (keep example files trackable)
 .env
+.env.*
+!.env.example
+!.env.sample
+!.env.template
 
-# =========================
-# Local models
-# =========================
-models/
-/input
-/src/Data/output
-/src/Data/media
-/src/Data/logs
-/src/Data/inputs
-/src/Data
+# Local databases and SQLite sidecar files
+*.db
+*.db-wal
+*.db-shm
+*.db-journal
