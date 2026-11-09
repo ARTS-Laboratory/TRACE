@@ -6,12 +6,24 @@ import logging
 import os
 import socket
 from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
-from urllib.parse import urlencode
+from urllib.parse import parse_qs, urlencode, urlsplit
 
 logging.basicConfig(level=logging.INFO)
 LOG = logging.getLogger("docker-gateway")
 PROJECT = os.environ["COMPOSE_PROJECT"]
 ALLOWED = frozenset(("media", "surya", "marker"))
+LOG_ALLOWED = frozenset(
+    (
+        "glorpcat",
+        "controller",
+        "gateway",
+        "inference",
+        "media",
+        "surya",
+        "marker",
+        "qdrant",
+    )
+)
 SOCKET = "/var/run/docker.sock"
 
 
@@ -33,13 +45,14 @@ def docker(method, path):
         data = resp.read()
         if resp.status >= 400:
             raise RuntimeError(f"Docker API returned {resp.status}: {data[:200]!r}")
+
         return json.loads(data) if data else None
     finally:
         conn.close()
 
 
-def resolve(service):
-    if service not in ALLOWED:
+def resolve(service, *, allowed_services=ALLOWED):
+    if service not in allowed_services:
         raise ValueError("service not allowed")
     filters = json.dumps(
         {
@@ -49,15 +62,19 @@ def resolve(service):
             ]
         }
     )
+
     containers = docker(
         "GET", "/containers/json?" + urlencode({"all": "1", "filters": filters})
     )
+
     if len(containers) != 1:
         raise RuntimeError(
             f"Expected one pre-created {service} container, found {len(containers)}"
         )
+
     c = containers[0]
     labels = c.get("Labels", {})
+
     if (
         labels.get("com.docker.compose.project") != PROJECT
         or labels.get("com.docker.compose.service") != service
@@ -81,6 +98,74 @@ def action(service, verb):
     return {"service": service, "ok": True}
 
 
+def read_logs(service, tail=200):
+    if tail < 1 or tail > 1000:
+        raise ValueError("Tail must be between 1 and 1000")
+    conn = UnixConnection()
+
+    try:
+        cid, state = resolve(service=service, allowed_services=LOG_ALLOWED)
+        container_info = docker("GET", f"/containers/{cid}/json")
+        tty = container_info["Config"]["Tty"]
+
+        query = urlencode(
+            {
+                "stdout": "true",
+                "stderr": "true",
+                "timestamps": "true",
+                "follow": "false",
+                "tail": tail,
+            }
+        )
+
+        path = f"/containers/{cid}/logs?{query}"
+
+        conn.request("GET", url=path)
+        resp = conn.getresponse()
+        data = resp.read()
+        if resp.status >= 400:
+            raise RuntimeError(f"Docker API returned {resp.status}: {data[:200]!r}")
+
+        text = decode_docker_logs(data, tty=tty)
+
+        return {
+            "service": service,
+            "state": state,
+            "text": text,
+        }
+    finally:
+        conn.close()
+
+
+def decode_docker_logs(data: bytes, *, tty: bool) -> str:
+    if tty:
+        return data.decode("utf-8", errors="replace")
+    else:
+        pos = 0
+        collected = bytearray()
+
+        while pos < len(data):
+            # Read the 8-byte header
+            header = data[pos : pos + 8]
+            if len(header) < 8:
+                raise ValueError("Header is fewer than 8 bytes.")
+
+            payload_length = int.from_bytes(header[4:8], byteorder="big")
+            pos += 8
+
+            # Ensure the full payload is available
+            if pos + payload_length > len(data):
+                raise ValueError("Incomplete Docker log payload")
+
+            # Collect payload bytes and advance position
+            payload = data[pos : pos + payload_length]
+            collected.extend(payload)
+            pos += payload_length
+
+        # Decode the joined payloads once using UTF-8 with replacement for errors
+        return collected.decode("utf-8", errors="replace")
+
+
 class Handler(BaseHTTPRequestHandler):
     def respond(self, status, body):
         data = json.dumps(body).encode()
@@ -91,15 +176,44 @@ class Handler(BaseHTTPRequestHandler):
         self.wfile.write(data)
 
     def do_GET(self):
-        if self.path == "/health":
+        parsed = urlsplit(self.path)
+
+        if parsed.path == "/health":
             return self.respond(200, {"status": "ok"})
-        parts = self.path.strip("/").split("/")
+
+        parts = parsed.path.strip("/").split("/")
+
         if len(parts) == 2 and parts[0] == "status" and parts[1] in ALLOWED:
             try:
                 return self.respond(200, action(parts[1], "status"))
             except Exception as exc:
                 LOG.exception("status failed")
                 return self.respond(503, {"error": str(exc)[:200]})
+
+        if len(parts) == 2 and parts[0] == "logs" and parts[1] in LOG_ALLOWED:
+            service = parts[1]
+
+            try:
+                parameters = parse_qs(parsed.query, keep_blank_values=True)
+                tail_values = parameters.get("tail", ["200"])
+
+                if len(tail_values) != 1:
+                    raise ValueError("Provide exactly one tail value")
+
+                tail = int(tail_values[0])
+
+                if tail < 1 or tail > 1000:
+                    raise ValueError("Tail must be between 1 and 1000")
+            except ValueError as exc:
+                return self.respond(400, {"error": str(exc)})
+
+            try:
+                result = read_logs(service, tail=tail)
+                return self.respond(200, result)
+            except Exception as exc:
+                LOG.exception("Reading logs failed for %s", service)
+                return self.respond(503, {"error": str(exc)[:200]})
+
         return self.respond(404, {"error": "not found"})
 
     def log_request(self, code="-", size="-"):

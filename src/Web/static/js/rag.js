@@ -314,6 +314,11 @@ async function loadRagCollections(collectionToSelect = null) {
 }
 
 async function deleteRagCollection(collection_name) {
+    if (hasActiveJobsForCollection(collection_name)) {
+        ragSubmissionNotice = "This collection has active ingestion jobs. Wait for them to finish before deleting it.";
+        renderRagJobs();
+        return;
+    }
 
     const confirmDelete = window.confirm(
         "Delete this collection?"
@@ -887,10 +892,55 @@ ragQueryInput.addEventListener("keydown", event => {
 ragCollection.addEventListener("change", resetRagSearch);
 ragQueryMethod.addEventListener("change", resetRagSearch);
 
-// Keep File objects associated with cards so drag-and-drop order is preserved.
+// Uploads return job IDs; the worker owns processing after the upload finishes.
 const ragIngestButton = document.getElementById("rag-ingest-button");
 const ragProgressSection = document.getElementById("rag-progress-section");
 const ragProgressList = document.getElementById("rag-progress-list");
+const ragProgressSummary = document.getElementById("rag-progress-summary");
+const ragProgressNotice = document.getElementById("rag-progress-notice");
+const ragClearFinishedButton = document.getElementById("rag-clear-finished");
+const RAG_JOB_STORAGE_KEY = "glorpcat.ingestion-jobs.v1";
+const RAG_TERMINAL_STATUSES = new Set(["succeeded", "failed", "interrupted"]);
+const RAG_JOB_STATUSES = new Set(["queued", "running", ...RAG_TERMINAL_STATUSES]);
+const ragTrackedJobs = new Map();
+const ragJobElements = new Map();
+let ragPollTimer = null;
+let ragPollInFlight = false;
+let ragClockTimer = null;
+let ragStorageWarning = "";
+let ragSubmissionNotice = "";
+
+function setJobText(element, text) {
+    if (element.textContent !== text) element.textContent = text;
+}
+
+function formatRagDuration(seconds) {
+    const total = Math.max(0, Math.floor(seconds));
+    const hours = Math.floor(total / 3600);
+    const minutes = Math.floor((total % 3600) / 60);
+    const remainder = total % 60;
+    return hours ? `${hours}h ${minutes}m ${remainder}s` : `${minutes}m ${remainder}s`;
+}
+
+function isJobTimestamp(value) {
+    return typeof value === "number" && Number.isFinite(value);
+}
+
+function ragStageLabel(stage) {
+    return ({
+        queued: "Queued",
+        starting: "Starting",
+        validating: "Validating document",
+        routing_and_parsing: "Routing and parsing (includes service startup)",
+        starting_parsing_services: "Starting parsing services",
+        parsing: "Parsing document",
+        chunking: "Chunking document",
+        embedding_and_storing: "Embedding and storing",
+        succeeded: "Complete",
+        failed: "Failed",
+        interrupted: "Interrupted",
+    })[stage] || String(stage || "Waiting for status").replaceAll("_", " ");
+}
 
 function ingestionErrorMessage(data, status) {
     if (typeof data?.detail === "string") return data.detail;
@@ -898,117 +948,333 @@ function ingestionErrorMessage(data, status) {
         return data.detail.map(item => item.msg || "Invalid upload").join("; ");
     }
     if (typeof data?.error === "string") return data.error;
-    return `Ingestion failed (HTTP ${status}). Check the application logs for details.`;
+    return `Request failed (HTTP ${status}). Check the application logs for details.`;
+}
+
+function isTrackedJobActive(entry) {
+    return Boolean(entry.job_id) && !entry.trackingStopped
+        && !RAG_TERMINAL_STATUSES.has(entry.job?.status);
+}
+
+function hasActiveJobsForCollection(collectionName) {
+    return Array.from(ragTrackedJobs.values()).some(entry =>
+        entry.collection_name === collectionName && isTrackedJobActive(entry));
+}
+
+function persistRagJobs() {
+    // Keep all unfinished jobs and the 50 most recent finished/local records.
+    const entries = Array.from(ragTrackedJobs.values());
+    const finished = entries.filter(entry => !isTrackedJobActive(entry)).slice(-50);
+    const keep = new Set(finished.map(entry => entry.key));
+    const saved = entries.filter(entry => isTrackedJobActive(entry) || keep.has(entry.key))
+        .map(entry => ({
+            key: entry.key,
+            job_id: entry.job_id,
+            original_name: entry.original_name,
+            collection_name: entry.collection_name,
+            submitted_at: entry.submitted_at,
+            observed_at: entry.observed_at,
+            transport: entry.transport,
+            message: entry.message,
+            job: entry.job,
+            trackingStopped: entry.trackingStopped,
+        }));
+    try {
+        localStorage.setItem(RAG_JOB_STORAGE_KEY, JSON.stringify(saved));
+        ragStorageWarning = "";
+    } catch {
+        ragStorageWarning = "Browser storage is unavailable. Keep this page open to retain job tracking.";
+    }
+}
+
+function ensureRagJobElements(entry) {
+    if (ragJobElements.has(entry.key)) return ragJobElements.get(entry.key);
+    const card = document.createElement("article");
+    card.className = "rag-job-card";
+    const name = document.createElement("h4");
+    const collection = document.createElement("div");
+    collection.className = "rag-job-meta";
+    const status = document.createElement("p");
+    status.className = "rag-job-status";
+    status.setAttribute("role", "status");
+    const timer = document.createElement("p");
+    timer.className = "rag-job-timer";
+    const stageTimer = document.createElement("p");
+    stageTimer.className = "rag-job-meta";
+    const message = document.createElement("p");
+    message.className = "rag-job-message";
+    const details = document.createElement("details");
+    const title = document.createElement("summary");
+    title.textContent = "Stage durations and job ID";
+    const timingBody = document.createElement("div");
+    details.appendChild(title);
+    details.appendChild(timingBody);
+    for (const element of [name, collection, status, timer, stageTimer, message, details]) {
+        card.appendChild(element);
+    }
+    ragProgressList.appendChild(card);
+    const elements = {card, name, collection, status, timer, stageTimer, message, details, timingBody};
+    ragJobElements.set(entry.key, elements);
+    return elements;
+}
+
+function updateRagJobClock(entry, now) {
+    const elements = ragJobElements.get(entry.key);
+    if (!elements) return;
+    const job = entry.job;
+    let totalText = "";
+    let stageText = "";
+    if (job) {
+        const end = isJobTimestamp(job.finished_at) ? job.finished_at
+            : entry.trackingStopped ? entry.observed_at : now;
+        if (job.status === "queued" && isJobTimestamp(job.created_at)) {
+            totalText = `Waiting: ${formatRagDuration(end - job.created_at)}`;
+        } else if (isJobTimestamp(job.started_at)) {
+            const label = job.status === "interrupted" ? "Time until interruption detected"
+                : RAG_TERMINAL_STATUSES.has(job.status) ? "Processing time" : "Elapsed";
+            totalText = `${label}: ${formatRagDuration(end - job.started_at)}`;
+            if (isJobTimestamp(job.created_at)) {
+                totalText += ` · Queued: ${formatRagDuration(job.started_at - job.created_at)}`;
+            }
+        }
+        if (job.status === "running" && isJobTimestamp(job.stage_started_at)) {
+            stageText = `Current stage: ${formatRagDuration(end - job.stage_started_at)}`;
+        }
+    } else if (entry.transport === "uploading") {
+        totalText = `Uploading: ${formatRagDuration(now - entry.submitted_at)}`;
+    } else if (entry.job_id) {
+        totalText = "Waiting for server timestamps…";
+    }
+    setJobText(elements.timer, totalText);
+    setJobText(elements.stageTimer, stageText);
+}
+
+function renderRagJobs() {
+    ragProgressSection.style.display = ragTrackedJobs.size || ragSubmissionNotice || ragStorageWarning ? "block" : "none";
+    const counts = {};
+    for (const entry of ragTrackedJobs.values()) {
+        const elements = ensureRagJobElements(entry);
+        const status = entry.trackingStopped ? "unavailable" : entry.transport || entry.job?.status || "queued";
+        counts[status] = (counts[status] || 0) + 1;
+        elements.card.dataset.state = status;
+        setJobText(elements.name, entry.original_name);
+        setJobText(elements.collection, `Collection: ${entry.collection_name}`);
+        let label = entry.job ? ragStageLabel(entry.job.stage) : "Queued · waiting for first status update";
+        if (entry.transport) {
+            label = ({waiting_upload: "Waiting to upload", uploading: "Uploading…",
+                upload_failed: "Upload failed", unconfirmed: "Submission unconfirmed",
+                not_submitted: "Not submitted"})[entry.transport] || entry.transport;
+        } else if (entry.trackingStopped) {
+            label = "Job not found · tracking stopped";
+        } else if (entry.job?.status === "succeeded") {
+            const result = entry.job.result;
+            label = "Complete";
+            if (Number.isInteger(result?.chunk_count)) label += ` · ${result.chunk_count} chunks`;
+            if (result?.parser) label += ` · ${result.parser}`;
+        } else if (entry.job?.status === "failed") {
+            label = "Failed";
+        } else if (entry.job?.status === "interrupted") {
+            label = "Interrupted · completion unknown";
+        }
+        setJobText(elements.status, label);
+        const messages = [entry.message, entry.pollNotice, entry.job?.error].filter(Boolean);
+        if (entry.job?.status === "interrupted") {
+            messages.push("The actual stop time is unknown; the timer ends when the restart detected the interruption. Check the collection before retrying.");
+        }
+        setJobText(elements.message, messages.join(" "));
+        elements.timingBody.replaceChildren();
+        if (entry.job_id) {
+            const id = document.createElement("p");
+            id.textContent = `Job ID: ${entry.job_id}`;
+            elements.timingBody.appendChild(id);
+        }
+        for (const [stage, seconds] of Object.entries(entry.job?.stage_timings || {})) {
+            if (!isJobTimestamp(seconds)) continue;
+            const line = document.createElement("p");
+            line.textContent = `${ragStageLabel(stage)}: ${formatRagDuration(seconds)}`;
+            elements.timingBody.appendChild(line);
+        }
+        updateRagJobClock(entry, Date.now() / 1000);
+    }
+    const labels = {succeeded: "succeeded", failed: "failed", interrupted: "interrupted",
+        queued: "queued", running: "running", waiting_upload: "waiting to upload", uploading: "uploading",
+        upload_failed: "upload failed", unconfirmed: "unconfirmed", not_submitted: "not submitted", unavailable: "unavailable"};
+    setJobText(ragProgressSummary, Object.entries(counts).map(([key, count]) => `${count} ${labels[key] || key}`).join(" · "));
+    setJobText(ragProgressNotice, [ragSubmissionNotice, ragStorageWarning].filter(Boolean).join(" "));
+    ragClearFinishedButton.disabled = !Array.from(ragTrackedJobs.values()).some(entry =>
+        !isTrackedJobActive(entry) && entry.transport !== "uploading" && entry.transport !== "waiting_upload");
+    const ticking = Array.from(ragTrackedJobs.values()).some(entry =>
+        isTrackedJobActive(entry) || entry.transport === "uploading");
+    if (ticking && ragClockTimer === null) {
+        ragClockTimer = setInterval(() => {
+            const now = Date.now() / 1000;
+            for (const entry of ragTrackedJobs.values()) updateRagJobClock(entry, now);
+        }, 1000);
+    } else if (!ticking && ragClockTimer !== null) {
+        clearInterval(ragClockTimer);
+        ragClockTimer = null;
+    }
+}
+
+function scheduleRagJobPoll(delay = 3000) {
+    if (ragPollTimer !== null || ragPollInFlight) return;
+    if (!Array.from(ragTrackedJobs.values()).some(isTrackedJobActive)) return;
+    ragPollTimer = setTimeout(() => {
+        ragPollTimer = null;
+        pollRagJobs();
+    }, delay);
+}
+
+async function pollRagJobs() {
+    if (ragPollInFlight) return;
+    ragPollInFlight = true;
+    try {
+        for (const entry of Array.from(ragTrackedJobs.values()).filter(isTrackedJobActive)) {
+            const controller = new AbortController();
+            const timeout = setTimeout(() => controller.abort(), 15000);
+            try {
+                const response = await fetch(`/api/rag/jobs/${encodeURIComponent(entry.job_id)}`, {
+                    method: "GET", cache: "no-store", signal: controller.signal,
+                });
+                if (response.status === 404) {
+                    entry.trackingStopped = true;
+                    entry.pollNotice = "The server no longer has this job record. Check the collection before resubmitting.";
+                    continue;
+                }
+                const data = await response.json();
+                if (!response.ok) throw new Error(ingestionErrorMessage(data, response.status));
+                if (data?.job_id !== entry.job_id || !RAG_JOB_STATUSES.has(data.status)
+                    || data.collection_name !== entry.collection_name) {
+                    throw new Error("The server returned an unexpected job status.");
+                }
+                entry.job = data;
+                entry.observed_at = Date.now() / 1000;
+                entry.transport = null;
+                entry.pollNotice = "";
+            } catch {
+                entry.pollNotice = "Status connection unavailable; retrying automatically. The backend job may still be running.";
+            } finally {
+                clearTimeout(timeout);
+            }
+        }
+    } finally {
+        ragPollInFlight = false;
+        persistRagJobs();
+        renderRagJobs();
+        scheduleRagJobPoll();
+    }
+}
+
+function restoreRagJobs() {
+    try {
+        const raw = localStorage.getItem(RAG_JOB_STORAGE_KEY);
+        const saved = raw ? JSON.parse(raw) : [];
+        if (!Array.isArray(saved)) throw new Error("Invalid saved jobs");
+        for (const entry of saved) {
+            if (!entry || typeof entry.key !== "string" || typeof entry.original_name !== "string"
+                || typeof entry.collection_name !== "string") continue;
+            if (entry.job_id !== null && typeof entry.job_id !== "string") continue;
+            if (!entry.job_id && entry.transport === "uploading") {
+                entry.transport = "unconfirmed";
+                entry.message = "The page closed during upload. No job ID was received; check the collection before resubmitting.";
+            }
+            if (!entry.job_id && entry.transport === "waiting_upload") {
+                entry.transport = "not_submitted";
+                entry.message = "The page closed before this file was submitted. Attach it again to upload it.";
+            }
+            entry.pollNotice = "";
+            ragTrackedJobs.set(entry.key, entry);
+        }
+    } catch {
+        ragStorageWarning = "Saved job tracking could not be restored. Current jobs may still be running on the server.";
+    }
+    renderRagJobs();
+    scheduleRagJobPoll(0);
 }
 
 async function ingestRagDocuments() {
     if (ragIngestionRunning) return;
-    ragProgressSection.style.display = "block";
-    ragProgressList.replaceChildren();
-    ragProgressList.setAttribute("aria-live", "polite");
-
-    // Snapshot the displayed order only when the user presses Ingest.
     const queue = Array.from(ragSelectedFiles.querySelectorAll(".rag-file-card"))
         .map(card => ({card, file: ragFilesByCard.get(card)}));
     const collectionName = ragCollection.value;
-    const summary = document.createElement("p");
-    ragProgressList.appendChild(summary);
-
-    if (!collectionName) {
-        summary.textContent = "Select a collection before ingesting documents.";
+    ragSubmissionNotice = "";
+    if (!collectionName || !queue.length || queue.some(item => !item.file)) {
+        ragSubmissionNotice = !collectionName ? "Select a collection before uploading."
+            : !queue.length ? "Attach at least one document before uploading."
+            : "A selected file is unavailable. Remove it and attach it again.";
+        renderRagJobs();
         return;
     }
-    if (!queue.length) {
-        summary.textContent = "Add at least one document before ingesting.";
+    if (queue.some(({card}) => card.dataset.ingestionUnknown === "true")) {
+        ragSubmissionNotice = "A previous upload is unconfirmed. Check the collection, then remove that file card before submitting more documents.";
+        renderRagJobs();
         return;
     }
-    if (queue.some(item => !item.file)) {
-        summary.textContent = "A selected file is unavailable. Remove it and attach it again.";
-        return;
-    }
-
-    const rows = queue.map(({file}, index) => {
-        const row = document.createElement("p");
-        row.className = "rag-ingestion-status";
-        row.textContent = `${index + 1}. ${file.name} — Waiting`;
-        row.style.overflowWrap = "anywhere";
-        ragProgressList.appendChild(row);
-        return row;
-    });
     const controls = [ragIngestButton, ragCollection, ragFileInput,
-        ragNewCollectionButton, ragDeleteCollectionButton,
-        ragCreateCollectionButton,
+        ragNewCollectionButton, ragDeleteCollectionButton, ragCreateCollectionButton,
         ...ragSelectedFiles.querySelectorAll(".rag-file-remove")];
     const disabledBefore = controls.map(control => control.disabled);
     const draggableBefore = queue.map(({card}) => card.draggable);
     const buttonText = ragIngestButton.textContent;
-    let succeeded = 0;
-    let failed = 0;
-    let uncertain = 0;
-    let completed = 0;
-
+    const batchKey = `${Date.now()}-${Math.random().toString(36).slice(2)}`;
+    const entries = queue.map(({file}, index) => ({
+        key: `${batchKey}-${index}`, job_id: null, original_name: file.name,
+        collection_name: collectionName, submitted_at: Date.now() / 1000,
+        observed_at: null, transport: "waiting_upload", message: "", job: null,
+        trackingStopped: false,
+    }));
+    entries.forEach(entry => ragTrackedJobs.set(entry.key, entry));
     ragIngestionRunning = true;
     controls.forEach(control => { control.disabled = true; });
     queue.forEach(({card}) => { card.draggable = false; });
-    ragDropZone.classList.remove("dragging");
     ragDropZone.setAttribute("aria-disabled", "true");
-    ragIngestButton.textContent = "Ingesting…";
-
+    ragIngestButton.textContent = "Uploading…";
+    persistRagJobs();
+    renderRagJobs();
     try {
-        for (const [index, {file}] of queue.entries()) {
-            summary.textContent = `Processing ${index + 1} of ${queue.length} in ${collectionName}.`;
-            rows[index].textContent = `${index + 1}. ${file.name} — Uploading and processing…`;
-            rows[index].dataset.state = "processing";
+        for (const [index, {card, file}] of queue.entries()) {
+            const entry = entries[index];
+            entry.transport = "uploading";
+            entry.submitted_at = Date.now() / 1000;
+            persistRagJobs();
+            renderRagJobs();
             const form = new FormData();
             form.append("collection_name", collectionName);
             form.append("file", file, file.name);
-
+            let accepted = false;
             let response;
+            let data;
             try {
                 response = await fetch("/api/rag/ingest", {method: "POST", body: form});
+                try { data = await response.json(); } catch { data = null; }
+                if (!response.ok && response.status < 500) {
+                    entry.transport = "upload_failed";
+                    entry.message = ingestionErrorMessage(data, response.status);
+                } else if (response.status === 202 && typeof data?.job_id === "string" && data.job_id) {
+                    entry.job_id = data.job_id;
+                    entry.transport = null;
+                    accepted = true;
+                    // Remove accepted file cards to avoid accidental resubmission.
+                    ragFilesByCard.delete(card);
+                    card.remove();
+                    scheduleRagJobPoll(0);
+                } else {
+                    throw new Error("No job receipt");
+                }
             } catch {
-                // A lost connection does not prove that the server stopped.
-                // Stop this queue so later files cannot overtake that request.
-                uncertain += 1;
-                rows[index].textContent = `${index + 1}. ${file.name} — Connection interrupted; completion unknown. Check the collection before retrying.`;
-                rows[index].dataset.state = "unknown";
+                entry.transport = "unconfirmed";
+                entry.message = "No job ID was received. The server may have queued this file; check the collection before retrying. Remaining uploads were stopped to preserve order.";
+                card.dataset.ingestionUnknown = "true";
+                for (let next = index + 1; next < entries.length; next += 1) {
+                    entries[next].transport = "not_submitted";
+                    entries[next].message = "Not uploaded because the previous submission was unconfirmed.";
+                }
                 break;
+            } finally {
+                persistRagJobs();
+                renderRagJobs();
             }
-
-            try {
-                let data;
-                try {
-                    data = await response.json();
-                } catch {
-                    throw new Error(`Server returned an unreadable response (HTTP ${response.status}).`);
-                }
-                if (!response.ok || data?.error) {
-                    throw new Error(ingestionErrorMessage(data, response.status));
-                }
-                if (data?.status !== "success" || !Number.isInteger(data.chunk_count) || data.chunk_count < 1) {
-                    throw new Error("The server did not confirm successful ingestion.");
-                }
-                succeeded += 1;
-                rows[index].dataset.state = "success";
-                const parser = data.parser ? ` · ${data.parser}` : "";
-                rows[index].textContent = `${index + 1}. ${file.name} — Complete · ${data.chunk_count} chunks${parser}`;
-            } catch (error) {
-                failed += 1;
-                rows[index].dataset.state = "failed";
-                rows[index].textContent = `${index + 1}. ${file.name} — Failed: ${error.message}`;
-            }
-            completed += 1;
-        }
-        const notStarted = queue.length - completed - uncertain;
-        summary.textContent = `${succeeded} succeeded · ${failed} failed`
-            + (uncertain ? ` · ${uncertain} unconfirmed` : "")
-            + (notStarted ? ` · ${notStarted} not started` : "")
-            + ` · Collection: ${collectionName}`;
-        if (uncertain) {
-            for (let index = completed + uncertain; index < queue.length; index += 1) {
-                rows[index].textContent = `${index + 1}. ${queue[index].file.name} — Not started; queue stopped after connection interruption.`;
-                rows[index].dataset.state = "not-started";
-            }
+            if (accepted) ragSubmissionNotice = "Uploads return promptly; processing continues in the background. You can leave this tab and return later.";
         }
     } finally {
         controls.forEach((control, index) => { control.disabled = disabledBefore[index]; });
@@ -1016,7 +1282,22 @@ async function ingestRagDocuments() {
         ragDropZone.setAttribute("aria-disabled", "false");
         ragIngestButton.textContent = buttonText;
         ragIngestionRunning = false;
+        persistRagJobs();
+        renderRagJobs();
+        scheduleRagJobPoll(0);
     }
 }
 
 ragIngestButton.addEventListener("click", ingestRagDocuments);
+ragClearFinishedButton.addEventListener("click", () => {
+    for (const [key, entry] of ragTrackedJobs) {
+        if (isTrackedJobActive(entry) || entry.transport === "uploading" || entry.transport === "waiting_upload") continue;
+        ragJobElements.get(key)?.card.remove();
+        ragJobElements.delete(key);
+        ragTrackedJobs.delete(key);
+    }
+    ragSubmissionNotice = "";
+    persistRagJobs();
+    renderRagJobs();
+});
+restoreRagJobs();

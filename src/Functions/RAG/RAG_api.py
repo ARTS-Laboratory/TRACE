@@ -2,9 +2,10 @@
 
 Call this once per browser file, waiting for completion before starting the
 next file. Upload handling and HTTP error responses belong in Web/server.py.
-"""
+"""  # noqa: N999
 
 import json
+from collections.abc import Callable
 from pathlib import Path
 
 import pymupdf
@@ -30,6 +31,7 @@ def ingest_document(
     embedding: Embedding,
     qdrant_db: Qdrant,
     batch_size: int = 8,
+    on_stage: Callable[[str], None] | None = None,
 ) -> dict:
     """Ingest a single document and return a JSON-compatible completion summary.
 
@@ -37,6 +39,9 @@ def ingest_document(
     already stored earlier batches; this function does not roll back writes.
     Source files, parser JSON, and chunk/asset exports are retained.
     """
+    if on_stage is not None:
+        on_stage("validating")
+
     source_path = Path(source_path).resolve()
 
     if not source_path.is_file():
@@ -47,6 +52,9 @@ def ingest_document(
         raise ValueError("batch_size must be at least 1")
     if collection_name not in qdrant_db.get_collections():
         raise ValueError(f"Collection does not exist: {collection_name}")
+
+    if on_stage is not None:
+        on_stage("routing_and_parsing")
 
     logger.info("Routing and parsing %s", source_path.name)
 
@@ -95,6 +103,9 @@ def ingest_document(
     if len(successful_docling) + len(successful_marker) != 1:
         raise RuntimeError("Parsing did not return exactly one successful document")
 
+    if on_stage is not None:
+        on_stage("chunking")
+
     logger.info("Chunking %s", source_path.name)
     if successful_docling:
         parser = "docling"
@@ -132,6 +143,9 @@ def ingest_document(
         ),
         encoding="utf-8",
     )
+
+    if on_stage is not None:
+        on_stage("embedding_and_storing")
 
     logger.info(
         "Embedding and storing %s chunks from %s", len(chunks), source_path.name

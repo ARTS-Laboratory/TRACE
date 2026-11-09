@@ -1,4 +1,5 @@
 import asyncio
+import json
 import shutil
 import uuid
 from contextlib import asynccontextmanager
@@ -22,8 +23,10 @@ from Functions.Agent.factory import create_runtime
 from Functions.Conversation.manager import ConversationManager
 from Functions.Model.config import DATA_PATH
 from Functions.Model.llama_cpp_server import LlamaCppServerManager
+from Functions.RAG.job_store import IngestionJobStore
 from Functions.RAG.RAG_api import ingest_document
 from Functions.RAG.retrieval import keyword_search, vector_search
+from Functions.RAG.worker import IngestionWorker
 from Functions.Storage.database import Database
 
 runtime = None
@@ -62,13 +65,25 @@ async def lifespan(app: FastAPI):
     llama_cpp_server = LlamaCppServerManager()
 
     database = Database()
+    store = IngestionJobStore()
+
+    store.recover_interrupted_jobs()
+    app.state.ingestion_store = store
+
+    worker = IngestionWorker(
+        store=store,
+        embedding=runtime.embedding,
+        qdrant_db=runtime.qdrant_db,
+    )
 
     conversation_manager = ConversationManager(runtime=runtime, database=database)
 
     try:
+        worker.start()
         yield
 
     finally:
+        await asyncio.to_thread(worker.stop)
         await llama_cpp_server.stop()
         await runtime.shutdown()
 
@@ -311,7 +326,7 @@ def search_collection(data: QueryCollection):
         raise HTTPException(status_code=422, detail=str(error)) from error
 
 
-@app.post("/api/rag/ingest")
+@app.post("/api/rag/ingest", status_code=202)
 def ingest_rag_document(
     collection_name: str = Form(...),
     file: UploadFile = File(...),
@@ -326,17 +341,42 @@ def ingest_rag_document(
         with open(source_path, "wb") as destination:
             shutil.copyfileobj(file.file, destination)
 
-        result = ingest_document(
-            source_path=source_path,
+        job_id = app.state.ingestion_store.create_job(
             collection_name=collection_name,
-            qdrant_db=runtime.qdrant_db,
-            embedding=runtime.embedding,
-            batch_size=8,
+            original_name=original_name,
+            source_path=source_path,
         )
 
-        return result
+        return {"job_id": job_id, "status": "queued"}
     finally:
         file.file.close()
+
+
+@app.get("/api/rag/jobs/{job_id}")
+def get_job(job_id: str):
+    job = app.state.ingestion_store.get_job(job_id=job_id)
+
+    if job is None:
+        raise HTTPException(status_code=404, detail="Job not found")
+
+    stage_timings = json.loads(job["stage_timings_json"])
+    stage_started_at = job["stage_started_at"]
+    result = json.loads(job["result_json"]) if job["result_json"] is not None else None
+
+    return {
+        "job_id": job["job_id"],
+        "collection_name": job["collection_name"],
+        "original_name": job["original_name"],
+        "status": job["status"],
+        "stage": job["stage"],
+        "created_at": job["created_at"],
+        "started_at": job["started_at"],
+        "finished_at": job["finished_at"],
+        "stage_started_at": stage_started_at,
+        "stage_timings": stage_timings,
+        "result": result,
+        "error": job["error"],
+    }
 
 
 async def handle_chat(websocket: WebSocket, data):

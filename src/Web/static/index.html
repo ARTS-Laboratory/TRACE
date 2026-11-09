@@ -25,6 +25,18 @@
         #rag-results .rag-result-text { white-space: pre-wrap; overflow-wrap: anywhere; line-height: 1.5; }
         #rag-results details { margin-top: 10px; font-size: 0.85em; overflow-wrap: anywhere; }
         #rag-query-button:disabled { opacity: 0.6; cursor: wait; }
+        #rag-view .rag-job-toolbar { display: flex; align-items: center; justify-content: space-between; gap: 12px; flex-wrap: wrap; }
+        #rag-view .rag-job-card { margin: 12px 0; padding: 14px; border: 1px solid #6666; border-radius: 8px; overflow-wrap: anywhere; }
+        #rag-view .rag-job-card h4 { margin: 0 0 6px; }
+        #rag-view .rag-job-card p { margin: 6px 0; }
+        #rag-view .rag-job-meta { opacity: 0.8; font-size: 0.85em; }
+        #rag-view .rag-job-timer { font-variant-numeric: tabular-nums; }
+        #rag-view .rag-job-card[data-state="failed"], #rag-view .rag-job-card[data-state="upload_failed"] { border-color: #db7777; }
+        #rag-view .rag-job-card[data-state="succeeded"] { border-color: #72af86; }
+        #rag-view .rag-job-card[data-state="interrupted"], #rag-view .rag-job-card[data-state="unconfirmed"] { border-color: #cba861; }
+        #rag-view .rag-job-card details { margin-top: 8px; font-size: 0.85em; }
+        #rag-progress-notice { overflow-wrap: anywhere; }
+        #rag-ingest-button:disabled { opacity: 0.6; cursor: wait; }
     </style>
 </head>
 
@@ -162,8 +174,12 @@
                                 style="display: none;"
                             >
 
-                                <h3>Ingestion Progress</h3>
-
+                                <div class="rag-job-toolbar">
+                                    <h3>Ingestion Jobs</h3>
+                                    <button id="rag-clear-finished" type="button" disabled>Clear finished</button>
+                                </div>
+                                <p id="rag-progress-summary" role="status" aria-live="polite"></p>
+                                <p id="rag-progress-notice" role="status" aria-live="polite"></p>
                                 <div id="rag-progress-list"></div>
 
                             </div>

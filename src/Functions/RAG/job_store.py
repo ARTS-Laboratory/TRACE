@@ -202,10 +202,125 @@ class IngestionJobStore:
 
                 row = cursor.fetchone()
                 if row is None:
-                    return None
+                    raise ValueError("Job is missing or isn't running.")
 
-                job_id = row["job_id"]
-                timestamp = time.time()
+                status = row["status"]
+                queried_stage = row["stage"]
 
+                if status != "running":
+                    raise ValueError("Job is not running.")
+
+                current_time = time.time()
+                previous_time = row["stage_started_at"]
+                json_timings = json.loads(row["stage_timings_json"])
+
+                elapsed = current_time - previous_time
+                json_timings[queried_stage] = (
+                    json_timings.get(queried_stage, 0.0) + elapsed
+                )
+
+                json_string = json.dumps(json_timings)
+                result_json = json.dumps(result)
+
+                cursor.execute(
+                    """
+                    UPDATE ingestion_jobs
+                    SET stage = 'succeeded',
+                        status = 'succeeded',
+                        stage_started_at = NULL,
+                        stage_timings_json = ?,
+                        result_json = ?,
+                        finished_at = ?
+                    WHERE job_id = ?
+                    """,
+                    (json_string, result_json, current_time, job_id),
+                )
+
+        finally:
+            connection.close()
+
+    def fail_job(self, job_id: str, error: str):
+        connection = sqlite3.connect(self.database_path)
+
+        try:
+            with connection:
+                connection.row_factory = sqlite3.Row
+                cursor = connection.cursor()
+
+                cursor.execute("BEGIN IMMEDIATE")
+
+                cursor.execute(
+                    """
+                SELECT *
+                FROM ingestion_jobs
+                WHERE job_id = ?
+                """,
+                    (job_id,),
+                )
+
+                row = cursor.fetchone()
+                if row is None:
+                    raise ValueError("Job is missing or isn't running.")
+
+                status = row["status"]
+                queried_stage = row["stage"]
+
+                if status != "running":
+                    raise ValueError("Job is not running.")
+
+                current_time = time.time()
+                previous_time = row["stage_started_at"]
+                json_timings = json.loads(row["stage_timings_json"])
+
+                elapsed = current_time - previous_time
+                json_timings[queried_stage] = (
+                    json_timings.get(queried_stage, 0.0) + elapsed
+                )
+
+                json_string = json.dumps(json_timings)
+
+                cursor.execute(
+                    """
+                    UPDATE ingestion_jobs
+                    SET stage = 'failed',
+                        status = 'failed',
+                        stage_started_at = NULL,
+                        stage_timings_json = ?,
+                        result_json = NULL,
+                        finished_at = ?,
+                        error = ?
+                    WHERE job_id = ?
+                    """,
+                    (json_string, current_time, error, job_id),
+                )
+
+        finally:
+            connection.close()
+
+    def recover_interrupted_jobs(self) -> int:
+        connection = sqlite3.connect(self.database_path)
+
+        try:
+            with connection:
+                cursor = connection.execute(
+                    """
+                    UPDATE ingestion_jobs
+                    SET status = 'interrupted',
+                        stage = 'interrupted',
+                        finished_at = ?,
+                        stage_started_at = NULL,
+                        error = ?
+                    WHERE status = 'running'
+                    """,
+                    (
+                        time.time(),
+                        (
+                            "Application restarted before job completion was "
+                            "recorded; completion is unknown."
+                        ),
+                    ),
+                )
+
+                return cursor.rowcount
         finally:
             connection.close()
