@@ -1,14 +1,16 @@
-from Functions.tool import Tool
-from Functions.Model.config import CHROMADB_PATH
-import chromadb
+import asyncio
 
-client = chromadb.PersistentClient(path=CHROMADB_PATH)
+from Functions.tool import Tool
+
 
 class GetCollections(Tool):
-    def __init__(self):
+    def __init__(self, qdrant_db):
+        self.qdrant_db = qdrant_db
         super().__init__(
             "get_collections",
-            "Returns the names and descriptions of all available knowledge collections in the vector database. Use this tool when you need to search the user's documents but do not know which collection is most relevant to the request. Choose the most appropriate collection based on its description before calling query_collection."
+            "Returns the names and descriptions of available document collections. "
+            "Use this to choose a collection before calling vector_search "
+            "for semantic matching or keyword_search for BM25 keyword matching.",
         )
 
     def schema(self):
@@ -17,27 +19,23 @@ class GetCollections(Tool):
             "function": {
                 "name": self.name,
                 "description": self.description,
-                "parameters": {
-                    "type": "object",
-                    "properties": {}
-                }
-            }
+                "parameters": {"type": "object", "properties": {}},
+            },
         }
 
-    async def execute(self):
-        collections = client.list_collections()
+    def _get_collections(self):
+        collections = self.qdrant_db.get_collections()
 
         collectionsFound = []
         for collection in collections:
-            name = collection.name
-            metadata = collection.metadata or {}
-
+            name = collection
+            collection_info = self.qdrant_db.get_collection(collection_name=name)
+            metadata = collection_info.config.metadata or {}
             description = metadata.get("description", "No description provided")
 
-            collectionsFound.append({
-                "name" : name,
-                "description" : description
-            })
+            collectionsFound.append({"name": name, "description": description})
 
         return collectionsFound
 
+    async def execute(self):
+        return await asyncio.to_thread(self._get_collections)

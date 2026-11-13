@@ -10,7 +10,8 @@ import threading
 import time
 import uuid
 from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
-from urllib.error import URLError
+from urllib.error import HTTPError, URLError
+from urllib.parse import parse_qs, urlencode, urlsplit
 from urllib.request import urlopen
 
 logging.basicConfig(level=logging.INFO, format="%(asctime)s %(levelname)s %(message)s")
@@ -52,6 +53,19 @@ def gateway(service, operation):
         if response.status != 200:
             raise RuntimeError(f"Gateway returned {response.status}")
         return _json.loads(response.read())
+
+
+def gateway_logs(service: str, tail: int = 200):
+    if tail < 1 or tail > 1000:
+        raise ValueError("Tail must be between 1 and 1000")
+
+    parameters = urlencode({"tail": tail})
+    url = f"{GATEWAY_URL}/logs/{service}?{parameters}"
+
+    with urlopen(url, timeout=20) as response:
+        result = json.load(response)
+
+    return result
 
 
 def healthy(url):
@@ -171,10 +185,52 @@ class Handler(BaseHTTPRequestHandler):
         self.wfile.write(raw)
 
     def do_GET(self):
-        if self.path == "/health":
-            self.respond(200, {"status": "ok"})
-        else:
-            self.respond(404, {"error": "not found"})
+        parsed = urlsplit(self.path)
+
+        if parsed.path == "/health":
+            return self.respond(200, {"status": "ok"})
+
+        parts = parsed.path.strip("/").split("/")
+
+        if len(parts) != 2 or parts[0] != "logs":
+            return self.respond(404, {"error": "not found"})
+
+        service = parts[1]
+
+        try:
+            parameters = parse_qs(parsed.query, keep_blank_values=True)
+            tail_values = parameters.get("tail", ["200"])
+
+            if len(tail_values) != 1:
+                raise ValueError("Provide exactly one tail value")
+
+            tail = int(tail_values[0])
+
+            if tail < 1 or tail > 1000:
+                raise ValueError("Tail must be between 1 and 1000")
+
+        except ValueError as error:
+            return self.respond(400, {"error": str(error)})
+
+        try:
+            result = gateway_logs(service, tail=tail)
+            return self.respond(200, result)
+
+        except HTTPError as error:
+            status = 404 if error.code == 404 else 503
+            message = (
+                "Log service not found" if status == 404 else "Log gateway unavailable"
+            )
+            error.close()
+            return self.respond(status, {"error": message})
+
+        except (URLError, TimeoutError):
+            LOG.exception("Log gateway request failed")
+            return self.respond(503, {"error": "Log gateway unavailable"})
+
+        except Exception:
+            LOG.exception("Reading logs failed")
+            return self.respond(503, {"error": "Unable to read service logs"})
 
     def log_request(self, code="-", size="-"):
         if self.path == "/health" and str(code) == "200":

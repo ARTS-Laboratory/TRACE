@@ -86,9 +86,7 @@ class LlamaCppProvider(ChatProvider):
             "prompt_duration": int(prompt_ms * 1_000_000),
             "generation_duration": int(generation_ms * 1_000_000),
             "load_duration": 0,
-            "total_duration": int(
-                (prompt_ms + generation_ms) * 1_000_000
-            ),
+            "total_duration": int((prompt_ms + generation_ms) * 1_000_000),
         }
 
     @staticmethod
@@ -126,7 +124,7 @@ class LlamaCppProvider(ChatProvider):
             "messages": self._prepare_messages(messages),
             "tools": tools,
             "stream": True,
-            "temperature": 1,
+            "temperature": 0.2,
             "top_p": 0.95,
         }
 
@@ -179,9 +177,7 @@ class LlamaCppProvider(ChatProvider):
 
                         function = tool_call.get("function") or {}
                         fragment["name"] += function.get("name") or ""
-                        fragment["arguments"] += (
-                            function.get("arguments") or ""
-                        )
+                        fragment["arguments"] += function.get("arguments") or ""
 
                     if event.get("timings"):
                         final_timings = event["timings"]
@@ -195,8 +191,6 @@ class LlamaCppProvider(ChatProvider):
         yield ProviderChunk(
             tool_calls=self._finalise_tool_calls(tool_fragments),
             metrics=(
-                self._metrics(final_timings)
-                if final_timings is not None
-                else None
+                self._metrics(final_timings) if final_timings is not None else None
             ),
         )

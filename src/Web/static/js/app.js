@@ -1,3 +1,5 @@
+import { showLogsView, hideLogsView } from "./logs.js";
+
 import {
     showRagView,
     hideRagView
@@ -77,6 +79,7 @@ async function initializeApp() {
 }
 
 function showRagSection() {
+    hideLogsView();
     messages.style.display = "none";
     inputContainer.style.display = "none";
 
@@ -92,6 +95,7 @@ function showRagSection() {
 }
 
 function showChatSection() {
+    hideLogsView();
     messages.style.display = "block";
 
     inputContainer.style.display = "flex";
@@ -109,6 +113,20 @@ function showChatSection() {
         showConversationView(state.currentConversationId);
     }
 }
+
+
+function showLogsSection() {
+    messages.style.display = "none";
+    inputContainer.style.display = "none";
+    chatTitle.textContent = "";
+    hideRagView();
+    document.querySelectorAll(".conversation-item.active").forEach((item) => {
+        item.classList.remove("active");
+    });
+    showLogsView();
+}
+
+document.getElementById("logs-section-button").addEventListener("click", showLogsSection);
 
 newChatButton.addEventListener(
     "click",

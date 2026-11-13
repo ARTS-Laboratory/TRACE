@@ -10,6 +10,10 @@ from Functions.Model.config import SYSTEM_PROMPT
 from Functions.Model.manager import ModelManager
 from Functions.Qdrant.Qdrant import Qdrant
 from Functions.RAG.embedding import Embedding
+from Functions.RAG.reranking import Reranker
+from Functions.Tools.getCollections import GetCollections
+from Functions.Tools.keywordSearch import KeywordSearch
+from Functions.Tools.vectorSearch import VectorSearch
 
 logger = logging.getLogger(__name__)
 
@@ -24,6 +28,7 @@ class Runtime:
         chroma_db,
         qdrant_db,
         embedding,
+        reranker,
     ):
         self.tool_manager = tool_manager
         self.mcp_manager = mcp_manager
@@ -32,6 +37,7 @@ class Runtime:
         self.chroma_db = chroma_db
         self.qdrant_db = qdrant_db
         self.embedding = embedding
+        self.reranker = reranker
 
     async def shutdown(self):
         try:
@@ -49,6 +55,7 @@ async def create_runtime():
     chroma_db = ChromaDB()
     qdrant_db = Qdrant()
     embedding = Embedding()
+    reranker = Reranker()
 
     try:
         await model_manager.load()
@@ -68,6 +75,25 @@ async def create_runtime():
         for tool in await mcp_manager.discover_tools():
             tool_manager.register(tool)
 
+        # tool registry
+        tool_manager.register(GetCollections(qdrant_db=qdrant_db))
+
+        tool_manager.register(
+            VectorSearch(
+                qdrant_db=qdrant_db,
+                embedding=embedding,
+                reranker=reranker,
+            )
+        )
+
+        tool_manager.register(
+            KeywordSearch(
+                qdrant_db=qdrant_db,
+                embedding=embedding,
+                reranker=reranker,
+            )
+        )
+
         return Runtime(
             tool_manager=tool_manager,
             mcp_manager=mcp_manager,
@@ -76,6 +102,7 @@ async def create_runtime():
             chroma_db=chroma_db,
             qdrant_db=qdrant_db,
             embedding=embedding,
+            reranker=reranker,
         )
 
     except BaseException:

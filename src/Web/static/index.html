@@ -37,6 +37,23 @@
         #rag-view .rag-job-card details { margin-top: 8px; font-size: 0.85em; }
         #rag-progress-notice { overflow-wrap: anywhere; }
         #rag-ingest-button:disabled { opacity: 0.6; cursor: wait; }
+
+        #logs-view[hidden] { display: none !important; }
+        #logs-view { padding: 24px; width: 100%; box-sizing: border-box; min-width: 0; }
+        #logs-view h1 { margin-top: 0; }
+        .logs-toolbar { display: flex; flex-wrap: wrap; align-items: center; gap: 12px; margin: 16px 0; }
+        .logs-toolbar label { display: inline-flex; align-items: center; gap: 6px; }
+        .logs-toolbar select, .logs-toolbar input[type="number"], .logs-toolbar button {
+            font: inherit; color: inherit; background: #80808018; border: 1px solid #80808080; border-radius: 6px; padding: 7px 10px;
+        }
+        .logs-toolbar select option { color: #111; background: #fff; }
+        #logs-services { display: flex; flex-wrap: wrap; gap: 8px 16px; border: 1px solid #80808080; border-radius: 6px; padding: 8px 12px; }
+        #logs-services legend { padding: 0 6px; }
+        #logs-tail { width: 80px; }
+        #logs-status { min-height: 1.5em; overflow-wrap: anywhere; }
+        #logs-output { white-space: pre-wrap; overflow-wrap: anywhere; overflow: auto; height: 60vh; min-height: 240px;
+            padding: 16px; border: 1px solid #80808080; border-radius: 8px; background: #0003;
+            color: inherit; font: 13px/1.6 ui-monospace, SFMono-Regular, Consolas, monospace; tab-size: 4; }
     </style>
 </head>
 
@@ -65,6 +82,11 @@
                     <i data-lucide="database"></i>
                     <span>RAG</span>
                 </button>
+                <button id="logs-section-button" type="button">
+                    <i data-lucide="terminal"></i>
+                    <span>Logs</span>
+                </button>
+
 
             </div>
 
@@ -84,6 +106,32 @@
         <main id="chat">
             <div id="chat-title"></div>
             <div id="messages"></div>
+
+            <section id="logs-view" hidden aria-labelledby="logs-title">
+                <h1 id="logs-title">Service logs</h1>
+                <p>Recent Docker output. Refreshes every 3 seconds while this tab is visible.</p>
+                <div class="logs-toolbar">
+                    <fieldset id="logs-services"><legend>Services</legend>
+                        <label><input type="checkbox" value="glorpcat" checked> Glorp-Cat</label>
+                        <label><input type="checkbox" value="controller"> Controller</label>
+                        <label><input type="checkbox" value="gateway"> Gateway</label>
+                        <label><input type="checkbox" value="inference"> Inference</label>
+                        <label><input type="checkbox" value="marker"> Marker</label>
+                        <label><input type="checkbox" value="surya"> Surya</label>
+                        <label><input type="checkbox" value="media"> Media</label>
+                        <label><input type="checkbox" value="qdrant"> Qdrant</label>
+                    </fieldset>
+                    <label for="logs-tail">Lines per service <input id="logs-tail" type="number" min="1" max="1000" step="1" value="200"></label>
+                    <button id="logs-refresh" type="button">Refresh</button>
+                    <button id="logs-pause" type="button" aria-pressed="false">Pause</button>
+                    <button id="logs-copy" type="button">Copy logs</button>
+                    <button id="logs-clear" type="button">Clear view</button>
+                    <label><input id="logs-scroll" type="checkbox" checked> Auto-scroll</label>
+                    <label><input id="logs-hide-health" type="checkbox" checked> Hide successful health checks</label>
+                </div>
+                <p id="logs-status" role="status" aria-live="polite">Choose a service to read its logs.</p>
+                <pre id="logs-output" tabindex="0" aria-label="Service log output"></pre>
+            </section>
 
                 <div id="rag-view">
 
@@ -347,6 +395,9 @@
 
                     </div>
                 </div>
+
+
+
 
 
         </main>

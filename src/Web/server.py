@@ -5,6 +5,9 @@ import uuid
 from contextlib import asynccontextmanager
 from pathlib import Path
 from typing import Literal
+from urllib.error import HTTPError, URLError
+from urllib.parse import urlencode
+from urllib.request import urlopen
 
 from fastapi import (
     FastAPI,
@@ -377,6 +380,33 @@ def get_job(job_id: str):
         "result": result,
         "error": job["error"],
     }
+
+
+@app.get("/api/logs/{service}")
+def get_service_logs(service: str, tail: int = 200):
+    if tail < 1 or tail > 1000:
+        raise HTTPException(status_code=422, detail="Tail must be between 1 and 1000")
+
+    try:
+        parameters = urlencode({"tail": tail})
+        url = f"http://controller:8090/logs/{service}?{parameters}"
+
+        with urlopen(url, timeout=20) as response:
+            result = json.load(response)
+
+        return result
+    except HTTPError as error:
+        status_code = 404 if error.code == 404 else 503
+        detail = (
+            "Log service not found" if status_code == 404 else "Log gateway unavailable"
+        )
+        raise HTTPException(status_code=status_code, detail=detail) from error
+
+    except (URLError, TimeoutError) as error:
+        raise HTTPException(
+            status_code=503,
+            detail="Log gateway unavailable",
+        ) from error
 
 
 async def handle_chat(websocket: WebSocket, data):

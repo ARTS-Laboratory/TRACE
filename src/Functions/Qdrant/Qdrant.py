@@ -14,6 +14,9 @@ class Qdrant:
         response = self.client.get_collections()
         return [col.name for col in response.collections]
 
+    def get_collection(self, collection_name: str):
+        return self.client.get_collection(collection_name=collection_name)
+
     def delete_collection(self, collection_name):
         collections = self.get_collections()
 
