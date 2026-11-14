@@ -464,7 +464,50 @@ async def handle_chat(websocket: WebSocket, data):
             }
         )
 
+        async def insert_visual_block(visual_id):
+            nonlocal active_text_block_id, active_block_text
+            visual_block_id = database.add_response_block(
+                assistant_message_id=assistant_message_id,
+                block_type="visual",
+                visual_id=visual_id,
+            )
+
+            event = {
+                "type": "block_created",
+                "conversation_id": conversation_id,
+                "assistant_message_id": assistant_message_id,
+                "data": {
+                    "id": visual_block_id,
+                    "type": "visual",
+                    "visual_id": visual_id,
+                },
+            }
+
+            await send_event(event=event)
+
+            active_text_block_id = None
+            active_block_text = ""
+
         async def send_event(event):
+            nonlocal active_text_block_id, active_block_text, response_text
+            if event["type"] == "content_delta":
+                active_block_text += event["data"]
+                response_text += event["data"]
+
+                if active_text_block_id is None:
+                    active_text_block_id = database.add_response_block(
+                        assistant_message_id=assistant_message_id,
+                        block_type="text",
+                        content=active_block_text,
+                    )
+                else:
+                    database.update_response_block(
+                        block_id=active_text_block_id, content=active_block_text
+                    )
+
+                event["assistant_message_id"] = assistant_message_id
+                event["block_id"] = active_text_block_id
+
             try:
                 await websocket.send_json(event)
             except WebSocketDisconnect:
@@ -476,12 +519,17 @@ async def handle_chat(websocket: WebSocket, data):
 
         await llama_cpp_server.ensure_running()
 
+        active_text_block_id = None
+        active_block_text = ""
+        response_text = ""
+
         assistant_message_id = database.add_message(
             conversation_id=conversation_id, role="assistant", content="", thinking=""
         )
         record_event = database.add_execution_event
 
         print("CHAT START", conversation_id)
+
         assistant = await agent.chat(
             message,
             attachments=attachments,
@@ -489,11 +537,12 @@ async def handle_chat(websocket: WebSocket, data):
             assistant_message_id=assistant_message_id,
             record_event=record_event,
         )
+
         print("CHAT END", conversation_id)
 
         database.update_message(
             message_id=assistant_message_id,
-            content=assistant["content"],
+            content=response_text,
             thinking=assistant["thinking"],
         )
 

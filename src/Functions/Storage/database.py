@@ -15,7 +15,6 @@ class Database:
         self.connection.execute("PRAGMA foreign_keys = ON")
 
         self.connection.row_factory = sqlite3.Row
-        self.create_tables()
         self.migrate_execution_events()
 
         self.create_tables()
@@ -79,6 +78,9 @@ class Database:
             attachments = self.get_attachments_for_message(message["id"])
 
             message["attachments"] = attachments
+
+            if message["role"] == "assistant":
+                message["blocks"] = self.get_response_blocks(message["id"])
 
         result = dict(conversation)
         result["messages"] = messages
@@ -308,6 +310,59 @@ class Database:
 
         return executions
 
+    def add_response_block(
+        self, assistant_message_id, block_type, content=None, visual_id=None
+    ):
+        cursor = self.connection.cursor()
+
+        cursor.execute(
+            """
+            INSERT INTO response_blocks (
+                assistant_message_id,
+                type,
+                content,
+                visual_id
+            )
+            VALUES (?, ?, ?, ?)
+            """,
+            (assistant_message_id, block_type, content, visual_id),
+        )
+
+        self.connection.commit()
+
+        return cursor.lastrowid
+
+    def get_response_blocks(self, assistant_message_id):
+        cursor = self.connection.cursor()
+
+        cursor.execute(
+            """
+            SELECT *
+            FROM response_blocks
+            WHERE assistant_message_id = ?
+            ORDER BY id ASC
+            """,
+            (assistant_message_id,),
+        )
+
+        response_blocks = [dict(row) for row in cursor.fetchall()]
+
+        return response_blocks
+
+    def update_response_block(self, block_id, content):
+        cursor = self.connection.cursor()
+
+        cursor.execute(
+            """
+            UPDATE response_blocks
+            SET content = ?
+            WHERE id = ?
+            """,
+            (content, block_id),
+        )
+
+        self.connection.commit()
+
     def create_tables(self):
         cursor = self.connection.cursor()
 
@@ -388,6 +443,20 @@ class Database:
                 FOREIGN KEY (conversation_id)
                     REFERENCES conversations(id)
                     ON DELETE CASCADE,
+
+                FOREIGN KEY (assistant_message_id)
+                    REFERENCES messages(id)
+                    ON DELETE CASCADE 
+            )
+        """)
+
+        cursor.execute("""
+            CREATE TABLE IF NOT EXISTS response_blocks (
+                id INTEGER PRIMARY KEY AUTOINCREMENT,
+                assistant_message_id INTEGER NOT NULL,
+                type TEXT NOT NULL,
+                content TEXT,
+                visual_id INTEGER,
 
                 FOREIGN KEY (assistant_message_id)
                     REFERENCES messages(id)

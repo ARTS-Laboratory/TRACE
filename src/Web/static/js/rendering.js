@@ -1,3 +1,4 @@
+// Keep Markdown parsing, sanitization, math protection and code controls shared.
 export function renderMarkdown(state) {
     const protectedMath = protectMath(
         state.markdown
@@ -20,6 +21,95 @@ export function renderMarkdown(state) {
         DOMPurify.sanitize(html);
 
     enhanceCodeBlocks(state.assistant);
+}
+
+export function createResponseBlockState(container) {
+    return {container, blocks: new Map(), dirty: new Set(), frame: null};
+}
+
+function ensureResponseBlock(state, block) {
+    const key = String(block.id);
+    let entry = state.blocks.get(key);
+    if (entry) {
+        if (entry.type !== block.type) {
+            throw new Error("A response block cannot change type.");
+        }
+        return entry;
+    }
+    const element = document.createElement("div");
+    element.classList.add("response-block");
+    element.dataset.blockId = key;
+    element.dataset.blockType = block.type;
+    entry = {id: block.id, type: block.type, content: "", element};
+    state.blocks.set(key, entry);
+    // IDs are assigned by the backend in creation order. Keep late arrivals
+    // in the same order as database retrieval, without rebuilding other blocks.
+    const next = [...state.container.children].find(child => {
+        const id = child.dataset.blockId;
+        return /^\d+$/.test(key) && /^\d+$/.test(id || "")
+            && BigInt(id) > BigInt(key);
+    });
+    state.container.insertBefore(element, next || null);
+    return entry;
+}
+
+function scheduleResponseBlocks(state) {
+    if (state.frame !== null) return;
+    state.frame = requestAnimationFrame(() => {
+        state.frame = null;
+        flushResponseBlocks(state);
+    });
+}
+
+// A snapshot replaces content; a delta appends content. Never apply both
+// interpretations to the same event.
+export function setResponseBlock(state, block) {
+    const entry = ensureResponseBlock(state, block);
+    entry.content = typeof block.content === "string" ? block.content : "";
+    entry.visualId = block.visual_id ?? null;
+    state.dirty.add(entry);
+    scheduleResponseBlocks(state);
+}
+
+export function appendResponseText(state, blockId, delta) {
+    const entry = ensureResponseBlock(state, {id: blockId ?? "legacy-text", type: "text"});
+    entry.content += delta;
+    state.dirty.add(entry);
+    scheduleResponseBlocks(state);
+}
+
+export function flushResponseBlocks(state) {
+    if (!state) return;
+    if (state.frame !== null) {
+        cancelAnimationFrame(state.frame);
+        state.frame = null;
+    }
+    for (const entry of state.dirty) {
+        if (entry.type === "text") {
+            renderMarkdown({markdown: entry.content, assistant: entry.element});
+        } else {
+            entry.element.classList.add("response-block-placeholder");
+            entry.element.style.cssText =
+                "border:1px solid currentColor;border-radius:8px;padding:12px;margin:12px 0;opacity:.75";
+            entry.element.textContent = entry.type === "visual"
+                ? "Visual placeholder" + (entry.visualId != null ? " · " + entry.visualId : "")
+                : "Unsupported content block: " + entry.type;
+        }
+    }
+    state.dirty.clear();
+}
+
+export function renderStoredResponse(container, message) {
+    const state = createResponseBlockState(container);
+    if (Array.isArray(message.blocks) && message.blocks.length > 0) {
+        for (const block of message.blocks) setResponseBlock(state, block);
+    } else {
+        setResponseBlock(state, {
+            id: "legacy-text", type: "text", content: message.content || ""
+        });
+    }
+    flushResponseBlocks(state);
+    return state;
 }
 
 export async function renderMath(element) {

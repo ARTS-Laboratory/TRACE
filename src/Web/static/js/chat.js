@@ -9,11 +9,13 @@ import {
 } from "./attachments.js";
 
 import {
-    renderMarkdown,
     renderMath,
     renderStats,
-    protectMath,
-    enhanceCodeBlocks
+    createResponseBlockState,
+    appendResponseText,
+    setResponseBlock,
+    flushResponseBlocks,
+    renderStoredResponse
 } from "./rendering.js";
 
 import {
@@ -59,16 +61,14 @@ ws.onmessage = async (event) => {
             return;
         }
 
-        responseState.markdown += message.data;
+        if (!acceptResponseEvent(responseState, message)) return;
+        appendResponseText(responseState.blockState, message.block_id, message.data);
+    }
 
-        if (!responseState.renderPending) {
-            responseState.renderPending = true;
-
-            requestAnimationFrame(() => {
-                renderMarkdown(responseState);
-                responseState.renderPending = false;
-            });
-        }
+    // Future backend visual insertion: data is a complete block snapshot.
+    else if (message.type === "block_created") {
+        if (responseState.cancelled || !acceptResponseEvent(responseState, message)) return;
+        setResponseBlock(responseState.blockState, message.data);
     }
 
     else if (message.type === "user_message_saved") {
@@ -105,10 +105,13 @@ ws.onmessage = async (event) => {
     }
 
     else if (message.type === "done") {
+        if (!acceptResponseEvent(responseState, message)) return;
+        flushResponseBlocks(responseState.blockState);
         responseState.assistant.thinkingDetails.open = false;
         responseState.assistant.thinkingSummary.textContent = "Thought";
 
-        await renderMath(responseState.assistant);
+        const completedAssistant = responseState.assistant;
+        responseState.blockState = null;
         responseState.assistant = null;
         responseState.thoughtStream = null;
         responseState.thinkingBlock = null;
@@ -120,6 +123,7 @@ ws.onmessage = async (event) => {
             sendButton.disabled = false;
             sendButton.textContent = "Send";
         }
+        await renderMath(completedAssistant);
     }
 
     else if (["tool_started", "tool_finished", "tool_failed",
@@ -139,6 +143,7 @@ ws.onmessage = async (event) => {
     }
 
     else if (message.type === "cancelled") {
+        flushResponseBlocks(responseState.blockState);
         if (responseState.assistant) {
             responseState.assistant.thinkingDetails.open = false;
             responseState.assistant.thinkingSummary.textContent = "Stopped";
@@ -159,6 +164,17 @@ ws.onmessage = async (event) => {
     }
 };
 
+// The server owns message and block identities; do not apply late text to a
+// different response in the same conversation.
+function acceptResponseEvent(responseState, message) {
+    if (!responseState.assistant || !responseState.blockState) return false;
+    if (message.assistant_message_id == null) return true; // Legacy server.
+    if (responseState.assistantMessageId != null
+        && responseState.assistantMessageId !== message.assistant_message_id) return false;
+    responseState.assistantMessageId = message.assistant_message_id;
+    return true;
+}
+
 export function getResponseState(conversationId) {
     if (!state.responseStates.has(conversationId)) {
         state.responseStates.set(
@@ -168,9 +184,8 @@ export function getResponseState(conversationId) {
                 thoughtStream: null,
                 thinkingBlock: null,
                 stats: null,
-                markdown: "",
+                blockState: null,
                 activeTools: {},
-                renderPending: false,
                 generating: false,
                 cancelled: false,
             }
@@ -315,6 +330,7 @@ export function stopChat(conversationId) {
         return;
     }
 
+    flushResponseBlocks(responseState.blockState);
     responseState.cancelled = true;
     responseState.generating = false;
 
@@ -459,7 +475,7 @@ function createAssistantMessage(conversationId) {
     const responseState =
         getResponseState(conversationId);
 
-    responseState.markdown = "";
+    flushResponseBlocks(responseState.blockState);
 
     container.classList.add(
         "message",
@@ -486,6 +502,7 @@ function createAssistantMessage(conversationId) {
 
     responseState.assistant = document.createElement("div");
     responseState.assistant.classList.add("assistant-content");
+    responseState.blockState = createResponseBlockState(responseState.assistant);
 
     responseState.stats = document.createElement("div");
     responseState.stats.classList.add("response-stats");
@@ -696,32 +713,11 @@ export function addStoredAssistantMessage(message, conversationId = state.curren
 
     content.classList.add("assistant-content");
 
-    const protectedMath = protectMath(
-        message.content
-    );
-
-    let html = marked.parse(
-        protectedMath.text
-    );
-
-    protectedMath.mathBlocks.forEach(
-        (math, index) => {
-            html = html.replace(
-                `@@MATH_${index}@@`,
-                math
-            );
-        }
-    );
-
-    content.innerHTML = DOMPurify.sanitize(
-        html
-    );
+    renderStoredResponse(content, message);
 
     container.appendChild(content);
 
     getConversationView(conversationId).appendChild(container);
-
-    enhanceCodeBlocks(content);
 
     renderMath(content);
 }
