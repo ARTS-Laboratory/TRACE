@@ -1,14 +1,10 @@
 from Functions.Agent.streaming import streamResponse
 from Functions.responseStats import ResponseStats
 
+
 class Agent:
     def __init__(
-        self,
-        tool_manager,
-        conversation,
-        mcp_manager,
-        model_manager,
-        conversation_id
+        self, tool_manager, conversation, mcp_manager, model_manager, conversation_id
     ):
         self.tool_manager = tool_manager
         self.conversation = conversation
@@ -16,11 +12,16 @@ class Agent:
         self.model_manager = model_manager
         self.conversation_id = conversation_id
 
-    async def chat(self, user_input, attachments=None, on_event=None):
+    async def chat(
+        self,
+        user_input,
+        attachments=None,
+        on_event=None,
+        assistant_message_id=None,
+        record_event=None,
+    ):
         stats = ResponseStats()
-        stats.set_model(
-            self.model_manager.info
-        )
+        stats.set_model(self.model_manager.info)
         self.conversation.add_user(user_input, attachments)
 
         while True:
@@ -29,16 +30,25 @@ class Agent:
                 self.tool_manager,
                 stats,
                 on_event=on_event,
-                conversation_id=self.conversation_id
+                conversation_id=self.conversation_id,
             )
 
-            #print("DEBUG: streamResponse returned", flush=True)
+            # print("DEBUG: streamResponse returned", flush=True)
 
             self.conversation.add_assistant(
-                assistant["thinking"],
-                assistant["content"],
-                assistant["tool_calls"]
+                assistant["thinking"], assistant["content"], assistant["tool_calls"]
             )
+
+            if record_event and assistant["thinking"]:
+                record_event(
+                    {
+                        "type": "thinking_block",
+                        "conversation_id": self.conversation_id,
+                        "assistant_message_id": assistant_message_id,
+                        "tool_call_id": None,
+                        "data": {"text": assistant["thinking"]},
+                    }
+                )
 
             if not assistant["tool_calls"]:
                 break
@@ -48,26 +58,27 @@ class Agent:
                     stats,
                     assistant["tool_calls"],
                     on_event=on_event,
-                    conversation_id=self.conversation_id
+                    conversation_id=self.conversation_id,
+                    assistant_message_id=assistant_message_id,
+                    record_event=record_event,
                 )
             )
 
-        #print("DEBUG: starting load_active", flush=True)
+        # print("DEBUG: starting load_active", flush=True)
         await self.model_manager.load()
-        #print("DEBUG: load_active returned", flush=True)
+        # print("DEBUG: load_active returned", flush=True)
 
         stats.finish()
 
         if on_event:
-            await on_event({
-                "type": "response_stats",
-                "conversation_id": self.conversation_id,
-                "data": stats.to_dict()
-            })
+            await on_event(
+                {
+                    "type": "response_stats",
+                    "conversation_id": self.conversation_id,
+                    "data": stats.to_dict(),
+                }
+            )
 
         stats.print_stats()
 
-        return {
-            "content": assistant["content"],
-            "thinking": assistant["thinking"]
-        }
+        return {"content": assistant["content"], "thinking": assistant["thinking"]}

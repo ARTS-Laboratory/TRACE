@@ -465,7 +465,10 @@ async def handle_chat(websocket: WebSocket, data):
         )
 
         async def send_event(event):
-            await websocket.send_json(event)
+            try:
+                await websocket.send_json(event)
+            except WebSocketDisconnect:
+                pass
 
         attachments = conversation_manager.get_attachments_for_message(
             message_id=message_id
@@ -473,17 +476,23 @@ async def handle_chat(websocket: WebSocket, data):
 
         await llama_cpp_server.ensure_running()
 
+        assistant_message_id = database.add_message(
+            conversation_id=conversation_id, role="assistant", content="", thinking=""
+        )
+        record_event = database.add_execution_event
+
         print("CHAT START", conversation_id)
         assistant = await agent.chat(
             message,
             attachments=attachments,
             on_event=send_event,
+            assistant_message_id=assistant_message_id,
+            record_event=record_event,
         )
         print("CHAT END", conversation_id)
 
-        database.add_message(
-            conversation_id=conversation_id,
-            role="assistant",
+        database.update_message(
+            message_id=assistant_message_id,
             content=assistant["content"],
             thinking=assistant["thinking"],
         )

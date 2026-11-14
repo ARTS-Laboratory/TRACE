@@ -1,3 +1,4 @@
+import json
 import sqlite3
 
 from Functions.Model.config import DATA_PATH
@@ -14,6 +15,8 @@ class Database:
         self.connection.execute("PRAGMA foreign_keys = ON")
 
         self.connection.row_factory = sqlite3.Row
+        self.create_tables()
+        self.migrate_execution_events()
 
         self.create_tables()
 
@@ -79,6 +82,7 @@ class Database:
 
         result = dict(conversation)
         result["messages"] = messages
+        result["execution_events"] = self.get_execution_events(conversation_id)
 
         return result
 
@@ -226,6 +230,84 @@ class Database:
 
         self.connection.commit()
 
+    def update_message(self, message_id, content, thinking=None):
+        cursor = self.connection.cursor()
+
+        cursor.execute(
+            """
+            UPDATE messages
+            SET content = ?,
+                thinking = ?
+            WHERE id = ?
+            """,
+            (content, thinking, message_id),
+        )
+
+        self.connection.commit()
+
+    def add_execution_event(self, event):
+        cursor = self.connection.cursor()
+
+        cursor.execute(
+            """
+            INSERT INTO execution_events (
+                conversation_id,
+                assistant_message_id,
+                tool_call_id,
+                event_type,
+                data_json
+            )
+            VALUES (?, ?, ?, ?, ?)
+            """,
+            (
+                event["conversation_id"],
+                event["assistant_message_id"],
+                event["tool_call_id"],
+                event["type"],
+                json.dumps(event["data"]),
+            ),
+        )
+
+        self.connection.commit()
+
+        return cursor.lastrowid
+
+    def get_execution_events(self, conversation_id):
+        cursor = self.connection.cursor()
+
+        cursor.execute(
+            """
+            SELECT *
+            FROM conversations
+            WHERE id = ?
+            """,
+            (conversation_id,),
+        )
+
+        conversation = cursor.fetchone()
+
+        if conversation is None:
+            return None
+
+        cursor.execute(
+            """
+            SELECT *
+            FROM execution_events
+            WHERE conversation_id = ?
+            ORDER BY id ASC
+            """,
+            (conversation_id,),
+        )
+
+        executions = [dict(row) for row in cursor.fetchall()]
+
+        for execution in executions:
+            data = json.loads(execution["data_json"])
+
+            execution["data"] = data
+
+        return executions
+
     def create_tables(self):
         cursor = self.connection.cursor()
 
@@ -293,4 +375,124 @@ class Database:
             )
         """)
 
+        cursor.execute("""
+            CREATE TABLE IF NOT EXISTS execution_events (
+                id INTEGER PRIMARY KEY AUTOINCREMENT,
+                conversation_id INTEGER NOT NULL,
+                assistant_message_id INTEGER NOT NULL,
+                tool_call_id TEXT,
+                event_type TEXT NOT NULL,
+                data_json TEXT NOT NULL,
+                created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+
+                FOREIGN KEY (conversation_id)
+                    REFERENCES conversations(id)
+                    ON DELETE CASCADE,
+
+                FOREIGN KEY (assistant_message_id)
+                    REFERENCES messages(id)
+                    ON DELETE CASCADE 
+            )
+        """)
+
         self.connection.commit()
+
+    def migrate_execution_events(self):
+        connection = self.connection
+
+        if connection.in_transaction:
+            raise RuntimeError("Run migration outside an active transaction.")
+
+        connection.execute("BEGIN IMMEDIATE")
+
+        try:
+            columns = connection.execute(
+                "PRAGMA table_info(execution_events)"
+            ).fetchall()
+
+            tool_column = next(
+                (column for column in columns if column[1] == "tool_call_id"),
+                None,
+            )
+
+            if tool_column is None:
+                raise RuntimeError("execution_events.tool_call_id is missing.")
+
+            # Already nullable: nothing to migrate.
+            if not tool_column[3]:
+                connection.commit()
+                return
+
+            schema_objects = connection.execute(
+                """
+                SELECT sql FROM sqlite_master
+                WHERE tbl_name = 'execution_events'
+                AND type IN ('index', 'trigger')
+                AND sql IS NOT NULL
+                """
+            ).fetchall()
+
+            sequence = connection.execute(
+                "SELECT seq FROM sqlite_sequence WHERE name = 'execution_events'"
+            ).fetchone()
+
+            connection.execute("""
+                CREATE TABLE execution_events_migrating (
+                    id INTEGER PRIMARY KEY AUTOINCREMENT,
+                    conversation_id INTEGER NOT NULL,
+                    assistant_message_id INTEGER NOT NULL,
+                    tool_call_id TEXT,
+                    event_type TEXT NOT NULL,
+                    data_json TEXT NOT NULL,
+                    created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+
+                    FOREIGN KEY (conversation_id)
+                        REFERENCES conversations(id)
+                        ON DELETE CASCADE,
+
+                    FOREIGN KEY (assistant_message_id)
+                        REFERENCES messages(id)
+                        ON DELETE CASCADE
+                )
+            """)
+
+            connection.execute("""
+                INSERT INTO execution_events_migrating (
+                    id, conversation_id, assistant_message_id,
+                    tool_call_id, event_type, data_json, created_at
+                )
+                SELECT id, conversation_id, assistant_message_id,
+                    tool_call_id, event_type, data_json, created_at
+                FROM execution_events
+            """)
+
+            connection.execute("DROP TABLE execution_events")
+            connection.execute(
+                "ALTER TABLE execution_events_migrating RENAME TO execution_events"
+            )
+
+            for row in schema_objects:
+                connection.execute(row[0])
+
+            # Avoid reusing IDs belonging to previously deleted events.
+            if sequence is not None:
+                connection.execute(
+                    "DELETE FROM sqlite_sequence WHERE name = 'execution_events'"
+                )
+                connection.execute(
+                    "INSERT INTO sqlite_sequence (name, seq) VALUES (?, ?)",
+                    ("execution_events", sequence[0]),
+                )
+
+            violations = connection.execute(
+                "PRAGMA foreign_key_check(execution_events)"
+            ).fetchall()
+
+            if violations:
+                raise RuntimeError("Execution event foreign-key validation failed.")
+
+            connection.commit()
+
+        except BaseException:
+            connection.rollback()
+            raise

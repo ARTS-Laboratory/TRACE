@@ -198,7 +198,8 @@ export async function loadConversation(conversationId) {
             else if (message.role === "assistant") {
                 addStoredAssistantMessage(
                     message,
-                    conversation.id
+                    conversation.id,
+                    conversation.execution_events || []
                 );
             }
         }

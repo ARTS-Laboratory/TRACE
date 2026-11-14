@@ -122,12 +122,9 @@ ws.onmessage = async (event) => {
         }
     }
 
-    else if (message.type === "tool_started") {
-        addTool(responseState, message.data);
-    }
-
-    else if (message.type === "tool_finished") {
-        finishTool(responseState ,message.data);
+    else if (["tool_started", "tool_finished", "tool_failed",
+              "tool_cancelled", "tool_interrupted"].includes(message.type)) {
+        applyToolEvent(responseState, message);
     }
 
     else if (message.type === "response_stats") {
@@ -506,64 +503,109 @@ function createAssistantMessage(conversationId) {
 
     responseState.thinkingBlock = null;
     responseState.activeTools = {};
+    responseState.toolCards = new Map();
+    responseState.assistantMessageId = null;
 }
 
-function addTool(responseState, data) {
-    // End the current reasoning block.
-    // Any reasoning after this tool gets a new block.
-    responseState.thinkingBlock = null;
+// Live events use `type`; database events use `event_type`.
+// Keep one renderer so restored tools expose the same details as live tools.
+function applyToolEvent(responseState, event) {
+    if (!responseState.thoughtStream || !event.tool_call_id) return;
+    if (responseState.assistantMessageId != null
+        && responseState.assistantMessageId !== event.assistant_message_id) return;
+    responseState.assistantMessageId = event.assistant_message_id;
+    responseState.toolCards ??= new Map();
 
-    const tool = document.createElement("div");
-    tool.classList.add("tool");
-
-    const status = document.createElement("span");
-    status.classList.add("tool-status");
-    status.textContent = "●";
-
-    const name = document.createElement("span");
-    name.classList.add("tool-name");
-    name.textContent = getToolLabel(data.name);
-
-    const details = document.createElement("div");
-    details.classList.add("tool-details");
-
-    if (data.arguments) {
-        details.textContent = getToolDetails(
-            data.name,
-            data.arguments
-        );
+    const key = JSON.stringify([event.assistant_message_id, event.tool_call_id]);
+    const type = event.event_type || event.type;
+    const data = event.data || {};
+    let card = responseState.toolCards.get(key);
+    if (!card) {
+        responseState.thinkingBlock = null;
+        const element = document.createElement("div");
+        element.classList.add("tool");
+        element.style.display = "block";
+        const header = document.createElement("div");
+        header.style.cssText = "display:flex;align-items:baseline;gap:0.5em;flex-wrap:wrap";
+        const status = document.createElement("span");
+        status.classList.add("tool-status");
+        const name = document.createElement("span");
+        name.classList.add("tool-name");
+        const time = document.createElement("span");
+        time.classList.add("tool-time");
+        const details = document.createElement("details");
+        const summary = document.createElement("summary");
+        summary.textContent = "Execution details";
+        const body = document.createElement("div");
+        details.append(summary, body);
+        header.append(status, name, time);
+        element.append(header, details);
+        responseState.thoughtStream.appendChild(element);
+        card = {element, status, name, time, body, payload: {},
+                toolName: data.name, state: "running", eventIds: [], identity: event};
+        responseState.toolCards.set(key, card);
     }
-
-    tool.appendChild(status);
-    tool.appendChild(name);
-
-    if (details.textContent) {
-        tool.appendChild(details);
-    }
-
-    responseState.thoughtStream.appendChild(tool);
-
-    responseState.activeTools[data.name] = tool;
+    // Terminal events take precedence over a replayed start event.
+    if (type === "tool_started" && card.state !== "running") return;
+    Object.assign(card.payload, data);
+    card.toolName = data.name || card.toolName;
+    if (event.id != null && !card.eventIds.includes(event.id)) card.eventIds.push(event.id);
+    if (type === "tool_started") card.startedAt = event.created_at;
+    else card.finishedAt = event.created_at;
+    const states = {
+        tool_started: ["running", "●", "Running"],
+        tool_finished: ["succeeded", "✓", "Completed"],
+        tool_failed: ["failed", "✕", "Failed"],
+        tool_cancelled: ["cancelled", "■", "Cancelled"],
+        tool_interrupted: ["interrupted", "!", "Interrupted"]
+    };
+    const stateInfo = states[type];
+    if (!stateInfo) return;
+    [card.state, card.status.textContent, card.status.title] = stateInfo;
+    card.element.dataset.status = card.state;
+    card.name.textContent = getToolLabel(card.toolName || "Tool");
+    card.time.textContent = Number.isFinite(card.payload.elapsed)
+        ? `${card.payload.elapsed.toFixed(2)}s` : "";
+    renderToolDetails(card, event);
 }
 
-function finishTool(responseState, data) {
-    const tool = responseState.activeTools[data.name];
-
-    if (!tool) {
-        return;
+function renderToolDetails(card, event) {
+    card.body.replaceChildren();
+    const fields = [
+        ["Status", card.status.title],
+        ["Tool", card.toolName],
+        ["Conversation ID", event.conversation_id],
+        ["Assistant message ID", event.assistant_message_id],
+        ["Tool call ID", event.tool_call_id],
+        ["Event IDs", card.eventIds.length ? card.eventIds : undefined],
+        ["Started (UTC)", card.startedAt],
+        ["Ended (UTC)", card.finishedAt],
+        ["Duration (seconds)", card.payload.elapsed],
+        ["Inputs", card.payload.arguments],
+        ["Output", Object.hasOwn(card.payload, "result")
+            ? card.payload.result : undefined],
+        ["Error", card.payload.error]
+    ];
+    if (card.state === "succeeded" && !Object.hasOwn(card.payload, "result")) {
+        fields.push(["Output", "Output was not recorded for this older execution."]);
     }
-
-    const status = tool.querySelector(".tool-status");
-
-    status.textContent = "✓";
-
-    const time = document.createElement("span");
-    time.classList.add("tool-time");
-    time.textContent = `${data.elapsed.toFixed(2)}s`;
-
-    tool.appendChild(time);
-
-    delete responseState.activeTools[data.name];
+    if (card.state === "cancelled") {
+        fields.push(["Note", "Local execution was cancelled; an external tool may have continued."]);
+    }
+    for (const [label, value] of fields) {
+        if (value === undefined) continue;
+        const heading = document.createElement("strong");
+        heading.textContent = label;
+        heading.style.cssText = "display:block;color:#fff;font-weight:700;margin:1rem 0 0.4rem;line-height:1.4";
+        const text = document.createElement("pre");
+        text.style.cssText = "display:block;box-sizing:border-box;width:100%;min-width:0;margin:0;padding:0.75rem 1rem;background:#181818;border:1px solid #444;border-radius:8px;color:#e6e6e6;white-space:pre-wrap;overflow-wrap:anywhere;max-height:24rem;overflow:auto;font-family:ui-monospace,SFMono-Regular,Consolas,monospace;font-size:0.9rem;line-height:1.5";
+        const code = document.createElement("code");
+        code.style.cssText = "display:block;padding:0;margin:0;border:0;background:transparent;color:inherit;font:inherit;white-space:inherit";
+        // Tool outputs are untrusted data, never HTML.
+        code.textContent = typeof value === "string" ? value : JSON.stringify(value, null, 2);
+        text.appendChild(code);
+        card.body.append(heading, text);
+    }
 }
 
 function getToolLabel(name) {
@@ -593,7 +635,7 @@ function getToolDetails(name, args) {
     return "";
 }
 
-export function addStoredAssistantMessage(message, conversationId = state.currentConversationId) {
+export function addStoredAssistantMessage(message, conversationId = state.currentConversationId, executionEvents = []) {
     const container = document.createElement("div");
 
     container.classList.add(
@@ -602,35 +644,53 @@ export function addStoredAssistantMessage(message, conversationId = state.curren
     );
 
 
-    if (message.thinking) {
-        const thinkingDetails =
-            document.createElement("details");
-
-        thinkingDetails.classList.add(
-            "thinking-container"
-        );
-
-
-        const summary =
-            document.createElement("summary");
-
+    const events = executionEvents
+        .filter(event => event.assistant_message_id === message.id)
+        .slice().sort((a, b) => a.id - b.id);
+    if (message.thinking || events.length) {
+        const thinkingDetails = document.createElement("details");
+        thinkingDetails.classList.add("thinking-container");
+        const summary = document.createElement("summary");
         summary.textContent = "Thought";
-
-
-        const thinking =
-            document.createElement("div");
-
-        thinking.classList.add("thinking");
-
-        thinking.textContent = message.thinking;
-
-
-        thinkingDetails.appendChild(summary);
-        thinkingDetails.appendChild(thinking);
-
+        const stream = document.createElement("div");
+        stream.classList.add("thought-stream");
+        const hasThinkingEvents = events.some(event => event.event_type === "thinking_block");
+        // Older responses lack block events, so retain their saved text as a fallback.
+        if (!hasThinkingEvents && message.thinking) {
+            const thinking = document.createElement("div");
+            thinking.classList.add("thinking");
+            thinking.textContent = message.thinking;
+            stream.appendChild(thinking);
+        }
+        // A local rendering context avoids changing an active live response.
+        const storedState = {thoughtStream: stream, toolCards: new Map(),
+                             assistantMessageId: message.id};
+        for (const event of events) {
+            if (event.event_type === "thinking_block") {
+                const text = event.data?.text;
+                if (typeof text !== "string" || !text) continue;
+                const thinking = document.createElement("div");
+                thinking.classList.add("thinking");
+                thinking.dataset.eventId = String(event.id);
+                thinking.textContent = text;
+                stream.appendChild(thinking);
+            } else {
+                applyToolEvent(storedState, event);
+            }
+        }
+        for (const card of storedState.toolCards.values()) {
+            if (card.state === "running") {
+                // A saved start alone doesn't establish the current execution state.
+                card.state = "unknown";
+                card.element.dataset.status = "unknown";
+                card.status.textContent = "?";
+                card.status.title = "Outcome unconfirmed";
+                renderToolDetails(card, card.identity);
+            }
+        }
+        thinkingDetails.append(summary, stream);
         container.appendChild(thinkingDetails);
     }
-
 
     const content = document.createElement("div");
 

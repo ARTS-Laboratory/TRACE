@@ -1,10 +1,12 @@
+import asyncio
 import importlib
 import inspect
+import json
 import pkgutil
 import time
-from Functions.tool import Tool
+
 import Functions.Tools
-import json
+from Functions.tool import Tool
 
 BLUE_GREY = "\033[38;2;120;140;170m"
 RESET = "\033[0m"
@@ -52,28 +54,58 @@ class ToolManager:
     def schema(self):
         return [tool.schema() for tool in self.tools.values()]
 
-    async def execute(self, stats, name, on_event=None, conversation_id=None, **kwargs):
+    async def execute(
+        self,
+        stats,
+        name,
+        on_event=None,
+        tool_call_id=None,
+        conversation_id=None,
+        assistant_message_id=None,
+        record_event=None,
+        **kwargs,
+    ):
+
         async def emit(event_type, data):
+            event = {
+                "type": event_type,
+                "conversation_id": conversation_id,
+                "assistant_message_id": assistant_message_id,
+                "tool_call_id": tool_call_id,
+                "data": data,
+            }
+
+            if record_event:
+                record_event(event)
+
             if on_event:
-                await on_event(
-                    {
-                        "type": event_type,
-                        "conversation_id": conversation_id,
-                        "data": data,
-                    }
-                )
+                await on_event(event)
 
         await emit("tool_started", {"name": name, "arguments": kwargs})
-
         start = time.perf_counter()
+        try:
+            result = await self.tools[name].execute(**kwargs)
 
-        result = await self.tools[name].execute(**kwargs)
+        except asyncio.CancelledError:
+            elapsed = time.perf_counter() - start
+
+            await emit("tool_cancelled", {"name": name, "elapsed": elapsed})
+            raise
+
+        except Exception as e:
+            elapsed = time.perf_counter() - start
+
+            await emit(
+                "tool_failed", {"name": name, "elapsed": elapsed, "error": str(e)}
+            )
+            raise
 
         elapsed = time.perf_counter() - start
-
         stats.add_tool(name, elapsed)
 
-        await emit("tool_finished", {"name": name, "elapsed": elapsed})
+        await emit(
+            "tool_finished", {"name": name, "elapsed": elapsed, "result": result}
+        )
 
         return result
 
@@ -83,6 +115,8 @@ class ToolManager:
         tool_calls,
         on_event=None,
         conversation_id=None,
+        assistant_message_id=None,
+        record_event=None,
     ):
         messages = []
 
@@ -92,6 +126,7 @@ class ToolManager:
                 call_id = call["id"]
                 name = function["name"]
                 args = function["arguments"]
+
             else:
                 function = call.function
                 call_id = call.id
@@ -105,7 +140,10 @@ class ToolManager:
                 stats,
                 name,
                 on_event=on_event,
+                tool_call_id=call_id,
                 conversation_id=conversation_id,
+                assistant_message_id=assistant_message_id,
+                record_event=record_event,
                 **args,
             )
 
