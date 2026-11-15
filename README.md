@@ -1,126 +1,276 @@
-# Suppress duplicate visual tables
+# Traceable Retrieval and Citation Engine (TRACE)​
 
-This backend overlay filters complete Markdown or tab-separated tables that
-repeat a table successfully created by create_visual during the current turn.
-No npm dependency or frontend rebuild is required.
+> A local, multi-model AI agent with a browser-based interface, built to
+> keep capable AI workflows on your own hardware.
+ 
 
-## Year-range typography fix
+## What is Glorp-Cat?
 
-The reported Intel table escaped the initial filter because tool arguments used
-2021–2024 while Markdown used narrow no-break spaces around the dash. Whole-cell
-four-digit year ranges now normalize spacing and common dash typography before
-comparison. Changed years remain different. Other numeric ranges and general
-punctuation are not normalized. The reported five-row output is included as a
-regression fixture only; these tests do not validate the factual CEO selection.
+Glorp-Cat is a Python-based local AI assistant that brings together
+local language models, tool calling, and retrieval-augmented generation
+(RAG) in one system. Its goal is to provide a practical agent that can
+run on personal hardware while still having a clean browser UI for
+everyday use.
 
-If the initial integration is already installed, re-extract this updated archive.
-The apply script reports that integration is already present; that is expected.
-The updated helper and tests still need the application container rebuilt.
+The project is designed around a simple idea: keep routine work local,
+use tools when the model needs information or actions, and reserve
+external AI assistance for tasks that genuinely exceed the local
+system's capabilities.
 
-## Apply
+## Current capabilities
 
-Extract at the Glorp-Cat repository root, preserving paths. Then run:
+-   Streamed chat responses in both the command-line interface and
+    browser UI
+-   llama.cpp-based local inference with thinking and tool-calling
+    workflows
+-   Dedicated multimodal llama.cpp service for image and audio
+    inspection
+-   A FastAPI-powered web interface
+-   Model response statistics, including token usage, generation speed,
+    tool use, and timing
+-   MCP-based tool integration for extensible agent capabilities
+-   An in-development RAG pipeline for injecting and searching project
+    documents
 
-    cd /home/thienan/Documents/GitHub/Glorp-Cat
-    python3 apply_table_filter.py
-    python3 -m unittest discover -s tests -p 'test_*visual_table*.py' -v
-    docker compose up -d --build glorpcat
+## Architecture
 
-Run the commands in sequence, continuing only after each succeeds. The apply
-script checks the reviewed source sections and compiles both updated modules
-before writing. If your source differs, it stops without modifying either
-existing source file. Paste that error rather than forcing the patch.
+Glorp-Cat keeps each responsibility separate so the project can grow
+without turning into one giant script:
 
-The script changes:
-- src/Functions/Tools/createVisual.py
-- src/Functions/Agent/streaming.py
+| Component | Role |
+|---|---|
+| GlorpCat application | Runs the FastAPI browser UI, agent, tools, conversation management, RAG integration, and application logic. |
+| Local inference services | Runs specialized local models independently from the main application. The current Docker deployment uses llama.cpp with ROCm for both the main agent model and multimodal media model. |
+| Agent layer | Coordinates messages, reasoning output, tool calls, and final responses. |
+| MCP tools | Adds capabilities such as search and other external actions through a standard interface. |
+| RAG pipeline *(in integration)* | Parses, chunks, embeds, and retrieves information from local documents for use by GlorpCat. |
+| FastAPI browser UI | Provides the primary interface while using the same underlying agent system as the CLI. |
 
-The overlay adds:
-- src/Functions/Visuals/duplicate_tables.py
-- tests/test_duplicate_visual_tables.py
-- tests/test_visual_table_integration.py
-- apply_table_filter.py
+The recommended deployment uses Docker Compose to keep the application
+and inference engine separate:
 
-The first application preserves original source beside each changed file as
-createVisual.py.visual-filter.bak and streaming.py.visual-filter.bak. It refuses
-to overwrite existing backups and is a no-op when both integration markers
-already exist. Normal source differences should be reviewed with git diff.
+``` text
+Docker Compose
+│
+├── glorpcat
+│   ├── FastAPI / Browser UI
+│   ├── Agent
+│   ├── MCP Tools
+│   └── RAG
+│
+├── inference
+│   ├── llama.cpp
+│   ├── ROCm
+│   ├── Nemotron
+│   └── Chat / Reasoning / Tool Calling
+│
+└── media
+    ├── llama.cpp
+    ├── ROCm
+    ├── Gemma 4 E2B + multimodal projector
+    └── Image / Audio Inspection
+```
+## RAG pipeline *(work in progress)*
 
-No server.py, agent.py, schemas, database, or frontend source is replaced.
-Existing prompt guidance and the temporary per-turn reminder may remain.
+> **Project status:** 🚧 **Work in Progress**
+>
+> Glorp-Cat's Retrieval-Augmented Generation (RAG) pipeline is actively being developed and integrated into the agent. The overall architecture is in place, but several stages are still being refined, optimized, and connected to the main Glorp-Cat workflow. Parser configurations, chunking strategies, and retrieval quality should be considered experimental until the pipeline is complete.
 
-## Retest
+### Overview
 
-Use a new conversation and ask:
+The RAG component is a modular document-ingestion pipeline that processes a wide variety of technical documents into a searchable vector database. Once integrated, it will give Glorp-Cat a local knowledge base that it can retrieve from when answering questions about injected project documents.
 
-> Create a table titled "Components" with columns Component and Purpose. Use
-> exactly these rows: FastAPI / Backend; React / Visual rendering; Nemotron /
-> Local model.
+The pipeline uses interchangeable parsing backends so each document type can be processed by the parser best suited to it. Current development focuses on bringing **Docling** and **Marker 2** into a common workflow while retaining unified downstream chunking and retrieval.
 
-Expect a single inline visual. An exact duplicate Markdown table is suppressed,
-including the specific "Here's the requested table:" boilerplate when directly
-followed by that duplicate. Other explanatory text is retained. Refresh to verify
-the duplicate is absent from saved response blocks too. Existing saved messages
-are not rewritten; this applies only to new generation after deployment.
+Current execution flow:
 
-Also test a requested explanation and source attribution after a visual, a
-normal non-visual answer, cancellation partway through an explanation, and
-another visual in the same turn. Unmatched text should be retained.
+```text
+Input/
+   │
+   ▼
+GPU / System Initialization
+   │
+   ▼
+Initialize Docling Chunker
+   │
+   ▼
+Build Project Paths
+   │
+   ▼
+Create ChromaDB Client
+   │
+   ▼
+Classify Input Documents
+   │
+   ├── PDF Classification
+   └── General File Classification
+   │
+   ▼
+Display Parsing Plan
+   │
+   ▼
+Create / Open Chroma Collection
+   │
+   ▼
+(Optional) Query Existing Collection
+   │
+   ▼
+Document Conversion
+      ├── Marker 2
+      └── Docling
+```
 
-## How it works
+### Document classification
 
-CreateVisual records validated table specifications only after its callback
-returns visual_id and block_id without an error. The temporary tool instance
-already lasts only for one active chat turn, so previous turns do not register
-tables for suppression.
+Each document is analyzed before parsing. The classifier determines its
+document type, appropriate parser, parsing profile, and output location.
+This lets the pipeline automatically route documents to the most
+suitable parsing backend.
 
-Each model streaming pass takes the already-created table specifications and
-filters content_delta before forwarding it. The same filtered text is returned
-to the agent conversation. Your existing server persists forwarded text as
-response_text and response blocks, so displayed and saved text agree.
+### Parsing backends
 
-The filter compares all column headings and all rows in order, normalizing
-whitespace and a small set of Markdown wrappers. It suppresses only a complete
-match. Changed values, extra or missing rows, reordered rows, changed headings,
-and citations embedded in cells are preserved. Fenced and indented code are
-also preserved. Explicit source links outside the table remain in the output.
+#### Marker 2
 
-Content passes through immediately when there is no registered visual table.
-After a table is registered, ordinary text is released one completed line at a
-time; candidate tables are held until their boundary or stream completion so
-they never flash on screen before being removed. A trailing line is flushed at
-completion, cancellation, or provider failure. This adds line-level latency to
-post-table text, rather than holding the entire response. Candidate buffering
-is capped at 256 KiB; exceeding that limit preserves text and disables filtering
-for the remainder of that model pass.
+Marker is used for high-fidelity PDF extraction, especially for
+scientific papers, technical reports, multi-column layouts, tables, and
+mathematical content.
 
-## Scope
+Current features include:
 
-This fixes the observed duplicate-table format without another model request.
-It is not universal semantic deduplication. It does not suppress paraphrased
-prose, HTML tables, altered data, or tables generated before their visual is
-successfully created. It does not verify factual correctness. Checklists and
-other visual types are outside this change.
+-   Native SDK integration with no CLI subprocesses
+-   llama.cpp-powered multimodal LLM processors
+-   Markdown export
+-   JSON export
+-   Embedded-image extraction
 
-By default, identical tables after a created visual are suppressed even if
-the model intended to repeat them. For an application flow that explicitly
-requires both representations, set visual_tool.suppress_duplicate_tables = False
-before agent.chat. Natural-language opt-out detection is not implemented.
+#### Docling
 
-## Validation
+Docling serves as the general-purpose document parser, with current work
+focused on general PDF parsing, Office-document support, native document
+chunking, and rich document-structure extraction.
 
-40 tests passed in the preparation environment: 30 filter tests and 10
-integration/patch tests. Tests cover every chunk width for the Components
-example, TSV text, formatting, preservation cases, partial tables, code fences,
-multiple visuals, bounded buffering, success/failure registration, consistent
-emitted/returned text, cancellation, provider errors, explicit opt-out, patch
-idempotency, backups, and rejection of unexpected source before writes.
+The long-term plan is for Docling to become the primary ingestion
+engine, with Marker acting as a specialized parser for complex PDFs.
 
-Integration tests use the reviewed streaming control flow with a fake provider;
-they do not run your live model, FastAPI server, or actual database. Run the
-tests against your extracted files and verify the new response in the browser.
+### Chunking *(under development)*
 
-## Rollback
+Chunking has been partially implemented but is not yet integrated into
+the main execution flow. Current work includes:
 
-Restore createVisual.py and streaming.py from their .visual-filter.bak copies,
-then rebuild glorpcat. Added helper/tests can remain unused or be removed.
+-   Docling `HybridChunker`
+-   Token-aware chunk sizing
+-   Metadata generation
+-   Parser-independent chunk normalization
+
+Future work includes context-aware chunk generation, parser-output
+normalization, chunk-quality evaluation, and retrieval benchmarking.
+
+### ChromaDB integration *(under development)*
+
+A ChromaDB client is initialized at startup, with browser-based
+collection management for listing, selecting, creating, and deleting
+collections. A basic query interface is also being developed. Automatic
+ingestion of parsed chunks remains disabled while the chunking pipeline
+is finalized.
+
+### Query system
+
+A basic query interface is available for interacting with existing
+Chroma collections. It will grow into a full retrieval pipeline that
+supports similarity search, metadata filtering, source citations, and
+multi-document retrieval, then delivers the retrieved context to
+Glorp-Cat for answer generation.
+
+### Development priorities
+
+The ingestion pipeline is being completed in this order:
+
+1.  Finish parser integration
+2.  Finalize chunk generation
+3.  Normalize metadata between parsers
+4.  Integrate automatic ChromaDB ingestion
+5.  Evaluate retrieval quality
+6.  Add answer generation using retrieved context
+
+### Design philosophy
+
+The RAG system deliberately treats parsing, chunking, embedding, and
+retrieval as independent components instead of one monolithic process.
+This enables multiple parsing backends, independent parser benchmarking,
+configurable chunking strategies, future embedding-model replacement,
+and vector-database portability.
+
+Its long-term objective is a flexible RAG ingestion pipeline that
+reliably processes technical documents, remains easy to extend as
+parsers, embedding models, and retrieval techniques improve, and gives
+Glorp-Cat grounded access to the user's local document collection.
+
+## Requirements
+
+Glorp-Cat is intended for a local model that supports both
+**thinking/reasoning** and **tool calling**. A capable GPU and
+sufficient VRAM/RAM are strongly recommended, especially for larger
+models or longer context windows.
+
+The recommended deployment uses **Docker Compose**. The current
+development environment targets Linux and AMD ROCm, with the inference
+stack tested on AMD Strix Halo hardware.
+
+The Docker deployment provides the application and inference
+environments, but **does not bundle a language model**. Users provide
+local GGUF files for the main agent model and the multimodal media
+model. The current tested configuration uses Nemotron for
+chat/reasoning/tool calling and Gemma 4 E2B for image/audio inspection.
+
+Native Python execution remains available for development and debugging.
+
+## Getting started
+
+The browser UI is served through FastAPI, while a command-line interface
+remains available for direct terminal interaction.
+
+The recommended way to run Glorp-Cat is through Docker Compose.
+
+At a high level:
+
+``` bash
+git clone https://github.com/thoang12345/Glorp-Cat.git
+cd Glorp-Cat
+
+cp .env.example .env
+```
+
+For installation, configuration, model setup, and launch instructions,
+see the [system development README](system%20development/README.md).
+
+## Project direction
+
+Current development is focused on finishing the document-ingestion
+pipeline and improving the browser UI. Longer-term work includes:
+
+-   Better document parsing, chunking, and image-aware retrieval
+-   ChromaDB-backed retrieval alongside Neo4j knowledge-graph/GraphRAG
+    support
+-   A graphical document-ingestion workflow
+-   Additional quality-of-life improvements for the UI
+-   An optional agent-loop mode for executing user-defined workflows
+    with minimal human intervention
+
+## Related project
+
+-   [PaperParsing](https://github.com/thoang12345/PaperParsing) --- the
+    standalone RAG and document-ingestion pipeline being developed for
+    integration with Glorp-Cat.
+
+## Status
+
+Glorp-Cat is actively under development. Functionality and reliability
+take priority over visual polish while the core agent, tools, and RAG
+system are being built out.
+
+## Why local?
+
+Running locally gives you more control over your data, your models, and
+your workflow. Glorp-Cat is not trying to replace every cloud model; it
+is built to make local AI useful enough to handle the work that should
+stay on your machine.
