@@ -1,3 +1,5 @@
+import { renderVisual, unmountVisuals } from "./visuals.js";
+
 // Keep Markdown parsing, sanitization, math protection and code controls shared.
 export function renderMarkdown(state) {
     const protectedMath = protectMath(
@@ -23,8 +25,11 @@ export function renderMarkdown(state) {
     enhanceCodeBlocks(state.assistant);
 }
 
-export function createResponseBlockState(container) {
-    return {container, blocks: new Map(), dirty: new Set(), frame: null};
+export function createResponseBlockState(container, {deferVisuals = false} = {}) {
+    return {
+        container, blocks: new Map(), dirty: new Set(), frame: null,
+        disposed: false, deferVisuals, pendingVisuals: new Set()
+    };
 }
 
 function ensureResponseBlock(state, block) {
@@ -40,6 +45,10 @@ function ensureResponseBlock(state, block) {
     element.classList.add("response-block");
     element.dataset.blockId = key;
     element.dataset.blockType = block.type;
+    if (block.type === "visual" && state.deferVisuals) {
+        element.hidden = true;
+        element.style.display = "none";
+    }
     entry = {id: block.id, type: block.type, content: "", element};
     state.blocks.set(key, entry);
     // IDs are assigned by the backend in creation order. Keep late arrivals
@@ -54,6 +63,7 @@ function ensureResponseBlock(state, block) {
 }
 
 function scheduleResponseBlocks(state) {
+    if (state.disposed) return;
     if (state.frame !== null) return;
     state.frame = requestAnimationFrame(() => {
         state.frame = null;
@@ -64,6 +74,7 @@ function scheduleResponseBlocks(state) {
 // A snapshot replaces content; a delta appends content. Never apply both
 // interpretations to the same event.
 export function setResponseBlock(state, block) {
+    if (state.disposed) return;
     const entry = ensureResponseBlock(state, block);
     entry.content = typeof block.content === "string" ? block.content : "";
     entry.visualId = block.visual_id ?? null;
@@ -72,6 +83,7 @@ export function setResponseBlock(state, block) {
 }
 
 export function appendResponseText(state, blockId, delta) {
+    if (state.disposed) return;
     const entry = ensureResponseBlock(state, {id: blockId ?? "legacy-text", type: "text"});
     entry.content += delta;
     state.dirty.add(entry);
@@ -79,7 +91,7 @@ export function appendResponseText(state, blockId, delta) {
 }
 
 export function flushResponseBlocks(state) {
-    if (!state) return;
+    if (!state || state.disposed) return;
     if (state.frame !== null) {
         cancelAnimationFrame(state.frame);
         state.frame = null;
@@ -87,16 +99,48 @@ export function flushResponseBlocks(state) {
     for (const entry of state.dirty) {
         if (entry.type === "text") {
             renderMarkdown({markdown: entry.content, assistant: entry.element});
+        } else if (entry.type === "visual") {
+            if (state.deferVisuals) {
+                // Reserve its ordered slot without fetching or mounting React.
+                entry.element.hidden = true;
+                entry.element.style.display = "none";
+                state.pendingVisuals.add(entry);
+                continue;
+            }
+            entry.element.hidden = false;
+            entry.element.style.removeProperty("display");
+            state.pendingVisuals.delete(entry);
+            renderVisual(entry.element, entry.visualId);
         } else {
             entry.element.classList.add("response-block-placeholder");
             entry.element.style.cssText =
                 "border:1px solid currentColor;border-radius:8px;padding:12px;margin:12px 0;opacity:.75";
-            entry.element.textContent = entry.type === "visual"
-                ? "Visual placeholder" + (entry.visualId != null ? " · " + entry.visualId : "")
-                : "Unsupported content block: " + entry.type;
+            entry.element.textContent = "Unsupported content block: " + entry.type;
         }
     }
     state.dirty.clear();
+}
+
+// Called only when the live response finishes, stops, or fails.
+export function releaseResponseVisuals(state) {
+    if (!state || state.disposed) return;
+    state.deferVisuals = false;
+    for (const entry of state.pendingVisuals) state.dirty.add(entry);
+    state.pendingVisuals.clear();
+    // Also handles a visual still waiting in the scheduled dirty batch.
+    flushResponseBlocks(state);
+}
+
+// Stop deferred block work before removing a response's DOM.
+export function disposeResponseBlocks(state) {
+    if (!state || state.disposed) return;
+    state.disposed = true;
+    if (state.frame !== null) cancelAnimationFrame(state.frame);
+    state.frame = null;
+    state.dirty.clear();
+    state.pendingVisuals.clear();
+    unmountVisuals(state.container);
+    state.blocks.clear();
 }
 
 export function renderStoredResponse(container, message) {

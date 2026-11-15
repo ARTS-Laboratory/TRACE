@@ -1,0 +1,76 @@
+#root {
+  width: 100%;
+  padding: 24px;
+  box-sizing: border-box;
+}
+
+.visual-demo {
+  max-width: 800px;
+  margin: 0 auto;
+  text-align: left;
+}
+
+.visual-demo h1 {
+  font-size: 1.5rem;
+}
+
+.table-scroll {
+  overflow-x: auto;
+  border: 1px solid #555;
+  border-radius: 12px;
+}
+
+.visual-demo table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.visual-demo caption {
+  padding: 16px;
+  text-align: left;
+  font-weight: 700;
+}
+
+.visual-demo th,
+.visual-demo td {
+  padding: 12px 16px;
+  border-top: 1px solid #555;
+  text-align: left;
+}
+
+.visual-demo th {
+  background: rgb(128 128 128 / 15%);
+}
+
+.checklist {
+  margin: 24px 0;
+  padding: 16px;
+  border: 1px solid #555;
+  border-radius: 12px;
+}
+
+.checklist legend {
+  padding: 0 8px;
+  font-weight: 700;
+}
+
+.checklist-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 0;
+  cursor: pointer;
+}
+
+.checklist-item input {
+  width: 18px;
+  height: 18px;
+  accent-color: #8b9dff;
+}
+
+.state-preview {
+  padding: 16px;
+  overflow-x: auto;
+  background: rgb(128 128 128 / 12%);
+  border-radius: 8px;
+}

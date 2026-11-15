@@ -1,0 +1,5 @@
+.gc-visual-state-host .gc-visual-save-controls { display: flex; align-items: baseline; gap: 0.75rem; flex-wrap: wrap; margin: 0.5rem 0 1rem; font-size: 0.85em; }
+.gc-visual-state-host .gc-visual-save-status { margin: 0; opacity: 0.85; }
+.gc-visual-state-host .gc-visual-save-controls[hidden] { display: none; }
+.gc-visual-state-host .gc-visual-save-controls[data-phase="error"] .gc-visual-save-status { color: #ffb4bc; opacity: 1; }
+.gc-visual-state-host .gc-visual-save-controls button { padding: 0.2rem 0.6rem; font: inherit; color: inherit; background: transparent; border: 1px solid currentColor; border-radius: 5px; cursor: pointer; }

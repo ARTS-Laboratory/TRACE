@@ -1,4 +1,6 @@
 import { state } from "./state.js";
+import { disposeResponseBlocks } from "./rendering.js";
+import { unmountVisuals } from "./visuals.js";
 
 let chatTitle;
 let chat;
@@ -338,8 +340,13 @@ async function deleteConversation(conversationId) {
     const deletedCurrent =
         conversationId === state.currentConversationId;
 
+    const responseState = state.responseStates.get(conversationId);
+    disposeResponseBlocks(responseState?.blockState);
+
     const view = state.conversationViews.get(conversationId);
     if (view) {
+        // Includes stored messages whose block states are no longer retained.
+        unmountVisuals(view);
         view.remove();
         state.conversationViews.delete(conversationId);
     }

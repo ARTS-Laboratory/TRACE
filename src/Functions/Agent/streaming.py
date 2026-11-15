@@ -1,4 +1,5 @@
 from Functions.Model.providers.registry import create_chat_provider
+from Functions.Visuals.duplicate_tables import DuplicateVisualTableFilter
 
 
 async def streamResponse(
@@ -23,25 +24,40 @@ async def streamResponse(
     tool_calls = []
     metrics = None
 
+    visual_tool = toolManager.tools.get("create_visual")
+    duplicate_filter = DuplicateVisualTableFilter(
+        getattr(visual_tool, "created_tables", [])
+        if getattr(visual_tool, "suppress_duplicate_tables", True) else []
+    )
+
     provider = create_chat_provider()
 
-    async for chunk in provider.stream_chat(
-        messages,
-        toolManager.schema(),
-    ):
-        if chunk.thinking_delta:
-            thinking_content += chunk.thinking_delta
-            await emit("thinking_delta", chunk.thinking_delta)
+    try:
+        async for chunk in provider.stream_chat(
+            messages,
+            toolManager.schema(),
+        ):
+            if chunk.thinking_delta:
+                thinking_content += chunk.thinking_delta
+                await emit("thinking_delta", chunk.thinking_delta)
 
-        if chunk.content_delta:
-            response_content += chunk.content_delta
-            await emit("content_delta", chunk.content_delta)
+            if chunk.content_delta:
+                visible = duplicate_filter.feed(chunk.content_delta)
+                if visible:
+                    response_content += visible
+                    await emit("content_delta", visible)
 
-        if chunk.tool_calls:
-            tool_calls.extend(chunk.tool_calls)
+            if chunk.tool_calls:
+                tool_calls.extend(chunk.tool_calls)
 
-        if chunk.metrics:
-            metrics = chunk.metrics
+            if chunk.metrics:
+                metrics = chunk.metrics
+    finally:
+        # Flush unmatched/partial text on completion, cancellation, or failure.
+        remaining = duplicate_filter.finish()
+        if remaining:
+            response_content += remaining
+            await emit("content_delta", remaining)
 
     if metrics is None:
         raise RuntimeError("The model backend ended without timing metadata.")

@@ -36,3 +36,4 @@ ddgs[mcp]
 
 # Utilities
 pytictoc
+pydantic>=2,<3

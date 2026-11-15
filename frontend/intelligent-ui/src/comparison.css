@@ -1,0 +1,54 @@
+.gc-visual .gc-comparison {
+  margin: 1rem 0;
+  border: 1px solid #555;
+  border-radius: 14px;
+  overflow: hidden;
+  min-width: 0;
+}
+.gc-visual .gc-comparison h3 {
+  margin: 0;
+  padding: 1.25rem;
+  font-size: 1.05em;
+}
+.gc-visual .gc-comparison-scroll {
+  overflow-x: auto;
+  max-width: 100%;
+}
+.gc-visual .gc-comparison-scroll:focus-visible {
+  outline: 2px solid #8b9dff;
+  outline-offset: -3px;
+}
+.gc-visual .gc-comparison table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 0;
+  border: 0;
+  border-radius: 0;
+}
+.gc-visual .gc-comparison th,
+.gc-visual .gc-comparison td {
+  min-width: 9rem;
+  padding: 1rem;
+  text-align: left;
+  vertical-align: top;
+  border: 1px solid #444;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+.gc-visual .gc-comparison thead th {
+  background: rgba(139, 157, 255, 0.14);
+}
+.gc-visual .gc-comparison tbody th {
+  background: rgba(128, 128, 128, 0.1);
+}
+.gc-visual .gc-comparison-empty { opacity: 0.65; }
+.gc-visual .gc-comparison-caption {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}

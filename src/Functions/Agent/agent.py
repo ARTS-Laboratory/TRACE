@@ -1,3 +1,5 @@
+import json
+
 from Functions.Agent.streaming import streamResponse
 from Functions.responseStats import ResponseStats
 
@@ -25,8 +27,33 @@ class Agent:
         self.conversation.add_user(user_input, attachments)
 
         while True:
+            visual_created = False
+
+            model_messages = self.conversation.get_model_messages()
+
+            if visual_created:
+                reminder = (
+                    "\n\nCurrent-turn visual output rule:\n"
+                    "A create_visual call has succeeded. The application displays "
+                    "that visual automatically. Do not repeat its contents as a "
+                    "Markdown table, checklist, list, or prose summary unless the "
+                    "user explicitly requested duplicate output. "
+                    "Provide only a brief confirmation and any requested source "
+                    "links or additional explanation. Additional explanation "
+                    "must add information rather than reconstruct the visual. "
+                    "Do not mention internal IDs or output-format compliance. "
+                    "Continue using tools if needed to complete the remaining "
+                    "request, but do not recreate an already completed visual "
+                    "merely to acknowledge it."
+                )
+
+                model_messages[0] = {
+                    **model_messages[0],
+                    "content": model_messages[0]["content"] + reminder,
+                }
+
             assistant = await streamResponse(
-                self.conversation.get_model_messages(),
+                model_messages,
                 self.tool_manager,
                 stats,
                 on_event=on_event,
@@ -53,16 +80,30 @@ class Agent:
             if not assistant["tool_calls"]:
                 break
 
-            self.conversation.add_tool_messages(
-                await self.tool_manager.execute_calls(
-                    stats,
-                    assistant["tool_calls"],
-                    on_event=on_event,
-                    conversation_id=self.conversation_id,
-                    assistant_message_id=assistant_message_id,
-                    record_event=record_event,
-                )
+            tool_messages = await self.tool_manager.execute_calls(
+                stats,
+                assistant["tool_calls"],
+                on_event=on_event,
+                conversation_id=self.conversation_id,
+                assistant_message_id=assistant_message_id,
+                record_event=record_event,
             )
+
+            self.conversation.add_tool_messages(tool_messages)
+
+            for tool_message in tool_messages:
+                if tool_message.get("name") != "create_visual":
+                    continue
+
+                result = json.loads(tool_message["content"])
+
+                if (
+                    isinstance(result, dict)
+                    and "error" not in result
+                    and "visual_id" in result
+                    and "block_id" in result
+                ):
+                    visual_created = True
 
         # print("DEBUG: starting load_active", flush=True)
         await self.model_manager.load()

@@ -1,0 +1,156 @@
+from pydantic import TypeAdapter, ValidationError
+
+from Functions.tool import Tool
+from Functions.Visuals.schemas import (
+    ChartSpec,
+    ChecklistSpec,
+    ComparisonSpec,
+    FlowchartSpec,
+    StatusSpec,
+    TableSpec,
+    VisualSpec,
+)
+
+visual_spec_adapter = TypeAdapter(VisualSpec)
+
+
+class CreateVisual(Tool):
+    def __init__(self, on_create_visual):
+        self.on_create_visual = on_create_visual
+        super().__init__(
+            "create_visual",
+            "Creates an inline checklist, table, bar or line chart, comparison, flowchart, "
+            "or compact status summary in the current response.",
+        )
+
+    def schema(self):
+        checklist_schema = ChecklistSpec.model_json_schema()
+        table_schema = TableSpec.model_json_schema()
+        chart_schema = ChartSpec.model_json_schema()
+        comparison_schema = ComparisonSpec.model_json_schema()
+        flowchart_schema = FlowchartSpec.model_json_schema()
+        status_schema = StatusSpec.model_json_schema()
+
+        properties = {
+            **checklist_schema["properties"],
+            **table_schema["properties"],
+            **chart_schema["properties"],
+            **comparison_schema["properties"],
+            **flowchart_schema["properties"],
+            **status_schema["properties"],
+        }
+
+        properties["type"] = {
+            "type": "string",
+            "enum": [
+                "checklist",
+                "table",
+                "chart",
+                "comparison",
+                "flowchart",
+                "status",
+            ],
+            "description": "The visual type to create.",
+        }
+        properties["checklist_items"]["description"] = (
+            "Required for checklists. Omit for tables, charts, statuses, and comparisons. "
+            "Each item must have a unique ID and a label."
+        )
+        properties["columns"]["description"] = (
+            "Required for tables. Omit for checklists, charts, statuses, and comparisons."
+            "The table's column headings."
+        )
+        properties["rows"]["description"] = (
+            "Required for tables. Omit for checklists, charts, statuses, and comparisons "
+            "Each row must contain one string cell per column."
+        )
+        properties["chart_type"]["description"] = (
+            "Required for charts. Omit for checklists, tables, statuses, and comparisons. "
+            "Use 'bar' for category comparisons or 'line' for trends."
+        )
+        properties["labels"]["description"] = (
+            "Required for charts. Omit for checklists, tables, statuses, and comparisons. "
+            "Ordered category or horizontal-axis labels."
+        )
+        properties["series"]["description"] = (
+            "Required for charts. Omit for checklists, tables, statuses, and comparisons. "
+            "Each series has a name and a list of numeric values. "
+            "Provide exactly one value per label, in the same order."
+        )
+        properties["criteria"]["description"] = (
+            "Required for comparisons. Omit for checklists, tables, statuses, and charts. "
+            "Shared criteria used to compare all options, in display order."
+        )
+        properties["options"]["description"] = (
+            "Required for comparisons. Omit for checklists, tables, statuses, and charts. "
+            "Provide 2–4 options, each with a nonempty name and a list of string values. "
+            "Each option must contain exactly one value per criterion, in the same order. "
+            "Use an empty string for an unspecified value."
+        )
+        properties["direction"]["description"] = (
+            "Optional for flowcharts; defaults to 'TD'. "
+            "Omit for checklists, tables, charts, statuses, and comparisons. "
+            "Use 'TD' for top-down or 'LR' for left-to-right."
+        )
+        properties["nodes"]["description"] = (
+            "Required for flowcharts. Omit for checklists, tables, charts, statuses, and comparisons. "
+            "Provide 1–30 nodes, each with a unique nonempty ID and a nonempty label."
+        )
+        properties["edges"]["description"] = (
+            "Required for flowcharts. Omit for checklists, tables, charts, statuses, and comparisons. "
+            "Provide up to 60 connections. Each connection has source and target fields "
+            "referencing existing node IDs, and an optional label defaulting to an empty string. "
+            "Use an empty list for a flowchart without connections. "
+            "Cycles and self-connections are allowed."
+        )
+        properties["checklist_items"]["description"] = (
+            "Required for checklists. Omit for tables, charts, comparisons, flowcharts, "
+            "and statuses. Provide 1–50 items, each with a unique nonempty ID "
+            "and a nonempty label."
+        )
+        properties["status_items"]["description"] = (
+            "Required for statuses. Omit for checklists, tables, charts, comparisons, "
+            "and flowcharts. Provide 1–20 entries, each with a nonempty label, "
+            "a state, and optional detail text defaulting to an empty string. "
+            "Use 'pending', 'in_progress', 'success', 'warning', or 'error' for state. "
+            "These are saved status snapshots; they do not update automatically."
+        )
+
+        definitions = {
+            **checklist_schema.get("$defs", {}),
+            **table_schema.get("$defs", {}),
+            **chart_schema.get("$defs", {}),
+            **comparison_schema.get("$defs", {}),
+            **flowchart_schema.get("$defs", {}),
+            **status_schema.get("$defs", {}),
+        }
+
+        parameters = {
+            "type": "object",
+            "properties": properties,
+            "required": ["type", "title"],
+            "additionalProperties": False,
+        }
+
+        if definitions:
+            parameters["$defs"] = definitions
+
+        return {
+            "type": "function",
+            "function": {
+                "name": self.name,
+                "description": self.description,
+                "parameters": parameters,
+            },
+        }
+
+    async def execute(self, **kwargs):
+        try:
+            spec = visual_spec_adapter.validate_python(kwargs)
+
+        except ValidationError as e:
+            return {"error": str(e)}
+
+        result = await self.on_create_visual(spec)
+
+        return result

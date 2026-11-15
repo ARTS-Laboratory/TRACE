@@ -27,10 +27,11 @@ from Functions.Conversation.manager import ConversationManager
 from Functions.Model.config import DATA_PATH
 from Functions.Model.llama_cpp_server import LlamaCppServerManager
 from Functions.RAG.job_store import IngestionJobStore
-from Functions.RAG.RAG_api import ingest_document
 from Functions.RAG.retrieval import keyword_search, vector_search
 from Functions.RAG.worker import IngestionWorker
 from Functions.Storage.database import Database
+from Functions.Tools.createVisual import CreateVisual
+from Functions.Visuals.schemas import ChecklistSpec, ChecklistState
 
 runtime = None
 database = None
@@ -409,6 +410,54 @@ def get_service_logs(service: str, tail: int = 200):
         ) from error
 
 
+@app.get("/api/visuals/{visual_id}")
+async def get_visual(visual_id: int):
+    visual = database.get_visual(visual_id=visual_id)
+
+    if visual is None:
+        raise HTTPException(status_code=404, detail="Visual not found")
+
+    visual["state"] = database.get_visual_state(visual_id=visual_id)
+
+    return visual
+
+
+@app.put("/api/visuals/{visual_id}/state")
+async def save_visual_state(visual_id: int, state: ChecklistState):
+    visual = database.get_visual(visual_id=visual_id)
+
+    if visual is None:
+        raise HTTPException(status_code=404, detail="Visual not found")
+
+    if visual["spec"]["type"] != "checklist":
+        raise HTTPException(
+            status_code=400,
+            detail="This visual does not support checklist state",
+        )
+
+    spec = ChecklistSpec.model_validate(visual["spec"])
+
+    valid_ids = {item.id for item in spec.checklist_items}
+    unknown_ids = set(state.checked) - valid_ids
+
+    if unknown_ids:
+        raise HTTPException(
+            status_code=422,
+            detail={
+                "message": "Unknown checklist item IDs",
+                "unknown_ids": sorted(unknown_ids),
+            },
+        )
+
+    saved_state = state.model_dump()
+    database.save_visual_state(
+        visual_id=visual_id,
+        state=saved_state,
+    )
+
+    return {"visual_id": visual_id, "state": saved_state}
+
+
 async def handle_chat(websocket: WebSocket, data):
     conversation_id = data["conversation_id"]
 
@@ -464,12 +513,10 @@ async def handle_chat(websocket: WebSocket, data):
             }
         )
 
-        async def insert_visual_block(visual_id):
+        async def on_create_visual(spec):
             nonlocal active_text_block_id, active_block_text
-            visual_block_id = database.add_response_block(
-                assistant_message_id=assistant_message_id,
-                block_type="visual",
-                visual_id=visual_id,
+            ids = database.add_visual_block(
+                assistant_message_id=assistant_message_id, spec=spec.model_dump()
             )
 
             event = {
@@ -477,16 +524,18 @@ async def handle_chat(websocket: WebSocket, data):
                 "conversation_id": conversation_id,
                 "assistant_message_id": assistant_message_id,
                 "data": {
-                    "id": visual_block_id,
+                    "id": ids["block_id"],
                     "type": "visual",
-                    "visual_id": visual_id,
+                    "visual_id": ids["visual_id"],
                 },
             }
 
-            await send_event(event=event)
-
             active_text_block_id = None
             active_block_text = ""
+
+            await send_event(event=event)
+
+            return ids
 
         async def send_event(event):
             nonlocal active_text_block_id, active_block_text, response_text
@@ -528,15 +577,22 @@ async def handle_chat(websocket: WebSocket, data):
         )
         record_event = database.add_execution_event
 
+        visual_tool = CreateVisual(on_create_visual=on_create_visual)
+        agent.tool_manager.register(visual_tool)
+
         print("CHAT START", conversation_id)
 
-        assistant = await agent.chat(
-            message,
-            attachments=attachments,
-            on_event=send_event,
-            assistant_message_id=assistant_message_id,
-            record_event=record_event,
-        )
+        try:
+            assistant = await agent.chat(
+                message,
+                attachments=attachments,
+                on_event=send_event,
+                assistant_message_id=assistant_message_id,
+                record_event=record_event,
+            )
+        finally:
+            if agent.tool_manager.tools.get("create_visual") is visual_tool:
+                del agent.tool_manager.tools["create_visual"]
 
         print("CHAT END", conversation_id)
 

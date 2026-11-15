@@ -14,7 +14,7 @@ import {
     createResponseBlockState,
     appendResponseText,
     setResponseBlock,
-    flushResponseBlocks,
+    releaseResponseVisuals,
     renderStoredResponse
 } from "./rendering.js";
 
@@ -45,11 +45,22 @@ ws.onopen = () => {
 
 ws.onmessage = async (event) => {
     const message = JSON.parse(event.data);
+    if (message.type === "error" && message.conversation_id == null) {
+        // Older server errors have no conversation ID. Attribute only when
+        // exactly one response is active; never guess between concurrent chats.
+        const active = [...state.responseStates.entries()]
+            .filter(([, response]) => response.generating);
+        if (active.length !== 1) {
+            console.error("Unscoped chat error:", message.data);
+            return;
+        }
+        message.conversation_id = active[0][0];
+    }
     const responseState = getResponseState(message.conversation_id);
 
     if (message.type === "thinking_delta") {
 
-        if (responseState.cancelled) {
+        if (responseState.cancelled || !responseState.thoughtStream) {
             return;
         }
 
@@ -57,17 +68,24 @@ ws.onmessage = async (event) => {
     }
 
     else if (message.type === "content_delta") {
-        if (responseState.cancelled) {
-            return;
+        if (responseState.cancelled) return;
+        if (!acceptResponseEvent(responseState, message)) return;
+
+        if (message.data.trim()) {
+            beginAnswer(responseState);
         }
 
-        if (!acceptResponseEvent(responseState, message)) return;
-        appendResponseText(responseState.blockState, message.block_id, message.data);
+        appendResponseText(
+            responseState.blockState,
+            message.block_id,
+            message.data
+        );
     }
 
-    // Future backend visual insertion: data is a complete block snapshot.
     else if (message.type === "block_created") {
-        if (responseState.cancelled || !acceptResponseEvent(responseState, message)) return;
+        if (responseState.cancelled) return;
+        if (!acceptResponseEvent(responseState, message)) return;
+
         setResponseBlock(responseState.blockState, message.data);
     }
 
@@ -106,8 +124,9 @@ ws.onmessage = async (event) => {
 
     else if (message.type === "done") {
         if (!acceptResponseEvent(responseState, message)) return;
-        flushResponseBlocks(responseState.blockState);
-        responseState.assistant.thinkingDetails.open = false;
+        beginAnswer(responseState);
+        releaseResponseVisuals(responseState.blockState);
+        // Preserve the user's open/closed choice so thinking remains readable.
         responseState.assistant.thinkingSummary.textContent = "Thought";
 
         const completedAssistant = responseState.assistant;
@@ -132,7 +151,7 @@ ws.onmessage = async (event) => {
     }
 
     else if (message.type === "response_stats") {
-        renderStats(responseState,message.data);
+        if (responseState.stats) renderStats(responseState,message.data);
     }
 
     else if (message.type === "conversation_title") {
@@ -143,9 +162,10 @@ ws.onmessage = async (event) => {
     }
 
     else if (message.type === "cancelled") {
-        flushResponseBlocks(responseState.blockState);
+        if (!acceptResponseEvent(responseState, message)) return;
+        releaseResponseVisuals(responseState.blockState);
+        responseState.cancelled = true;
         if (responseState.assistant) {
-            responseState.assistant.thinkingDetails.open = false;
             responseState.assistant.thinkingSummary.textContent = "Stopped";
         }
 
@@ -157,11 +177,39 @@ ws.onmessage = async (event) => {
         }
     }
 
+    else if (message.type === "error") {
+        if (!acceptResponseEvent(responseState, message)) return;
+        releaseResponseVisuals(responseState.blockState);
+        responseState.cancelled = true;
+        responseState.generating = false;
+        responseState.assistant.thinkingSummary.textContent = "Failed";
+        console.error("Chat failed:", message.data);
+        if (state.currentConversationId === message.conversation_id) {
+            sendButton.disabled = false;
+            sendButton.textContent = "Send";
+        }
+    }
+
     if (
         message.conversation_id === state.currentConversationId
     ) {
         scrollToBottom();
     }
+};
+
+ws.onclose = () => {
+    // A dropped socket has no done event. Release already-received visuals.
+    for (const responseState of state.responseStates.values()) {
+        if (!responseState.generating) continue;
+        releaseResponseVisuals(responseState.blockState);
+        responseState.cancelled = true;
+        responseState.generating = false;
+        if (responseState.assistant) {
+            responseState.assistant.thinkingSummary.textContent = "Disconnected";
+        }
+    }
+    sendButton.disabled = true;
+    sendButton.textContent = "Disconnected";
 };
 
 // The server owns message and block identities; do not apply late text to a
@@ -330,12 +378,11 @@ export function stopChat(conversationId) {
         return;
     }
 
-    flushResponseBlocks(responseState.blockState);
+    releaseResponseVisuals(responseState.blockState);
     responseState.cancelled = true;
     responseState.generating = false;
 
     if (responseState.assistant) {
-        responseState.assistant.thinkingDetails.open = false;
         responseState.assistant.thinkingSummary.textContent = "Stopped";
     }
 
@@ -475,7 +522,7 @@ function createAssistantMessage(conversationId) {
     const responseState =
         getResponseState(conversationId);
 
-    flushResponseBlocks(responseState.blockState);
+    releaseResponseVisuals(responseState.blockState);
 
     container.classList.add(
         "message",
@@ -502,7 +549,9 @@ function createAssistantMessage(conversationId) {
 
     responseState.assistant = document.createElement("div");
     responseState.assistant.classList.add("assistant-content");
-    responseState.blockState = createResponseBlockState(responseState.assistant);
+    responseState.blockState = createResponseBlockState(
+        responseState.assistant, {deferVisuals: true}
+    );
 
     responseState.stats = document.createElement("div");
     responseState.stats.classList.add("response-stats");
@@ -522,6 +571,14 @@ function createAssistantMessage(conversationId) {
     responseState.activeTools = {};
     responseState.toolCards = new Map();
     responseState.assistantMessageId = null;
+    responseState.answerStarted = false;
+}
+
+function beginAnswer(responseState) {
+    if (responseState.answerStarted) return;
+
+    responseState.answerStarted = true;
+    responseState.assistant.thinkingDetails.open = false;
 }
 
 // Live events use `type`; database events use `event_type`.

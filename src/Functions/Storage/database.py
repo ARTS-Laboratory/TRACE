@@ -15,9 +15,10 @@ class Database:
         self.connection.execute("PRAGMA foreign_keys = ON")
 
         self.connection.row_factory = sqlite3.Row
-        self.migrate_execution_events()
 
         self.create_tables()
+
+        self.migrate_execution_events()
 
     def create_conversation(self, title="New chat"):
         cursor = self.connection.cursor()
@@ -363,6 +364,109 @@ class Database:
 
         self.connection.commit()
 
+    def add_visual_block(self, assistant_message_id, spec):
+        cursor = self.connection.cursor()
+
+        spec_json = json.dumps(spec)
+        try:
+            cursor.execute(
+                """
+            INSERT INTO visuals (
+                assistant_message_id,
+                spec_json
+            )
+            VALUES (?, ?)
+            """,
+                (assistant_message_id, spec_json),
+            )
+
+            visual_id = cursor.lastrowid
+
+            cursor.execute(
+                """
+            INSERT INTO response_blocks (
+                assistant_message_id,
+                type,
+                visual_id
+            )
+            VALUES (?, ?, ?)
+            """,
+                (assistant_message_id, "visual", visual_id),
+            )
+
+            block_id = cursor.lastrowid
+            self.connection.commit()
+
+        except Exception:
+            self.connection.rollback()
+            raise
+
+        return {"visual_id": visual_id, "block_id": block_id}
+
+    def get_visual(self, visual_id):
+        cursor = self.connection.cursor()
+
+        cursor.execute(
+            """
+            SELECT *
+            FROM visuals
+            WHERE id = ?
+            """,
+            (visual_id,),
+        )
+
+        row = cursor.fetchone()
+
+        if row is None:
+            return None
+
+        visual = dict(row)
+
+        visual["spec"] = json.loads(visual["spec_json"])
+
+        return visual
+
+    def get_visual_state(self, visual_id):
+        cursor = self.connection.cursor()
+
+        cursor.execute(
+            """
+            SELECT state_json
+            FROM visual_state
+            WHERE visual_id = ?
+            """,
+            (visual_id,),
+        )
+
+        row = cursor.fetchone()
+
+        if row is None:
+            return {}
+
+        state_json = json.loads(row["state_json"])
+
+        return state_json
+
+    def save_visual_state(self, visual_id, state):
+        state_json = json.dumps(state)
+        cursor = self.connection.cursor()
+
+        try:
+            cursor.execute(
+                """
+                INSERT INTO visual_state (visual_id, state_json)
+                VALUES (?, ?)
+                ON CONFLICT(visual_id) DO UPDATE SET
+                    state_json = excluded.state_json,
+                    updated_at = CURRENT_TIMESTAMP
+                """,
+                (visual_id, state_json),
+            )
+            self.connection.commit()
+        except Exception:
+            self.connection.rollback()
+            raise
+
     def create_tables(self):
         cursor = self.connection.cursor()
 
@@ -407,7 +511,7 @@ class Database:
 
                 FOREIGN KEY (message_id)
                     REFERENCES messages(id)
-                    ON DELETE CASCADE 
+                    ON DELETE CASCADE
             )
         """)
 
@@ -460,7 +564,33 @@ class Database:
 
                 FOREIGN KEY (assistant_message_id)
                     REFERENCES messages(id)
+                    ON DELETE CASCADE
+            )
+        """)
+
+        cursor.execute("""
+            CREATE TABLE IF NOT EXISTS visuals (
+                id INTEGER PRIMARY KEY AUTOINCREMENT,
+                assistant_message_id INTEGER NOT NULL,
+                spec_json TEXT NOT NULL,
+                schema_version INTEGER NOT NULL DEFAULT 1,
+                created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+
+                FOREIGN KEY (assistant_message_id)
+                    REFERENCES messages(id)
                     ON DELETE CASCADE 
+            )
+        """)
+
+        cursor.execute("""
+            CREATE TABLE IF NOT EXISTS visual_state (
+                visual_id INTEGER PRIMARY KEY,
+                state_json TEXT NOT NULL,
+                updated_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+
+                FOREIGN KEY (visual_id)
+                    REFERENCES visuals(id)
+                    ON DELETE CASCADE
             )
         """)
 

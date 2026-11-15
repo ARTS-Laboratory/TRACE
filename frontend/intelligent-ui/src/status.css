@@ -1,0 +1,19 @@
+.gc-visual .gc-status {
+  margin: 1rem 0;
+  border: 1px solid #555;
+  border-radius: 14px;
+  min-width: 0;
+  overflow: hidden;
+}
+.gc-visual .gc-status h3 { margin: 0; padding: 1.1rem 1.25rem; font-size: 1.05em; }
+.gc-visual .gc-status .gc-status-list { list-style: none; padding: 0; margin: 0; }
+.gc-visual .gc-status-list > li { padding: 0.85rem 1.25rem; margin: 0; border-top: 1px solid #444; }
+.gc-visual .gc-status-main { display: flex; align-items: baseline; justify-content: space-between; gap: 0.6rem 1rem; flex-wrap: wrap; }
+.gc-visual .gc-status-main strong { white-space: pre-wrap; overflow-wrap: anywhere; min-width: 0; }
+.gc-visual .gc-status-list p { margin: 0.5rem 0 0; white-space: pre-wrap; overflow-wrap: anywhere; font-size: 0.9em; opacity: 0.85; }
+.gc-visual .gc-status-badge { display: inline-flex; align-items: center; gap: 0.4rem; padding: 0.15rem 0.6rem; border: 1px solid currentColor; border-radius: 999px; font-size: 0.8em; white-space: nowrap; }
+.gc-visual .gc-status-badge[data-state="pending"] { color: #d2d4da; background: #303239; }
+.gc-visual .gc-status-badge[data-state="in_progress"] { color: #c1caff; background: #2d334e; }
+.gc-visual .gc-status-badge[data-state="success"] { color: #9ae8c4; background: #203c31; }
+.gc-visual .gc-status-badge[data-state="warning"] { color: #ffdb91; background: #44371e; }
+.gc-visual .gc-status-badge[data-state="error"] { color: #ffb4bc; background: #482a30; }

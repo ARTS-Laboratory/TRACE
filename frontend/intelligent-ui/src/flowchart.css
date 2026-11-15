@@ -1,0 +1,13 @@
+.gc-visual .gc-flowchart { margin: 1rem 0; border: 1px solid #555; border-radius: 14px; min-width: 0; overflow: hidden; }
+.gc-visual .gc-flowchart figcaption { padding: 1.25rem; font-weight: bold; }
+.gc-visual .gc-flowchart-scroll { max-width: 100%; max-height: 650px; overflow: auto; }
+.gc-visual .gc-flowchart-scroll:focus-visible { outline: 2px solid #8b9dff; outline-offset: -3px; }
+.gc-visual .gc-flowchart svg { display: block; margin: auto; max-width: none; }
+.gc-visual .gc-flowchart-edge { fill: none; stroke: #8b9dff; stroke-width: 2; stroke-linejoin: round; }
+.gc-visual .gc-flowchart-node rect { fill: #303344; stroke: #8b9dff; stroke-width: 1.5; }
+.gc-visual .gc-flowchart-label rect { fill: #252525; stroke: #555; }
+.gc-visual .gc-flowchart text { fill: #eee; font-family: monospace; font-size: 14px; white-space: pre; }
+.gc-visual .gc-flowchart-label text { font-size: 12px; }
+.gc-visual .gc-flowchart-details { padding: 1rem 1.25rem; }
+.gc-visual .gc-flowchart-details summary { cursor: pointer; }
+.gc-visual .gc-flowchart-details li { white-space: pre-wrap; overflow-wrap: anywhere; }
