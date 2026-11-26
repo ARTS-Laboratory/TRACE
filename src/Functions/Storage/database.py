@@ -1,5 +1,6 @@
 import json
 import sqlite3
+from pathlib import Path
 
 from Functions.Model.config import DATA_PATH
 
@@ -7,17 +8,14 @@ DATABASE_PATH = DATA_PATH / "glorp_cat.db"
 
 
 class Database:
-    def __init__(self):
-        DATABASE_PATH.parent.mkdir(parents=True, exist_ok=True)
+    def __init__(self, database_path: Path = DATABASE_PATH):
+        database_path.parent.mkdir(parents=True, exist_ok=True)
 
-        self.connection = sqlite3.connect(DATABASE_PATH)
-
+        self.connection = sqlite3.connect(database_path)
         self.connection.execute("PRAGMA foreign_keys = ON")
-
         self.connection.row_factory = sqlite3.Row
 
         self.create_tables()
-
         self.migrate_execution_events()
 
     def create_conversation(self, title="New chat"):
@@ -251,29 +249,15 @@ class Database:
     def add_execution_event(self, event):
         cursor = self.connection.cursor()
 
-        cursor.execute(
-            """
-            INSERT INTO execution_events (
-                conversation_id,
-                assistant_message_id,
-                tool_call_id,
-                event_type,
-                data_json
-            )
-            VALUES (?, ?, ?, ?, ?)
-            """,
-            (
-                event["conversation_id"],
-                event["assistant_message_id"],
-                event["tool_call_id"],
-                event["type"],
-                json.dumps(event["data"]),
-            ),
-        )
+        try:
+            event_id = self._insert_execution_event(cursor=cursor, event=event)
 
-        self.connection.commit()
+            self.connection.commit()
+        except Exception:
+            self.connection.rollback()
+            raise
 
-        return cursor.lastrowid
+        return event_id
 
     def get_execution_events(self, conversation_id):
         cursor = self.connection.cursor()
@@ -467,6 +451,727 @@ class Database:
             self.connection.rollback()
             raise
 
+    def get_conversation_skills(self, conversation_id: int) -> list[dict]:
+        cursor = self.connection.cursor()
+
+        cursor.execute(
+            """
+            SELECT
+                sp.id,
+                sp.name,
+                sp.description,
+                sp.source,
+                sp.content_hash,
+                sp.package_path
+            FROM skill_packages AS sp
+            JOIN conversation_skills AS cs
+                ON cs.skill_package_id = sp.id
+            WHERE cs.conversation_id = ?
+            ORDER BY sp.name ASC, sp.id ASC
+            """,
+            (conversation_id,),
+        )
+
+        return [dict(row) for row in cursor.fetchall()]
+
+    def register_skill_package(
+        self,
+        name: str,
+        description: str,
+        source: str,
+        content_hash: str,
+        package_path: str,
+    ):
+        cursor = self.connection.cursor()
+
+        try:
+            cursor.execute(
+                """
+            INSERT INTO skill_packages (
+                name,
+                description,
+                source,
+                content_hash,
+                package_path
+            )
+
+            VALUES (?, ?, ?, ?, ?)
+            """,
+                (name, description, source, content_hash, package_path),
+            )
+
+            skill_id = cursor.lastrowid
+            self.connection.commit()
+
+            return skill_id
+
+        except sqlite3.IntegrityError:
+            self.connection.rollback()
+            raise
+
+    def activate_conversation_skill(self, conversation_id: int, skill_package_id: int):
+
+        cursor = self.connection.cursor()
+
+        try:
+            cursor.execute(
+                """
+            INSERT INTO conversation_skills (
+                conversation_id,
+                skill_package_id
+            )
+
+            VALUES (?, ?)
+            """,
+                (conversation_id, skill_package_id),
+            )
+
+            self.connection.commit()
+
+        except sqlite3.IntegrityError:
+            self.connection.rollback()
+            raise
+
+    def get_skill_package(self, source: str, name: str, content_hash: str):
+        cursor = self.connection.cursor()
+
+        cursor.execute(
+            """
+        SELECT
+            sp.id,
+            sp.name,
+            sp.description,
+            sp.source,
+            sp.content_hash,
+            sp.package_path
+        FROM skill_packages AS sp
+        WHERE sp.source = ?
+            AND sp.name = ?
+            AND sp.content_hash = ?
+        """,
+            (source, name, content_hash),
+        )
+
+        row = cursor.fetchone()
+
+        if row is None:
+            return None
+
+        return dict(row)
+
+    def search_skill_packages(
+        self,
+        conversation_id: int,
+        query: str,
+        limit: int = 10,
+    ) -> list[dict]:
+        if type(query) is not str:
+            raise ValueError("query must be a string")
+
+        if type(limit) is not int:
+            raise ValueError("limit must be an integer")
+
+        if limit < 1 or limit > 50:
+            raise ValueError("limit must be between 1 and 50")
+
+        query = query.strip()
+
+        if not query:
+            return []
+
+        pattern = f"%{query}%"
+        cursor = self.connection.cursor()
+
+        cursor.execute(
+            """
+            SELECT
+                package.id,
+                package.name,
+                package.description,
+                package.source,
+                package.content_hash
+            FROM skill_packages AS package
+            WHERE EXISTS (
+                SELECT 1
+                FROM conversations
+                WHERE id = ?
+            )
+              AND (package.name LIKE ? OR package.description LIKE ?)
+              AND (
+                  EXISTS (
+                      SELECT 1
+                      FROM universal_skill_packages AS universal
+                      WHERE universal.skill_package_id = package.id
+                  )
+                  OR EXISTS (
+                      SELECT 1
+                      FROM skill_install_requests AS request
+                      WHERE request.conversation_id = ?
+                        AND request.skill_package_id = package.id
+                        AND request.status = 'installed'
+                  )
+              )
+            ORDER BY package.name ASC, package.id ASC
+            LIMIT ?
+            """,
+            (
+                conversation_id,
+                pattern,
+                pattern,
+                conversation_id,
+                limit,
+            ),
+        )
+
+        return [dict(row) for row in cursor.fetchall()]
+
+    def get_skill_package_by_id(self, skill_package_id: int):
+        cursor = self.connection.cursor()
+
+        cursor.execute(
+            """
+            SELECT
+                id,
+                name,
+                description,
+                source,
+                content_hash,
+                package_path
+            FROM skill_packages
+            WHERE id = ?
+        """,
+            (skill_package_id,),
+        )
+
+        row = cursor.fetchone()
+
+        if row is None:
+            return None
+
+        return dict(row)
+
+    def approve_skill_package(self, skill_package_id: int) -> None:
+        cursor = self.connection.cursor()
+
+        try:
+            cursor.execute(
+                """
+            INSERT INTO approved_skill_packages (
+                skill_package_id
+            )
+            VALUES (?)
+            ON CONFLICT(skill_package_id) DO NOTHING
+            """,
+                (skill_package_id,),
+            )
+
+            self.connection.commit()
+
+        except sqlite3.IntegrityError:
+            self.connection.rollback()
+            raise
+
+    def is_skill_package_approved(self, skill_package_id: int) -> bool:
+        cursor = self.connection.cursor()
+
+        cursor.execute(
+            """
+            SELECT 1
+            FROM approved_skill_packages
+            WHERE skill_package_id = ?
+            """,
+            (skill_package_id,),
+        )
+
+        return cursor.fetchone() is not None
+
+    def create_skill_install_request(
+        self,
+        conversation_id: int,
+        repository_url: str,
+        revision: str,
+        skill_file_path: str,
+    ) -> int:
+        cursor = self.connection.cursor()
+
+        try:
+            cursor.execute(
+                """
+                INSERT INTO skill_install_requests (
+                    conversation_id,
+                    repository_url,
+                    revision,
+                    skill_file_path
+                )
+                VALUES (?, ?, ?, ?)
+                """,
+                (
+                    conversation_id,
+                    repository_url,
+                    revision,
+                    skill_file_path,
+                ),
+            )
+
+            installation_id = cursor.lastrowid
+            self.connection.commit()
+
+            return installation_id
+
+        except sqlite3.IntegrityError:
+            self.connection.rollback()
+            raise
+
+    def get_skill_install_request(self, request_id: int) -> dict | None:
+        cursor = self.connection.cursor()
+
+        cursor.execute(
+            """
+            SELECT *
+            FROM skill_install_requests
+            WHERE id = ?
+            """,
+            (request_id,),
+        )
+
+        row = cursor.fetchone()
+
+        if row is None:
+            return None
+
+        return dict(row)
+
+    def get_conversation_skill_install_requests(
+        self, conversation_id: int
+    ) -> list[dict]:
+        cursor = self.connection.cursor()
+
+        cursor.execute(
+            """
+        SELECT *
+        FROM skill_install_requests
+        WHERE conversation_id = ?
+        ORDER BY id ASC
+        """,
+            (conversation_id,),
+        )
+
+        return [dict(row) for row in cursor.fetchall()]
+
+    def claim_skill_install_request(
+        self, request_id: int, conversation_id: int
+    ) -> bool:
+        cursor = self.connection.cursor()
+
+        try:
+            cursor.execute(
+                """
+                UPDATE skill_install_requests
+                SET status = 'installing'
+                WHERE id = ?
+                    AND conversation_id = ?
+                    AND status = 'pending'
+                """,
+                (request_id, conversation_id),
+            )
+
+            if cursor.rowcount != 1:
+                self.connection.rollback()
+                return False
+
+            cursor.execute(
+                """
+                SELECT repository_url, revision, skill_file_path
+                FROM skill_install_requests
+                WHERE id = ?
+                    AND conversation_id = ?
+                """,
+                (request_id, conversation_id),
+            )
+            request = cursor.fetchone()
+
+            if request is None:
+                raise RuntimeError("installation request could not be retrieved.")
+
+            self._insert_execution_event(
+                cursor=cursor,
+                event={
+                    "type": "skill_install_approved",
+                    "conversation_id": conversation_id,
+                    "assistant_message_id": None,
+                    "tool_call_id": None,
+                    "data": {
+                        "request_id": request_id,
+                        "repository_url": request["repository_url"],
+                        "revision": request["revision"],
+                        "skill_file_path": request["skill_file_path"],
+                    },
+                },
+            )
+
+            self.connection.commit()
+            return True
+
+        except Exception:
+            self.connection.rollback()
+            raise
+
+    def deny_skill_install_request(
+        self,
+        request_id: int,
+        conversation_id: int,
+    ) -> bool:
+        cursor = self.connection.cursor()
+
+        try:
+            cursor.execute(
+                """
+                UPDATE skill_install_requests
+                SET status = 'denied'
+                WHERE id = ?
+                  AND conversation_id = ?
+                  AND status = 'pending'
+                """,
+                (request_id, conversation_id),
+            )
+
+            if cursor.rowcount != 1:
+                self.connection.rollback()
+                return False
+
+            cursor.execute(
+                """
+                SELECT repository_url, revision, skill_file_path
+                FROM skill_install_requests
+                WHERE id = ?
+                  AND conversation_id = ?
+                """,
+                (request_id, conversation_id),
+            )
+            request = cursor.fetchone()
+
+            if request is None:
+                raise RuntimeError(
+                    "Denied installation request could not be retrieved."
+                )
+
+            self._insert_execution_event(
+                cursor=cursor,
+                event={
+                    "type": "skill_install_denied",
+                    "conversation_id": conversation_id,
+                    "assistant_message_id": None,
+                    "tool_call_id": None,
+                    "data": {
+                        "request_id": request_id,
+                        "repository_url": request["repository_url"],
+                        "revision": request["revision"],
+                        "skill_file_path": request["skill_file_path"],
+                    },
+                },
+            )
+
+            self.connection.commit()
+            return True
+
+        except Exception:
+            self.connection.rollback()
+            raise
+
+    def fail_skill_install_request(self, request_id: int, conversation_id: int) -> bool:
+        cursor = self.connection.cursor()
+
+        try:
+            cursor.execute(
+                """
+                UPDATE skill_install_requests
+                SET status = 'failed'
+                WHERE id = ?
+                    AND conversation_id = ?
+                    AND status = 'installing'
+                """,
+                (request_id, conversation_id),
+            )
+
+            if cursor.rowcount != 1:
+                self.connection.rollback()
+                return False
+
+            cursor.execute(
+                """
+                SELECT repository_url, revision, skill_file_path
+                FROM skill_install_requests
+                WHERE id = ?
+                    AND conversation_id = ?
+                """,
+                (request_id, conversation_id),
+            )
+            request = cursor.fetchone()
+
+            if request is None:
+                raise RuntimeError(
+                    "Failed installation request could not be retrieved."
+                )
+
+            self._insert_execution_event(
+                cursor=cursor,
+                event={
+                    "type": "skill_install_failed",
+                    "conversation_id": conversation_id,
+                    "assistant_message_id": None,
+                    "tool_call_id": None,
+                    "data": {
+                        "request_id": request_id,
+                        "repository_url": request["repository_url"],
+                        "revision": request["revision"],
+                        "skill_file_path": request["skill_file_path"],
+                    },
+                },
+            )
+
+            self.connection.commit()
+            return True
+
+        except Exception:
+            self.connection.rollback()
+            raise
+
+    def complete_skill_install_request(
+        self,
+        request_id: int,
+        conversation_id: int,
+        skill_package_id: int,
+    ) -> bool:
+        cursor = self.connection.cursor()
+
+        try:
+            cursor.execute(
+                """
+                UPDATE skill_install_requests
+                SET status = 'installed',
+                    skill_package_id = ?
+                WHERE id = ?
+                  AND conversation_id = ?
+                  AND status = 'installing'
+                """,
+                (skill_package_id, request_id, conversation_id),
+            )
+
+            if cursor.rowcount != 1:
+                self.connection.rollback()
+                return False
+
+            cursor.execute(
+                """
+                SELECT repository_url, revision, skill_file_path
+                FROM skill_install_requests
+                WHERE id = ?
+                  AND conversation_id = ?
+                """,
+                (request_id, conversation_id),
+            )
+            request = cursor.fetchone()
+
+            if request is None:
+                raise RuntimeError("Installation request could not be retrieved.")
+
+            cursor.execute(
+                """
+                SELECT id, name, source, content_hash
+                FROM skill_packages
+                WHERE id = ?
+                """,
+                (skill_package_id,),
+            )
+            package = cursor.fetchone()
+
+            if package is None:
+                raise RuntimeError("Installed skill package could not be retrieved.")
+
+            cursor.execute(
+                """
+                INSERT INTO approved_skill_packages (skill_package_id)
+                VALUES (?)
+                ON CONFLICT(skill_package_id) DO NOTHING
+                """,
+                (skill_package_id,),
+            )
+
+            self._insert_execution_event(
+                cursor=cursor,
+                event={
+                    "type": "skill_install_completed",
+                    "conversation_id": conversation_id,
+                    "assistant_message_id": None,
+                    "tool_call_id": None,
+                    "data": {
+                        "request_id": request_id,
+                        "repository_url": request["repository_url"],
+                        "revision": request["revision"],
+                        "skill_file_path": request["skill_file_path"],
+                        "skill_package_id": package["id"],
+                        "name": package["name"],
+                        "source": package["source"],
+                        "content_hash": package["content_hash"],
+                    },
+                },
+            )
+
+            self.connection.commit()
+            return True
+
+        except Exception:
+            self.connection.rollback()
+            raise
+
+    def _insert_execution_event(self, cursor, event):
+        cursor.execute(
+            """
+            INSERT INTO execution_events (
+                conversation_id,
+                assistant_message_id,
+                tool_call_id,
+                event_type,
+                data_json
+            )
+            VALUES(?, ?, ?, ?, ?)
+            """,
+            (
+                event["conversation_id"],
+                event["assistant_message_id"],
+                event["tool_call_id"],
+                event["type"],
+                json.dumps(event["data"]),
+            ),
+        )
+
+        return cursor.lastrowid
+
+    def register_universal_skill_package(self, skill_package_id: int):
+        cursor = self.connection.cursor()
+
+        try:
+            cursor.execute(
+                """
+                INSERT INTO universal_skill_packages (
+                    skill_package_id
+                )
+                VALUES(?)
+                ON CONFLICT(skill_package_id) DO NOTHING
+                """,
+                (skill_package_id,),
+            )
+            self.connection.commit()
+            return True
+
+        except Exception:
+            self.connection.rollback()
+            raise
+
+    def can_access_skill_package(
+        self,
+        conversation_id: int,
+        skill_package_id: int,
+    ) -> bool:
+        cursor = self.connection.cursor()
+
+        cursor.execute(
+            """
+            SELECT EXISTS (
+                SELECT 1
+                FROM conversations AS conversation
+                CROSS JOIN skill_packages AS package
+                WHERE conversation.id = ?
+                  AND package.id = ?
+                  AND (
+                      EXISTS (
+                          SELECT 1
+                          FROM universal_skill_packages AS universal
+                          WHERE universal.skill_package_id = package.id
+                      )
+                      OR EXISTS (
+                          SELECT 1
+                          FROM skill_install_requests AS request
+                          WHERE request.conversation_id = conversation.id
+                            AND request.skill_package_id = package.id
+                            AND request.status = 'installed'
+                      )
+                  )
+            )
+            """,
+            (conversation_id, skill_package_id),
+        )
+
+        return bool(cursor.fetchone()[0])
+
+    def recover_interrupted_skill_install_requests(self) -> int:
+        connection = self.connection
+
+        if connection.in_transaction:
+            raise RuntimeError(
+                "Run installation recovery outside an active transaction."
+            )
+
+        cursor = connection.cursor()
+        cursor.execute("BEGIN IMMEDIATE")
+
+        try:
+            cursor.execute(
+                """
+                SELECT
+                    id,
+                    conversation_id,
+                    repository_url,
+                    revision,
+                    skill_file_path
+                FROM skill_install_requests
+                WHERE status = 'installing'
+                ORDER BY id ASC
+                """
+            )
+            requests = cursor.fetchall()
+
+            for request in requests:
+                cursor.execute(
+                    """
+                    UPDATE skill_install_requests
+                    SET status = 'failed'
+                    WHERE id = ?
+                      AND conversation_id = ?
+                      AND status = 'installing'
+                    """,
+                    (request["id"], request["conversation_id"]),
+                )
+
+                if cursor.rowcount != 1:
+                    raise RuntimeError(
+                        "Interrupted installation request could not be recovered."
+                    )
+
+                self._insert_execution_event(
+                    cursor=cursor,
+                    event={
+                        "type": "skill_install_failed",
+                        "conversation_id": request["conversation_id"],
+                        "assistant_message_id": None,
+                        "tool_call_id": None,
+                        "data": {
+                            "request_id": request["id"],
+                            "repository_url": request["repository_url"],
+                            "revision": request["revision"],
+                            "skill_file_path": request["skill_file_path"],
+                            "reason": "server_restart",
+                        },
+                    },
+                )
+
+            connection.commit()
+            return len(requests)
+
+        except BaseException:
+            connection.rollback()
+            raise
+
     def create_tables(self):
         cursor = self.connection.cursor()
 
@@ -538,7 +1243,7 @@ class Database:
             CREATE TABLE IF NOT EXISTS execution_events (
                 id INTEGER PRIMARY KEY AUTOINCREMENT,
                 conversation_id INTEGER NOT NULL,
-                assistant_message_id INTEGER NOT NULL,
+                assistant_message_id INTEGER,
                 tool_call_id TEXT,
                 event_type TEXT NOT NULL,
                 data_json TEXT NOT NULL,
@@ -594,6 +1299,88 @@ class Database:
             )
         """)
 
+        cursor.execute("""
+            CREATE TABLE IF NOT EXISTS skill_packages (
+                id INTEGER PRIMARY KEY AUTOINCREMENT,
+                name TEXT NOT NULL,
+                description TEXT NOT NULL,
+                source TEXT NOT NULL,
+                content_hash TEXT NOT NULL,
+                package_path TEXT NOT NULL,
+                installed_at DATETIME DEFAULT CURRENT_TIMESTAMP NOT NULL,
+                UNIQUE (source, name, content_hash)
+            )
+        """)
+
+        cursor.execute("""
+            CREATE TABLE IF NOT EXISTS universal_skill_packages (
+                skill_package_id INTEGER PRIMARY KEY,
+
+                FOREIGN KEY (skill_package_id)
+                    REFERENCES skill_packages(id)
+                    ON DELETE CASCADE
+            )
+        """)
+
+        cursor.execute("""
+            CREATE TABLE IF NOT EXISTS conversation_skills (
+                conversation_id INTEGER NOT NULL,
+                skill_package_id INTEGER NOT NULL,
+                activated_at DATETIME DEFAULT CURRENT_TIMESTAMP NOT NULL,
+
+                PRIMARY KEY (conversation_id, skill_package_id),
+
+                FOREIGN KEY (conversation_id)
+                    REFERENCES conversations(id)
+                    ON DELETE CASCADE,
+
+                FOREIGN KEY (skill_package_id)
+                    REFERENCES skill_packages(id)
+                    ON DELETE RESTRICT
+            )
+        """)
+
+        cursor.execute("""
+        CREATE TABLE IF NOT EXISTS approved_skill_packages (
+            skill_package_id INTEGER PRIMARY KEY,
+            approved_at DATETIME DEFAULT CURRENT_TIMESTAMP NOT NULL,
+
+            FOREIGN KEY (skill_package_id)
+                REFERENCES skill_packages(id)
+                ON DELETE CASCADE
+        )
+        """)
+
+        cursor.execute("""
+            CREATE TABLE IF NOT EXISTS skill_install_requests (
+                id INTEGER PRIMARY KEY AUTOINCREMENT,
+                conversation_id INTEGER NOT NULL,
+                repository_url TEXT NOT NULL,
+                revision TEXT NOT NULL,
+                skill_file_path TEXT NOT NULL,
+                status TEXT NOT NULL DEFAULT 'pending'
+                    CHECK (
+                        status IN (
+                            'pending',
+                            'installing',
+                            'installed',
+                            'denied',
+                            'failed'
+                        )
+                    ),
+                skill_package_id INTEGER,
+                created_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+
+                FOREIGN KEY (conversation_id)
+                    REFERENCES conversations(id)
+                    ON DELETE CASCADE,
+
+                FOREIGN KEY (skill_package_id)
+                    REFERENCES skill_packages(id)
+                    ON DELETE RESTRICT
+            )
+        """)
+
         self.connection.commit()
 
     def migrate_execution_events(self):
@@ -609,22 +1396,28 @@ class Database:
                 "PRAGMA table_info(execution_events)"
             ).fetchall()
 
-            tool_column = next(
-                (column for column in columns if column[1] == "tool_call_id"),
-                None,
-            )
+            nullable_columns = []
 
-            if tool_column is None:
-                raise RuntimeError("execution_events.tool_call_id is missing.")
+            for name in ("assistant_message_id", "tool_call_id"):
+                column = next(
+                    (column for column in columns if column[1] == name),
+                    None,
+                )
 
-            # Already nullable: nothing to migrate.
-            if not tool_column[3]:
+                if column is None:
+                    raise RuntimeError(f"execution_events.{name} is missing.")
+
+                nullable_columns.append(column)
+
+            # Skip rebuilding only when both columns are already nullable.
+            if all(not column[3] for column in nullable_columns):
                 connection.commit()
                 return
 
             schema_objects = connection.execute(
                 """
-                SELECT sql FROM sqlite_master
+                SELECT sql
+                FROM sqlite_master
                 WHERE tbl_name = 'execution_events'
                 AND type IN ('index', 'trigger')
                 AND sql IS NOT NULL
@@ -639,7 +1432,7 @@ class Database:
                 CREATE TABLE execution_events_migrating (
                     id INTEGER PRIMARY KEY AUTOINCREMENT,
                     conversation_id INTEGER NOT NULL,
-                    assistant_message_id INTEGER NOT NULL,
+                    assistant_message_id INTEGER,
                     tool_call_id TEXT,
                     event_type TEXT NOT NULL,
                     data_json TEXT NOT NULL,
@@ -660,7 +1453,8 @@ class Database:
                     id, conversation_id, assistant_message_id,
                     tool_call_id, event_type, data_json, created_at
                 )
-                SELECT id, conversation_id, assistant_message_id,
+                SELECT
+                    id, conversation_id, assistant_message_id,
                     tool_call_id, event_type, data_json, created_at
                 FROM execution_events
             """)
@@ -673,7 +1467,7 @@ class Database:
             for row in schema_objects:
                 connection.execute(row[0])
 
-            # Avoid reusing IDs belonging to previously deleted events.
+            # Preserve IDs reserved by events that were previously deleted.
             if sequence is not None:
                 connection.execute(
                     "DELETE FROM sqlite_sequence WHERE name = 'execution_events'"

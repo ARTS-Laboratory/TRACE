@@ -1,7 +1,9 @@
 import json
+from copy import deepcopy
 
 from Functions.Agent.streaming import streamResponse
 from Functions.responseStats import ResponseStats
+from Skills.provenance import collect_skill_context
 
 
 class Agent:
@@ -25,6 +27,7 @@ class Agent:
         stats = ResponseStats()
         stats.set_model(self.model_manager.info)
         self.conversation.add_user(user_input, attachments)
+        model_iteration = 0
 
         while True:
             visual_created = False
@@ -52,6 +55,9 @@ class Agent:
                     "content": model_messages[0]["content"] + reminder,
                 }
 
+            skill_context = collect_skill_context(model_messages)
+            model_iteration += 1
+
             assistant = await streamResponse(
                 model_messages,
                 self.tool_manager,
@@ -59,6 +65,23 @@ class Agent:
                 on_event=on_event,
                 conversation_id=self.conversation_id,
             )
+
+            context_event = {
+                "type": "model_response_context",
+                "conversation_id": self.conversation_id,
+                "assistant_message_id": assistant_message_id,
+                "tool_call_id": None,
+                "data": {
+                    "model_iteration": model_iteration,
+                    "skill_context": deepcopy(skill_context),
+                },
+            }
+
+            if record_event:
+                record_event(deepcopy(context_event))
+
+            if on_event:
+                await on_event(deepcopy(context_event))
 
             # print("DEBUG: streamResponse returned", flush=True)
 
@@ -87,6 +110,7 @@ class Agent:
                 conversation_id=self.conversation_id,
                 assistant_message_id=assistant_message_id,
                 record_event=record_event,
+                skill_context=skill_context,
             )
 
             self.conversation.add_tool_messages(tool_messages)

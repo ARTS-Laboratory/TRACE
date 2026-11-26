@@ -27,6 +27,7 @@ services:
       DOCLING_LIBREOFFICE_CMD: /usr/bin/libreoffice
       GLORPCAT_CONTROLLER_URL: http://controller:8090
       GLORPCAT_QDRANT_URL: http://qdrant:6333
+      GITHUB_TOKEN: ${GITHUB_TOKEN:-}
 
     volumes:
       - ./src/Data:/app/Data

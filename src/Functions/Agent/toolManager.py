@@ -4,6 +4,7 @@ import inspect
 import json
 import pkgutil
 import time
+from copy import deepcopy
 
 import Functions.Tools
 from Functions.tool import Tool
@@ -63,6 +64,7 @@ class ToolManager:
         conversation_id=None,
         assistant_message_id=None,
         record_event=None,
+        skill_context=None,
         **kwargs,
     ):
 
@@ -72,7 +74,12 @@ class ToolManager:
                 "conversation_id": conversation_id,
                 "assistant_message_id": assistant_message_id,
                 "tool_call_id": tool_call_id,
-                "data": data,
+                "data": {
+                    **data,
+                    "skill_context": deepcopy(
+                        skill_context if skill_context is not None else []
+                    ),
+                },
             }
 
             if record_event:
@@ -117,6 +124,7 @@ class ToolManager:
         conversation_id=None,
         assistant_message_id=None,
         record_event=None,
+        skill_context=None,
     ):
         messages = []
 
@@ -144,6 +152,7 @@ class ToolManager:
                 conversation_id=conversation_id,
                 assistant_message_id=assistant_message_id,
                 record_event=record_event,
+                skill_context=skill_context,
                 **args,
             )
 

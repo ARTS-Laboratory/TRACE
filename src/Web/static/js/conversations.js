@@ -1,3 +1,4 @@
+import { setSkillConversation, openConversationSkills } from "./skills.js";
 import { state } from "./state.js";
 import { disposeResponseBlocks } from "./rendering.js";
 import { unmountVisuals } from "./visuals.js";
@@ -208,6 +209,7 @@ export async function loadConversation(conversationId) {
     }
 
     state.currentConversationId = conversation.id;
+    setSkillConversation(conversation.id);
     showChatSection();
     chat.classList.remove("new-chat");
     showConversationView(conversation.id);
@@ -230,6 +232,7 @@ export function startNewChat() {
     }
 
     state.currentConversationId = null;
+    setSkillConversation(null);
     chat.classList.add("new-chat");
     chatTitle.textContent = "";
     showChatSection();
@@ -355,6 +358,7 @@ async function deleteConversation(conversationId) {
 
     if (deletedCurrent) {
         state.currentConversationId = null;
+        setSkillConversation(null);
     }
 
     const conversations =
@@ -489,7 +493,17 @@ function openConversationMenu(
     );
 
 
+    const skillsOption = document.createElement("button");
+    skillsOption.classList.add("conversation-menu-option");
+    skillsOption.textContent = "Skills";
+    skillsOption.addEventListener("click", (event) => {
+        event.stopPropagation();
+        menu.remove();
+        void openConversationSkills(conversation.id, conversation.title, button);
+    });
+
     menu.appendChild(renameOption);
+    menu.appendChild(skillsOption);
     menu.appendChild(deleteOption);
 
     document.body.appendChild(menu);

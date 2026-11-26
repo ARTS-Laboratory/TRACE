@@ -56,6 +56,7 @@
             padding: 16px; border: 1px solid #80808080; border-radius: 8px; background: #0003;
             color: inherit; font: 13px/1.6 ui-monospace, SFMono-Regular, Consolas, monospace; tab-size: 4; }
     </style>
+    <link rel="stylesheet" href="/static/skills.css">
 </head>
 
 <body>
@@ -78,6 +79,7 @@
             </div>
 
             <div id="sidebar-tools">
+
 
                 <button id="rag-section-button">
                     <i data-lucide="database"></i>
@@ -407,6 +409,31 @@
 
 <div id="input-container">
 
+    <section id="skill-install-card" hidden aria-labelledby="skill-install-heading">
+        <div class="skill-popup-heading">
+            <span id="skill-install-heading">◇ Skill installation request</span>
+            <span id="skill-install-count"></span>
+        </div>
+        <h2 id="skill-install-name">Review skill</h2>
+        <p id="skill-install-description"></p>
+        <p id="skill-install-source" class="skill-popup-source"></p>
+        <p id="skill-install-status" role="status" aria-live="polite"></p>
+        <div class="skill-popup-footer">
+            <div class="skill-popup-navigation">
+                <button id="skill-install-prev" type="button" aria-label="Previous request">←</button>
+                <button id="skill-install-next" type="button" aria-label="Next request">→</button>
+                <button id="skill-install-read" type="button" aria-haspopup="dialog">Read instructions</button>
+                <button id="skill-install-retry" type="button" hidden>Retry</button>
+            </div>
+            <div class="skill-popup-decisions">
+                <button id="skill-install-dismiss" type="button" hidden>Dismiss</button>
+                <button id="skill-install-deny" type="button">Deny</button>
+                <button id="skill-install-approve" class="skill-primary" type="button" disabled>Approve &amp; download</button>
+            </div>
+        </div>
+    </section>
+
+
                 <div
                     id="attachment-preview"
                     class="attachment-preview hidden"
@@ -480,6 +507,54 @@
     <script
         src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js">
     </script>
+
+
+    <dialog id="conversation-skills-dialog" aria-labelledby="conversation-skills-title" aria-describedby="conversation-skills-intro">
+        <div class="skill-dialog-scroll">
+        <div class="skill-review-header">
+            <div><p class="skill-dialog-eyebrow">CONVERSATION SKILLS</p><h2 id="conversation-skills-title">Skills</h2></div>
+            <button id="conversation-skills-close" type="button" aria-label="Close conversation skills">✕</button>
+        </div>
+        <p id="conversation-skills-chat"></p>
+        <p id="conversation-skills-intro">Activated skills are available to this conversation. “Instructions loaded previously” records a successful agent load in its history; it does not guarantee the instructions remain in the current model context.</p>
+        <p id="conversation-skills-status" role="status" aria-live="polite"></p>
+        <div id="conversation-skills-list" aria-busy="false"></div>
+        <section class="skill-activity" aria-labelledby="skill-activity-title">
+            <h3 id="skill-activity-title">Installation activity</h3>
+            <p class="skill-activity-intro">Saved download decisions and installation outcomes for this conversation. Activation and instruction loading are separate actions.</p>
+            <p id="skill-activity-status" role="status" aria-live="polite"></p>
+            <ol id="skill-activity-list" aria-busy="false"></ol>
+        </section>
+        <div class="skill-review-actions"><button id="conversation-skills-refresh" type="button">Refresh skills and activity</button></div>
+        </div>
+    </dialog>
+    <dialog id="skill-review-dialog" aria-labelledby="skill-review-title" aria-describedby="skill-review-intro">
+        <div class="skill-dialog-scroll">
+        <div class="skill-review-header">
+            <div><p class="skill-dialog-eyebrow">SKILL REVIEW</p><h2 id="skill-review-title">Review skill</h2></div>
+            <button id="skill-review-close" type="button" aria-label="Close skill review">✕</button>
+        </div>
+        <p id="skill-review-intro">Read the candidate instructions before approving the download.</p>
+        <p id="skill-review-status" role="status" aria-live="polite"></p>
+        <dl id="skill-review-metadata">
+            <dt>Description</dt><dd id="skill-review-description"></dd>
+            <dt>Repository</dt><dd id="skill-review-source"></dd>
+            <dt id="skill-review-revision-label">Commit</dt><dd id="skill-review-revision"></dd>
+            <dt id="skill-review-path-label">Entry point</dt><dd id="skill-review-path"></dd>
+        </dl>
+        <h3>SKILL.md</h3>
+        <div class="skill-instructions-frame">
+            <pre id="skill-review-instructions" tabindex="0"></pre>
+        </div>
+        <p id="skill-review-note" class="skill-review-note">This preview shows SKILL.md. Approval downloads its containing directory and supporting files at the displayed commit. Activation is separate. Scripts and dependencies are not run or installed.</p>
+        <div class="skill-review-actions">
+            <button id="skill-review-retry" type="button" hidden>Retry review</button>
+            <button id="skill-review-deny" type="button">Deny</button>
+            <button id="skill-review-approve" class="skill-primary" type="button" disabled>Approve &amp; download</button>
+        </div>
+        </div>
+    </dialog>
+    <script type="module" src="/static/js/skills.js"></script>
 
 </body>
 

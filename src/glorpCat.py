@@ -1,13 +1,15 @@
 import asyncio
 
-from Functions.system import giveGPUstatus
 from Functions.Agent.factory import create_agent, create_runtime
+from Functions.Conversation.manager import ConversationManager
 from Functions.Model.config import CHATBOT_NAME
-
+from Functions.Storage.database import Database
+from Functions.system import giveGPUstatus
 
 GREY = "\033[90m"
 RESET = "\033[0m"
 BLUE_GREY = "\033[38;2;120;140;170m"
+
 
 class TerminalRenderer:
     def __init__(self):
@@ -21,31 +23,17 @@ class TerminalRenderer:
             if not self.in_thinking:
                 self.in_thinking = True
 
-                print(
-                    f"\n{GREY}{CHATBOT_NAME} thinking:\n",
-                    end=""
-                )
+                print(f"\n{GREY}{CHATBOT_NAME} thinking:\n", end="")
 
-            print(
-                data,
-                end="",
-                flush=True
-            )
+            print(data, end="", flush=True)
 
         elif event_type == "content_delta":
             if self.in_thinking:
-                print(
-                    f"{RESET}\n\n{CHATBOT_NAME}:\n",
-                    end=""
-                )
+                print(f"{RESET}\n\n{CHATBOT_NAME}:\n", end="")
 
                 self.in_thinking = False
 
-            print(
-                data,
-                end="",
-                flush=True
-            )
+            print(data, end="", flush=True)
 
         elif event_type == "tool_started":
             name = data["name"]
@@ -65,35 +53,53 @@ class TerminalRenderer:
         elif event_type == "tool_finished":
             elapsed = data["elapsed"]
 
-            print(
-                f"{BLUE_GREY}\n"
-                f"✓ Completed in {elapsed:.2f} s"
-            )
+            print(f"{BLUE_GREY}\n✓ Completed in {elapsed:.2f} s")
 
             print("=" * 50 + RESET + "\n")
+
 
 async def main():
     giveGPUstatus()
 
     runtime = await create_runtime()
-    agent = create_agent(runtime)
-
-    renderer = TerminalRenderer()
+    database = None
 
     try:
-        while True:
-            user = input("\n\nYou: ")
+        database = Database()
+        manager = ConversationManager(
+            runtime=runtime,
+            database=database,
+        )
 
-            if not user:
+        conversation_id = manager.create(title="Terminal chat")
+        agent = manager.get_agent(conversation_id)
+
+        if agent is None:
+            raise RuntimeError("Terminal conversation could not be loaded.")
+
+        renderer = TerminalRenderer()
+
+        while True:
+            try:
+                user = input("\n\nYou: ")
+            except EOFError:
+                break
+
+            if not user.strip():
                 break
 
             await agent.chat(
                 user,
-                on_event=renderer.handle_event
+                on_event=renderer.handle_event,
             )
 
     finally:
-        await runtime.shutdown()
+        try:
+            await runtime.shutdown()
+        finally:
+            if database is not None:
+                database.connection.close()
+
 
 if __name__ == "__main__":
     asyncio.run(main())

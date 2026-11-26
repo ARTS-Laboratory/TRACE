@@ -20,3 +20,4 @@ RUN python3 -m pip install \
 COPY ["src/Functions", "./Functions"]
 COPY ["src/Web", "./Web"]
 COPY ["src/glorpCat.py", "./glorpCat.py"]
+COPY ["src/Skills", "./Skills"]

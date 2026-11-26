@@ -9,6 +9,7 @@ from urllib.error import HTTPError, URLError
 from urllib.parse import urlencode
 from urllib.request import urlopen
 
+import requests
 from fastapi import (
     FastAPI,
     File,
@@ -57,6 +58,10 @@ class QueryCollection(BaseModel):
     limit: int = Field(default=10, ge=1)
 
 
+class ApproveSkillRequest(BaseModel):
+    expected_content_hash: str = Field(pattern=r"^[0-9a-f]{64}$")
+
+
 @asynccontextmanager
 async def lifespan(app: FastAPI):
     global runtime
@@ -64,32 +69,51 @@ async def lifespan(app: FastAPI):
     global conversation_manager
     global llama_cpp_server
 
+    database = None
+    conversation_manager = None
+    llama_cpp_server = None
+    worker = None
+
     runtime = await create_runtime()
 
-    llama_cpp_server = LlamaCppServerManager()
-
-    database = Database()
-    store = IngestionJobStore()
-
-    store.recover_interrupted_jobs()
-    app.state.ingestion_store = store
-
-    worker = IngestionWorker(
-        store=store,
-        embedding=runtime.embedding,
-        qdrant_db=runtime.qdrant_db,
-    )
-
-    conversation_manager = ConversationManager(runtime=runtime, database=database)
-
     try:
+        llama_cpp_server = LlamaCppServerManager()
+
+        database = Database()
+        database.recover_interrupted_skill_install_requests()
+
+        store = IngestionJobStore()
+        store.recover_interrupted_jobs()
+        app.state.ingestion_store = store
+
+        worker = IngestionWorker(
+            store=store,
+            embedding=runtime.embedding,
+            qdrant_db=runtime.qdrant_db,
+        )
+
+        conversation_manager = ConversationManager(
+            runtime=runtime,
+            database=database,
+        )
+
         worker.start()
         yield
 
     finally:
-        await asyncio.to_thread(worker.stop)
-        await llama_cpp_server.stop()
-        await runtime.shutdown()
+        try:
+            if worker is not None:
+                await asyncio.to_thread(worker.stop)
+        finally:
+            try:
+                if llama_cpp_server is not None:
+                    await llama_cpp_server.stop()
+            finally:
+                try:
+                    await runtime.shutdown()
+                finally:
+                    if database is not None:
+                        database.connection.close()
 
 
 app = FastAPI(lifespan=lifespan)
@@ -458,6 +482,167 @@ async def save_visual_state(visual_id: int, state: ChecklistState):
     return {"visual_id": visual_id, "state": saved_state}
 
 
+@app.get("/api/conversations/{conversation_id}/skills/{skill_package_id}/review")
+async def review_skill_package(
+    conversation_id: int,
+    skill_package_id: int,
+):
+    conversation = database.get_conversation(conversation_id=conversation_id)
+
+    if conversation is None:
+        raise HTTPException(
+            status_code=404,
+            detail="Conversation not found.",
+        )
+
+    if not database.can_access_skill_package(
+        conversation_id=conversation_id,
+        skill_package_id=skill_package_id,
+    ):
+        raise HTTPException(
+            status_code=404,
+            detail="Skill package not found.",
+        )
+
+    skill_package = database.get_skill_package_by_id(skill_package_id=skill_package_id)
+
+    if skill_package is None:
+        raise HTTPException(status_code=404, detail="Skill package not found")
+
+    try:
+        skill_metadata = conversation_manager.review_skill_package(
+            skill_package_id=skill_package_id
+        )
+
+        return skill_metadata
+
+    except requests.exceptions.RequestException as error:
+        raise github_http_exception(error) from error
+    except ValueError as error:
+        raise HTTPException(status_code=409, detail=str(error)) from error
+
+
+@app.post("/api/skills/{skill_package_id}/approve")
+async def approve_skill_package(skill_package_id: int, data: ApproveSkillRequest):
+    skill_package = database.get_skill_package_by_id(skill_package_id=skill_package_id)
+
+    if skill_package is None:
+        raise HTTPException(status_code=404, detail="Skill package not found")
+
+    try:
+        skill_metadata = conversation_manager.approve_reviewed_skill_package(
+            skill_package_id=skill_package_id,
+            expected_content_hash=data.expected_content_hash,
+        )
+
+        return skill_metadata
+
+    except requests.exceptions.RequestException as error:
+        raise github_http_exception(error) from error
+    except ValueError as error:
+        raise HTTPException(status_code=409, detail=str(error)) from error
+
+
+@app.get("/api/conversations/{conversation_id}/skill-install-requests")
+async def list_skill_install_requests(conversation_id: int):
+    try:
+        requests = conversation_manager.get_skill_install_requests(
+            conversation_id=conversation_id
+        )
+
+        return requests
+    except ValueError as error:
+        raise HTTPException(status_code=404, detail=str(error)) from error
+
+
+@app.get(
+    "/api/conversations/{conversation_id}/skill-install-requests/{request_id}/review"
+)
+async def review_skill_install(conversation_id: int, request_id: int):
+    request = database.get_skill_install_request(request_id=request_id)
+
+    if request is None or request["conversation_id"] != conversation_id:
+        raise HTTPException(
+            status_code=404,
+            detail="Skill installation request not found.",
+        )
+
+    try:
+        return await conversation_manager.review_skill_install_request(
+            conversation_id=conversation_id,
+            request_id=request_id,
+        )
+    except requests.exceptions.RequestException as error:
+        raise github_http_exception(error) from error
+    except ValueError as error:
+        raise HTTPException(
+            status_code=409,
+            detail=str(error),
+        ) from error
+
+
+@app.post(
+    "/api/conversations/{conversation_id}/skill-install-requests/{request_id}/approve"
+)
+async def approve_skill_install(conversation_id: int, request_id: int):
+    request = database.get_skill_install_request(request_id=request_id)
+
+    if request is None or request["conversation_id"] != conversation_id:
+        raise HTTPException(
+            status_code=404,
+            detail="Skill installation request not found.",
+        )
+
+    try:
+        return await conversation_manager.approve_skill_install_request(
+            conversation_id=conversation_id,
+            request_id=request_id,
+        )
+    except requests.exceptions.RequestException as error:
+        raise github_http_exception(error) from error
+    except ValueError as error:
+        raise HTTPException(
+            status_code=409,
+            detail=str(error),
+        ) from error
+
+
+@app.post(
+    "/api/conversations/{conversation_id}/skill-install-requests/{request_id}/deny"
+)
+async def deny_skill_install(conversation_id: int, request_id: int):
+    request = database.get_skill_install_request(request_id=request_id)
+
+    if request is None or request["conversation_id"] != conversation_id:
+        raise HTTPException(
+            status_code=404,
+            detail="Skill installation request not found.",
+        )
+
+    try:
+        return conversation_manager.deny_skill_install_request(
+            conversation_id=conversation_id,
+            request_id=request_id,
+        )
+    except ValueError as error:
+        raise HTTPException(
+            status_code=409,
+            detail=str(error),
+        ) from error
+
+
+@app.get("/api/conversations/{conversation_id}/skills")
+async def get_conversation_skills(conversation_id: int):
+    try:
+        status = conversation_manager.get_conversation_skill_status(
+            conversation_id=conversation_id
+        )
+
+        return status
+    except ValueError as error:
+        raise HTTPException(status_code=404, detail=str(error)) from error
+
+
 async def handle_chat(websocket: WebSocket, data):
     conversation_id = data["conversation_id"]
 
@@ -656,3 +841,68 @@ async def websocket_chat(websocket: WebSocket):
 
         for task in active_tasks:
             task.cancel()
+
+
+def github_http_exception(
+    error: requests.exceptions.RequestException,
+) -> HTTPException:
+    if isinstance(error, requests.exceptions.Timeout):
+        return HTTPException(
+            status_code=504,
+            detail="GitHub did not respond in time. Please try again later.",
+        )
+
+    if isinstance(error, requests.exceptions.ConnectionError):
+        return HTTPException(
+            status_code=503,
+            detail="GitHub is temporarily unreachable. Please try again later.",
+        )
+
+    if isinstance(error, requests.exceptions.HTTPError):
+        response = error.response
+
+        # Error responses can evaluate as False, so check explicitly.
+        if response is not None:
+            status = response.status_code
+
+            rate_limited = status == 429 or (
+                status == 403
+                and (
+                    str(response.headers.get("X-RateLimit-Remaining", "")).strip()
+                    == "0"
+                    or bool(response.headers.get("Retry-After"))
+                )
+            )
+
+            if rate_limited:
+                return HTTPException(
+                    status_code=503,
+                    detail="GitHub rate limit reached. Please try again later.",
+                )
+
+            if 500 <= status < 600:
+                return HTTPException(
+                    status_code=503,
+                    detail=(
+                        "GitHub is temporarily unavailable. Please try again later."
+                    ),
+                )
+
+            if status == 401:
+                return HTTPException(
+                    status_code=502,
+                    detail=(
+                        "GitHub authentication failed. "
+                        "Check the server's GitHub credentials."
+                    ),
+                )
+
+        return HTTPException(
+            status_code=502,
+            detail="GitHub could not provide the requested content.",
+        )
+
+    return HTTPException(
+        status_code=502,
+        detail="The GitHub request could not be completed.",
+    )
