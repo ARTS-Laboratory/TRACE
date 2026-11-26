@@ -264,68 +264,89 @@ export function enhanceCodeBlocks(container) {
     });
 }
 
-export function renderStats(state, stats) {
-    state.stats.innerHTML = "";
-
+// Keep the outer response disclosure stable when live statistics arrive.
+export function ensureResponseDetails(state, {pending = false} = {}) {
+    if (state.responseDetails) return state.responseDetails;
     const details = document.createElement("details");
     details.classList.add("stats-details");
-
     const summary = document.createElement("summary");
-
-    summary.textContent =
-        `${stats.speed.generation.toFixed(1)} tok/s` +
-        ` • ${stats.tokens.generated.toLocaleString()} tokens` +
-        ` • ${stats.timing.overall.toFixed(1)}s`;
-
+    summary.textContent = "Model response";
+    const status = document.createElement("p");
+    status.classList.add("response-stats-status");
+    status.textContent = pending
+        ? "Statistics will appear when the response finishes."
+        : "Response statistics were not recorded for this message.";
     const content = document.createElement("div");
     content.classList.add("stats-content");
-
-    content.innerHTML = `
-        <div class="stats-section">
-            <strong>Model</strong>
-            <span>Context</span>
-            <span class="context-value">
-                ${stats.model.context_used.toLocaleString()}
-                /
-                ${stats.model.context_length.toLocaleString()}
-                (${stats.model.context_usage.toFixed(1)}%)
-            </span>
-
-            <span>Prompt tokens</span>
-            <span>${stats.tokens.prompt.toLocaleString()}</span>
-
-            <span>Generated tokens</span>
-            <span>${stats.tokens.generated.toLocaleString()}</span>
-
-            <span>Prompt speed</span>
-            <span>${stats.speed.prompt.toFixed(2)} tok/s</span>
-
-            <span>Generation speed</span>
-            <span>${stats.speed.generation.toFixed(2)} tok/s</span>
-
-            <span>Load time</span>
-            <span>${stats.timing.load.toFixed(2)} s</span>
-        </div>
-
-        <div class="stats-section">
-            <strong>Timing</strong>
-
-            <span>Thinking</span>
-            <span>${stats.timing.thinking.toFixed(2)} s</span>
-
-            <span>Generation</span>
-            <span>${stats.timing.generation.toFixed(2)} s</span>
-
-            <span>Model total</span>
-            <span>${stats.timing.model_total.toFixed(2)} s</span>
-
-            <span>Overall</span>
-            <span>${stats.timing.overall.toFixed(2)} s</span>
-        </div>
-    `;
-
-    details.appendChild(summary);
-    details.appendChild(content);
-
+    content.hidden = true;
+    const contextHost = document.createElement("div");
+    contextHost.classList.add("response-skill-context");
+    details.append(summary, status, content, contextHost);
     state.stats.appendChild(details);
+    state.responseDetails = {details, summary, status, content, contextHost, hasStats: false};
+    return state.responseDetails;
+}
+
+export function finishResponseDetails(state) {
+    const view = state.responseDetails;
+    if (view && !view.hasStats) {
+        view.status.textContent = "No completed response statistics were recorded for this message.";
+    }
+}
+
+export function renderStats(state, stats) {
+    const view = ensureResponseDetails(state);
+    if (!stats || typeof stats !== "object" || !["model", "tokens", "speed", "timing"].every(
+        key => stats[key] && typeof stats[key] === "object" && !Array.isArray(stats[key])
+    )) {
+        if (!view.hasStats) view.status.textContent = "The recorded response statistics are incomplete.";
+        return false;
+    }
+    const number = (value, digits = 0) => typeof value === "number" && Number.isFinite(value) && value >= 0
+        ? value.toLocaleString(undefined, {minimumFractionDigits: digits, maximumFractionDigits: digits}) : "—";
+    const seconds = value => `${number(value, 2)} s`;
+    view.summary.textContent = "Model response · "
+        + `${number(stats.speed.generation, 1)} tok/s · `
+        + `${number(stats.tokens.generated)} tokens · `
+        + `${number(stats.timing.overall, 1)}s`;
+    view.content.replaceChildren();
+    const contextLength = stats.model.context_length > 0 ? number(stats.model.context_length) : "—";
+    const usage = typeof stats.model.context_usage === "number" && Number.isFinite(stats.model.context_usage)
+        && stats.model.context_usage >= 0 ? ` (${number(stats.model.context_usage, 1)}%)` : "";
+    const sections = [
+        ["Model", [
+            ["Context", `${number(stats.model.context_used)} / ${contextLength}${usage}`],
+            ["Prompt tokens", number(stats.tokens.prompt)],
+            ["Generated tokens", number(stats.tokens.generated)],
+            ["Prompt speed", `${number(stats.speed.prompt, 2)} tok/s`],
+            ["Generation speed", `${number(stats.speed.generation, 2)} tok/s`],
+            ["Load time", seconds(stats.timing.load)],
+        ]],
+        ["Timing", [
+            ["Thinking", seconds(stats.timing.thinking)],
+            ["Generation", seconds(stats.timing.generation)],
+            ["Model total", seconds(stats.timing.model_total)],
+            ["Overall", seconds(stats.timing.overall)],
+        ]],
+    ];
+    for (const [title, fields] of sections) {
+        const section = document.createElement("div");
+        section.classList.add("stats-section");
+        const heading = document.createElement("strong");
+        heading.textContent = title;
+        section.appendChild(heading);
+        for (const [label, value] of fields) {
+            const key = document.createElement("span");
+            key.textContent = label;
+            const text = document.createElement("span");
+            text.textContent = value;
+            if (label === "Context") text.classList.add("context-value");
+            section.append(key, text);
+        }
+        view.content.appendChild(section);
+    }
+    view.hasStats = true;
+    view.status.hidden = true;
+    view.content.hidden = false;
+    return true;
 }

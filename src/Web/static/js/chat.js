@@ -12,6 +12,8 @@ import {
 import {
     renderMath,
     renderStats,
+    ensureResponseDetails,
+    finishResponseDetails,
     createResponseBlockState,
     appendResponseText,
     setResponseBlock,
@@ -161,7 +163,9 @@ ws.onmessage = async (event) => {
     }
 
     else if (message.type === "response_stats") {
-        if (responseState.stats) renderStats(responseState,message.data);
+        if (responseState.stats && acceptResponseEvent(responseState, message)) {
+            renderStats(responseState, message.data);
+        }
     }
 
     else if (message.type === "conversation_title") {
@@ -569,12 +573,14 @@ function createAssistantMessage(conversationId) {
 
     responseState.stats = document.createElement("div");
     responseState.stats.classList.add("response-stats");
+    responseState.responseDetails = null;
 
 
     container.appendChild(thinkingDetails);
     container.appendChild(responseState.assistant);
-    responseState.modelContextView = createModelContextView(container, conversationId, true);
     container.appendChild(responseState.stats);
+    const responseDetails = ensureResponseDetails(responseState, {pending: true});
+    responseState.modelContextView = createModelContextView(responseDetails.contextHost, conversationId, true);
 
     getConversationView(conversationId).appendChild(container);
 
@@ -704,6 +710,7 @@ function createModelContextView(container, conversationId, pending = false) {
 }
 
 function finishModelContextView(responseState) {
+    finishResponseDetails(responseState);
     const view = responseState.modelContextView;
     if (view && view.iterations.size === 0) {
         view.status.textContent = "No completed model-response context was recorded for this message.";
@@ -842,7 +849,7 @@ export function addStoredAssistantMessage(message, conversationId = state.curren
     const events = executionEvents
         .filter(event => event.assistant_message_id === message.id)
         .slice().sort((a, b) => a.id - b.id);
-    const thoughtEvents = events.filter(event => event.event_type !== "model_response_context");
+    const thoughtEvents = events.filter(event => !["model_response_context", "response_stats"].includes(event.event_type));
     if (message.thinking || thoughtEvents.length) {
         const thinkingDetails = document.createElement("details");
         thinkingDetails.classList.add("thinking-container");
@@ -896,10 +903,18 @@ export function addStoredAssistantMessage(message, conversationId = state.curren
 
     container.appendChild(content);
 
-    const contextView = createModelContextView(container, conversationId);
+    const stats = document.createElement("div");
+    stats.classList.add("response-stats");
+    container.appendChild(stats);
+    const storedResponse = {stats};
+    const responseDetails = ensureResponseDetails(storedResponse);
+    const contextView = createModelContextView(responseDetails.contextHost, conversationId);
     contextView.assistantMessageId = message.id;
     for (const event of events) {
         if (event.event_type === "model_response_context") applyModelContextEvent(contextView, event);
+        if (event.event_type === "response_stats" && event.conversation_id === conversationId) {
+            renderStats(storedResponse, event.data);
+        }
     }
 
     getConversationView(conversationId).appendChild(container);
@@ -973,4 +988,5 @@ export function initializeChat() {
         }
     );
 }
+
 

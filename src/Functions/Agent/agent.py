@@ -135,14 +135,19 @@ class Agent:
 
         stats.finish()
 
+        response_stats = {
+            "type": "response_stats",
+            "conversation_id": self.conversation_id,
+            "assistant_message_id": assistant_message_id,
+            "tool_call_id": None,
+            "data": stats.to_dict(),
+        }
+
+        if record_event:
+            record_event(deepcopy(response_stats))
+
         if on_event:
-            await on_event(
-                {
-                    "type": "response_stats",
-                    "conversation_id": self.conversation_id,
-                    "data": stats.to_dict(),
-                }
-            )
+            await on_event(deepcopy(response_stats))
 
         stats.print_stats()
 
