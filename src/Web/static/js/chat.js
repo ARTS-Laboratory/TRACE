@@ -1,4 +1,5 @@
 import { setSkillConversation, refreshSkillRequests } from "./skills.js";
+import { updateTimelineVisibility, notifyTimelineEvent, clearTimeline} from "./timeline.js";
 import { state } from "./state.js";
 
 import {
@@ -59,6 +60,7 @@ ws.onmessage = async (event) => {
         }
         message.conversation_id = active[0][0];
     }
+    notifyTimelineEvent(message);
     const responseState = getResponseState(message.conversation_id);
 
     if (message.type === "thinking_delta") {
@@ -332,6 +334,8 @@ export async function sendMessage() {
             state.currentConversationId = conversation.id;
             setSkillConversation(conversation.id);
             chat.classList.remove("new-chat");
+            clearTimeline();
+            updateTimelineVisibility("chat");
 
             await loadConversations();
 

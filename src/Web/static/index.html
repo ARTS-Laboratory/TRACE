@@ -106,6 +106,52 @@
         </aside>
 
 
+        <button
+            id="trace-toggle"
+            type="button"
+            aria-label="Open TRACE timeline"
+            aria-controls="trace-panel"
+            aria-expanded="false"
+        >
+            <i data-lucide="panel-right"></i>
+        </button>
+
+        <aside
+            id="trace-panel"
+            aria-labelledby="trace-title"
+            hidden
+        >
+            <header id="trace-header">
+                <h2 id="trace-title">TRACE</h2>
+            </header>
+
+            <div id="trace-timeline">
+                <p id="trace-empty">
+                    No execution events yet.
+                </p>
+            </div>
+
+            <section id="trace-files">
+                <div class="trace-files-section">
+                    <h3>Outputs</h3>
+                    <p id="trace-outputs-empty">
+                        No generated files yet
+                    </p>
+                    <div id="trace-outputs"></div>
+                </div>
+
+                <div class="trace-files-divider"></div>
+
+                <div class="trace-files-section">
+                    <h3>Sources</h3>
+                    <p id="trace-sources-empty">
+                        No attached files
+                    </p>
+                    <div id="trace-sources"></div>
+                </div>
+            </section>
+        </aside>
+
         <main id="chat">
             <div id="chat-title"></div>
             <div id="messages"></div>

@@ -1,4 +1,8 @@
 import { showLogsView, hideLogsView } from "./logs.js";
+import {
+    initializeTimeline,
+    updateTimelineVisibility
+} from "./timeline.js";
 
 import {
     showRagView,
@@ -92,6 +96,7 @@ function showRagSection() {
         });
 
     showRagView();
+    updateTimelineVisibility("rag");
 }
 
 function showChatSection() {
@@ -112,6 +117,7 @@ function showChatSection() {
     if (state.currentConversationId !== null) {
         showConversationView(state.currentConversationId);
     }
+    updateTimelineVisibility("chat");
 }
 
 
@@ -124,6 +130,7 @@ function showLogsSection() {
         item.classList.remove("active");
     });
     showLogsView();
+    updateTimelineVisibility("logs");
 }
 
 document.getElementById("logs-section-button").addEventListener("click", showLogsSection);
@@ -155,4 +162,5 @@ document.addEventListener(
 );
 
 initializeChat();
+initializeTimeline();
 initializeApp();

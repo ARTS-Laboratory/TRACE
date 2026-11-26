@@ -1,4 +1,8 @@
 import { setSkillConversation, openConversationSkills } from "./skills.js";
+import {
+    renderTimelineHistory,
+    clearTimeline
+} from "./timeline.js";
 import { state } from "./state.js";
 import { disposeResponseBlocks } from "./rendering.js";
 import { unmountVisuals } from "./visuals.js";
@@ -184,6 +188,7 @@ export async function loadConversation(conversationId) {
     }
 
     const conversation = await response.json();
+    renderTimelineHistory(conversation);
 
     chatTitle.textContent = conversation.title;
     const view = getConversationView(conversation.id);
@@ -233,6 +238,9 @@ export function startNewChat() {
 
     state.currentConversationId = null;
     setSkillConversation(null);
+
+    clearTimeline();
+
     chat.classList.add("new-chat");
     chatTitle.textContent = "";
     showChatSection();
