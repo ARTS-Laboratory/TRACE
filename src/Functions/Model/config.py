@@ -54,6 +54,21 @@ MAX_TOKENS = 1024
 # Default skills
 DEFAULT_SKILL_NAMES = ("skill-search",)
 
+# Event data redactions
+REDACT = [
+    "api_key",
+    "apikey",
+    "access_token",
+    "refresh_token",
+    "password",
+    "secret",
+    "client_secret",
+    "authorization",
+    "x-api-key",
+]
+
+REDACT_PATTERNS = []
+
 # model settings
 STREAM = True
 THINKING = True
@@ -177,3 +192,4 @@ SYSTEM_PROMPT = (
     "unavailable in the current conversation. Respect restrictions against "
     "searching, installing, or activating. Previously inspected text does not count "
     "as a successful skill load."
+)

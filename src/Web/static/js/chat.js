@@ -1,6 +1,15 @@
 import { setSkillConversation, refreshSkillRequests } from "./skills.js";
-import { updateTimelineVisibility, notifyTimelineEvent, clearTimeline} from "./timeline.js";
+import {
+    notifyTimelineEvent,
+    clearTimeline,
+    updateTimelineVisibility,
+    openTimeline
+} from "./timeline.js";
 import { state } from "./state.js";
+import {
+    skillContextDisplay,
+    renderToolDetails
+} from "./tool-details.js";
 
 import {
     getCurrentAttachment,
@@ -336,6 +345,7 @@ export async function sendMessage() {
             chat.classList.remove("new-chat");
             clearTimeline();
             updateTimelineVisibility("chat");
+            openTimeline();
 
             await loadConversations();
 
@@ -668,33 +678,6 @@ function applyToolEvent(responseState, event) {
     renderToolDetails(card, event);
 }
 
-function skillContextDisplay(payload) {
-    let skillContext = "Skill context was not recorded for this older execution.";
-    if (Object.hasOwn(payload, "skill_context")) {
-        const recorded = payload.skill_context;
-        if (Array.isArray(recorded)) {
-            skillContext = recorded.length === 0
-                ? "No loaded skill text was recorded in this model request."
-                : recorded.map(item => {
-                    if (!item || typeof item !== "object" || Array.isArray(item)) {
-                        return {note: "An invalid skill-context entry was recorded."};
-                    }
-                    return {
-                        skill_package_id: item.skill_package_id,
-                        skill_name: item.skill_name,
-                        source: item.source,
-                        content_hash: item.content_hash,
-                        relative_path: item.relative_path,
-                        tool_call_id: item.tool_call_id
-                    };
-                });
-        } else {
-            skillContext = "The recorded skill context is invalid.";
-        }
-    }
-    return skillContext;
-}
-
 function createModelContextView(container, conversationId, pending = false) {
     const element = document.createElement("details");
     element.classList.add("model-skill-context");
@@ -765,54 +748,7 @@ function applyModelContextEvent(view, event) {
     view.status.hidden = true;
 }
 
-function renderToolDetails(card, event) {
-    card.body.replaceChildren();
-    const skillContext = skillContextDisplay(card.payload);
-    const fields = [
-        ["Status", card.status.title],
-        ["Tool", card.toolName],
-        ["Conversation ID", event.conversation_id],
-        ["Assistant message ID", event.assistant_message_id],
-        ["Tool call ID", event.tool_call_id],
-        ["Event IDs", card.eventIds.length ? card.eventIds : undefined],
-        ["Started (UTC)", card.startedAt],
-        ["Ended (UTC)", card.finishedAt],
-        ["Duration (seconds)", card.payload.elapsed],
-        ["Skill context", skillContext],
-        ["Inputs", card.payload.arguments],
-        ["Output", Object.hasOwn(card.payload, "result")
-            ? card.payload.result : undefined],
-        ["Error", card.payload.error]
-    ];
-    if (card.state === "succeeded" && !Object.hasOwn(card.payload, "result")) {
-        fields.push(["Output", "Output was not recorded for this older execution."]);
-    }
-    if (card.state === "cancelled") {
-        fields.push(["Note", "Local execution was cancelled; an external tool may have continued."]);
-    }
-    for (const [label, value] of fields) {
-        if (value === undefined) continue;
-        const heading = document.createElement("strong");
-        heading.textContent = label;
-        heading.style.cssText = "display:block;color:#fff;font-weight:700;margin:1rem 0 0.4rem;line-height:1.4";
-        if (label === "Skill context") {
-            card.body.appendChild(heading);
-            const note = document.createElement("p");
-            note.textContent = "Skill files available when the model selected this tool call. This records available context, not proof that the model followed it.";
-            note.style.cssText = "margin:0 0 0.6rem;color:#b8b8b8;font-size:0.85rem;line-height:1.5";
-            card.body.appendChild(note);
-        }
-        const text = document.createElement("pre");
-        text.style.cssText = "display:block;box-sizing:border-box;width:100%;min-width:0;margin:0;padding:0.75rem 1rem;background:#181818;border:1px solid #444;border-radius:8px;color:#e6e6e6;white-space:pre-wrap;overflow-wrap:anywhere;max-height:24rem;overflow:auto;font-family:ui-monospace,SFMono-Regular,Consolas,monospace;font-size:0.9rem;line-height:1.5";
-        const code = document.createElement("code");
-        code.style.cssText = "display:block;padding:0;margin:0;border:0;background:transparent;color:inherit;font:inherit;white-space:inherit";
-        // Tool outputs are untrusted data, never HTML.
-        code.textContent = typeof value === "string" ? value : JSON.stringify(value, null, 2);
-        text.appendChild(code);
-        if (label !== "Skill context") card.body.appendChild(heading);
-        card.body.appendChild(text);
-    }
-}
+
 
 function getToolLabel(name) {
     const labels = {

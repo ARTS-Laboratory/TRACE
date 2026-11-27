@@ -1,4 +1,5 @@
 import { state } from "./state.js";
+import { renderToolMetadata } from "./tool-details.js";
 
 const panel = document.getElementById("trace-panel");
 const toggle = document.getElementById("trace-toggle");
@@ -10,6 +11,8 @@ let timelineConversationId = null;
 
 // Presentation state only — not execution history.
 const expandedResponses = new Map();
+const expandedTools = new Map();
+const toolPayloadStates = new Map();
 
 let timelineFollowLatest = true;
 
@@ -53,7 +56,7 @@ function toggleTimeline() {
     }
 }
 
-function openTimeline() {
+export function openTimeline() {
     if (closeAnimation !== null) {
         clearTimeout(closeAnimation);
         closeAnimation = null;
@@ -301,7 +304,9 @@ export function renderTimelineHistory(conversation) {
 
     if (switchingConversation) {
         expandedResponses.clear();
+        expandedTools.clear();
         timelineFollowLatest = true;
+        toolPayloadStates.clear();
     }
 
     timelineConversationId = conversation.id;
@@ -473,6 +478,7 @@ function createEventGroup(
     return details;
 }
 
+
 function normalizeTimelineEvents(events) {
     const entries = [];
     const activeTools = new Map();
@@ -484,6 +490,10 @@ function normalizeTimelineEvents(events) {
         if (type === "tool_started") {
             const entry = {
                 kind: "tool",
+                key: JSON.stringify([
+                    event.assistant_message_id,
+                    event.tool_call_id ?? event.id
+                ]),
                 name: event.data?.name || "Unknown tool",
                 status: "started",
                 events: [event],
@@ -511,6 +521,10 @@ function normalizeTimelineEvents(events) {
             } else {
                 entries.push({
                     kind: "tool",
+                    key: JSON.stringify([
+                        event.assistant_message_id,
+                        event.tool_call_id ?? event.id
+                    ]),
                     name: event.data?.name || "Unknown tool",
                     status: type,
                     events: [event],
@@ -521,6 +535,7 @@ function normalizeTimelineEvents(events) {
             continue;
         }
 
+        // All other execution events remain ordinary events.
         entries.push({
             kind: "event",
             type,
@@ -607,10 +622,60 @@ function createTimelineEntry(entry) {
         }
     }
 
-    content.append(name, meta);
-    row.append(icon, content);
 
+
+    content.append(name, meta);
+
+    if (entry.kind === "tool") {
+        const details = document.createElement("details");
+        details.className = "trace-tool-details";
+
+        details.open = expandedTools.get(entry.key) ?? false;
+
+        details.addEventListener("toggle", () => {
+            expandedTools.set(entry.key, details.open);
+        });
+
+        const summary = document.createElement("summary");
+        summary.className = "trace-tool-summary";
+
+        const header = document.createElement("div");
+        header.className = "trace-tool-heading";
+
+        header.append(icon, content);
+
+        const chevron = document.createElement("span");
+        chevron.className = "trace-tool-chevron";
+        chevron.setAttribute("aria-hidden", "true");
+
+        summary.append(header, chevron);
+
+        const body = document.createElement("div");
+        body.className = "trace-tool-details-body";
+
+        let payloadState = toolPayloadStates.get(entry.key);
+
+        if (!payloadState) {
+            payloadState = {
+                inputs: { expanded: false, scrollTop: 0 },
+                output: { expanded: false, scrollTop: 0 }
+            };
+
+            toolPayloadStates.set(entry.key, payloadState);
+        }
+
+        renderToolMetadata(body, entry, payloadState);
+
+        details.append(summary, body);
+        row.appendChild(details);
+
+        return row;
+    }
+
+    row.append(icon, content);
     return row;
+
+
 }
 
 
@@ -696,6 +761,7 @@ export function clearTimeline() {
     timelineConversationId = null;
     timelineEvents = [];
     expandedResponses.clear();
+    expandedTools.clear();
     timelineFollowLatest = true;
 
     // Remove the previous conversation's timeline.

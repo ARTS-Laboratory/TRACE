@@ -7,6 +7,7 @@ import time
 from copy import deepcopy
 
 import Functions.Tools
+from Functions.Agent.eventSanitizer import sanitize_events
 from Functions.tool import Tool
 
 BLUE_GREY = "\033[38;2;120;140;170m"
@@ -82,11 +83,15 @@ class ToolManager:
                 },
             }
 
+            sanitized_event = sanitize_events(events=event)
+
             if record_event:
-                record_event(event)
+                record_sanitized_event = deepcopy(sanitized_event)
+                record_event(record_sanitized_event)
 
             if on_event:
-                await on_event(event)
+                on_sanitized_event = deepcopy(sanitized_event)
+                await on_event(on_sanitized_event)
 
         await emit("tool_started", {"name": name, "arguments": kwargs})
         start = time.perf_counter()
